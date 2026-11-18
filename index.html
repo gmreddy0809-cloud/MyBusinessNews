@@ -275,6 +275,59 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
 .misc-live-search button:hover{background:#fff1e8}
 @media(max-width:700px){.misc-live-search{flex-direction:column;align-items:stretch}.misc-live-search button{width:100%}}
 
+
+/* Direct-homepage reading desks: Telugu Patrikalu and English Magazines */
+.publisher-hub{display:none;padding:23px 24px 24px;background:linear-gradient(135deg,#fff 0%,#fbfbff 55%,#f4f7ff 100%);border-top:1px solid #e2eaf5}
+.publisher-open #publisherHub{display:block}
+.publisher-open .desk-pulse,.publisher-open .sector-quickbar,.publisher-open .source-hub{display:none!important}
+.publisher-open #sectorSelect,.publisher-open #originSelect{display:none!important}
+.publisher-open .feed-header{background:linear-gradient(105deg,#eaf6ff,#fff 42%,#f2f5ff)}
+.publisher-open .feed-header h2{color:#174773}
+.publisher-open.english-magazines-open .feed-header{background:linear-gradient(110deg,#f8efff,#fff 48%,#fff2ed)}
+.publisher-open.english-magazines-open .feed-header h2{color:#714383}
+.publisher-headline{display:flex;gap:14px;align-items:center;padding-bottom:16px;border-bottom:1px solid #e4e9f5}
+.publisher-headline-icon{width:54px;height:54px;flex:none;display:grid;place-items:center;font-size:28px;border-radius:16px;background:linear-gradient(135deg,#2579cc,#21b1a0);color:#fff;box-shadow:0 7px 20px rgba(36,117,172,.17)}
+.english-magazines-open .publisher-headline-icon{background:linear-gradient(130deg,#835ac0,#e47c83)}
+.publisher-overline{font-size:9px;font-weight:900;letter-spacing:1.5px;color:#597da8;margin-bottom:3px}
+.publisher-headline h3{font-family:Manrope,sans-serif;font-size:22px;color:#1e426d;margin:0 0 5px}
+.publisher-headline p{font-size:11.5px;line-height:1.5;color:#768aa1;margin:0}
+.publisher-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.publisher-card{display:flex;gap:10px;align-items:center;min-width:0;padding:13px 11px;border:1px solid #dbe7f4;background:white;border-radius:11px;text-decoration:none!important;box-shadow:0 3px 11px rgba(26,70,126,.035);transition:transform .16s,box-shadow .16s,border-color .16s}
+.publisher-card:nth-child(6n+1){background:linear-gradient(125deg,#eef7ff,#fff);border-color:#c6dff5}
+.publisher-card:nth-child(6n+2){background:linear-gradient(125deg,#fff3f8,#fff);border-color:#ecd3e5}
+.publisher-card:nth-child(6n+3){background:linear-gradient(125deg,#f0fbf5,#fff);border-color:#ccebd8}
+.publisher-card:nth-child(6n+4){background:linear-gradient(125deg,#fff5ec,#fff);border-color:#f3ddca}
+.publisher-card:nth-child(6n+5){background:linear-gradient(125deg,#f4f0ff,#fff);border-color:#e0d7fb}
+.publisher-card:hover{border-color:#6ea5e1;transform:translateY(-2px);box-shadow:0 9px 22px rgba(47,104,162,.11)}
+.publisher-card-emoji{font-size:21px;flex:none}
+.publisher-card-text{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.publisher-card-text strong{font-size:12px;color:#294f77;line-height:1.25;overflow-wrap:anywhere}
+.publisher-card-text small{font-size:10px;color:#8a97a7;line-height:1.3}
+.publisher-card-arrow{font-weight:850;font-size:15px;color:#628cb8;flex:none}
+.publisher-rights{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.publisher-rights span{font-size:10px;background:#f1f7fc;color:#5582a3;padding:6px 10px;border-radius:99px;border:1px solid #dceaf5}
+.publisher-feed-note{margin-top:15px;font-size:11px;line-height:1.6;color:#637c93;padding:12px 14px;border-radius:10px;background:#eaf5fb;border-left:3px solid #4295d1}
+.publisher-life-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.publisher-life-chips[hidden]{display:none!important}
+.publisher-topic-chip{padding:9px 12px;font-size:10.5px;font-weight:750;border-radius:99px;border:1px solid #e2daee;background:white;color:#78569f;cursor:pointer}
+.publisher-topic-chip:hover{background:#f5efff}
+.publisher-topic-chip.active{background:linear-gradient(110deg,#8253b9,#cf689a);color:#fff;border-color:transparent}
+.region-tab[data-region="telugu-patrikalu"]{background:#e8f8f6;border:1px solid #b5e4d9;color:#177d74;font-weight:850}
+.region-tab[data-region="telugu-patrikalu"].active{background:linear-gradient(105deg,#188c93,#266cbe)!important;color:#fff!important}
+.region-tab[data-region="english-magazines"]{background:#f9eefb;border:1px solid #e8c8ea;color:#8e4896;font-weight:850}
+.region-tab[data-region="english-magazines"].active{background:linear-gradient(105deg,#8058be,#b45094)!important;color:#fff!important}
+.dark .publisher-hub{background:#20354a;border-color:#344c64}
+.dark .publisher-headline{border-color:#34516a}
+.dark .publisher-headline h3{color:#e4f1ff}
+.dark .publisher-card,.dark .publisher-card:nth-child(n){background:#273d55;border-color:#45617b}
+.dark .publisher-card-text strong{color:#ecf5ff}
+.dark .publisher-card-text small{color:#b4c6da}
+.dark .publisher-feed-note{background:#27465d;color:#cadbeb}
+.dark .publisher-rights span{background:#2a435e;color:#bcd1e5;border-color:#466480}
+@media(max-width:1100px){.publisher-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.publisher-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.publisher-hub{padding:18px 15px}}
+@media(max-width:480px){.publisher-hub{padding:15px 11px}.publisher-cards{gap:7px}.publisher-card{padding:10px 8px;gap:6px}.publisher-card-emoji{font-size:18px}.publisher-card-text strong{font-size:10.5px}.publisher-card-text small{font-size:9px}.publisher-headline h3{font-size:19px}.publisher-headline-icon{width:42px;height:42px;font-size:22px}.publisher-rights{gap:5px}}
+
 </style>
 </head>
 <body>
