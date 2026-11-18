@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Keyless source-link news index; no full article republishing."""
 import json, re, time, os, sys
+from rss_sources import collect_official
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -80,7 +81,11 @@ def main():
     try: old=json.loads(DEST.read_text(encoding="utf-8"))
     except Exception:old={"articles":[]}
     news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
-    good=0
+    official=collect_official()
+    for entry in official:
+        if entry["url"] not in news or dt(entry["seen"])>=dt(news[entry["url"]].get("seen")):
+            news[entry["url"]]=entry
+    good=len(official)>0
     count_by_region={}
     for item in news.values():
         region=item.get("region") or ""
@@ -103,7 +108,7 @@ def main():
                 if item and (item["url"] not in news or dt(item["seen"])>=dt(news[item["url"]].get("seen"))):
                     news[item["url"]]=item
                     count+=1
-            good=1
+            good=True
             print(group,"received",len(rows),"accepted",count,flush=True)
             break
         except Exception as exc:
@@ -112,7 +117,9 @@ def main():
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
     rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows[:1400],"sources":["The GDELT Project"],"note":"GDELT observation time, not verified publisher publication time; original links are controlled by publishers."}
+    # Keep regional exchange announcements and official updates visible even with a crowded global index.
+    rows=rows[:1300]
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","PIB","The GDELT Project"],"note":"Publisher times are unverified unless explicitly in official feed; GDELT timestamps reflect indexing. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
