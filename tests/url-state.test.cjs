@@ -80,6 +80,12 @@ assert.equal(mag.state.region,'english-magazines','F5 lost English magazine read
 assert.equal(mag.state.publicationTopic,'Health & Wellbeing','F5 lost lifestyle category');
 assert(html.includes('https://www.eenadu.net/'),'Direct Eenadu homepage link missing');
 assert(html.includes('https://www.indiatoday.in/'),'Direct India Today homepage link missing');
+assert(html.includes('<nav id="publisherCards" class="publisher-cards"'),'Compact publisher name tabs must be direct link navigation');
+assert(html.includes('link.textContent=name;'),'Publisher chips should display just the publication name');
+assert(html.includes('.publisher-cards{display:flex!important;flex-wrap:wrap!important'),
+       'Publisher tabs must wrap without requiring horizontal scrolling');
+assert(!html.includes('class="publisher-rights"'),'Unnecessary publisher badge boxes must be removed');
+
 
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
 assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
