@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-18-design-r6">
+<meta name="mbn-site-version" content="2026-11-18-design-r7">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -170,6 +170,53 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
 .dark .desk-pulse{background:#20334e;border-color:#2c4a66}.dark .pulse-views button{background:#233953;border-color:#3d5670;color:#eef2fb}.dark .pulse-views strong{color:#c5ddfb}
 @media(max-width:920px){.desk-pulse{flex-direction:column;align-items:stretch;gap:10px}.pulse-intro>span:last-child{width:auto}.pulse-views{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.desk-pulse{padding:11px 10px;margin-bottom:12px}.pulse-views{gap:7px}.pulse-views button{font-size:9.8px;padding:9px 8px}.pulse-views strong{font-size:15px}}
+
+
+/* X Business Watch: live searches and user-triggered official public profile embeds */
+.x-watch-panel[hidden]{display:none!important}
+body.x-watch-open #xWatchPanel{display:block!important}
+body.x-watch-open .tool-row,body.x-watch-open .sector-quickbar,body.x-watch-open .source-hub,body.x-watch-open .results-bar,body.x-watch-open .web-search-help,body.x-watch-open #newsList,body.x-watch-open .list-footer{display:none!important}
+.x-watch-panel{padding:22px 26px 30px;background:linear-gradient(130deg,#fff 40%,#f6f8ff 100%);border-top:1px solid #e9eef8}
+.x-watch-header{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.x-watch-symbol{display:grid;place-items:center;background:#152138;color:#fff;width:53px;height:53px;border-radius:16px;font-size:30px}
+.x-watch-header h3{font-family:Manrope,sans-serif;font-size:21px;color:#1c3554;margin:0 0 4px}
+.x-watch-header p{color:#748398;font-size:12px;line-height:1.5;margin:0}
+.x-watch-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.x-watch-card{padding:19px 16px;border:1px solid #dce8f6;border-radius:14px;background:linear-gradient(145deg,#edf6ff,#fff);min-width:0}
+.x-watch-card:nth-child(2){background:linear-gradient(145deg,#e9faf6,#fff);border-color:#c9e9df}
+.x-watch-card:nth-child(3){background:linear-gradient(145deg,#fff3e9,#fff);border-color:#f0dfd0}
+.x-watch-card-title{display:flex;align-items:center;gap:10px}
+.x-watch-card-title span{font-size:22px}
+.x-watch-card h4{font-size:15px;margin:0;color:#245381}
+.x-watch-card:nth-child(2) h4{color:#168571}
+.x-watch-card:nth-child(3) h4{color:#af713c}
+.x-watch-card p{font-size:11px;color:#79869b;line-height:1.5;margin:11px 0}
+.x-watch-search-links{display:flex;flex-direction:column;gap:8px}
+.x-watch-search-links a{font-size:11px;font-weight:750;border:1px solid #deeaf6;background:#fff;border-radius:8px;padding:11px 10px;color:#346baf;display:block}
+.x-watch-card:nth-child(2) .x-watch-search-links a{color:#168473}
+.x-watch-card:nth-child(3) .x-watch-search-links a{color:#aa6533}
+.x-watch-search-links a:hover{transform:translateY(-1px);border-color:#94bfe8;box-shadow:0 3px 11px #bed6f13b}
+.x-watch-accounts{margin-top:21px;padding:17px;border:1px solid #e1e7f3;border-radius:13px;background:#fff}
+.x-watch-accounts h4{margin:0 0 6px;font-family:Manrope,sans-serif;color:#23405f}
+.x-watch-accounts p,.x-watch-notice{font-size:11px;color:#78879c;line-height:1.6;margin:0 0 13px}
+.x-account-actions{display:flex;flex-wrap:wrap;gap:9px}
+.x-profile-load{padding:10px 13px;border-radius:9px;border:1px solid #d3dded;background:#f3f7fc;font-size:11px;font-weight:750;color:#315579;cursor:pointer}
+.x-profile-load:hover{background:#eaf2ff;border-color:#aac6e7}
+.x-timeline-slot{margin-top:16px;max-width:650px;min-height:65px;background:#f5f9fd;border:1px solid #dfe8f5;border-radius:11px;padding:15px;color:#75859b;font-size:12px;overflow:hidden}
+.x-embed-caption{font-size:11px;color:#55708b;margin-bottom:10px}
+.x-embed-caption a{color:#1969bf;font-weight:800}
+.x-watch-notice{margin:15px 3px 0;padding:10px 12px;border-left:3px solid #98b0d2;background:#f6f9ff}
+.region-tab[data-region="x-watch"]{color:#222d44;border-color:#adbcd1;background:#eff2f9}
+.region-tab[data-region="x-watch"].active{background:linear-gradient(115deg,#1c273c,#42608d)!important;color:#fff!important}
+.dark .x-watch-panel{background:#182d45}
+.dark .x-watch-header h3,.dark .x-watch-accounts h4{color:#f1f6ff}
+.dark .x-watch-card,.dark .x-watch-card:nth-child(2),.dark .x-watch-card:nth-child(3){background:#213951;border-color:#37526b}
+.dark .x-watch-card h4{color:#d9e9fd}
+.dark .x-watch-accounts{background:#1b3149;border-color:#37506b}
+.dark .x-timeline-slot{background:#233b53;border-color:#34536e}
+.dark .x-profile-load{background:#27415f;color:#d8e9fc;border-color:#44627d}
+@media(max-width:950px){.x-watch-cards{grid-template-columns:1fr}.x-watch-search-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.x-watch-panel{padding:17px 13px}.x-watch-header h3{font-size:18px}.x-watch-header p{font-size:11px}.x-watch-card{padding:14px}.x-watch-search-links{grid-template-columns:1fr}.x-account-actions{flex-direction:column}.x-profile-load{text-align:left}}
 
 </style>
 </head>
