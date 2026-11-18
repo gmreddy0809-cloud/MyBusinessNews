@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/pages-now.yml'
+      - 'index.html'
 permissions:
   contents: read
   pages: write
