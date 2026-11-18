@@ -56,7 +56,7 @@ def dt(s):
         return datetime.fromisoformat(s.replace("Z","+00:00")).astimezone(timezone.utc)
     except Exception: return datetime.fromtimestamp(0,timezone.utc)
 def classify(title,group,country):
-    PF_RE=re.compile(r'fixed deposit|savings account|mutual fund|personal finance|retirement|pension|\bsip\b|\bppf\b|\bepf\b|health insurance|life insurance|term insurance|credit score|credit card|income tax|tax saving|gold loan|home loan|wealth planning|recurring deposit',re.I)
+    PF_RE=re.compile(r'fixed deposit|sovereign gold bond|\bsgb\b|gold bond|domestic money transfer|savings account|mutual fund|personal finance|retirement|pension|\bsip\b|\bppf\b|\bepf\b|health insurance|life insurance|term insurance|credit score|credit card|income tax|tax saving|gold loan|home loan|wealth planning|recurring deposit',re.I)
     sector="Personal Finance" if PF_RE.search(title) else next((name for name,p in SECTORS if re.search(p,title,re.I)),"Other Business")
     region=next((name for name,p in REGIONS if re.search(p,title,re.I)),None)
     if region is None:
