@@ -452,6 +452,36 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
  .desk-pulse{margin-top:9px}
 }
 
+
+/* No sideways navigation: AP / TG / PF first, responsive More menu. */
+.region-tabs{position:relative;display:flex!important;align-items:center;justify-content:flex-start;flex-wrap:wrap!important;overflow:visible!important;overflow-x:visible!important;overflow-y:visible!important;gap:4px!important;padding:5px 10px 6px!important}
+.region-tab{white-space:nowrap;flex:0 0 auto;padding:7px 9px;font-size:10.5px;line-height:1.15;border-radius:7px}
+.region-tab.active{box-shadow:0 2px 5px rgba(25,88,152,.12)}
+.more-region-tabs{display:none;position:relative;flex:0 0 auto}
+.more-region-tabs>summary{display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;border:1px solid #c8d8e9;color:#31577a;background:#f1f7fd;border-radius:7px;padding:7px 11px;font-size:10.5px;font-weight:850;line-height:1.15;white-space:nowrap}
+.more-region-tabs>summary::-webkit-details-marker{display:none}
+.more-region-tabs[open]>summary,.more-region-tabs.active>summary{background:#184673;color:#fff;border-color:#184673}
+.more-region-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:35;display:grid;gap:3px;width:min(255px,80vw);padding:8px;background:#fff;border:1px solid #d7e2f0;border-radius:11px;box-shadow:0 14px 28px rgba(19,44,90,.19)}
+.more-region-menu button{text-align:left;border:0;background:transparent;border-radius:7px;color:#365674;padding:11px 10px;font-size:11px;font-weight:750;cursor:pointer}
+.more-region-menu button:hover,.more-region-menu button.active{background:#eaf4ff;color:#1967b2}
+.dark .more-region-tabs>summary{background:#254160;border-color:#416080;color:#d8e9fc}
+.dark .more-region-menu{background:#182e48;border-color:#365775}
+.dark .more-region-menu button{color:#dce9f7}
+.dark .more-region-menu button:hover,.dark .more-region-menu button.active{background:#294d70}
+.sector-quickbar{display:none!important}
+@media(max-width:720px){
+ .region-tabs{gap:4px!important;padding:5px 8px 7px!important}
+ .region-tab{padding:7px 8px;font-size:10.5px}
+ .region-tab[data-mobile-extra="true"]{display:none!important}
+ .more-region-tabs{display:block}
+ .more-region-tabs>summary{padding:7px 9px}
+}
+@media(max-width:380px){
+ .region-tabs{gap:3px!important}
+ .region-tab{padding:7px 6px;font-size:10px}
+ .more-region-tabs>summary{padding:7px 7px;font-size:10px}
+}
+
 </style>
 </head>
 <body>
