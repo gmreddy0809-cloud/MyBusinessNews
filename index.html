@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
-  <title>MyBusinessNews — Every Business Story, One Place</title>
+  <title>MyBusinessNews — Latest Business News, India and World</title>
+<meta name="mbn-site-version" content="2026-11-18-design-r2">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -88,6 +89,7 @@
             <button class="region-tab" data-region="telangana">Telangana</button>
             <button class="region-tab" data-region="telugu-states">Telugu States</button>
           </div>
+          <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
           <div class="results-bar"><span id="resultsCount">Loading latest business news…</span><span class="timezone-hint">Times shown in IST · Indexed time, not publisher time</span></div>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
@@ -145,16 +147,17 @@ function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data
 function getSaved(){try{return JSON.parse(localStorage.getItem('mbn-saved-v1')||'{}')||{}}catch{return{}}}
 function saveStored(){try{localStorage.setItem('mbn-saved-v1',JSON.stringify(state.saved))}catch{showToast('Browser storage is unavailable')}}
 function savedCount(){return Object.keys(state.saved).length}
-function setRegion(next){state.region=next;state.display=25;location.hash=next;render()}
-function setSector(next){state.sector=next;state.display=25;render()}
+function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest'}
+function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;if(location.hash!=='#'+next)location.hash=next;render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
+function setSector(next){state.sector=next;state.display=25;$('sectorSelect').value=next;render()}
 function toggleSaved(id){const item=state.stories.find(x=>x.id===id)||state.saved[id];if(!item)return;if(state.saved[id]){delete state.saved[id];showToast('Removed from saved stories')}else{state.saved[id]=item;showToast('Story saved in this browser')}saveStored();render()}
 function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{if(state.region!=='all'&&state.region!=='saved'){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
- if(state.hours!=='all'&&dateKey(item.seen)&&Date.now()-dateKey(item.seen)>Number(state.hours)*3600000)return false;
+ if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(state.search){const hay=`${item.title} ${item.source} ${item.sector} ${item.region}`.toLowerCase();const words=state.search.toLowerCase().trim().split(/\s+/);if(!words.every(w=>hay.includes(w)))return false}return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
 function render(){const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=`${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.length.toLocaleString('en-IN')} in feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
- document.querySelectorAll('.sector-side').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
+ document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
  let list=visible.slice(0,state.display);$('loadMore').hidden=visible.length<=state.display;
  if(state.isFetching&&!state.stories.length){$('newsList').innerHTML='<div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div>';}else if(!visible.length){let detail=state.lastError?'Could not reach the news feed right now. Please refresh or try again later.':'Try another region, sector, or search term.';if(state.region==='saved')detail='Use the bookmark button on stories to save them here in this browser.';$('newsList').innerHTML=`<div class="empty-state"><div style="font-size:35px">◈</div><h3>${state.lastError?'Source temporarily unavailable':'No stories in this view'}</h3><p>${escapeHTML(detail)}</p>${state.lastError?'<p>More news: <a target="_blank" rel="noopener noreferrer" href="https://www.gdeltproject.org/">GDELT</a> · <a target="_blank" rel="noopener noreferrer" href="https://pib.gov.in/">PIB</a></p>':''}</div>`;}else{
@@ -167,7 +170,7 @@ async function fetchLive(){const qs=[
  '(business OR investment OR earnings OR startup OR aviation OR pharma OR finance) sourcecountry:india sourcelang:english',
  '(business OR economy OR investment OR aviation OR earnings OR merger) sourcelang:english'
  ];let n=0;for(const query of qs){try{const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),13000);let response;try{response=await fetch(buildQuery(query),{signal:ctl.signal,cache:'no-store'})}finally{clearTimeout(t)}if(!response.ok)throw Error(`News API: ${response.status}`);const data=await response.json();const rows=(data.articles||[]).map(x=>normalise(x));mergeStories(rows.filter(Boolean));n+=rows.length;state.lastError=null;state.checked=new Date().toISOString();render();}catch(e){if(!state.stories.length)state.lastError=String(e.message||e);console.warn('GDELT live fallback:',e)}if(query!==qs[qs.length-1])await new Promise(resolve=>setTimeout(resolve,5600));}return n}
-async function refresh(force=false){if(state.isFetching)return;state.isFetching=true;state.lastError=null;render();try{const r=await fetch(`data/news.json?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw Error('News index unavailable');const data=await r.json();mergeStories(data.articles||[]);state.checked=data.generated_at||null;state.lastError=null;}catch(e){console.warn('Static news index:',e)}render();if(force||!state.stories.length||!state.checked||Date.now()-dateKey(state.checked)>90*60*1000){await fetchLive()}state.isFetching=false;if(!state.stories.length)state.lastError=state.lastError||'No live data received';render()}
+async function refresh(){if(state.isFetching)return;state.isFetching=true;state.lastError=null;render();try{const r=await fetch('data/news.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('News index unavailable');const data=await r.json();if(!Array.isArray(data.articles)||!data.articles.length)throw Error('News index empty');const fresh=new Map();for(const raw of data.articles){const item=normalise(raw);if(item)fresh.set(item.url,item)}if(fresh.size){state.stories=[...fresh.values()].sort((a,b)=>dateKey(b.seen)-dateKey(a.seen)).slice(0,1400);state.checked=data.generated_at||null}state.lastError=null}catch(e){console.warn('News index refresh:',e);if(!state.stories.length)state.lastError=String(e.message||e)}finally{state.isFetching=false;render()}}
 function tickClock(){$('clock').textContent=`IST • ${new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true}).format(new Date())}`}
 function init(){state.saved=getSaved();
  const seeded=window.__MBN_SEED;
@@ -180,6 +183,9 @@ function init(){state.saved=getSaved();
 try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('dark')}catch{}
  const h=location.hash.replace(/^#/,'');if(Object.hasOwn(REGION_NAMES,h))state.region=h;
  for(const sector of SECTORS.slice(1)){const op=document.createElement('option');op.value=sector;op.textContent=sector;$('sectorSelect').append(op);const b=document.createElement('button');b.className='sector-side';b.dataset.sector=sector;b.innerHTML=`<span class="sector-bullet"></span>${escapeHTML(sector)}`;b.onclick=()=>{setSector(sector);$('sectorSelect').value=sector;document.getElementById('sidebar').classList.remove('open')};$('sideSectors').append(b)}
+ const popular=['All Sectors','Aviation & Airports','GCCs','Startups','Funding & Investments','Pharma & Life Sciences','IT & AI','Automobiles & EV','Markets & IPOs','Banking & Finance','Real Estate','Healthcare & Hospitals'];
+ for(const sector of popular){const b=document.createElement('button');b.type='button';b.className='sector-chip'+(sector==='All Sectors'?' active':'');b.dataset.sector=sector==='All Sectors'?'all':sector;b.textContent=sector;$('sectorQuickbar').append(b)}
+ $('sectorQuickbar').addEventListener('click',e=>{const b=e.target.closest('[data-sector]');if(b)setSector(b.dataset.sector)});
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
  $('searchInput').addEventListener('input',e=>{state.search=e.target.value;state.display=25;render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
@@ -191,8 +197,8 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('menuToggle').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
  $('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('dark');try{localStorage.setItem('mbn-theme',document.body.classList.contains('dark')?'dark':'light')}catch{}});
  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('searchInput').focus()}if(e.key==='Escape'){$('sidebar').classList.remove('open');$('searchInput').blur()}});
- window.addEventListener('hashchange',()=>{const h=location.hash.replace(/^#/,'');if(Object.hasOwn(REGION_NAMES,h)){state.region=h;render()}});
- $('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},15*60*1000);
+ window.addEventListener('hashchange',()=>{const h=location.hash.replace(/^#/,'');if(Object.hasOwn(REGION_NAMES,h)&&h!==state.region){resetFilters();state.region=h;render();if(h==='all')refresh()}});
+ $('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
 }
 document.addEventListener('DOMContentLoaded',init);
 })();
