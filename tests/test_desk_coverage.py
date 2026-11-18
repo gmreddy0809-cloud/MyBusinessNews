@@ -49,6 +49,8 @@ class DeskCoverageTests(unittest.TestCase):
     def test_nonbusiness_politics_does_not_enter_company_news(self):
         self.assertIsNone(local_business_match("Telangana assembly discusses welfare bill"))
         self.assertIsNone(local_business_match("Hyderabad youth festival attracts students"))
+        self.assertIsNone(local_business_match("హైదరాబాద్ హోటల్‌లో అమెరికన్ వ్యాపారవేత్త మృతి"))
+        self.assertIsNone(local_business_match("Hyderabad hotel accident leaves three injured"))
 
     def test_gdelt_pf_is_indexed_not_alleged_published(self):
         row={"title":"New health insurance cashless claim process for policyholders",
