@@ -1,6 +1,36 @@
 {
-  "generated_at": "2026-11-18T21:37:49.096100+00:00",
+  "generated_at": "2026-11-18T22:36:06.070805+00:00",
   "articles": [
+    {
+      "id": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
+      "url": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
+      "title": "NASA Sets Coverage for Northrop Grumman CRS-25 Launch, Prelaunch",
+      "source": "NASA • Official",
+      "domain": "nasa.gov",
+      "region": "world",
+      "sector": "Science & Space",
+      "seen": "2026-11-18T22:19:17+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
+    },
+    {
+      "id": "https://theconversation.com/ai-helps-uncover-critical-flaw-in-ubiquitous-internet-software-296930",
+      "url": "https://theconversation.com/ai-helps-uncover-critical-flaw-in-ubiquitous-internet-software-296930",
+      "title": "AI helps uncover critical flaw in ubiquitous internet software",
+      "source": "The Conversation US • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "Politics & Public Affairs",
+      "seen": "2026-11-18T21:43:47+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
     {
       "id": "https://theconversation.com/floridas-flooding-deja-vu-is-a-sign-of-things-to-come-so-who-is-most-at-risk-and-how-can-they-prepare-297006",
       "url": "https://theconversation.com/floridas-flooding-deja-vu-is-a-sign-of-things-to-come-so-who-is-most-at-risk-and-how-can-they-prepare-297006",
@@ -6154,21 +6184,6 @@
       "sourcecountry": ""
     },
     {
-      "id": "https://theconversation.com/despite-intense-islamophobia-abdul-el-sayed-and-dozens-of-other-muslims-elected-representatives-are-breaking-down-barriers-296035",
-      "url": "https://theconversation.com/despite-intense-islamophobia-abdul-el-sayed-and-dozens-of-other-muslims-elected-representatives-are-breaking-down-barriers-296035",
-      "title": "Despite intense Islamophobia, Abdul El-Sayed and dozens of other Muslims elected representatives are breaking down barriers",
-      "source": "The Conversation US • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "World & Society",
-      "seen": "2026-11-12T13:42:15+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
-    },
-    {
       "id": "https://telugu.oneindia.com/education-jobs/iit-kharagpur-becomes-first-iit-to-offer-postgraduate-medical-courses-announces-12-md-seats-514663.html",
       "url": "https://telugu.oneindia.com/education-jobs/iit-kharagpur-becomes-first-iit-to-offer-postgraduate-medical-courses-announces-12-md-seats-514663.html",
       "title": "నీట్ కౌన్సెలింగ్ తో ఐఐటీలో అడ్మిషన్లు..! దేశంలో తొలిసారి ఖరగ్ పూర్ IIT రికార్డు..!",
@@ -6368,7 +6383,7 @@
   "source_status": {
     "gdelt": {
       "last_attempt": "2026-11-18T21:37:38.034245+00:00",
-      "state": "rate_limited",
+      "state": "cooldown",
       "retry_after": "2026-11-18T23:37:38.034245+00:00"
     },
     "official_rss_matches": 9,
@@ -6391,7 +6406,7 @@
         "The Conversation Arts": 19,
         "The Conversation US": 50,
         "The Conversation Australia": 50,
-        "The Conversation Environment": 14,
+        "The Conversation Environment": 13,
         "The Conversation Education": 3,
         "Oneindia Telugu": 143,
         "Dharani News": 6
