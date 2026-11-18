@@ -266,6 +266,15 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
 @media(max-width:900px){.misc-source-grid{grid-template-columns:1fr}.misc-hub{padding:19px 17px}}
 @media(max-width:560px){.misc-hub{padding:16px 12px}.misc-heading{gap:10px}.misc-icon{width:42px;height:42px;font-size:21px;border-radius:12px}.misc-heading h3{font-size:18px}.misc-heading p{font-size:10.5px}.misc-topic-chips,.misc-area-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:5px}.misc-topic-chip,.misc-area-chip{flex:0 0 auto}.misc-source-card{padding:13px}.misc-publication-links a{font-size:10px}}
 
+
+.misc-live-search{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:12px;background:linear-gradient(108deg,#412d77,#b25b97 78%,#df897e);margin-bottom:18px;color:white}
+.misc-live-search div{display:flex;flex-direction:column;gap:4px}
+.misc-live-search strong{font-size:10px;font-weight:900;letter-spacing:1.1px;color:#ffe6be}
+.misc-live-search span{font-size:11px;color:#f3e8ff}
+.misc-live-search button{background:#fff;border:0;border-radius:9px;padding:11px 14px;color:#654582;font-size:11px;font-weight:850;cursor:pointer;white-space:nowrap}
+.misc-live-search button:hover{background:#fff1e8}
+@media(max-width:700px){.misc-live-search{flex-direction:column;align-items:stretch}.misc-live-search button{width:100%}}
+
 </style>
 </head>
 <body>
@@ -402,6 +411,7 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
               <h3>ఆసక్తికరమైన ప్రపంచం, ఒకేచోట.</h3>
               <p>World · India · Telugu States. Health, lifestyle, public affairs, science, environment, culture and interesting people. Original sources, clearly labelled.</p>
             </div></div>
+            <div class="misc-live-search"><div><strong>READ BEYOND THE FEED</strong><span>Magazine features, health, public affairs and Telugu stories — live on Google News</span></div><button id="miscSearchLive" type="button">🔎 Search selected topic live ↗</button></div>
             <div class="misc-filter-group"><strong>CHOOSE A TOPIC</strong><div class="misc-topic-chips" id="miscTopicChips"></div></div>
             <div class="misc-filter-group"><strong>CHOOSE A REGION</strong><div class="misc-area-chips" id="miscAreaChips"></div></div>
             <div class="misc-source-grid">
@@ -642,6 +652,7 @@ function setupMiscHub(){
    const a=document.createElement('a');a.href=googleNewsUrl('('+sites+') '+miscKeywords());a.target='_blank';a.rel='noopener noreferrer';
    document.body.append(a);a.click();a.remove();
  }
+ $('miscSearchLive').addEventListener('click',()=>{const a=document.createElement('a');a.href=googleNewsUrl(miscKeywords());a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()});
  $('miscSearchMagazines').addEventListener('click',()=>searchCollection(MISC_MAGAZINES));
  $('miscSearchTelugu').addEventListener('click',()=>searchCollection(MISC_TELUGU_PAPERS));
 }
@@ -707,7 +718,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
- $('feedDescription').textContent=state.region==='avi-ivi'?'Curated links from official public sources. Explore independent English magazines and Telugu papers above.':'Original-source business headlines and official filings, indexed and refreshed automatically.';
+ $('feedDescription').textContent=state.region==='avi-ivi'?'Latest official UN News / NASA updates plus live magazine and Telugu newspaper searches. Publisher dates and indexing differ.':'Original-source business headlines and official filings, indexed and refreshed automatically.';
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
  const total=state.stories.filter(x=>x.desk!=='avi-ivi');
  $('pulseTelugu').textContent=total.filter(isTeluguCompanyStory).length.toLocaleString('en-IN');
