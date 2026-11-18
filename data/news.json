@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T14:55:56.170603+00:00",
+  "generated_at": "2026-11-18T15:15:05.993370+00:00",
   "articles": [
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/75a7eda2-ab34-43ee-926c-9a1311754a45.pdf",
@@ -1577,7 +1577,7 @@
   "source_status": {
     "gdelt": {
       "last_attempt": "2026-11-18T14:55:44.566651+00:00",
-      "state": "rate_limited",
+      "state": "cooldown",
       "retry_after": "2026-11-18T16:55:44.566651+00:00"
     },
     "official_rss_matches": 26
