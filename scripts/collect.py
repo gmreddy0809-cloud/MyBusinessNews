@@ -10,13 +10,14 @@ ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/"data"/"news.json"
 API="https://api.gdeltproject.org/api/v2/doc/doc"
 QUERIES=[
- ("india", '(business OR industry OR investment OR funding OR earnings) sourcecountry:india sourcelang:english'),
- ("india", '(aviation OR pharmaceutical OR startup OR manufacturing OR banking) sourcecountry:india sourcelang:english'),
- ("hyderabad",'Hyderabad (business OR investment OR startup OR GCC OR pharma OR aviation)'),
- ("telangana",'Telangana (investment OR company OR infrastructure OR pharma OR factory)'),
- ("andhra-pradesh", '("Andhra Pradesh" OR Visakhapatnam OR Amaravati OR Vijayawada OR Tirupati) (business OR investment OR company OR infrastructure OR factory)'),
- ("world", '(business OR markets OR economy OR earnings OR IPO OR acquisition) sourcelang:english'),
- ("world", '(aviation OR automotive OR renewable OR technology OR startup OR banking) sourcelang:english')
+ ("india", '(India OR Indian) (business OR investment OR corporate OR manufacturing)'),
+ ("hyderabad", 'Hyderabad (business OR pharma OR GCC OR investment OR company)'),
+ ("india", '(India OR Indian) (banking OR stock market OR startup OR aviation)'),
+ ("world", '(business OR economy OR earnings OR acquisition) sourcelang:english'),
+ ("andhra-pradesh", '("Andhra Pradesh" OR Visakhapatnam OR Amaravati OR Tirupati) (investment OR business OR industry)'),
+ ("telangana", 'Telangana (business OR investment OR manufacturing OR pharma)'),
+ ("india", '(India OR Indian) (automotive OR pharmaceuticals OR technology OR finance)'),
+ ("world", '(markets OR global economy OR aviation OR renewables) sourcelang:english')
 ]
 BLOCKED=("wsj.com","ft.com","bloomberg.com","nytimes.com","economist.com","livemint.com","thehindu.com","thehindubusinessline.com","economictimes.indiatimes.com","business-standard.com","theinformation.com")
 RELEVANT=re.compile(r'\b(business|industr|econom|invest|fund|start.?up|gcc|pharma|health|bank|financial|loan|insuran|airlin|airport|aviation|aircraft|auto|vehicle|manufactur|company|companies|profit|revenue|earnings|market|stock|ipo|shares?|equity|merger|acquisition|technology|software|AI|semiconductor|renewable|energy|solar|oil|gas|infrastructure|real estate|retail|telecom|shipping|logistics|export|import|policy|trade|factory|tourism|corporate|contract|capital|economic|hospital|investment|construction)\w*\b',re.I)
@@ -57,7 +58,7 @@ def classify(title,group,country):
     sector=next((name for name,p in SECTORS if re.search(p,title,re.I)),"Other Business")
     region=next((name for name,p in REGIONS if re.search(p,title,re.I)),None)
     if region is None:
-        region="india" if (re.search(r'\b(india|indian|nifty|sensex|mumbai|delhi|bengaluru)\b',title,re.I) or str(country).lower() in ("india","in") or group=="india") else "world"
+        region=group if group in ("hyderabad","telangana","andhra-pradesh") else ("india" if (re.search(r'\b(india|indian|nifty|sensex|mumbai|delhi|bengaluru)\b',title,re.I) or str(country).lower() in ("india","in") or group=="india") else "world")
     return region,sector
 def keep(row,group):
     title=re.sub(r'\s+',' ',str(row.get("title") or "")).strip()
@@ -80,8 +81,20 @@ def main():
     except Exception:old={"articles":[]}
     news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
     good=0
-    for idx,(group,q) in enumerate(QUERIES):
-        if idx:time.sleep(6)
+    count_by_region={}
+    for item in news.values():
+        region=item.get("region") or ""
+        count_by_region[region]=count_by_region.get(region,0)+1
+    cycle=int(datetime.now(timezone.utc).timestamp()//1800)
+    # Check just one query per run: the free GDELT endpoint frequently rate-limits multi-query bursts.
+    if count_by_region.get("india",0)<5:
+        selected=QUERIES[0]
+    elif count_by_region.get("hyderabad",0)<3:
+        selected=QUERIES[1]
+    else:
+        selected=QUERIES[cycle%len(QUERIES)]
+    group,q=selected
+    for attempt in range(2):
         try:
             rows=request(q)
             count=0
@@ -90,9 +103,12 @@ def main():
                 if item and (item["url"] not in news or dt(item["seen"])>=dt(news[item["url"]].get("seen"))):
                     news[item["url"]]=item
                     count+=1
-            good+=1
+            good=1
             print(group,"received",len(rows),"accepted",count,flush=True)
-        except Exception as exc:print("feed warning",group,str(exc),file=sys.stderr,flush=True)
+            break
+        except Exception as exc:
+            print("feed warning",group,"attempt",attempt+1,str(exc),file=sys.stderr,flush=True)
+            if attempt==0:time.sleep(25)
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
     rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
