@@ -150,7 +150,12 @@ def main():
             gdelt_state.update({"state":"rate_limited" if limited else "temporarily_unavailable","retry_after":next_time.isoformat()})
             print("GDELT feed unavailable; retry after",next_time.isoformat(),str(exc),file=sys.stderr,flush=True)
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
-    rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
+    rows=[x for x in news.values()
+          if dt(x.get("seen"))>cutoff or (
+              x.get("desk")=="telugu-patrikalu" and
+              x.get("source","").startswith("Dharani News") and
+              dt(x.get("seen"))>datetime.now(timezone.utc)-timedelta(days=30)
+          )]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
@@ -159,7 +164,7 @@ def main():
     english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:160]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+misc_rows+english_rows+telugu_rows,key=lambda x:dt(x.get("seen")),reverse=True)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
