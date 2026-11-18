@@ -15,6 +15,8 @@ FEEDS=[
  ("BSE", "https://beta.bseindia.com/data/xml/announcements.xml", "exchange"),
  ("BSE", "https://beta.bseindia.com/Data/XML/BoardMeetingsFeed.xml", "exchange"),
  ("RBI", "https://www.rbi.org.in/pressreleases_rss.xml", "policy"),
+ ("RBI", "https://rbi.org.in/notifications_rss.xml", "policy"),
+ ("SEBI", "https://www.sebi.gov.in/sebirss.xml", "policy"),
  ("PIB", "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1", "policy"),
 ]
 # Curated coverage groups for editorial monitoring, not a definitive census of listed companies.
@@ -25,8 +27,19 @@ TRACKED=[
 ]
 # Disallow short unqualified aliases matching ordinary English words.
 SHORT_ALIASES={"ccl","kims","bdl","ncc","sail","nava","gland"}
-BUSINESS=re.compile(r"\b(business|financial|economic|bank|industry|market|share|finance|rbi|sebi|investment|export|import|manufactur|port|aviation|airport|pharma|software|technology|power|energy|startup|policy|commerce|trade|tax|gst|monetary|infrastructure|corporate|results|company|ipo|employment|development|semiconductor|gdp|insurance|loan|logistic|industrial)\w*\b",re.I)
-LINK_OK=("nseindia.com","bseindia.com","rbi.org.in","pib.gov.in")
+BUSINESS=re.compile(r"\b(business|financial|economic|bank|industry|market|share|finance|rbi|sebi|investment|export|import|manufactur|port|aviation|airport|pharma|software|technology|power|energy|startup|policy|commerce|trade|tax|gst|monetary|infrastructure|corporate|results|company|ipo|employment|development|semiconductor|gdp|insurance|loan|logistic|industrial|capital|securities|investor|mutual|deposit|interest|bond|pension|circular|credit|fraud|payment|consumer)\w*\b",re.I)
+LINK_OK=("nseindia.com","bseindia.com","rbi.org.in","pib.gov.in","sebi.gov.in")
+
+PF_WORDS=re.compile(r'fixed deposits?|bank deposits?|interest rate|mutual fund|investor|investing|pension|retirement|\bppf\b|\bepf\b|\bnps\b|insurance|credit card|personal loan|home loan|gold loan|recurring deposit|savings account|tax savings?|credit score|digital payment|upi|\bkyc\b|financial literacy|consumer protection|ombudsman|bank customer|borrower|unclaimed deposit|nomination|fraud|cybersecurity',re.I)
+LOCAL_WORDS=[
+ ("hyderabad",re.compile(r'\bhyderabad|secunderabad|shamshabad|gachibowli|medchal\b',re.I)),
+ ("andhra-pradesh",re.compile(r'andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|guntur|kakinada',re.I)),
+ ("telangana",re.compile(r'\btelangana\b|warangal|karimnagar|sangareddy|khammam',re.I))
+]
+def explicit_locality(subject):
+ for name,p in LOCAL_WORDS:
+    if p.search(subject):return name
+ return None
 
 def cleanup(value):
     value=re.sub("<[^>]+>"," ",value or "")
@@ -99,6 +112,7 @@ def fetch_one(source,url,kind):
         when=d.isoformat() if d else now.isoformat()
         if kind=="exchange":
             region,match=company_for(title+" "+desc)
+            if not region:region=explicit_locality(title+" "+desc)
             if not region:continue
             short=desc[:135] if desc else ""
             headline=(title+" — "+short if short and short.lower()!=title.lower() and short.lower() not in title.lower() else title)[:220]
@@ -110,7 +124,7 @@ def fetch_one(source,url,kind):
             elif re.search(r"\bandhra pradesh\b|visakhapatnam|amaravati|tirupati",title,re.I):region="andhra-pradesh"
             elif re.search(r"\btelangana\b",title,re.I):region="telangana"
             headline=title[:220]
-            sector="Banking & Finance" if source=="RBI" else "Economy & Policy"
+            sector="Personal Finance" if PF_WORDS.search(title) else ("Markets & IPOs" if source=="SEBI" else ("Banking & Finance" if source=="RBI" else "Economy & Policy"))
         if len(headline)<8:continue
         entries.append({"id":link,"url":link,"title":headline,"source":source+" • Official","domain":domain,"region":region,"sector":sector,"seen":when,"sourcecountry":"India","language":"English","origin":"official-rss"})
     return entries
