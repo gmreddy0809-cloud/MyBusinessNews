@@ -191,6 +191,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
         <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> Telugu States</button>
         <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
         <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> Personal Finance</button>
+        <button class="nav-item" data-region="x-watch"><span class="nav-emoji">𝕏</span> X Business Watch</button>
         <button class="nav-item" data-region="saved"><span class="nav-emoji">☆</span> Saved Stories <span class="nav-count" id="savedNavCount">0</span></button>
       </nav>
       <div class="nav-label sectors-title">NEWS BY SECTOR</div>
@@ -260,6 +261,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
             <button class="region-tab" data-region="telugu-states">Telugu States</button>
             <button class="region-tab" data-region="telugu-companies">🏢 Telugu Companies</button>
             <button class="region-tab" data-region="personal-finance">💰 Personal Finance</button>
+            <button class="region-tab" data-region="x-watch">𝕏 X Business Watch</button>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
           <section class="source-hub" aria-label="Official sources and India financial dailies">
@@ -283,6 +285,20 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
           </section>
 <div class="results-bar"><span id="resultsCount">Loading latest business news…</span><span class="timezone-hint">IST · Feed date / first seen / indexed (not always publisher time)</span></div>
           <div class="web-search-help" id="webSearchHelp" hidden><span id="webSearchInfo">Need news beyond the site index?</span><button id="webSearchHelpButton" type="button">Search live Google News ↗</button></div>
+          <section class="x-watch-panel" id="xWatchPanel" aria-label="Social business news discovery" hidden>
+            <div class="x-watch-header"><span class="x-watch-symbol">𝕏</span><div>
+              <h3>Regional business posts on X</h3>
+              <p>Search live posts about Hyderabad, Telangana and Andhra Pradesh, or view public updates from selected organizations.</p>
+            </div></div>
+            <div class="x-watch-cards" id="xWatchCards"></div>
+            <div class="x-watch-accounts">
+              <h4>Public organization timelines</h4>
+              <p>To display X posts here, select a profile. Only public accounts can be embedded; some browsers may block X content. A direct profile link is always available.</p>
+              <div class="x-account-actions" id="xAccountActions"></div>
+              <div class="x-timeline-slot" id="xTimelineSlot"><span>Choose a profile to load its X timeline.</span></div>
+            </div>
+            <div class="x-watch-notice">X search opens x.com in a new tab and may require sign-in. Searches use words mentioned in posts, not verified GPS location. This is a discovery view, not automatic ingestion into the main news index.</div>
+          </section>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
         </section>
@@ -297,7 +313,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
