@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T14:36:14.619912+00:00",
+  "generated_at": "2026-11-18T14:49:23.013997+00:00",
   "articles": [
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/75a7eda2-ab34-43ee-926c-9a1311754a45.pdf",
@@ -9,7 +9,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -22,7 +23,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -35,7 +37,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -48,7 +51,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -61,7 +65,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -74,7 +79,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -87,7 +93,8 @@
       "domain": "www.bseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -100,7 +107,8 @@
       "domain": "www.bseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.774387+00:00",
+      "seen": "2026-11-18T14:48:25.422425+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -113,7 +121,8 @@
       "domain": "www.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:16.245785+00:00",
+      "seen": "2026-11-18T14:48:22.521251+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -126,7 +135,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -139,7 +149,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -152,7 +163,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -165,7 +177,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -178,7 +191,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -191,7 +205,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -204,7 +219,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -217,7 +233,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -230,7 +247,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -243,7 +261,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "hyderabad",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -256,7 +275,8 @@
       "domain": "nsearchives.nseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-18T14:35:14.528834+00:00",
+      "seen": "2026-11-18T14:48:21.020285+00:00",
+      "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -270,6 +290,7 @@
       "region": "india",
       "sector": "Banking & Finance",
       "seen": "2026-11-18T09:00:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -1483,6 +1504,7 @@
       "region": "india",
       "sector": "Banking & Finance",
       "seen": "2026-11-17T19:05:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -1496,6 +1518,7 @@
       "region": "india",
       "sector": "Personal Finance",
       "seen": "2026-11-17T18:00:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -1509,6 +1532,7 @@
       "region": "india",
       "sector": "Banking & Finance",
       "seen": "2026-11-17T16:40:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -1522,6 +1546,7 @@
       "region": "india",
       "sector": "Banking & Finance",
       "seen": "2026-11-17T15:15:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
@@ -1535,6 +1560,7 @@
       "region": "india",
       "sector": "Personal Finance",
       "seen": "2026-11-11T17:00:00+00:00",
+      "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
