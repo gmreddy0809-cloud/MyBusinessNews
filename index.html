@@ -147,6 +147,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
 .dark .daily-source{background:#192d48;color:#dceaff}
 @media(max-width:790px){.source-hub{margin:0 13px 16px;padding:13px}.source-hub-heading strong{font-size:13px}.source-hub-heading small{font-size:10px}.daily-source{font-size:10px;padding:8px 10px}}
 
+.search-all-dailies{display:inline-flex;margin-top:12px;padding:11px 16px;background:linear-gradient(110deg,#1468ca,#6c44b7);color:#fff;font-size:11.5px;font-weight:830;border:0;border-radius:10px;cursor:pointer;box-shadow:0 6px 16px rgba(37,89,170,.18)}.search-all-dailies:hover{transform:translateY(-1px);filter:brightness(1.08)}
 </style>
 </head>
 <body>
@@ -244,6 +245,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
             <div class="source-hub-row">
               <div class="source-hub-label">FINANCIAL DAILIES · LIVE WEB SEARCH</div>
               <div class="financial-dailies" id="financialDailies"></div>
+              <button type="button" class="search-all-dailies" id="allDailiesButton">🔎 Search all Indian financial dailies ↗</button>
             </div>
             <p class="source-hub-note">Newspaper searches open Google News in a new tab. Articles belong to their publishers; their RSS feeds are not reproduced here.</p>
           </section>
@@ -415,6 +417,12 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
    a.textContent=name+' ↗';a.dataset.site=site;dailies.append(a)
  }
  dailies.addEventListener('click',e=>{const a=e.target.closest('[data-site]');if(a){const term=state.search|| (state.region==='personal-finance'?'personal finance savings investment':'business economy markets');a.href=googleNewsUrl('site:'+a.dataset.site+' '+term)}});
+ $('allDailiesButton').addEventListener('click',()=>{
+   const domains=FINANCIAL_DAILIES.map(([,site])=>'site:'+site).join(' OR ');
+   const term=state.search|| (state.region==='personal-finance'?'personal finance savings tax insurance loans':'India business markets startups companies');
+   const url=googleNewsUrl('('+domains+') '+term);
+   const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove();
+ });
  $('searchWebButton').addEventListener('click',()=>webSearch());
  $('webSearchHelpButton').addEventListener('click',()=>webSearch(state.search||(state.region==='personal-finance'?'India personal finance savings insurance investment tax':'India business news')));
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
