@@ -467,11 +467,11 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
         <button class="nav-item" data-region="india"><span class="nav-emoji">🇮🇳</span> India</button>
         <button class="nav-item" data-region="world"><span class="nav-emoji">🌍</span> World</button>
         <button class="nav-item" data-region="hyderabad"><span class="nav-emoji">◉</span> Hyderabad</button>
-        <button class="nav-item" data-region="andhra-pradesh"><span class="nav-emoji">📍</span> Andhra Pradesh</button>
-        <button class="nav-item" data-region="telangana"><span class="nav-emoji">📍</span> Telangana</button>
+        <button class="nav-item" data-region="andhra-pradesh"><span class="nav-emoji">📍</span> AP</button>
+        <button class="nav-item" data-region="telangana"><span class="nav-emoji">📍</span> TG</button>
         <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> Telugu States</button>
         <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
-        <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> Personal Finance</button>
+        <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> PF</button>
         <button class="nav-item" data-region="x-watch"><span class="nav-emoji">𝕏</span> X Business Watch</button>
         <button class="nav-item" data-region="avi-ivi"><span class="nav-emoji">✨</span> అవీ ఇవీ</button>
         <button class="nav-item" data-region="telugu-patrikalu"><span class="nav-emoji">📰</span> తెలుగు పత్రికలు</button>
@@ -521,20 +521,31 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <select id="originSelect" aria-label="Filter news by source"><option value="all">All Sources</option><option value="official">Official NSE / BSE / RBI</option><option value="exchange">NSE / BSE Filings</option><option value="publisher">News Publications</option><option value="nse">NSE Only</option><option value="bse">BSE Only</option><option value="rbi">RBI Only</option></select><select id="sortSelect" aria-label="Sort news"><option value="newest">Newest First</option><option value="oldest">Oldest First</option><option value="source">By Source</option></select>
             </div></details>
           </div>
-          <div class="region-tabs" id="regionTabs" aria-label="Region quick filters">
-            <button class="region-tab active" data-region="all">All news</button>
+          <div class="region-tabs" id="regionTabs" aria-label="News categories and regions">
+            <button class="region-tab active" data-region="all">All News</button>
             <button class="region-tab" data-region="india">India</button>
             <button class="region-tab" data-region="world">World</button>
             <button class="region-tab" data-region="hyderabad">Hyderabad</button>
-            <button class="region-tab" data-region="andhra-pradesh">Andhra Pradesh</button>
-            <button class="region-tab" data-region="telangana">Telangana</button>
-            <button class="region-tab" data-region="telugu-states">Telugu States</button>
-            <button class="region-tab" data-region="telugu-companies">🏢 Telugu Companies</button>
-            <button class="region-tab" data-region="personal-finance">💰 Personal Finance</button>
-            <button class="region-tab" data-region="x-watch">𝕏 X Business Watch</button>
-            <button class="region-tab" data-region="avi-ivi">✨ అవీ ఇవీ</button>
-            <button class="region-tab" data-region="telugu-patrikalu">📰 తెలుగు పత్రికలు</button>
-            <button class="region-tab" data-region="english-magazines">📚 English Magazines</button>
+            <button class="region-tab" data-region="andhra-pradesh" title="Andhra Pradesh" aria-label="Andhra Pradesh">AP</button>
+            <button class="region-tab" data-region="telangana" title="Telangana" aria-label="Telangana">TG</button>
+            <button class="region-tab" data-region="personal-finance" title="Personal Finance" aria-label="Personal Finance">PF</button>
+            <button class="region-tab" data-region="telugu-states" data-mobile-extra="true" title="Telugu States">AP + TG</button>
+            <button class="region-tab" data-region="telugu-companies" data-mobile-extra="true" title="Telugu Companies">Telugu Cos.</button>
+            <button class="region-tab" data-region="x-watch" data-mobile-extra="true" title="X Business Watch">𝕏 Watch</button>
+            <button class="region-tab" data-region="avi-ivi" data-mobile-extra="true">✨ అవీ ఇవీ</button>
+            <button class="region-tab" data-region="telugu-patrikalu" data-mobile-extra="true">📰 తెలుగు పత్రికలు</button>
+            <button class="region-tab" data-region="english-magazines" data-mobile-extra="true" title="English Magazines">📚 Magazines</button>
+            <details class="more-region-tabs" id="moreRegionTabs">
+              <summary id="moreTabsTrigger" aria-label="More news categories">More ▾</summary>
+              <div class="more-region-menu">
+                <button type="button" data-region="telugu-states">AP + TG (Telugu States)</button>
+                <button type="button" data-region="telugu-companies">🏢 Telugu Companies</button>
+                <button type="button" data-region="x-watch">𝕏 Business Watch</button>
+                <button type="button" data-region="avi-ivi">✨ అవీ ఇవీ</button>
+                <button type="button" data-region="telugu-patrikalu">📰 తెలుగు పత్రికలు</button>
+                <button type="button" data-region="english-magazines">📚 English Magazines</button>
+              </div>
+            </details>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
           <details class="source-disclosure"><summary><span>🏦 NSE · BSE · RBI · Financial Dailies</span><span class="source-summary-action">Official sources and publisher links <span aria-hidden="true">⌄</span></span></summary>
@@ -990,6 +1001,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  `${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:
  `${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='business').length.toLocaleString('en-IN')} in business feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
+ const extraTab=['telugu-states','telugu-companies','x-watch','avi-ivi','telugu-patrikalu','english-magazines'].includes(state.region);
+ const moreToggle=$('moreRegionTabs');if(moreToggle)moreToggle.classList.toggle('active',extraTab);
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
@@ -1064,7 +1077,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('webSearchHelpButton').addEventListener('click',()=>webSearch(state.search||(state.region==='personal-finance'?'India personal finance savings insurance investment tax':'India business news')));
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
- document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
+ document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open');const more=$('moreRegionTabs');if(more)more.open=false}));
  $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&!isPublisherDesk(state.region)&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
  $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;saveView(true);render()});
