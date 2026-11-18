@@ -240,6 +240,7 @@ body.x-watch-open .tool-row,body.x-watch-open .sector-quickbar,body.x-watch-open
         <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
         <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> Personal Finance</button>
         <button class="nav-item" data-region="x-watch"><span class="nav-emoji">𝕏</span> X Business Watch</button>
+        <button class="nav-item" data-region="avi-ivi"><span class="nav-emoji">✨</span> అవీ ఇవీ <span class="new-nav-pill">NEW</span></button>
         <button class="nav-item" data-region="saved"><span class="nav-emoji">☆</span> Saved Stories <span class="nav-count" id="savedNavCount">0</span></button>
       </nav>
       <div class="nav-label sectors-title">NEWS BY SECTOR</div>
@@ -310,6 +311,7 @@ body.x-watch-open .tool-row,body.x-watch-open .sector-quickbar,body.x-watch-open
             <button class="region-tab" data-region="telugu-companies">🏢 Telugu Companies</button>
             <button class="region-tab" data-region="personal-finance">💰 Personal Finance</button>
             <button class="region-tab" data-region="x-watch">𝕏 X Business Watch</button>
+            <button class="region-tab" data-region="avi-ivi">✨ అవీ ఇవీ</button>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
           <section class="source-hub" aria-label="Official sources and India financial dailies">
@@ -347,6 +349,20 @@ body.x-watch-open .tool-row,body.x-watch-open .sector-quickbar,body.x-watch-open
             </div>
             <div class="x-watch-notice">X search opens x.com in a new tab and may require sign-in. Searches use words mentioned in posts, not verified GPS location. This is a discovery view, not automatic ingestion into the main news index.</div>
           </section>
+          <section class="misc-hub" id="miscHub" aria-label="అవీ ఇవీ — stories beyond business">
+            <div class="misc-heading"><div class="misc-icon">✨</div><div>
+              <div class="misc-eyebrow">BEYOND BUSINESS · అవీ ఇవీ</div>
+              <h3>ఆసక్తికరమైన ప్రపంచం, ఒకేచోట.</h3>
+              <p>World · India · Telugu States. Health, lifestyle, public affairs, science, environment, culture and interesting people. Original sources, clearly labelled.</p>
+            </div></div>
+            <div class="misc-filter-group"><strong>CHOOSE A TOPIC</strong><div class="misc-topic-chips" id="miscTopicChips"></div></div>
+            <div class="misc-filter-group"><strong>CHOOSE A REGION</strong><div class="misc-area-chips" id="miscAreaChips"></div></div>
+            <div class="misc-source-grid">
+              <section class="misc-source-card"><h4>📚 English magazines &amp; long reads</h4><p>Discover the latest original articles from leading Indian magazines and specialist publications.</p><div class="misc-publication-links" id="miscMagazines"></div><button type="button" id="miscSearchMagazines" class="misc-search-all">Search Indian magazines ↗</button></section>
+              <section class="misc-source-card"><h4>📰 తెలుగు వార్తాపత్రికలు</h4><p>ఈనాడు, సాక్షి, ఆంధ్రజ్యోతి తదితర పత్రికల్లో తాజా కథనాల కోసం వెతకండి.</p><div class="misc-publication-links" id="miscTeluguPapers"></div><button type="button" id="miscSearchTelugu" class="misc-search-all">Search Telugu papers ↗</button></section>
+            </div>
+            <div class="misc-editorial-note"><strong>Source policy:</strong> Official NASA, WHO and PIB headlines may appear below when feeds are available. Independent journalism and magazine stories are opened through publisher-specific Google News searches. Press releases are not presented as independent reporting. Publisher permissions and paywalls are respected.</div>
+          </section>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
         </section>
@@ -361,7 +377,7 @@ body.x-watch-open .tool-row,body.x-watch-open .sector-quickbar,body.x-watch-open
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
