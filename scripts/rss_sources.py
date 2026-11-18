@@ -126,7 +126,7 @@ def fetch_one(source,url,kind):
             headline=title[:220]
             sector="Personal Finance" if PF_WORDS.search(title) else ("Markets & IPOs" if source=="SEBI" else ("Banking & Finance" if source=="RBI" else "Economy & Policy"))
         if len(headline)<8:continue
-        entries.append({"id":link,"url":link,"title":headline,"source":source+" • Official","domain":domain,"region":region,"sector":sector,"seen":when,"sourcecountry":"India","language":"English","origin":"official-rss"})
+        entries.append({"id":link,"url":link,"title":headline,"source":source+" • Official","domain":domain,"region":region,"sector":sector,"seen":when,"time_basis":"feed" if d else "first_seen","sourcecountry":"India","language":"English","origin":"official-rss"})
     return entries
 
 def collect_official():
