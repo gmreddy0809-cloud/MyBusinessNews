@@ -117,6 +117,20 @@ assert(html.includes('RSS పునఃప్రచురణ లేదు'),'Publ
 
 assert(html.includes('class="moneycontrol-direct"'),'Missing direct original Moneycontrol News link');
 assert(html.includes("state.region!=='telugu-states'"),'Only show AP+TG regional news filter in that desk');
+assert(html.includes('id="pfSourceDiscovery"')&&html.includes('id="regionBusinessDiscovery"'),
+       'Dedicated PF and regional business original-source directories are missing');
+assert(html.includes('reader_finance:Boolean(data.reader_finance)'),
+       'Permitted Telugu source links should flow into reader finance without duplicate URLs');
+assert(html.includes('regional_business:Boolean(data.regional_business)'),
+       'Telugu business links must be shared with regional business view');
+assert(html.includes("item.desk==='personal-finance'"),
+       'Standalone PF sources must render in the PF view');
+assert(html.includes("item.desk==='regional-business'"),
+       'Standalone AP/TG company sources must render in Telugu Companies');
+assert(html.includes('amfiindia.com/rss-feeds')&&html.includes('rbi.org.in/Scripts/rss.aspx'),
+       'Official first-party mutual fund and bank RSS directories must be reachable');
+assert(html.includes('after:2026-11-13'),
+       'PF and regional original-source searches should support the 14-Nov-2026 backfill');
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
 assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
 assert(html.includes('InvTGOfficial')&&html.includes('THubHyd')&&html.includes('AP_EDB'),'Regional source profiles missing');
