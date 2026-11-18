@@ -857,6 +857,12 @@ const DESK_SOURCE_DIRECTORY={
   ['Financial Dailies','NDTV Profit','ndtvprofit.com'],
   ['Financial Dailies','CNBC TV18','cnbctv18.com'],
   ['Financial Dailies','Outlook Money','outlookmoney.com'],
+  ['Telugu Personal Finance','Eenadu','eenadu.net'],
+  ['Telugu Personal Finance','Sakshi','sakshi.com'],
+  ['Telugu Personal Finance','Andhra Jyothy','andhrajyothy.com'],
+  ['Telugu Personal Finance','Namasthe Telangana','ntnews.com'],
+  ['Telugu Personal Finance','Velugu','v6velugu.com'],
+  ['Telugu Personal Finance','Prajasakti','prajasakti.com'],
   ['PF Blogs & Research','freefincal','freefincal.com'],
   ['PF Blogs & Research','Value Research','valueresearchonline.com'],
   ['PF Blogs & Research','FundsIndia','fundsindia.com'],
@@ -865,6 +871,11 @@ const DESK_SOURCE_DIRECTORY={
   ['PF Blogs & Research','Stable Investor','stableinvestor.com'],
   ['PF Blogs & Research','Upstox Originals','upstox.com'],
   ['PF Blogs & Research','Whalesbook','whalesbook.com'],
+  ['PF Blogs & Research','GoodReturns','goodreturns.in'],
+  ['PF Blogs & Research','ET Money','etmoney.com'],
+  ['PF Blogs & Research','ClearTax','cleartax.in'],
+  ['PF Blogs & Research','BankBazaar','bankbazaar.com'],
+  ['PF Blogs & Research','Paisabazaar','paisabazaar.com'],
   ['Banking & Loans','SBI','sbi.co.in'],
   ['Banking & Loans','HDFC Bank','hdfcbank.com'],
   ['Banking & Loans','ICICI Bank','icicibank.com'],
@@ -906,6 +917,12 @@ const DESK_SOURCE_DIRECTORY={
   ['Financial Dailies','Financial Express','financialexpress.com'],
   ['Financial Dailies','NDTV Profit','ndtvprofit.com'],
   ['Financial Dailies','Reuters','reuters.com'],
+  ['Telugu Business Media','Eenadu','eenadu.net'],
+  ['Telugu Business Media','Sakshi','sakshi.com'],
+  ['Telugu Business Media','Andhra Jyothy','andhrajyothy.com'],
+  ['Telugu Business Media','Namasthe Telangana','ntnews.com'],
+  ['Telugu Business Media','Velugu','v6velugu.com'],
+  ['Telugu Business Media','Prajasakti','prajasakti.com'],
   ['Telugu States Reporting','Deccan Chronicle','deccanchronicle.com'],
   ['Telugu States Reporting','Telangana Today','telanganatoday.com'],
   ['Telugu States Reporting','Times of India','timesofindia.indiatimes.com'],
@@ -934,7 +951,11 @@ function setupDeskSourceDirectories(){
    }
    const a=document.createElement('a');
    a.className='desk-source-link';a.textContent=name+' ↗';
-   const query=desk==='pf'?
+   const query=group==='Telugu Personal Finance'?
+    'site:'+domain+' (పొదుపు OR బీమా OR పన్ను OR మ్యూచువల్ ఫండ్ OR రుణం OR వడ్డీ) after:2026-11-13':
+    group==='Telugu Business Media'?
+    'site:'+domain+' (హైదరాబాద్ OR తెలంగాణ OR ఆంధ్రప్రదేశ్ OR విశాఖ) (పెట్టుబడి OR కంపెనీ OR పరిశ్రమ OR వ్యాపారం OR ఫార్మా) after:2026-11-13':
+    desk==='pf'?
     'site:'+domain+' (personal finance OR mutual funds OR insurance OR tax OR savings OR loan) after:2026-11-13':
     'site:'+domain+' (Hyderabad OR Telangana OR "Andhra Pradesh") (company OR pharma OR startup OR investment OR GCC) after:2026-11-13';
    a.href=googleNewsUrl(query);
