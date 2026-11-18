@@ -676,9 +676,22 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <div class="publisher-life-chips" id="publisherLifeChips"></div>
           </section>
           <div class="regional-general-bar" id="regionalGeneralBar" hidden>
-            <span class="regional-general-label">🏛 Politics · Govt · CM &amp; Ministers · Civic Issues</span>
-            <a href="https://news.google.com/search?q=%28Telangana%20OR%20%22Andhra%20Pradesh%22%29%20%28government%20OR%20minister%20OR%20politics%20OR%20education%20OR%20health%29&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">English live news ↗</a>
-            <a href="https://news.google.com/search?q=%28%E0%B0%86%E0%B0%82%E0%B0%A7%E0%B1%8D%E0%B0%B0%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A6%E0%B1%87%E0%B0%B6%E0%B1%8D%20OR%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%82%E0%B0%97%E0%B0%BE%E0%B0%A3%29%20%28%E0%B0%B8%E0%B1%80%E0%B0%8E%E0%B0%82%20OR%20%E0%B0%AE%E0%B0%82%E0%B0%A4%E0%B1%8D%E0%B0%B0%E0%B0%BF%20OR%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%AD%E0%B1%81%E0%B0%A4%E0%B1%8D%E0%B0%B5%E0%B0%82%29&amp;hl=te&amp;gl=IN&amp;ceid=IN%3Ate" target="_blank" rel="noopener noreferrer">తెలుగు లైవ్ వార్తలు ↗</a>
+            <div class="regional-state-chips" role="group" aria-label="ఆంధ్రప్రదేశ్ లేదా తెలంగాణ వార్తలు">
+              <button type="button" class="regional-state-chip" data-regional-state="all">AP + TG <span id="regionalCountAll">0</span></button>
+              <button type="button" class="regional-state-chip is-andhra" data-regional-state="andhra-pradesh">ఆంధ్రప్రదేశ్ <span id="regionalCountAP">0</span></button>
+              <button type="button" class="regional-state-chip is-telangana" data-regional-state="telangana">తెలంగాణ <span id="regionalCountTG">0</span></button>
+            </div>
+            <details class="regional-publisher-disclosure"><summary>📰 ఆంధ్రజ్యోతి · సాక్షి ↗</summary>
+              <div class="regional-publisher-links">
+                <a href="https://www.andhrajyothy.com/andhra-pradesh" target="_blank" rel="noopener noreferrer">ఆంధ్రజ్యోతి · AP ↗</a>
+                <a href="https://www.andhrajyothy.com/telangana" target="_blank" rel="noopener noreferrer">ఆంధ్రజ్యోతి · తెలంగాణ ↗</a>
+                <a href="https://www.sakshi.com/andhra-pradesh" target="_blank" rel="noopener noreferrer">సాక్షి · AP ↗</a>
+                <a href="https://www.sakshi.com/telangana" target="_blank" rel="noopener noreferrer">సాక్షి · తెలంగాణ ↗</a>
+                <small>పత్రికల అసలు వార్తల పేజీలు మాత్రమే. RSS పునఃప్రచురణ లేదు.</small>
+              </div>
+            </details>
+            <a class="regional-live-link" href="https://news.google.com/search?q=%28Telangana%20OR%20%22Andhra%20Pradesh%22%29%20%28government%20OR%20minister%20OR%20politics%20OR%20education%20OR%20health%29&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">English live ↗</a>
+            <a class="regional-live-link" href="https://news.google.com/search?q=%28%E0%B0%86%E0%B0%82%E0%B0%A7%E0%B1%8D%E0%B0%B0%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A6%E0%B1%87%E0%B0%B6%E0%B1%8D%20OR%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%82%E0%B0%97%E0%B0%BE%E0%B0%A3%29%20%28%E0%B0%B8%E0%B1%80%E0%B0%8E%E0%B0%82%20OR%20%E0%B0%AE%E0%B0%82%E0%B0%A4%E0%B1%8D%E0%B0%B0%E0%B0%BF%20OR%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%AD%E0%B1%81%E0%B0%A4%E0%B1%8D%E0%B0%B5%E0%B0%82%29&amp;hl=te&amp;gl=IN&amp;ceid=IN%3Ate" target="_blank" rel="noopener noreferrer">తెలుగు live ↗</a>
           </div>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
@@ -715,7 +728,7 @@ const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & F
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
 const GDELT_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
-const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',publicationTopic:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
+const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',publicationTopic:'all',regionalState:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
 const $ = id => document.getElementById(id);
 const escapeHTML = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isHttp = s => {try {const u=new URL(s);return u.protocol==='https:'||u.protocol==='http:'}catch{return false}};
@@ -1008,10 +1021,10 @@ function renderPublisherHub(){
  }
 }
 
-function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.miscTopic='all';state.miscArea='all';state.publicationTopic='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
+function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.miscTopic='all';state.miscArea='all';state.publicationTopic='all';state.regionalState='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
 function addressForView(){
  const url=new URL(location.href);
- for(const param of ['sector','q','hours','sort','origin','topic','area','pubtopic'])url.searchParams.delete(param);
+ for(const param of ['sector','q','hours','sort','origin','topic','area','pubtopic','state'])url.searchParams.delete(param);
  if(state.sector!=='all')url.searchParams.set('sector',state.sector);
  if(state.search)url.searchParams.set('q',state.search);
  if(state.hours!=='all')url.searchParams.set('hours',state.hours);
@@ -1020,6 +1033,7 @@ function addressForView(){
  if(state.region==='avi-ivi'&&state.miscTopic!=='all')url.searchParams.set('topic',state.miscTopic);
  if(state.region==='avi-ivi'&&state.miscArea!=='all')url.searchParams.set('area',state.miscArea);
  if(state.region==='english-magazines'&&state.publicationTopic!=='all')url.searchParams.set('pubtopic',state.publicationTopic);
+ if(state.region==='telugu-states'&&state.regionalState!=='all')url.searchParams.set('state',state.regionalState);
  url.hash=state.region==='all'?'all':state.region;
  return url.pathname+url.search+url.hash;
 }
@@ -1036,6 +1050,7 @@ function restoreView(){
  state.miscTopic=MISC_TOPICS.some(([id])=>id===q.get('topic'))?q.get('topic'):'all';
  state.miscArea=MISC_AREAS.some(([id])=>id===q.get('area'))?q.get('area'):'all';
  state.publicationTopic=PUBLISHER_TOPIC_OPTIONS.some(([id])=>id===q.get('pubtopic'))?q.get('pubtopic'):'all';
+ state.regionalState=['andhra-pradesh','telangana'].includes(q.get('state'))?q.get('state'):'all';
  state.display=25;
  $('sectorSelect').value=state.sector;
  $('searchInput').value=state.search;
@@ -1067,6 +1082,8 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
    // Public-interest AP/TG desk: Telugu publisher RSS plus separately indexed
    // English regional reporting. Never mix in listed-company business filings.
    if(!['telugu-patrikalu','regional-general'].includes(item.desk))return false;
+   if(state.regionalState==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
+   if(state.regionalState==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
  }
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
@@ -1090,6 +1107,11 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('regionalGeneralBar').hidden=state.region!=='telugu-states';
+ const regionalStories=state.stories.filter(item=>['telugu-patrikalu','regional-general'].includes(item.desk)&&['hyderabad','telangana','andhra-pradesh'].includes(item.region));
+ $('regionalCountAll').textContent=regionalStories.length.toLocaleString('en-IN');
+ $('regionalCountAP').textContent=regionalStories.filter(item=>item.region==='andhra-pradesh').length.toLocaleString('en-IN');
+ $('regionalCountTG').textContent=regionalStories.filter(item=>['telangana','hyderabad'].includes(item.region)).length.toLocaleString('en-IN');
+ document.querySelectorAll('[data-regional-state]').forEach(el=>{const active=el.dataset.regionalState===state.regionalState;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('feedDescription').textContent=isPublisherDesk(state.region)?
  'Choose a publication above for its original homepage. Below are permitted RSS headlines, attributed to their publishers.':
  state.region==='telugu-states'?
@@ -1106,7 +1128,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  $('pulseFresh').textContent=total.filter(x=>dateKey(x.seen)>Date.now()-24*3600000).length.toLocaleString('en-IN');
  let list=visible.slice(0,state.display);$('loadMore').hidden=visible.length<=state.display;
  if(state.isFetching&&!state.stories.length){$('newsList').innerHTML='<div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div>';}else if(!visible.length){let detail=state.lastError?'Could not reach the news feed right now. Please refresh or try again later.':'Try another region, sector, or search term.';if(state.region==='saved')detail='Use the bookmark button on stories to save them here in this browser.';if(state.region==='avi-ivi')detail='No official-source stories match these filters yet. Try another topic or explore magazines and Telugu newspapers above.';if(isPublisherDesk(state.region))detail='No recent permitted RSS headlines are available from this publisher group right now. You can always open the publisher homepages above.';$('newsList').innerHTML=`<div class="empty-state"><div style="font-size:35px">◈</div><h3>${state.lastError?'Source temporarily unavailable':'No stories in this view'}</h3><p>${escapeHTML(detail)}</p>${state.lastError?'<p>More news: <a target="_blank" rel="noopener noreferrer" href="https://www.gdeltproject.org/">GDELT</a> · <a target="_blank" rel="noopener noreferrer" href="https://pib.gov.in/">PIB</a></p>':''}</div>`;}else{
- $('newsList').innerHTML=list.map(item=>{const saved=Boolean(state.saved[item.id]);const regionLabel=REGION_NAMES[item.region]?.replace(' Business News','')||'World';const href=escapeHTML(safeURL(item.url));return `<article class="news-article"><div class="story-icon" aria-hidden="true">${escapeHTML(ICONS[item.sector]||'◈')}</div><div><div class="news-meta"><span class="tag">${escapeHTML(item.sector)}</span><span class="source">${escapeHTML(item.source)}</span><span class="time">◷ ${escapeHTML(timeLabel(item))}</span><span class="region-label">${escapeHTML(regionLabel)}</span></div><a class="news-title" href="${href}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)} ↗</a><p class="news-desc">Read the original story at ${escapeHTML(item.domain)}. External publisher access rules may apply.</p></div><div class="story-actions"><button class="save-btn ${saved?'saved':''}" data-save="${escapeHTML(item.id)}" title="${saved?'Remove saved story':'Save story'}" aria-label="${saved?'Remove saved story':'Save story'}">${saved?'★':'☆'}</button><a class="open-btn" href="${href}" target="_blank" rel="noopener noreferrer" title="Open original story" aria-label="Open original story">↗</a></div></article>`}).join('');
+ $('newsList').innerHTML=list.map(item=>{const saved=Boolean(state.saved[item.id]);const regionLabel=state.region==='telugu-states'?(item.region==='andhra-pradesh'?'ఆంధ్రప్రదేశ్':item.region==='hyderabad'?'తెలంగాణ · హైదరాబాద్':'తెలంగాణ'):(REGION_NAMES[item.region]?.replace(' Business News','')||'World');const regionBadgeClass=state.region==='telugu-states'?(item.region==='andhra-pradesh'?' regional-ap':' regional-tg'):'';const href=escapeHTML(safeURL(item.url));return `<article class="news-article"><div class="story-icon" aria-hidden="true">${escapeHTML(ICONS[item.sector]||'◈')}</div><div><div class="news-meta"><span class="tag">${escapeHTML(item.sector)}</span><span class="source">${escapeHTML(item.source)}</span><span class="time">◷ ${escapeHTML(timeLabel(item))}</span><span class="region-label${regionBadgeClass}">${escapeHTML(regionLabel)}</span></div><a class="news-title" href="${href}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)} ↗</a><p class="news-desc">Read the original story at ${escapeHTML(item.domain)}. External publisher access rules may apply.</p></div><div class="story-actions"><button class="save-btn ${saved?'saved':''}" data-save="${escapeHTML(item.id)}" title="${saved?'Remove saved story':'Save story'}" aria-label="${saved?'Remove saved story':'Save story'}">${saved?'★':'☆'}</button><a class="open-btn" href="${href}" target="_blank" rel="noopener noreferrer" title="Open original story" aria-label="Open original story">↗</a></div></article>`}).join('');
  }
  const help=$('webSearchHelp'),term=state.search.trim();
  help.hidden=!term;
@@ -1164,6 +1186,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open');const more=$('moreRegionTabs');if(more)more.open=false}));
+ $('regionalGeneralBar').addEventListener('click',event=>{const chip=event.target.closest('[data-regional-state]');if(!chip)return;state.regionalState=chip.dataset.regionalState;state.display=25;saveView(true);render()});
  $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&!isPublisherDesk(state.region)&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
  $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;saveView(true);render()});
