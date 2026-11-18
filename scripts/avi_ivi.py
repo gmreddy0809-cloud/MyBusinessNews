@@ -18,19 +18,21 @@ PUBLIC_FEEDS = [
     ("PIB India", "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1", "india", "government"),
     ("NASA", "https://www.nasa.gov/news-release/feed/", "world", "science"),
     ("WHO", "https://www.who.int/rss-feeds/news-english.xml", "world", "health"),
+    ("UN News", "https://news.un.org/feed/subscribe/en/news/all/rss.xml", "world", "general"),
+    ("UN News Climate", "https://news.un.org/feed/subscribe/en/news/topic/climate-change/feed/rss.xml", "world", "environment"),
 ]
-ALLOWED_DOMAINS = ("pib.gov.in", "nasa.gov", "science.nasa.gov", "who.int")
+ALLOWED_DOMAINS = ("pib.gov.in", "nasa.gov", "science.nasa.gov", "who.int", "news.un.org")
 AREAS = [
     ("hyderabad", re.compile(r"\b(?:Hyderabad|Secunderabad|Shamshabad|Gachibowli|Medchal)\b", re.I)),
     ("andhra-pradesh", re.compile(r"andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|guntur|nellore", re.I)),
     ("telangana", re.compile(r"\btelangana\b|warangal|karimnagar|sangareddy|khammam", re.I)),
 ]
 TOPICS = [
-    ("Health & Wellbeing", re.compile(r"health|medical|hospital|public health|cancer|diabetes|disease|virus|vaccin|patient|nutrit|mental health|maternal|tuberculosis|medicine|drug safety|healthcare|epidemic|wellness|clinical", re.I)),
+    ("Health & Wellbeing", re.compile(r"health|medical|hospital|public health|cancer|diabetes|ebola|measles|pandemic|outbreak|malnutrition|disease|virus|vaccin|patient|nutrit|mental health|maternal|tuberculosis|medicine|drug safety|healthcare|epidemic|wellness|clinical", re.I)),
     ("Environment & Nature", re.compile(r"climate|pollution|environment|air quality|wildlife|forest|conservation|biodiversity|coral|weather|cyclone|flood|drought|sustainab|carbon|temperature|river|coastal|ecosystem", re.I)),
     ("Science & Space", re.compile(r"nasa|space|moon|mars|telescope|satellite|scientist|research|discovery|physics|astronom|galaxy|asteroid|rocket|artemis|spacecraft|laboratory|ai research|science", re.I)),
     ("Education & Careers", re.compile(r"school|university|college|student|teacher|education|scholarship|examination|literacy|skills|apprentice|research fellow|curriculum|employment|career|learning", re.I)),
-    ("Culture & Heritage", re.compile(r"culture|heritage|museum|festival|art|literat|books?|author|creative|film|music|historic|tradition|archaeolog|cuisine|crafts|language", re.I)),
+    ("Culture & Heritage", re.compile(r"culture|heritage|museum|festival|\bart\b|literat|\bbooks?\b|author|creative|film|music|historic|tradition|archaeolog|cuisine|crafts|language", re.I)),
     ("Politics & Public Affairs", re.compile(r"parliament|cabinet|election|politic|governance|court|supreme court|legislation|law|policy|constitution|rights|assembly|minister|diplomacy|foreign affairs|democrac|bilateral|treaty", re.I)),
     ("Lifestyle & Living", re.compile(r"lifestyle|wellbeing|travel|food|fitness|exercise|fashion|touris|beauty|home|housing|sleep|diet|family|parenting|work.life", re.I)),
     ("People & Ideas", re.compile(r"women|youth|community|village|tribal|innovation|volunteer|inspir|empower|social|rural|local hero|people|citizen|livelihood|accessibility", re.I)),
@@ -47,9 +49,10 @@ def topic_for(title, mode):
         if TOPICS[1][1].search(title):return "Environment & Nature"
         return "Science & Space"
     if mode=="health":return "Health & Wellbeing"
+    if mode=="environment":return "Environment & Nature"
     for name,pattern in TOPICS:
         if pattern.search(title):return name
-    return None
+    return "World & Society" if mode=="general" else None
 
 def region_for(title,base_region):
     for region,pattern in AREAS:
