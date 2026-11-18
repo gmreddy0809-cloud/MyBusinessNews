@@ -375,31 +375,16 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
       </header>
 
       <main class="page-content">
-        <section class="hero">
+        <section class="hero" aria-label="Every business story, one place">
           <div class="hero-copy">
             <span class="eyebrow"><span class="live-circle"></span> YOUR GLOBAL BUSINESS NEWSROOM</span>
-            <h1>Every business story.<br><em>One place.</em></h1>
+            <h1>Every business story. <em>One place.</em></h1>
             <p>India to the world. Hyderabad to Wall Street. All sectors, original sources, and one clean feed.</p>
             <div class="hero-tags"><span>భారత్</span><span>ప్రపంచం</span><span>హైదరాబాద్</span><span>తెలుగు రాష్ట్రాలు</span></div>
           </div>
           <div class="hero-pattern" aria-hidden="true"><div class="pattern-circle circle-one"></div><div class="pattern-circle circle-two"></div><span>MBN<span>.</span></span></div>
         </section>
 
-        <section class="metrics" aria-label="News coverage summary">
-          <div class="metric"><span class="metric-icon blue">▣</span><div><strong id="metricStories">—</strong><small>Stories indexed</small></div></div>
-          <div class="metric"><span class="metric-icon violet">◎</span><div><strong id="metricSources">—</strong><small>News sources</small></div></div>
-          <div class="metric"><span class="metric-icon green">◷</span><div><strong id="metricUpdated">—</strong><small>Last feed check (IST)</small></div></div>
-        </section>
-
-        <section class="desk-pulse" aria-label="Quick newsroom views">
-          <div class="pulse-intro"><span class="pulse-live"></span><strong>NEWSROOM PULSE</strong><span>Choose your feed</span></div>
-          <div class="pulse-views">
-            <button type="button" data-pulse="telugu-companies"><span>🏢 Telugu Companies</span><strong id="pulseTelugu">—</strong></button>
-            <button type="button" data-pulse="personal-finance"><span>💰 Personal Finance</span><strong id="pulsePF">—</strong></button>
-            <button type="button" data-pulse="official"><span>📑 Official Updates</span><strong id="pulseOfficial">—</strong></button>
-            <button type="button" data-pulse="fresh"><span>⏱ Indexed in 24h</span><strong id="pulseFresh">—</strong></button>
-          </div>
-        </section>
         <section class="feed-panel" aria-label="Business news feed">
           <div class="feed-header">
             <div><div class="feed-kicker">LATEST COVERAGE <span class="kicker-bar"></span></div><h2 id="feedHeading">Business News <span class="heading-light">Feed</span></h2><p class="feed-subtitle" id="feedDescription">Fresh links from original news publications, newest indexed first.</p></div>
@@ -407,9 +392,11 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
           </div>
           <div class="tool-row">
             <div class="search-field"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4.5 4.5"></path></svg><input id="searchInput" type="search" placeholder="Hyderabad based, Dr Reddy, GCCs, aviation..." autocomplete="off" aria-label="Search news on site, press Enter for Google News"><kbd>↵</kbd></div><button class="search-internet" type="button" id="searchWebButton" title="Search the live web via Google News">🔎 Search Web ↗</button>
+            <details class="advanced-filters" id="advancedFilters"><summary>⚙ Filters</summary><div class="advanced-filters-content">
             <select id="sectorSelect" aria-label="Filter by sector"><option value="all">All Sectors</option></select>
             <select id="timeSelect" aria-label="Filter by time"><option value="all">Any Time</option><option value="24">Last 24 Hours</option><option value="48">Last 48 Hours</option><option value="168">Last 7 Days</option></select>
             <select id="originSelect" aria-label="Filter news by source"><option value="all">All Sources</option><option value="official">Official NSE / BSE / RBI</option><option value="exchange">NSE / BSE Filings</option><option value="publisher">News Publications</option><option value="nse">NSE Only</option><option value="bse">BSE Only</option><option value="rbi">RBI Only</option></select><select id="sortSelect" aria-label="Sort news"><option value="newest">Newest First</option><option value="oldest">Oldest First</option><option value="source">By Source</option></select>
+            </div></details>
           </div>
           <div class="region-tabs" id="regionTabs" aria-label="Region quick filters">
             <button class="region-tab active" data-region="all">All news</button>
@@ -427,6 +414,7 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
             <button class="region-tab" data-region="english-magazines">📚 English Magazines</button>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
+          <details class="source-disclosure"><summary><span>🏦 NSE · BSE · RBI · Financial Dailies</span><span class="source-summary-action">Official sources and publisher links <span aria-hidden="true">⌄</span></span></summary>
           <section class="source-hub" aria-label="Official sources and India financial dailies">
             <div class="source-hub-heading"><span class="source-hub-icon">🌐</span><div><strong>India's Business Newsroom</strong><small>Official market disclosures &amp; live searches across major financial dailies</small></div></div>
             <div class="source-hub-row">
@@ -446,6 +434,7 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
             </div>
             <p class="source-hub-note">Newspaper searches open Google News in a new tab. Articles belong to their publishers; their RSS feeds are not reproduced here.</p>
           </section>
+          </details>
 <div class="results-bar"><span id="resultsCount">Loading latest business news…</span><span class="timezone-hint">IST · Feed date / first seen / indexed (not always publisher time)</span></div>
           <div class="web-search-help" id="webSearchHelp" hidden><span id="webSearchInfo">Need news beyond the site index?</span><button id="webSearchHelpButton" type="button">Search live Google News ↗</button></div>
           <section class="x-watch-panel" id="xWatchPanel" aria-label="Social business news discovery" hidden>
@@ -486,6 +475,22 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
           </section>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
+        </section>
+
+        <section class="desk-pulse" aria-label="Quick newsroom views">
+          <div class="pulse-intro"><span class="pulse-live"></span><strong>NEWSROOM PULSE</strong><span>Choose your feed</span></div>
+          <div class="pulse-views">
+            <button type="button" data-pulse="telugu-companies"><span>🏢 Telugu Companies</span><strong id="pulseTelugu">—</strong></button>
+            <button type="button" data-pulse="personal-finance"><span>💰 Personal Finance</span><strong id="pulsePF">—</strong></button>
+            <button type="button" data-pulse="official"><span>📑 Official Updates</span><strong id="pulseOfficial">—</strong></button>
+            <button type="button" data-pulse="fresh"><span>⏱ Indexed in 24h</span><strong id="pulseFresh">—</strong></button>
+          </div>
+        </section>
+
+        <section class="metrics" aria-label="News coverage summary">
+          <div class="metric"><span class="metric-icon blue">▣</span><div><strong id="metricStories">—</strong><small>Stories indexed</small></div></div>
+          <div class="metric"><span class="metric-icon violet">◎</span><div><strong id="metricSources">—</strong><small>News sources</small></div></div>
+          <div class="metric"><span class="metric-icon green">◷</span><div><strong id="metricUpdated">—</strong><small>Last feed check (IST)</small></div></div>
         </section>
 
         <footer class="footer"><span>© <span id="copyrightYear"></span> MyBusinessNews · Original reporting belongs to its publishers.</span><span>Official NSE, BSE, RBI, PIB RSS + GDELT open index. Web search opens Google News directly. MyBusinessNews is free; original publishers may require subscriptions. No paywall bypass.</span></footer>
