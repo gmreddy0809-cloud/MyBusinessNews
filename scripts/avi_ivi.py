@@ -106,6 +106,14 @@ def collect_avi_ivi():
             with urlopen(req,timeout=16) as response:
                 payload=response.read(2_000_000)
             items=parse_feed(payload,name,region,mode)
+            if not items:
+                nodes=extract_items(payload)
+                sample=[]
+                for node in nodes[:2]:
+                    sample.append({"title":cleanup(first_text(node,["title","{http://www.w3.org/2005/Atom}title"]))[:120],
+                        "link":cleanup(first_text(node,["link","guid"]))[:160],
+                        "date":first_text(node,["pubDate","{http://purl.org/dc/elements/1.1/}date"])[:60]})
+                print("Avii Ivii source diagnostic",name,"bytes",len(payload),"rss_items",len(nodes),"sample",str(sample),flush=True)
             found.extend(items)
             report["successful_feeds"]+=1
             report["feed_matches"][name]=len(items)
