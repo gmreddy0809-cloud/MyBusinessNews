@@ -328,6 +328,7 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
 @media(max-width:800px){.publisher-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.publisher-hub{padding:18px 15px}}
 @media(max-width:480px){.publisher-hub{padding:15px 11px}.publisher-cards{gap:7px}.publisher-card{padding:10px 8px;gap:6px}.publisher-card-emoji{font-size:18px}.publisher-card-text strong{font-size:10.5px}.publisher-card-text small{font-size:9px}.publisher-headline h3{font-size:19px}.publisher-headline-icon{width:42px;height:42px;font-size:22px}.publisher-rights{gap:5px}}
 
+.publisher-rss-marker{font-size:8px;background:#dff8ed;color:#217c59;border:1px solid #ade4cb;border-radius:5px;padding:2px 4px;white-space:nowrap;font-weight:900;vertical-align:middle}.dark .publisher-rss-marker{background:#245548;color:#e3fff0;border-color:#4c826e}
 </style>
 </head>
 <body>
@@ -766,6 +767,11 @@ function renderPublisherHub(){
    const icon=document.createElement('span');icon.className='publisher-card-emoji';icon.textContent=emoji;
    const copy=document.createElement('span');copy.className='publisher-card-text';
    const heading=document.createElement('strong');heading.textContent=name;
+   if(name==='Dharani News'||name==='The Conversation'){
+     const rss=document.createElement('span');
+     rss.className='publisher-rss-marker';rss.textContent='RSS ✓';
+     heading.append(' ',rss);
+   }
    const sub=document.createElement('small');sub.textContent=desc;
    const arrow=document.createElement('span');arrow.className='publisher-card-arrow';arrow.textContent='↗';
    copy.append(heading,sub);link.append(icon,copy,arrow);$('publisherCards').append(link);
@@ -932,7 +938,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
- $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
+ $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&!isPublisherDesk(state.region)&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
  $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;saveView(true);render()});
  $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;saveView(true);render()});
