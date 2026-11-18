@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T17:57:50.123350+00:00",
+  "generated_at": "2026-11-18T17:58:31.396251+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -6165,6 +6165,96 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
+    },
+    {
+      "id": "https://dharaninews.com/american-businessman-found-dead-gachibowli-hyderabad/",
+      "url": "https://dharaninews.com/american-businessman-found-dead-gachibowli-hyderabad/",
+      "title": "హైదరాబాద్‌ లగ్జరీ హోటల్‌లో అమెరికన్ వ్యాపారవేత్త అనుమానాస్పద మృతి",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "hyderabad",
+      "sector": "Telugu News",
+      "seen": "2026-11-07T04:19:44+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://dharaninews.com/shankar-pally-chit-fund-fraud-sudhakar-arrested/",
+      "url": "https://dharaninews.com/shankar-pally-chit-fund-fraud-sudhakar-arrested/",
+      "title": "నమ్మించి రూ. 3.62 కోట్లు వసూలు",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-06T12:39:59+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://dharaninews.com/ibrahimpatnam-adulterated-milk-racket-busted-sot-arrests-one/",
+      "url": "https://dharaninews.com/ibrahimpatnam-adulterated-milk-racket-busted-sot-arrests-one/",
+      "title": "హైడ్రోజన్ పెరాక్సైడ్‌తో కల్తీ పాలు..ఇబ్రహీంపట్నంలో వ్యక్తి అరెస్ట్",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-06T09:00:09+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://dharaninews.com/tisc-startup-challenge-telangana/",
+      "url": "https://dharaninews.com/tisc-startup-challenge-telangana/",
+      "title": "తెలంగాణ ఇన్నోవేషన్ స్టార్టప్ ఛాలెంజ్ (TISC) ప్రారంభం",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "telangana",
+      "sector": "Telugu News",
+      "seen": "2026-11-05T15:35:33+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://dharaninews.com/revanth-reddy-kodangal-tour-development-works/",
+      "url": "https://dharaninews.com/revanth-reddy-kodangal-tour-development-works/",
+      "title": "కొడంగల్‌లో సీఎం రేవంత్ రెడ్డి పర్యటన: రూ. 9,053 కోట్ల అభివృద్ధి పనులకు శ్రీకారం",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-05T15:07:42+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://dharaninews.com/mahabubnagar-acb-sports-officer-bribeacb-trap-dyso-arrest/",
+      "url": "https://dharaninews.com/mahabubnagar-acb-sports-officer-bribeacb-trap-dyso-arrest/",
+      "title": "క్రీడాకారుల భోజనం బిల్లుల్లోనూ చేతివాటం.. రూ. లక్ష లంచం",
+      "source": "Dharani News • RSS",
+      "domain": "dharaninews.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-05T14:28:44+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
     }
   ],
   "sources": [
@@ -6177,6 +6267,7 @@
     "WHO",
     "UN News",
     "The Conversation",
+    "Oneindia Telugu",
     "Dharani News",
     "The GDELT Project"
   ],
