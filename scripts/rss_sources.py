@@ -10,14 +10,17 @@ from xml.etree import ElementTree as ET
 FEEDS=[
  ("NSE", "https://nsearchives.nseindia.com/content/RSS/Online_announcements.xml", "exchange"),
  ("NSE", "https://nsearchives.nseindia.com/content/RSS/Financial_Results.xml", "exchange"),
+ ("NSE", "https://nsearchives.nseindia.com/content/RSS/Board_Meetings.xml", "exchange"),
+ ("NSE", "https://nsearchives.nseindia.com/content/RSS/Corporate_action.xml", "exchange"),
  ("BSE", "https://beta.bseindia.com/data/xml/announcements.xml", "exchange"),
+ ("BSE", "https://beta.bseindia.com/Data/XML/BoardMeetingsFeed.xml", "exchange"),
  ("RBI", "https://www.rbi.org.in/pressreleases_rss.xml", "policy"),
  ("PIB", "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1", "policy"),
 ]
 # Curated coverage groups for editorial monitoring, not a definitive census of listed companies.
 # Company aliases are matched in BOTH exchange titles and descriptions.
 TRACKED=[
- ("hyderabad",["Dr Reddy","DRREDDY","Aurobindo Pharma","AUROPHARMA","Divi's Laboratories","DIVISLAB","Granules India","GRANULES","Gland Pharma","GLAND","Natco Pharma","NATCOPHARM","Laurus Labs","LAURUSLABS","Neuland Laboratories","NEULANDLAB","Suven Pharmaceuticals","SUVENPHAR","Cyient","CYIENT","CCL Products","CCL","Zen Technologies","ZENTEC","Apollo Micro Systems","APOLLOMICRO","MTAR Technologies","MTARTECH","Bharat Dynamics","BDL","KIMS Hospitals","Krishna Institute of Medical Sciences","KIMS","Rainbow Childrens","RAINBOW","Medplus Health","MEDPLUS","Vijaya Diagnostic","VIJAYA","Nava Limited","NAVA","Heritage Foods","HERITGFOOD","Zaggle","ZAGGLE","KNR Constructions","KNRCON","Pennar Industries","PENIND","Tanla Platforms","TANLA","VST Industries","VSTIND","Pokarna","POKARNA","NCC Limited","NCC","Sai Silks","SAIL","Suryoday Small Finance"] ),
+ ("hyderabad",["Dr Reddy","DRREDDY","Aurobindo Pharma","AUROPHARMA","Divi's Laboratories","DIVISLAB","Granules India","GRANULES","Gland Pharma","GLAND","Natco Pharma","NATCOPHARM","Laurus Labs","LAURUSLABS","Neuland Laboratories","NEULANDLAB","Suven Pharmaceuticals","SUVENPHAR","Cyient","CYIENT","CCL Products","CCL","Zen Technologies","ZENTEC","Apollo Micro Systems","APOLLOMICRO","MTAR Technologies","MTARTECH","Bharat Dynamics","BDL","KIMS Hospitals","Krishna Institute of Medical Sciences","KIMS","Rainbow Childrens","RAINBOW","Medplus Health","MEDPLUS","Vijaya Diagnostic","VIJAYA","Nava Limited","NAVA","Heritage Foods","HERITGFOOD","Zaggle","ZAGGLE","KNR Constructions","KNRCON","Pennar Industries","PENIND","Tanla Platforms","TANLA","VST Industries","VSTIND","Pokarna","POKARNA","NCC Limited","NCC","Sai Silks","SAIL","VST Industries"] ),
  ("andhra-pradesh",["Amara Raja","AMARAJABAT","ARE&M","Andhra Paper","ANDHRAPAP","Andhra Sugars","ANDHRSUGAR","Avanti Feeds","AVANTIFEED"]),
 ]
 # Disallow short unqualified aliases matching ordinary English words.
