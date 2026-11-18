@@ -9,9 +9,10 @@ function harness(url){
  const elements={sectorSelect:{value:'all'},searchInput:{value:''},timeSelect:{value:'all'},sortSelect:{value:'newest'},originSelect:{value:'all'},feedHeading:{scrollIntoView(){}}};
  const context={
    URL,URLSearchParams,
-   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',display:25},
+   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
-   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch'},
+   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ'},
+   MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],
    render(){},refresh(){}
  };
  function navigate(_state,_title,path){context.location=new URL(path,context.location.href)}
@@ -39,6 +40,18 @@ assert.equal(e.state.region,'personal-finance','F5 lost Personal Finance tab');
 run("setRegion('x-watch')",a);
 let x=harness(a.location.href);run('restoreView()',x);
 assert.equal(x.state.region,'x-watch','F5 lost X Business Watch tab');
+run("setRegion('avi-ivi')",a);
+assert.equal(a.location.hash,'#avi-ivi','Avii Ivii deep link missing');
+a.state.miscTopic='Health & Wellbeing';
+a.state.miscArea='telugu';
+run('saveView(true)',a);
+assert.equal(a.location.searchParams.get('topic'),'Health & Wellbeing');
+assert.equal(a.location.searchParams.get('area'),'telugu');
+let magazine=harness(a.location.href);run('restoreView()',magazine);
+assert.equal(magazine.state.region,'avi-ivi','F5 lost Avii Ivii tab');
+assert.equal(magazine.state.miscTopic,'Health & Wellbeing','F5 lost magazine topic');
+assert.equal(magazine.state.miscArea,'telugu','F5 lost magazine area');
+assert(html.includes('id="miscHub"'),'Avii Ivii panel missing');
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
 assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
 assert(html.includes('InvTGOfficial')&&html.includes('THubHyd')&&html.includes('AP_EDB'),'Regional source profiles missing');
@@ -52,4 +65,4 @@ assert.equal(e.state.sector,'Aviation & Airports');
 assert.equal(e.state.search,'IndiGo');
 assert.equal(e.state.hours,'24');
 assert.equal(e.state.region,'hyderabad');
-console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, X Watch, search/time/source filters survive F5');
+console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, X Watch, Avii Ivii topics/region, search/time/source filters survive F5');
