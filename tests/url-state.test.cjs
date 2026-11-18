@@ -11,7 +11,7 @@ function harness(url){
    URL,URLSearchParams,
    location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
-   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance'},
+   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch'},
    render(){},refresh(){}
  };
  function navigate(_state,_title,path){context.location=new URL(path,context.location.href)}
@@ -36,6 +36,12 @@ assert.equal(d.state.region,'telugu-companies','F5 lost Telugu Companies tab');
 run("setRegion('personal-finance')",a);
 let e=harness(a.location.href);run('restoreView()',e);
 assert.equal(e.state.region,'personal-finance','F5 lost Personal Finance tab');
+run("setRegion('x-watch')",a);
+let x=harness(a.location.href);run('restoreView()',x);
+assert.equal(x.state.region,'x-watch','F5 lost X Business Watch tab');
+assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
+assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
+assert(html.includes('InvTGOfficial')&&html.includes('THubHyd')&&html.includes('AP_EDB'),'Regional source profiles missing');
 e.state.origin='exchange';run('saveView(true)',e);
 assert.equal(e.location.searchParams.get('origin'),'exchange','Official source filter not in URL');
 const sourceReload=harness(e.location.href);run('restoreView()',sourceReload);
@@ -46,4 +52,4 @@ assert.equal(e.state.sector,'Aviation & Airports');
 assert.equal(e.state.search,'IndiGo');
 assert.equal(e.state.hours,'24');
 assert.equal(e.state.region,'hyderabad');
-console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, search/time/source filters survive F5');
+console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, X Watch, search/time/source filters survive F5');
