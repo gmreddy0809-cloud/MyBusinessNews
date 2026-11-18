@@ -526,7 +526,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
         <button class="nav-item" data-region="hyderabad"><span class="nav-emoji">◉</span> Hyderabad</button>
         <button class="nav-item" data-region="andhra-pradesh"><span class="nav-emoji">📍</span> AP</button>
         <button class="nav-item" data-region="telangana"><span class="nav-emoji">📍</span> TG</button>
-        <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> Telugu States</button>
+        <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> AP + TG News</button>
         <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
         <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> PF</button>
         <button class="nav-item" data-region="x-watch"><span class="nav-emoji">𝕏</span> X Business Watch</button>
@@ -586,7 +586,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <button class="region-tab" data-region="andhra-pradesh" title="Andhra Pradesh" aria-label="Andhra Pradesh">AP</button>
             <button class="region-tab" data-region="telangana" title="Telangana" aria-label="Telangana">TG</button>
             <button class="region-tab" data-region="personal-finance" title="Personal Finance" aria-label="Personal Finance">PF</button>
-            <button class="region-tab" data-region="telugu-states" data-mobile-extra="true" title="Telugu States">AP + TG</button>
+            <button class="region-tab" data-region="telugu-states" data-mobile-extra="true" title="AP + TG General News">AP + TG</button>
             <button class="region-tab" data-region="telugu-companies" data-mobile-extra="true" title="Telugu Companies">Telugu Cos.</button>
             <button class="region-tab" data-region="x-watch" data-mobile-extra="true" title="X Business Watch">𝕏 Watch</button>
             <button class="region-tab" data-region="avi-ivi" data-mobile-extra="true">✨ అవీ ఇవీ</button>
@@ -595,7 +595,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <details class="more-region-tabs" id="moreRegionTabs">
               <summary id="moreTabsTrigger" aria-label="More news categories">More ▾</summary>
               <div class="more-region-menu">
-                <button type="button" data-region="telugu-states">AP + TG (Telugu States)</button>
+                <button type="button" data-region="telugu-states">AP + TG General News</button>
                 <button type="button" data-region="telugu-companies">🏢 Telugu Companies</button>
                 <button type="button" data-region="x-watch">𝕏 Business Watch</button>
                 <button type="button" data-region="avi-ivi">✨ అవీ ఇవీ</button>
@@ -621,6 +621,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <div class="source-hub-row">
               <div class="source-hub-label">FINANCIAL DAILIES · LIVE WEB SEARCH</div>
               <div class="financial-dailies" id="financialDailies"></div>
+              <a class="moneycontrol-direct" href="https://www.moneycontrol.com/news/" target="_blank" rel="noopener noreferrer">Moneycontrol latest news (original website) ↗</a>
               <button type="button" class="search-all-dailies" id="allDailiesButton">🔎 Search all Indian financial dailies ↗</button>
             </div>
             <p class="source-hub-note">Newspaper searches open Google News in a new tab. Articles belong to their publishers; their RSS feeds are not reproduced here.</p>
@@ -663,6 +664,11 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <p class="publisher-feed-note" id="publisherFeedNote">అనుమతి ఉన్న RSS కథనాలు మాత్రమే కింద కనిపిస్తాయి.</p>
             <div class="publisher-life-chips" id="publisherLifeChips"></div>
           </section>
+          <div class="regional-general-bar" id="regionalGeneralBar" hidden>
+            <span class="regional-general-label">🏛 Politics · Govt · CM &amp; Ministers · Civic Issues</span>
+            <a href="https://news.google.com/search?q=%28Telangana%20OR%20%22Andhra%20Pradesh%22%29%20%28government%20OR%20minister%20OR%20politics%20OR%20education%20OR%20health%29&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">English live news ↗</a>
+            <a href="https://news.google.com/search?q=%28%E0%B0%86%E0%B0%82%E0%B0%A7%E0%B1%8D%E0%B0%B0%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A6%E0%B1%87%E0%B0%B6%E0%B1%8D%20OR%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%82%E0%B0%97%E0%B0%BE%E0%B0%A3%29%20%28%E0%B0%B8%E0%B1%80%E0%B0%8E%E0%B0%82%20OR%20%E0%B0%AE%E0%B0%82%E0%B0%A4%E0%B1%8D%E0%B0%B0%E0%B0%BF%20OR%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%AD%E0%B1%81%E0%B0%A4%E0%B1%8D%E0%B0%B5%E0%B0%82%29&amp;hl=te&amp;gl=IN&amp;ceid=IN%3Ate" target="_blank" rel="noopener noreferrer">తెలుగు లైవ్ వార్తలు ↗</a>
+          </div>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
         </section>
@@ -693,7 +699,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'AP + TG General News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
@@ -1046,6 +1052,11 @@ function timeLabel(item){
 function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{
  const selectedDesk=state.region;
  if(selectedDesk==='avi-ivi'){if(!miscFiltered(item))return false;}
+ else if(selectedDesk==='telugu-states'){
+   // Public-interest AP/TG desk: Telugu publisher RSS plus separately indexed
+   // English regional reporting. Never mix in listed-company business filings.
+   if(!['telugu-patrikalu','regional-general'].includes(item.desk))return false;
+ }
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
    if(selectedDesk==='english-magazines'&&state.publicationTopic!=='all'&&item.sector!==state.publicationTopic)return false;
@@ -1056,6 +1067,8 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  if(state.search&&!matchSearch(item,state.search))return false;return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
 function render(){document.body.classList.toggle('x-watch-open',state.region==='x-watch');document.body.classList.toggle('avi-ivi-open',state.region==='avi-ivi');document.body.classList.toggle('publisher-open',isPublisherDesk(state.region));document.body.classList.toggle('english-magazines-open',state.region==='english-magazines');const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=state.region==='x-watch'?'𝕏 X Business <span class="heading-light">Watch</span>':`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=isPublisherDesk(state.region)?
  `${visible.length.toLocaleString('en-IN')} permitted RSS ${visible.length===1?'headline':'headlines'} · click a publication above to open its original homepage`:
+ state.region==='telugu-states'?
+ `${visible.length.toLocaleString('en-IN')} AP + TG general news links · English & Telugu · politics, public affairs and daily life`:
  state.region==='avi-ivi'?
  `${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:
  `${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='business').length.toLocaleString('en-IN')} in business feed`;
@@ -1065,8 +1078,11 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
+ $('regionalGeneralBar').hidden=state.region!=='telugu-states';
  $('feedDescription').textContent=isPublisherDesk(state.region)?
  'Choose a publication above for its original homepage. Below are permitted RSS headlines, attributed to their publishers.':
+ state.region==='telugu-states'?
+ 'Politics, CM & ministers, government decisions, welfare, education, agriculture and civic issues in English and Telugu.':
  state.region==='avi-ivi'?
  'Latest official UN News / NASA and beyond-business stories. Select a separate publisher tab for direct magazine and Telugu paper homepages.':
  'Original-source business headlines and official filings, indexed and refreshed automatically.';
