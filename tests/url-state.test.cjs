@@ -1,6 +1,13 @@
 /* Regression tests: refresh/deep-link must retain selected business sector. No npm dependencies. */
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync('index.html','utf8');
+// Guard the compact news-first experience from future header/content bloat.
+assert(html.indexOf('id="newsList"')<html.indexOf('id="metricStories"'),'Metrics must appear below news');
+assert(html.indexOf('id="newsList"')<html.indexOf('id="pulseTelugu"'),'Newsroom shortcuts must appear below news');
+assert(html.includes('<details class="source-disclosure">'),'Official sources should be collapsed above news');
+assert(html.includes('id="advancedFilters"'),'Advanced filters must be user-expandable');
+assert(html.includes('.region-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important'),
+       'Region tabs should be a single horizontally scrollable row');
 const start=html.indexOf('function resetFilters()');
 const end=html.indexOf('function toggleSaved(',start);
 assert(start>=0&&end>start,'URL navigation code is missing');
