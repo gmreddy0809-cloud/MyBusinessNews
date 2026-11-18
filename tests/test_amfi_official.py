@@ -3,7 +3,7 @@ import sys,unittest
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from amfi_official import discover_feeds,parse_amfi,PF_START_UTC
+from amfi_official import discover_feeds,parse_amfi
 
 class OfficialAmfiTests(unittest.TestCase):
     def test_find_official_nfo_feeds_only(self):
