@@ -73,8 +73,10 @@ CORPORATE_EN=re.compile(
  r'energy|solar|renewable|defence|infrastructure|tourism|construction|'
  r'exports?|industrial park|production|capacity)\b',re.I)
 CORPORATE_TE=re.compile(r'పెట్టుబడ|కంపెనీ|సంస్థ|పరిశ్రమ|విస్తరణ|ఉత్పత్తి|ఫార్మా|స్టార్టప్|'
-                        r'ఒప్పందం|లాభాలు|ఆదాయం|నిధులు|వ్యాపార|ఐటీ|జీసీసీ|ఆర్థిక ఫలితాలు|'
+                        r'ఒప్పందం|లాభాలు|ఆదాయం|నిధులు|ఐటీ|జీసీసీ|ఆర్థిక ఫలితాలు|'
                         r'కర్మాగార|మౌలిక వసతులు|పారిశ్రామిక',re.I)
+NON_BUSINESS_EN=re.compile(r'\b(?:died|dead|death|murder|suicide|killed|crime|arrested|injured|accident|cyclone|election|protest)\b',re.I)
+NON_BUSINESS_TE=re.compile(r'మృతి|హత్య|ప్రమాదం|అరెస్ట్|అనుమానాస్పద|కాంగ్రెస్|ఎన్నిక|రాజకీయ|నేరం',re.I)
 GEO_TE=re.compile(r'హైదరాబాద్|సికింద్రాబాద్|తెలంగాణ|ఆంధ్రప్రదేశ్|ఆంధ్ర ప్రదేశ్|'
                   r'అమరావతి|విశాఖ|విజయవాడ|తిరుపతి|కాకినాడ|గుంటూరు|వరంగల్|'
                   r'రంగారెడ్డి|మేడ్చల్|సంగారెడ్డి|శ్రీసిటీ',re.I)
@@ -89,6 +91,8 @@ def local_business_match(title,region=None):
     known_region,_=company_for(title)
     if known_region:return known_region
     region=region or explicit_locality(title)
+    if NON_BUSINESS_EN.search(title) or NON_BUSINESS_TE.search(title):
+        return None
     if region in ('hyderabad','telangana','andhra-pradesh') and (
             CORPORATE_EN.search(title) or CORPORATE_TE.search(title)):
         return region
