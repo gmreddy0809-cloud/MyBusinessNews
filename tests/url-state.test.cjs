@@ -6,8 +6,16 @@ assert(html.indexOf('id="newsList"')<html.indexOf('id="metricStories"'),'Metrics
 assert(html.indexOf('id="newsList"')<html.indexOf('id="pulseTelugu"'),'Newsroom shortcuts must appear below news');
 assert(html.includes('<details class="source-disclosure">'),'Official sources should be collapsed above news');
 assert(html.includes('id="advancedFilters"'),'Advanced filters must be user-expandable');
-assert(html.includes('.region-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important'),
-       'Region tabs should be a single horizontally scrollable row');
+assert(html.includes('.region-tabs{position:relative;display:flex!important;align-items:center;justify-content:flex-start;flex-wrap:wrap!important;overflow:visible!important'),
+       'Region tabs must wrap without sideways scrolling');
+assert(html.includes('.region-tab[data-mobile-extra="true"]{display:none!important}'),
+       'Secondary mobile regions should move into More rather than require scrolling');
+assert(html.includes('id="moreRegionTabs"'),'Mobile More menu must provide access to secondary tabs');
+assert(html.includes('.sector-quickbar{display:none!important}'),'Sector quickbar should not introduce sideways scrolling');
+for(const [region,label] of [['andhra-pradesh','AP'],['telangana','TG'],['personal-finance','PF']]){
+ const expression=new RegExp('data-region="'+region+'"[^>]*>'+label+'<\\/button>');
+ assert(expression.test(html),'Missing abbreviated nav label for '+region);
+}
 const start=html.indexOf('function resetFilters()');
 const end=html.indexOf('function toggleSaved(',start);
 assert(start>=0&&end>start,'URL navigation code is missing');
@@ -86,4 +94,4 @@ assert.equal(e.state.sector,'Aviation & Airports');
 assert.equal(e.state.search,'IndiGo');
 assert.equal(e.state.hours,'24');
 assert.equal(e.state.region,'hyderabad');
-console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, X Watch, Avii Ivii topics/region, search/time/source filters survive F5');
+console.log('PASS: compact AP/TG/PF nav wraps without sideways scrolling; More menu works; all deep-link F5 tests pass');
