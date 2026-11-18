@@ -38,6 +38,14 @@ class GeneralInterestTests(unittest.TestCase):
         self.assertEqual(rows[0]["region"],"andhra-pradesh")
         self.assertEqual(rows[0]["sector"],"Education & Careers")
 
+    def test_un_news_world_society(self):
+        xml=b"<rss><channel><item><title>Global food aid response to humanitarian crisis continues</title><link>https://news.un.org/en/story/2026/11/1234567</link></item></channel></rss>"
+        rows=avi_ivi.parse_feed(xml,"UN News","world","general")
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["sector"],"World & Society")
+        self.assertEqual(rows[0]["region"],"world")
+        self.assertEqual(rows[0]["source"],"UN News • Official")
+
     def test_reject_unapproved_domains(self):
         xml=b"<rss><channel><item><title>Untrusted Copy of a Magazine Story</title><link>https://example.com/article</link></item></channel></rss>"
         self.assertEqual(avi_ivi.parse_feed(xml,"NASA","world","science"),[])
