@@ -1,6 +1,36 @@
 {
-  "generated_at": "2026-11-18T18:35:06.221476+00:00",
+  "generated_at": "2026-11-18T19:43:20.221473+00:00",
   "articles": [
+    {
+      "id": "https://theconversation.com/a-convincing-vegan-meat-alternative-needs-both-taste-and-texture-heres-how-food-scientists-manufacture-them-296038",
+      "url": "https://theconversation.com/a-convincing-vegan-meat-alternative-needs-both-taste-and-texture-heres-how-food-scientists-manufacture-them-296038",
+      "title": "A convincing vegan meat alternative needs both taste and texture – here’s how food scientists manufacture them",
+      "source": "The Conversation US • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "Lifestyle & Living",
+      "seen": "2026-11-18T19:31:51+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
+    {
+      "id": "https://theconversation.com/this-years-humpback-whale-migration-was-missing-something-vital-the-calves-and-their-mothers-295343",
+      "url": "https://theconversation.com/this-years-humpback-whale-migration-was-missing-something-vital-the-calves-and-their-mothers-295343",
+      "title": "This year’s humpback whale migration was missing something vital – the calves and their mothers",
+      "source": "The Conversation Environment • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "Environment & Nature",
+      "seen": "2026-11-18T19:11:05+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
       "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -14,6 +44,36 @@
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
+    },
+    {
+      "id": "https://www.nasa.gov/centers-and-facilities/michoud/maf-eap/maf-eap-holidays-how-to-manage-the-bah-humbug-that-tries-to-sneak-in/",
+      "url": "https://www.nasa.gov/centers-and-facilities/michoud/maf-eap/maf-eap-holidays-how-to-manage-the-bah-humbug-that-tries-to-sneak-in/",
+      "title": "MAF EAP – Holidays – How to manage the BAH HUMBUG that tries to sneak in",
+      "source": "NASA • Official",
+      "domain": "nasa.gov",
+      "region": "world",
+      "sector": "Science & Space",
+      "seen": "2026-11-18T18:58:27+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
+    },
+    {
+      "id": "https://theconversation.com/something-else-is-lurking-just-below-the-surface-of-newfoundlands-waters-raw-sewage-296015",
+      "url": "https://theconversation.com/something-else-is-lurking-just-below-the-surface-of-newfoundlands-waters-raw-sewage-296015",
+      "title": "Something else is lurking just ‘Below’ the surface of Newfoundland’s waters — raw sewage",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "World & Society",
+      "seen": "2026-11-18T18:44:48+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
     },
     {
       "id": "https://telugu.oneindia.com/news/india/bihar-jewellery-showroom-robbery-gold-worth-40-crore-stolen-broad-daylight-they-promised-to-return-515571.html",
@@ -6154,36 +6214,6 @@
       "sourcecountry": ""
     },
     {
-      "id": "https://theconversation.com/bbc-documentary-takes-eight-children-on-a-nature-field-trip-to-explore-eco-anxiety-296327",
-      "url": "https://theconversation.com/bbc-documentary-takes-eight-children-on-a-nature-field-trip-to-explore-eco-anxiety-296327",
-      "title": "BBC documentary takes eight children on a nature field trip to explore eco-anxiety",
-      "source": "The Conversation Arts • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "Culture & Heritage",
-      "seen": "2026-11-12T11:46:01+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
-    },
-    {
-      "id": "https://theconversation.com/plenty-of-reasons-for-hope-what-30-years-of-climate-talks-have-achieved-296398",
-      "url": "https://theconversation.com/plenty-of-reasons-for-hope-what-30-years-of-climate-talks-have-achieved-296398",
-      "title": "‘Plenty of reasons for hope’: what 30 years of climate talks have achieved",
-      "source": "The Conversation Environment • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "Environment & Nature",
-      "seen": "2026-11-12T03:43:58+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
-    },
-    {
       "id": "https://telugu.oneindia.com/science-technology/north-india-shivers-as-cold-wave-grips-kashmir-while-depression-looms-over-bay-of-bengal-and-south-b-514547.html",
       "url": "https://telugu.oneindia.com/science-technology/north-india-shivers-as-cold-wave-grips-kashmir-while-depression-looms-over-bay-of-bengal-and-south-b-514547.html",
       "title": "వణికిస్తున్న చలి.. భారీగా పడిపోయిన ఉష్ణోగ్రతలు!",
@@ -6197,21 +6227,6 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
-    },
-    {
-      "id": "https://theconversation.com/its-possible-to-make-great-concrete-without-the-huge-emissions-from-cement-why-isnt-this-common-292236",
-      "url": "https://theconversation.com/its-possible-to-make-great-concrete-without-the-huge-emissions-from-cement-why-isnt-this-common-292236",
-      "title": "It’s possible to make great concrete without the huge emissions from cement. Why isn’t this common?",
-      "source": "The Conversation Environment • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "Environment & Nature",
-      "seen": "2026-11-11T22:24:01+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
     },
     {
       "id": "https://dharaninews.com/american-businessman-found-dead-gachibowli-hyderabad/",
@@ -6322,9 +6337,9 @@
   ],
   "source_status": {
     "gdelt": {
-      "last_attempt": "2026-11-18T17:34:16.974748+00:00",
-      "state": "cooldown",
-      "retry_after": "2026-11-18T19:34:16.974748+00:00"
+      "last_attempt": "2026-11-18T19:43:10.327879+00:00",
+      "state": "temporarily_unavailable",
+      "retry_after": "2026-11-18T20:43:10.327879+00:00"
     },
     "official_rss_matches": 9,
     "avi_ivi": {
@@ -6334,7 +6349,7 @@
         "NASA": 10,
         "WHO": 0,
         "UN News": 0,
-        "UN News Climate": 0
+        "UN News Climate": 8
       },
       "warnings": []
     },
@@ -6346,7 +6361,7 @@
         "The Conversation Arts": 19,
         "The Conversation US": 50,
         "The Conversation Australia": 50,
-        "The Conversation Environment": 13,
+        "The Conversation Environment": 14,
         "The Conversation Education": 3,
         "Oneindia Telugu": 143,
         "Dharani News": 6
