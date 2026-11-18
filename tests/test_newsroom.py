@@ -4,7 +4,7 @@ import json
 import sys
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -24,10 +24,11 @@ class NewsroomTests(unittest.TestCase):
         self.assertEqual(rss_sources.company_for("Amara Raja Energy & Mobility Limited")[0],"andhra-pradesh")
 
     def test_rss_feed_time_and_first_seen_time_are_distinguished(self):
-        xml=b"""<?xml version="1.0"?><rss><channel>
-          <item><title>Zen Technologies Limited - Board meeting</title><link>https://www.nseindia.com/test/meeting</link><pubDate>Wed, 18 Nov 2026 14:00:00 GMT</pubDate></item>
+        feed_time=datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
+        xml=("<rss><channel>
+          <item><title>Zen Technologies Limited - Board meeting</title><link>https://www.nseindia.com/test/meeting</link><pubDate>{feed_time}</pubDate></item>
           <item><title>Zen Technologies Limited - Disclosure</title><link>https://www.nseindia.com/test/disclosure</link></item>
-        </channel></rss>"""
+        </channel></rss>").format(feed_time=feed_time).encode("utf8")
         with patch.object(rss_sources,"urlopen",return_value=FakeResponse(xml)):
             rows=rss_sources.fetch_one("NSE","https://nsearchives.nseindia.com/test.xml","exchange")
         self.assertEqual(len(rows),2)
@@ -36,7 +37,7 @@ class NewsroomTests(unittest.TestCase):
 
     def test_first_seen_is_not_reset_by_later_poll(self):
         now=datetime.now(timezone.utc).isoformat()
-        old_time="2026-11-18T12:00:00+00:00"
+        old_time=(datetime.now(timezone.utc)-timedelta(hours=2)).isoformat()
         link="https://www.bseindia.com/xml-data/corpfiling/AttachLive/example.pdf"
         base={"id":link,"url":link,"title":"Zen Technologies Ltd - Outcome of Board Meeting","source":"BSE • Official","domain":"bseindia.com","region":"hyderabad","sector":"Corporate & Results","seen":old_time,"time_basis":"first_seen","origin":"official-rss"}
         with tempfile.TemporaryDirectory() as dirname:
@@ -52,7 +53,7 @@ class NewsroomTests(unittest.TestCase):
             self.assertEqual(match[0]["time_basis"],"first_seen")
 
     def test_index_time_is_explicit(self):
-        row={"url":"https://techcrunch.com/test","title":"Technology company invests in manufacturing expansion","seendate":"20261118T140000Z","domain":"techcrunch.com"}
+        row={"url":"https://techcrunch.com/test","title":"Technology company invests in manufacturing expansion","seendate":datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),"domain":"techcrunch.com"}
         item=collect.keep(row,"world")
         self.assertEqual(item["time_basis"],"indexed")
 
