@@ -599,12 +599,24 @@ const MISC_TELUGU_PAPERS=[
  ['ప్రజాశక్తి','prajasakti.com'],['Telangana Today','telanganatoday.com']
 ];
 const MISC_AREA_QUERY={
- 'all':'',world:'world international',india:'India',
+ 'all':'',world:'(world OR international)',india:'India',
  telugu:'(Hyderabad OR Telangana OR "Andhra Pradesh" OR Visakhapatnam)',
  hyderabad:'Hyderabad',telangana:'Telangana','andhra-pradesh':'"Andhra Pradesh"'
 };
 function miscKeywords(){
- const term=state.miscTopic==='all'?'health lifestyle politics science culture interesting stories':state.miscTopic;
+ const topicSearch={
+   'all':'(health OR lifestyle OR politics OR science OR culture OR "human interest")',
+   'World & Society':'(world OR society OR international)',
+   'Health & Wellbeing':'(health OR wellness OR medicine)',
+   'Lifestyle & Living':'(lifestyle OR living OR travel OR food)',
+   'Politics & Public Affairs':'(politics OR government OR elections OR policy)',
+   'Science & Space':'(science OR space OR research)',
+   'Environment & Nature':'(environment OR climate OR wildlife)',
+   'Culture & Heritage':'(culture OR literature OR history)',
+   'Education & Careers':'(education OR school OR careers)',
+   'People & Ideas':'("human interest" OR innovation OR community)'
+ };
+ const term=topicSearch[state.miscTopic]||state.miscTopic;
  const region=MISC_AREA_QUERY[state.miscArea]||'';
  return [region,term].filter(Boolean).join(' ');
 }
