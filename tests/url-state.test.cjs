@@ -24,9 +24,9 @@ function harness(url){
  const elements={sectorSelect:{value:'all'},searchInput:{value:''},timeSelect:{value:'all'},sortSelect:{value:'newest'},originSelect:{value:'all'},feedHeading:{scrollIntoView(){}}};
  const context={
    URL,URLSearchParams,
-   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',display:25},
+   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',regionalState:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
-   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines'},
+   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ','telugu-states':'AP + TG General News','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines'},
    MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],PUBLISHER_TOPIC_OPTIONS:[['all','Everything'],['Health & Wellbeing','Health'],['Lifestyle & Living','Lifestyle']],
    render(){},refresh(){}
  };
@@ -69,6 +69,15 @@ assert.equal(magazine.state.miscArea,'telugu','F5 lost magazine area');
 assert(html.includes('id="miscHub"'),'Avii Ivii panel missing');
 assert(html.includes('data-region="telugu-patrikalu"'),'Telugu Patrikalu tab missing');
 assert(html.includes('data-region="english-magazines"'),'English Magazines tab missing');
+run("setRegion('telugu-states')",a);
+a.state.regionalState='andhra-pradesh';run('saveView(true)',a);
+assert.equal(a.location.searchParams.get('state'),'andhra-pradesh','AP reader filter URL missing');
+let apReload=harness(a.location.href);run('restoreView()',apReload);
+assert.equal(apReload.state.region,'telugu-states','F5 lost AP + TG general news desk');
+assert.equal(apReload.state.regionalState,'andhra-pradesh','F5 lost Andhra Pradesh subfilter');
+a.state.regionalState='telangana';run('saveView(true)',a);
+let tgReload=harness(a.location.href);run('restoreView()',tgReload);
+assert.equal(tgReload.state.regionalState,'telangana','F5 lost Telangana subfilter');
 run("setRegion('telugu-patrikalu')",a);
 let telugu=harness(a.location.href);run('restoreView()',telugu);
 assert.equal(telugu.state.region,'telugu-patrikalu','F5 lost Telugu paper reader');
@@ -93,6 +102,19 @@ assert(html.includes("['telugu-patrikalu','regional-general'].includes(item.desk
 assert(html.includes("if(!isTeluguCompanyStory(item))return false"),
        'Telugu Companies must still show corporate-only headlines');
 assert(html.includes('id="regionalGeneralBar"'),'Missing English/Telugu live regional updates');
+assert(html.includes('id="regionalCountAP"')&&html.includes('id="regionalCountTG"'),
+       'AP/TG region counts must be separately displayed');
+assert(html.includes('data-regional-state="andhra-pradesh"')&&html.includes('data-regional-state="telangana"'),
+       'AP/TG state-specific buttons are required');
+assert(html.includes('region-label${regionBadgeClass}'),'Every regional headline should visibly identify the state');
+assert(html.includes('region-label.regional-ap')&&html.includes('region-label.regional-tg'),
+       'Distinct state badges must be styled');
+assert(html.includes('https://www.andhrajyothy.com/andhra-pradesh')&&html.includes('https://www.andhrajyothy.com/telangana'),
+       'Direct Andhra Jyothy state section links missing');
+assert(html.includes('https://www.sakshi.com/andhra-pradesh')&&html.includes('https://www.sakshi.com/telangana'),
+       'Direct Sakshi state section links missing');
+assert(html.includes('RSS పునఃప్రచురణ లేదు'),'Publisher RSS must not be presented as syndicated');
+
 assert(html.includes('class="moneycontrol-direct"'),'Missing direct original Moneycontrol News link');
 assert(html.includes("state.region!=='telugu-states'"),'Only show AP+TG regional news filter in that desk');
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
