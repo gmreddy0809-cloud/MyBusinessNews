@@ -21,14 +21,14 @@ BLOCKED_DOMAINS=('wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com
 TELANGANA=re.compile(r'telangana|hyderabad|secunderabad|cyberabad|revanth reddy|warangal|karimnagar|nizamabad|khammam|kcr\b|ktr\b|komatireddy|bhatti vikramarka',re.I)
 ANDHRA=re.compile(r'andhra pradesh|amaravati|vijayawada|visakhapatnam|vizag|tirupati|guntur|nellore|chandrababu|pawan kalyan|ys jagan|ysr congress|lokesh naidu|nara lokesh',re.I)
 PUBLIC_TOPIC=re.compile(
- r'government|chief minister|\\bcm\\b|minister|cabinet|assembly|election|mla\\b|mp\\b|'
- r'politic|party|\\btdp\\b|\\bycp\\b|\\bbjp\\b|\\bb[rs]\\b|congress|'
+ r'government|chief minister|\bcm\b|minister|cabinet|assembly|election|mla\b|mp\b|'
+ r'politic|party|\btdp\b|\bycp\b|\bbjp\b|\bb[rs]\b|congress|'
  r'court|judge|law|police|crime|arrest|accident|disaster|cyclone|flood|weather|'
  r'welfare|pension|ration|scheme|farmer|agricult|crop|water|power|electricity|'
  r'school|college|university|education|students|recruitment|jobs|exam|'
  r'health|hospital|disease|medical|women|transport|road|metro|'
  r'municipal|village|civic|local|public|protest|people|society|temple|'
- r'development|budget|policy|funds?\\b|land|housing|forest|environment',re.I)
+ r'development|budget|policy|funds?\b|land|housing|forest|environment',re.I)
 CORPORATE_ONLY=re.compile(r'quarterly (results?|profit)|net profit|earnings per share|ipo allotment|stock price|share price|market cap|investor call|analyst rating',re.I)
 
 def region_from_title_url(title,url):
