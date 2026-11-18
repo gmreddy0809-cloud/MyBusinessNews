@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout website
         uses: actions/checkout@v4
+      - name: Test deep links and F5 view restoration
+        run: node tests/url-state.test.cjs
       - name: Prepare website
         run: |
           mkdir -p public/data
