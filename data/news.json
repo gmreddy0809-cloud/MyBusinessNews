@@ -1,6 +1,20 @@
 {
-  "generated_at": "2026-11-18T16:44:50.890971+00:00",
+  "generated_at": "2026-11-18T17:34:29.190143+00:00",
   "articles": [
+    {
+      "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
+      "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
+      "title": "RBI to conduct Overnight Variable Rate Reverse Repo (VRRR) auction under LAF on November 19, 2026",
+      "source": "RBI • Official",
+      "domain": "www.rbi.org.in",
+      "region": "india",
+      "sector": "Banking & Finance",
+      "seen": "2026-11-18T19:00:00+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss"
+    },
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63996",
       "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63996",
@@ -14,6 +28,108 @@
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
+    },
+    {
+      "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/b78ceead-0514-4d0b-a13c-8c8ccbfbd5d3.pdf",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/b78ceead-0514-4d0b-a13c-8c8ccbfbd5d3.pdf",
+      "title": "Natco Pharma Ltd (524816) — Q2FY27 Earnings Conference Call Transcript",
+      "source": "BSE • Official",
+      "domain": "www.bseindia.com",
+      "region": "hyderabad",
+      "sector": "Corporate & Results",
+      "seen": "2026-11-18T17:33:56.983712+00:00",
+      "time_basis": "first_seen",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss"
+    },
+    {
+      "id": "https://nsearchives.nseindia.com/corporate/NATCOPHARM_18112026222026_Concall_Transcript_13112026.pdf",
+      "url": "https://nsearchives.nseindia.com/corporate/NATCOPHARM_18112026222026_Concall_Transcript_13112026.pdf",
+      "title": "Natco Pharma Limited — Natco Pharma Limited has informed the Exchange about Transcript |SUBJECT: Analysts/Institutional Investor Meet/Con. Call Updates",
+      "source": "NSE • Official",
+      "domain": "nsearchives.nseindia.com",
+      "region": "hyderabad",
+      "sector": "Corporate & Results",
+      "seen": "2026-11-18T17:33:54.614198+00:00",
+      "time_basis": "first_seen",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss"
+    },
+    {
+      "id": "https://nsearchives.nseindia.com/corporate/xbrl/SAIIM_1299_WebXMLFile_20261118_221203307.xml",
+      "url": "https://nsearchives.nseindia.com/corporate/xbrl/SAIIM_1299_WebXMLFile_20261118_221203307.xml",
+      "title": "Natco Pharma Limited — NATCO Pharma Limited has informed the Exchange about Transcripts - earnings or quarterly calls |SUBJECT: Analyst/Investor Meet Para A-X",
+      "source": "NSE • Official",
+      "domain": "nsearchives.nseindia.com",
+      "region": "hyderabad",
+      "sector": "Corporate & Results",
+      "seen": "2026-11-18T17:33:54.614198+00:00",
+      "time_basis": "first_seen",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss"
+    },
+    {
+      "id": "https://theconversation.com/history-shows-canadas-attempts-to-exploit-arctic-oil-have-failed-296584",
+      "url": "https://theconversation.com/history-shows-canadas-attempts-to-exploit-arctic-oil-have-failed-296584",
+      "title": "History shows Canada’s attempts to exploit Arctic oil have failed",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "World & Society",
+      "seen": "2026-11-18T17:15:58+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
+    {
+      "id": "https://theconversation.com/how-we-can-prepare-for-future-cyberattacks-on-critical-infrastructure-296214",
+      "url": "https://theconversation.com/how-we-can-prepare-for-future-cyberattacks-on-critical-infrastructure-296214",
+      "title": "How we can prepare for future cyberattacks on critical infrastructure",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "World & Society",
+      "seen": "2026-11-18T16:55:00+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
+    {
+      "id": "https://theconversation.com/how-we-discovered-a-115-million-year-old-algae-rebellion-in-portugals-sea-cliffs-296964",
+      "url": "https://theconversation.com/how-we-discovered-a-115-million-year-old-algae-rebellion-in-portugals-sea-cliffs-296964",
+      "title": "How we discovered a 115 million-year-old ‘algae rebellion’ in Portugal’s sea cliffs",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "World & Society",
+      "seen": "2026-11-18T16:45:20+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
+    },
+    {
+      "id": "https://theconversation.com/electric-cooking-could-be-as-important-as-evs-in-the-global-energy-transition-296839",
+      "url": "https://theconversation.com/electric-cooking-could-be-as-important-as-evs-in-the-global-energy-transition-296839",
+      "title": "Electric cooking could be as important as EVs in the global energy transition",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "Lifestyle & Living",
+      "seen": "2026-11-18T16:41:45+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
     },
     {
       "id": "https://theconversation.com/most-children-labelled-allergic-to-antibiotics-may-not-have-an-allergy-researchers-warn-295819",
@@ -44,6 +160,21 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
+    },
+    {
+      "id": "https://science.nasa.gov/missions/webb/nasa-data-clinches-first-of-its-kind-stellar-merger/",
+      "url": "https://science.nasa.gov/missions/webb/nasa-data-clinches-first-of-its-kind-stellar-merger/",
+      "title": "NASA Data Clinches First-of-Its-Kind Stellar Merger",
+      "source": "NASA • Official",
+      "domain": "science.nasa.gov",
+      "region": "world",
+      "sector": "Science & Space",
+      "seen": "2026-11-18T16:00:00+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
     },
     {
       "id": "https://theconversation.com/for-better-inclusive-education-that-really-supports-students-we-need-to-consider-what-we-value-294340",
@@ -762,7 +893,7 @@
     {
       "id": "https://science.nasa.gov/image-article/apod-2026-november-18-an-m-class-solar-flare/",
       "url": "https://science.nasa.gov/image-article/apod-2026-november-18-an-m-class-solar-flare/",
-      "title": "APOD: 2026 November 18 – An M-class Solar Flare",
+      "title": "APOD: 2026 November 18 – A Medium-Sized Solar Flare",
       "source": "NASA • Official",
       "domain": "science.nasa.gov",
       "region": "world",
@@ -4504,50 +4635,6 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
-    },
-    {
-      "id": "https://theconversation.com/nepal-tibet-floods-showed-the-need-for-greater-climate-finance-is-the-world-listening-294675",
-      "url": "https://theconversation.com/nepal-tibet-floods-showed-the-need-for-greater-climate-finance-is-the-world-listening-294675",
-      "title": "Nepal-Tibet floods showed the need for greater climate finance. Is the world listening?",
-      "source": "The Conversation Environment • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "Environment & Nature",
-      "seen": "2026-11-11T17:29:31+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
-    },
-    {
-      "id": "https://theconversation.com/the-state-apologised-to-abuse-in-care-survivors-two-years-ago-today-what-has-changed-296136",
-      "url": "https://theconversation.com/the-state-apologised-to-abuse-in-care-survivors-two-years-ago-today-what-has-changed-296136",
-      "title": "The state apologised to abuse-in-care survivors two years ago today. What has changed?",
-      "source": "The Conversation Health • RSS",
-      "domain": "theconversation.com",
-      "region": "world",
-      "sector": "Health & Wellbeing",
-      "seen": "2026-11-11T17:26:38+00:00",
-      "time_basis": "feed",
-      "language": "English",
-      "origin": "permitted-rss",
-      "desk": "english-magazines",
-      "sourcecountry": ""
-    },
-    {
-      "id": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13752&Mode=0",
-      "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13752&Mode=0",
-      "title": "Reserve Bank of India (Domestic Money Transfer) Directions, 2026",
-      "source": "RBI • Official",
-      "domain": "www.rbi.org.in",
-      "region": "india",
-      "sector": "Personal Finance",
-      "seen": "2026-11-11T17:00:00+00:00",
-      "time_basis": "feed",
-      "sourcecountry": "India",
-      "language": "English",
-      "origin": "official-rss"
     }
   ],
   "sources": [
@@ -4565,19 +4652,19 @@
   ],
   "source_status": {
     "gdelt": {
-      "last_attempt": "2026-11-18T14:55:44.566651+00:00",
-      "state": "cooldown",
-      "retry_after": "2026-11-18T16:55:44.566651+00:00"
+      "last_attempt": "2026-11-18T17:34:16.974748+00:00",
+      "state": "rate_limited",
+      "retry_after": "2026-11-18T19:34:16.974748+00:00"
     },
-    "official_rss_matches": 27,
+    "official_rss_matches": 30,
     "avi_ivi": {
       "successful_feeds": 5,
       "feed_matches": {
         "PIB India": 0,
         "NASA": 10,
         "WHO": 0,
-        "UN News": 30,
-        "UN News Climate": 8
+        "UN News": 0,
+        "UN News Climate": 0
       },
       "warnings": []
     },
@@ -4585,11 +4672,11 @@
       "successful_feeds": 8,
       "counts": {
         "The Conversation": 50,
-        "The Conversation Health": 8,
+        "The Conversation Health": 7,
         "The Conversation Arts": 19,
         "The Conversation US": 50,
         "The Conversation Australia": 50,
-        "The Conversation Environment": 14,
+        "The Conversation Environment": 13,
         "The Conversation Education": 3,
         "Dharani News": 0
       },
