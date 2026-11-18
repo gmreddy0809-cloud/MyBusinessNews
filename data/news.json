@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T18:27:23.755114+00:00",
+  "generated_at": "2026-11-18T18:28:09.937199+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -5375,6 +5375,20 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=24100",
+      "url": "https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=24100",
+      "title": "Uniform Regulations and Rules for Bankers' Clearing Houses - Version 2.0 - November 2026",
+      "source": "RBI • Official",
+      "domain": "www.rbi.org.in",
+      "region": "india",
+      "sector": "Banking & Finance",
+      "seen": "2026-11-13T16:45:00+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss"
+    },
+    {
       "id": "https://telugu.oneindia.com/science-technology/microsoft-outage-outlook-services-slowly-restored-after-18-hours-company-apologizes-to-affected-us-514847.html",
       "url": "https://telugu.oneindia.com/science-technology/microsoft-outage-outlook-services-slowly-restored-after-18-hours-company-apologizes-to-affected-us-514847.html",
       "title": "కోట్లాది మందికి ఇబ్బందులు.. క్షమాపణలు చెప్పిన మైక్రోసాఫ్ట్!",
@@ -6312,17 +6326,18 @@
       "state": "cooldown",
       "retry_after": "2026-11-18T19:34:16.974748+00:00"
     },
-    "official_rss_matches": 28,
+    "official_rss_matches": 29,
     "avi_ivi": {
-      "successful_feeds": 5,
+      "successful_feeds": 4,
       "feed_matches": {
         "PIB India": 0,
-        "NASA": 10,
         "WHO": 0,
-        "UN News": 30,
-        "UN News Climate": 8
+        "UN News": 0,
+        "UN News Climate": 0
       },
-      "warnings": []
+      "warnings": [
+        "NASA: HTTP Error 429: Too Many Requests"
+      ]
     },
     "publications": {
       "successful_feeds": 14,
