@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T18:26:44.806861+00:00",
+  "generated_at": "2026-11-18T18:27:23.755114+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -57,7 +57,8 @@
       "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
-      "origin": "official-rss"
+      "origin": "official-rss",
+      "reader_finance": true
     },
     {
       "id": "https://www.nasa.gov/image-article/empire-state-building-goes-gold-for-voyager/",
@@ -1444,7 +1445,8 @@
       "language": "Telugu",
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
-      "sourcecountry": "India"
+      "sourcecountry": "India",
+      "reader_finance": true
     },
     {
       "id": "https://telugu.oneindia.com/news/telangana/komatireddy-rajagopal-reddys-sensational-remarks-targeting-cm-revanth-reddy-goes-viral-515501.html",
@@ -3436,7 +3438,8 @@
       "time_basis": "feed",
       "sourcecountry": "India",
       "language": "English",
-      "origin": "official-rss"
+      "origin": "official-rss",
+      "reader_finance": true
     },
     {
       "id": "https://www.nasa.gov/general/nasa-to-conduct-low-altitude-flights-over-texas-farmland/",
@@ -6209,7 +6212,8 @@
       "language": "Telugu",
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
-      "sourcecountry": "India"
+      "sourcecountry": "India",
+      "regional_business": true
     },
     {
       "id": "https://dharaninews.com/shankar-pally-chit-fund-fraud-sudhakar-arrested/",
@@ -6254,7 +6258,8 @@
       "language": "Telugu",
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
-      "sourcecountry": "India"
+      "sourcecountry": "India",
+      "regional_business": true
     },
     {
       "id": "https://dharaninews.com/revanth-reddy-kodangal-tour-development-works/",
@@ -6314,8 +6319,8 @@
         "PIB India": 0,
         "NASA": 10,
         "WHO": 0,
-        "UN News": 0,
-        "UN News Climate": 0
+        "UN News": 30,
+        "UN News Climate": 8
       },
       "warnings": []
     },
@@ -6333,6 +6338,11 @@
         "Dharani News": 6
       },
       "warnings": []
+    },
+    "dedicated_desks": {
+      "personal_finance_links": 0,
+      "regional_business_links": 0,
+      "personal_finance_from_14_nov_2026": "2026-11-13T18:30:00+00:00"
     }
   },
   "note": "Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."
