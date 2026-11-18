@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/pages-now.yml'
       - 'index.html'
+      - 'tests/**'
 permissions:
   contents: read
   pages: write
@@ -24,6 +25,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Test deep links and F5 view restoration
         run: node tests/url-state.test.cjs
+      - name: Verify official RSS timestamps and company matching
+        run: python -m unittest discover -s tests -p "test_newsroom.py"
       - name: Prepare website
         run: |
           mkdir -p public/data
