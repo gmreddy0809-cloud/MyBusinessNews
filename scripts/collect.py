@@ -80,7 +80,8 @@ def keep(row,group):
     region,sector=classify(title,group,country)
     return {"id":url,"url":url,"title":title,"source":row.get("domain") or domain,"domain":domain,"region":region,"sector":sector,"seen":row.get("seendate") or "","time_basis":"indexed","language":row.get("language") or "","sourcecountry":country}
 def request(query):
-    url=API+"?"+urlencode({"query":query,"mode":"artlist","format":"json","maxrecords":150,"timespan":"2d","sort":"datedesc"})
+    days="7d" if any(query==q for _,q in PF_QUERIES+REGIONAL_BUSINESS_QUERIES) else "2d"
+    url=API+"?"+urlencode({"query":query,"mode":"artlist","format":"json","maxrecords":150,"timespan":days,"sort":"datedesc"})
     req=Request(url,headers={"User-Agent":"MyBusinessNews/1.0 open-link-index","Accept":"application/json"})
     with urlopen(req,timeout=30) as res: data=json.loads(res.read(3_000_000).decode("utf-8-sig"))
     return data.get("articles",[])
