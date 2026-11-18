@@ -44,7 +44,7 @@ class NewsroomTests(unittest.TestCase):
             index=Path(dirname)/"news.json"
             index.write_text(json.dumps({"generated_at":now,"articles":[base]}),encoding="utf8")
             fresh=dict(base,seen=now)
-            with patch.object(collect,"DEST",index),patch.object(collect,"collect_official",return_value=[fresh]),patch.object(collect,"collect_publications",return_value=([],{"successful_feeds":0,"counts":{},"warnings":[]})),patch.object(collect,"request",return_value=[]):
+            with patch.object(collect,"DEST",index),patch.object(collect,"collect_official",return_value=[fresh]),patch.object(collect,"collect_publications",return_value=([],{"successful_feeds":0,"counts":{},"warnings":[]})),patch.object(collect,"collect_amfi",return_value=([],{"directory_checked":False,"feeds_found":0,"accepted":0,"warnings":[]})),patch.object(collect,"request",return_value=[]):
                 collect.main()
             data=json.loads(index.read_text(encoding="utf8"))
             match=[row for row in data["articles"] if row["url"]==link]
