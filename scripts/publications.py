@@ -64,6 +64,10 @@ def title_topic(title,kind,desk):
     if kind=="health":return "Health & Wellbeing"
     if kind in ("Culture & Heritage","Education & Careers","Environment & Nature"):return kind
     if desk=="telugu-patrikalu":return "Telugu News"
+    if re.search(r"\b(?:acupuncture|weight loss|nutrition|acne|vaccine|vaccination|blood pressure|mental health|diabetes|medical|health|disease|heart health|gut bacteria)\b",title,re.I):
+        return "Health & Wellbeing"
+    if re.search(r"\b(?:sleep|recipes?|cooking|eating|foods?|groceries|meal|organic|holiday|travel|backpackers?|tourism|parents?|parenting|families|family|baby|garden|hobbies|fashion|wellness|diet|fitness|beauty tips|vacation|work.life|healthy living)\b",title,re.I):
+        return "Lifestyle & Living"
     return topic_for(title,"general") or "World & Society"
 
 def parse_feed(xml,source,desk,kind,now=None):
@@ -106,6 +110,13 @@ def collect_publications():
             status["successful_feeds"]+=1
             status["counts"][name]=len(items)
             print("Permitted RSS",name,"items",len(items),"bytes",len(payload),flush=True)
+            if not items and desk=="telugu-patrikalu":
+                sample=[]
+                for node in extract(payload)[:3]:
+                    sample.append({"title":cleanup(first_text(node,["title",ATOM+"title"]))[:90],
+                        "url":find_link(node)[:120],
+                        "date":first_text(node,["pubDate",ATOM+"updated"])[:65]})
+                print("Telugu RSS diagnostic",name,"rss_nodes",len(extract(payload)),"sample",sample,flush=True)
         except Exception as exc:
             status["warnings"].append(name+": "+str(exc)[:150])
             print("Permitted RSS unavailable",name,str(exc),file=sys.stderr,flush=True)
