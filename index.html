@@ -800,7 +800,7 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
  ['Economy & Policy',/economy|inflation|gdp\b|budget|government policy|export|import|tariff|trade agreement|fiscal|economic growth|central bank/]
  ];return patterns.find(([,re])=>re.test(x))?.[0]||'Other Business';}
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
-function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business'};}
+function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business',reader_finance:Boolean(data.reader_finance),regional_business:Boolean(data.regional_business)};}
 
 const FINANCIAL_DAILIES=[
  ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
@@ -814,11 +814,13 @@ function webSearch(query){
  if(!opened){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()}
 }
 const PF_PATTERN=/\b(?:personal finance|fixed deposit|savings account|deposit rates?|mutual funds?|\bsip\b|\bppf\b|\bepf\b|\bnps\b|pension|retirement|life insurance|health insurance|tax saving|income tax|credit card|credit score|home loan|gold loan|sovereign gold bond|\bsgb\b|gold bond|money transfer|term insurance|financial planning|property tax|capital gains|investment planning|loan emi|borrower|household savings|debt management|wealth management)\b/i;
-function isPersonalFinanceStory(item){return item.sector==='Personal Finance'||PF_PATTERN.test(item.title)}
+function isPersonalFinanceStory(item){return item.desk==='personal-finance'||item.reader_finance||item.sector==='Personal Finance'||PF_PATTERN.test(item.title)}
 function isTeluguCompanyStory(item){
+ if(item.desk==='regional-business'||item.regional_business)return true;
+ if(item.desk!=='business')return false;
  if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;
  if(/^(NSE|BSE)\s*•\s*Official/.test(item.source))return true;
- return /\b(?:limited|ltd|company|companies|startup|funding|investment|acquisition|expansion|corporate|result|profit|revenue|contract|pharma|laborator|industr|manufactur|gCC|global capability|aerospace|airline|airport|software|technology|hotel|hospital|financial|factory|business|launch|plant|facility|office)\b/i.test(item.title)||!['Economy & Policy','Other Business'].includes(item.sector)
+ return /\b(?:limited|ltd|company|companies|startup|funding|investment|acquisition|expansion|corporate|result|profit|revenue|contract|pharma|laborator|industr|manufactur|gcc|global capability|aerospace|airline|airport|software|technology|hotel|hospital|financial|factory|business|launch|plant|facility|office|exports?|logistics|construction|real estate)\b/i.test(item.title);
 }
 
 function matchSearch(item,query){
@@ -1124,6 +1126,12 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
    if(state.regionalState==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
    if(state.regionalState==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
  }
+ else if(selectedDesk==='personal-finance'){
+   if(!(item.desk==='personal-finance'||(item.desk==='business'&&isPersonalFinanceStory(item))||(item.desk==='telugu-patrikalu'&&item.reader_finance)))return false;
+ }
+ else if(selectedDesk==='telugu-companies'){
+   if(!(item.desk==='regional-business'||(item.desk==='business'&&isTeluguCompanyStory(item))||(item.desk==='telugu-patrikalu'&&item.regional_business)))return false;
+ }
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
    if(selectedDesk==='english-magazines'&&state.publicationTopic!=='all'&&item.sector!==state.publicationTopic)return false;
@@ -1138,6 +1146,10 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  `${visible.length.toLocaleString('en-IN')} AP + TG general news links · English & Telugu · politics, public affairs and daily life`:
  state.region==='avi-ivi'?
  `${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:
+ state.region==='personal-finance'?
+ `${visible.length.toLocaleString('en-IN')} personal-finance links · 14 Nov 2026 onward where indexed`:
+ state.region==='telugu-companies'?
+ `${visible.length.toLocaleString('en-IN')} Hyderabad, Telangana & Andhra Pradesh business links`:
  `${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='business').length.toLocaleString('en-IN')} in business feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
  const extraTab=['telugu-states','telugu-companies','x-watch','avi-ivi','telugu-patrikalu','english-magazines'].includes(state.region);
@@ -1161,8 +1173,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  if(isPublisherDesk(state.region))renderPublisherHub();
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
  const total=state.stories.filter(x=>x.desk==='business');
- $('pulseTelugu').textContent=total.filter(isTeluguCompanyStory).length.toLocaleString('en-IN');
- $('pulsePF').textContent=total.filter(isPersonalFinanceStory).length.toLocaleString('en-IN');
+ $('pulseTelugu').textContent=state.stories.filter(x=>(x.desk==='regional-business'||x.regional_business||(x.desk==='business'&&isTeluguCompanyStory(x)))).length.toLocaleString('en-IN');
+ $('pulsePF').textContent=state.stories.filter(x=>(x.desk==='personal-finance'||x.reader_finance||(x.desk==='business'&&isPersonalFinanceStory(x)))).length.toLocaleString('en-IN');
  $('pulseOfficial').textContent=total.filter(isOfficialStory).length.toLocaleString('en-IN');
  $('pulseFresh').textContent=total.filter(x=>dateKey(x.seen)>Date.now()-24*3600000).length.toLocaleString('en-IN');
  let list=visible.slice(0,state.display);$('loadMore').hidden=visible.length<=state.display;
