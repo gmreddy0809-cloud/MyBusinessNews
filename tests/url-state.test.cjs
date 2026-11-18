@@ -6,10 +6,10 @@ const end=html.indexOf('function toggleSaved(',start);
 assert(start>=0&&end>start,'URL navigation code is missing');
 const code=html.slice(start,end);
 function harness(url){
- const elements={sectorSelect:{value:'all'},searchInput:{value:''},timeSelect:{value:'all'},sortSelect:{value:'newest'},feedHeading:{scrollIntoView(){}}};
+ const elements={sectorSelect:{value:'all'},searchInput:{value:''},timeSelect:{value:'all'},sortSelect:{value:'newest'},originSelect:{value:'all'},feedHeading:{scrollIntoView(){}}};
  const context={
    URL,URLSearchParams,
-   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',display:25},
+   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
    REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance'},
    render(){},refresh(){}
@@ -36,10 +36,14 @@ assert.equal(d.state.region,'telugu-companies','F5 lost Telugu Companies tab');
 run("setRegion('personal-finance')",a);
 let e=harness(a.location.href);run('restoreView()',e);
 assert.equal(e.state.region,'personal-finance','F5 lost Personal Finance tab');
+e.state.origin='exchange';run('saveView(true)',e);
+assert.equal(e.location.searchParams.get('origin'),'exchange','Official source filter not in URL');
+const sourceReload=harness(e.location.href);run('restoreView()',sourceReload);
+assert.equal(sourceReload.state.origin,'exchange','F5 lost official source filter');
 e.location=new URL('https://gmreddy0809-cloud.github.io/MyBusinessNews/?sector=Aviation%20%26%20Airports&q=IndiGo&hours=24#hyderabad');
 run('restoreView()',e);
 assert.equal(e.state.sector,'Aviation & Airports');
 assert.equal(e.state.search,'IndiGo');
 assert.equal(e.state.hours,'24');
 assert.equal(e.state.region,'hyderabad');
-console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, search/time filters survive F5');
+console.log('PASS: Aviation, Hyderabad, Telugu Companies, Personal Finance, search/time/source filters survive F5');
