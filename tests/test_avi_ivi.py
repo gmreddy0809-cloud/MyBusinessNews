@@ -59,7 +59,7 @@ class GeneralInterestTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as dirname:
             target=Path(dirname)/"news.json"
             target.write_text(json.dumps({"generated_at":now.isoformat(),"articles":[business,saved]}),encoding="utf8")
-            with patch.object(collect,"DEST",target),patch.object(collect,"collect_official",return_value=[]),patch.object(collect,"collect_avi_ivi",return_value=([dict(saved,seen=now.isoformat())],{"successful_feeds":1,"feed_matches":{"NASA":1},"warnings":[]})),patch.object(collect,"request",return_value=[]):
+            with patch.object(collect,"DEST",target),patch.object(collect,"collect_official",return_value=[]),patch.object(collect,"collect_avi_ivi",return_value=([dict(saved,seen=now.isoformat())],{"successful_feeds":1,"feed_matches":{"NASA":1},"warnings":[]})),patch.object(collect,"collect_publications",return_value=([],{"successful_feeds":0,"counts":{},"warnings":[]})),patch.object(collect,"request",return_value=[]):
                 collect.main()
             result=json.loads(target.read_text(encoding="utf8"))
             feed={x["url"]:x for x in result["articles"]}
