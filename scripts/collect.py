@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Keyless source-link news index; no full article republishing."""
-import json, re, time, os, sys
+import json, re, os, sys
 from rss_sources import collect_official, company_for
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -110,7 +110,14 @@ def main():
     else:
         selected=QUERIES[cycle%len(QUERIES)]
     group,q=selected
-    for attempt in range(2):
+    now=datetime.now(timezone.utc)
+    gdelt_state=dict((old.get("source_status") or {}).get("gdelt") or {})
+    retry_after=dt(gdelt_state.get("retry_after"))
+    if now<retry_after:
+        print("GDELT paused until",gdelt_state["retry_after"],"to respect free feed rate limits",flush=True)
+        gdelt_state["state"]="cooldown"
+    else:
+        gdelt_state["last_attempt"]=now.isoformat()
         try:
             rows=request(q)
             count=0
@@ -120,17 +127,19 @@ def main():
                     news[item["url"]]=item
                     count+=1
             good=True
+            gdelt_state={"state":"ok","last_attempt":now.isoformat(),"last_success":now.isoformat(),"retry_after":(now+timedelta(minutes=30)).isoformat()}
             print(group,"received",len(rows),"accepted",count,flush=True)
-            break
         except Exception as exc:
-            print("feed warning",group,"attempt",attempt+1,str(exc),file=sys.stderr,flush=True)
-            if attempt==0:time.sleep(25)
+            limited=getattr(exc,"code",None)==429
+            next_time=now+timedelta(hours=2 if limited else 1)
+            gdelt_state.update({"state":"rate_limited" if limited else "temporarily_unavailable","retry_after":next_time.isoformat()})
+            print("GDELT feed unavailable; retry after",next_time.isoformat(),str(exc),file=sys.stderr,flush=True)
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
     rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     rows=rows[:1300]
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","The GDELT Project"],"note":"Publisher times are unverified unless explicitly in official feed; GDELT timestamps reflect indexing. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official)},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
