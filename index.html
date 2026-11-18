@@ -516,6 +516,89 @@ function loadXProfile(handle){
  }else loader.addEventListener('load',run,{once:true});
 }
 
+
+/* Avii Ivii: distinct public-interest reading desk. Magazine links are reader-initiated searches,
+   not copies of proprietary RSS or articles. */
+const MISC_TOPICS=[
+ ['all','✨ Everything'],['Health & Wellbeing','❤️ Health'],['Lifestyle & Living','🌿 Lifestyle'],
+ ['Politics & Public Affairs','🏛️ Public Affairs'],['Science & Space','🔭 Science & Space'],
+ ['Environment & Nature','🌎 Environment'],['Culture & Heritage','🎨 Culture'],
+ ['Education & Careers','🎓 Education'],['People & Ideas','💡 People & Ideas']
+];
+const MISC_AREAS=[
+ ['all','🌐 Everywhere'],['world','🌍 World'],['india','🇮🇳 India'],
+ ['telugu','🌺 Telugu States'],['hyderabad','🏙️ Hyderabad'],
+ ['andhra-pradesh','📍 Andhra Pradesh'],['telangana','📍 Telangana']
+];
+const MISC_MAGAZINES=[
+ ['The Week','theweek.in'],['India Today','indiatoday.in'],['Outlook','outlookindia.com'],
+ ['Frontline','frontline.thehindu.com'],['Down To Earth','downtoearth.org.in'],
+ ['Scroll','scroll.in'],['The Caravan','caravanmagazine.in'],
+ ['Business Today','businesstoday.in'],['Forbes India','forbesindia.com'],['The Conversation','theconversation.com']
+];
+const MISC_TELUGU_PAPERS=[
+ ['ఈనాడు','eenadu.net'],['సాక్షి','sakshi.com'],['ఆంధ్రజ్యోతి','andhrajyothy.com'],
+ ['నమస్తే తెలంగాణ','ntnews.com'],['V6 వెలుగు','v6velugu.com'],
+ ['ప్రజాశక్తి','prajasakti.com'],['Telangana Today','telanganatoday.com']
+];
+const MISC_AREA_QUERY={
+ 'all':'',world:'world international',india:'India',
+ telugu:'(Hyderabad OR Telangana OR "Andhra Pradesh" OR Visakhapatnam)',
+ hyderabad:'Hyderabad',telangana:'Telangana','andhra-pradesh':'"Andhra Pradesh"'
+};
+function miscKeywords(){
+ const term=state.miscTopic==='all'?'health lifestyle politics science culture interesting stories':state.miscTopic;
+ const region=MISC_AREA_QUERY[state.miscArea]||'';
+ return [region,term].filter(Boolean).join(' ');
+}
+function miscFiltered(item){
+ if(item.desk!=='avi-ivi')return false;
+ if(state.miscTopic!=='all'&&item.sector!==state.miscTopic)return false;
+ const area=state.miscArea;
+ if(area==='all')return true;
+ if(area==='telugu')return ['hyderabad','telangana','andhra-pradesh'].includes(item.region);
+ if(area==='india')return ['india','hyderabad','telangana','andhra-pradesh'].includes(item.region);
+ return item.region===area;
+}
+function setupMiscHub(){
+ for(const [id,label] of MISC_TOPICS){
+   const b=document.createElement('button');b.type='button';b.className='misc-topic-chip';b.dataset.miscTopic=id;b.textContent=label;
+   $('miscTopicChips').append(b);
+ }
+ for(const [id,label] of MISC_AREAS){
+   const b=document.createElement('button');b.type='button';b.className='misc-area-chip';b.dataset.miscArea=id;b.textContent=label;
+   $('miscAreaChips').append(b);
+ }
+ function publisherLinks(target,publishers){
+   for(const [name,domain] of publishers){
+     const a=document.createElement('a');
+     a.href=googleNewsUrl('site:'+domain+' '+miscKeywords());
+     a.target='_blank';a.rel='noopener noreferrer';
+     a.dataset.miscSite=domain;a.textContent=name+' ↗';target.append(a);
+   }
+ }
+ publisherLinks($('miscMagazines'),MISC_MAGAZINES);
+ publisherLinks($('miscTeluguPapers'),MISC_TELUGU_PAPERS);
+ $('miscTopicChips').addEventListener('click',e=>{
+   const button=e.target.closest('[data-misc-topic]');if(!button)return;
+   state.miscTopic=button.dataset.miscTopic;state.display=25;saveView(true);render();
+ });
+ $('miscAreaChips').addEventListener('click',e=>{
+   const button=e.target.closest('[data-misc-area]');if(!button)return;
+   state.miscArea=button.dataset.miscArea;state.display=25;saveView(true);render();
+ });
+ $('miscHub').addEventListener('click',e=>{
+   const a=e.target.closest('[data-misc-site]');if(a)a.href=googleNewsUrl('site:'+a.dataset.miscSite+' '+miscKeywords());
+ });
+ function searchCollection(publishers){
+   const sites=publishers.map(([,domain])=>'site:'+domain).join(' OR ');
+   const a=document.createElement('a');a.href=googleNewsUrl('('+sites+') '+miscKeywords());a.target='_blank';a.rel='noopener noreferrer';
+   document.body.append(a);a.click();a.remove();
+ }
+ $('miscSearchMagazines').addEventListener('click',()=>searchCollection(MISC_MAGAZINES));
+ $('miscSearchTelugu').addEventListener('click',()=>searchCollection(MISC_TELUGU_PAPERS));
+}
+
 function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
 function addressForView(){
  const url=new URL(location.href);
