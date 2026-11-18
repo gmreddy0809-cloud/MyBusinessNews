@@ -6,6 +6,7 @@ from avi_ivi import collect_avi_ivi
 from publications import collect_publications
 from regional_general import REGIONAL_QUERIES, keep_general
 from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_publisher, index_gdelt, pf_match, pf_cutoff
+from amfi_official import collect_amfi
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -117,7 +118,12 @@ def main():
         prev=news.get(entry["url"])
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
-    good=len(official)>0 or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
+    amfi_rows,amfi_status=collect_amfi()
+    for entry in amfi_rows:
+        prev=news.get(entry["url"])
+        if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
+            news[entry["url"]]=entry
+    good=bool(official or amfi_rows) or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
     count_by_region={}
     regional_general_count=sum(1 for item in news.values() if item.get("desk")=="regional-general")
     for item in news.values():
@@ -195,7 +201,7 @@ def main():
     regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:180]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
