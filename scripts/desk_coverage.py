@@ -95,22 +95,23 @@ def local_business_match(title,region=None):
     return None
 
 def from_telugu_publisher(rows):
-    """Reuse an already permission-checked Telugu RSS parse, never refetch."""
-    items=[]
+    """Flag already permitted RSS titles for multiple desks without duplication.
+
+    Keep the publisher row's original 'desk' so it remains in Telugu Patrikalu
+    and AP+TG general news. No RSS fetch and no body copying here.
+    """
+    by_url={}
     for row in rows:
         if row.get('desk')!='telugu-patrikalu':continue
         title=row.get('title') or ''
-        region=row.get('region')
+        flags={}
         if pf_match(title):
-            items.append(dict(row,sector='Personal Finance',desk='personal-finance'))
-        region=local_business_match(title,region)
-        if region:
-            # Only locally evidenced company stories are added to this desk.
-            items.append(dict(row,region=region,desk='regional-business',
-                              sector=row.get('sector') if row.get('sector') not in
-                              ('Telugu News','Culture & Heritage','Science & Space',
-                               'Health & Wellbeing','Education & Careers') else 'Other Business'))
-    return items
+            flags['reader_finance']=True
+        if local_business_match(title,row.get('region')):
+            flags['regional_business']=True
+        if flags:
+            by_url[row.get('url')]=flags
+    return by_url
 
 def _url_domain(url):
     p=urlparse(url)
