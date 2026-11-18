@@ -559,6 +559,28 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
  .region-label.regional-ap,.region-label.regional-tg{font-size:9.5px;padding:3px 6px}
 }
 
+
+/* Compact desk-specific original-source directories. Links are searches, not RSS grants. */
+.desk-source-discovery[hidden]{display:none!important}
+.desk-source-discovery{margin:0!important;padding:0!important;border-top:1px solid #e2ebf4;background:#fbfdff}
+.desk-source-discovery>summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px;list-style:none;cursor:pointer;padding:8px 14px;font-size:10.5px;font-weight:850;color:#315e85}
+.desk-source-discovery>summary::-webkit-details-marker{display:none}
+.desk-source-discovery>summary span{font-size:9px;font-weight:650;color:#728ba4}
+.desk-source-discovery[open]>summary{background:#edf6ff}
+.desk-discovery-note{padding:5px 13px;margin:0;color:#71869f;font-size:10px;line-height:1.45}
+.desk-discovery-links{display:flex;flex-wrap:wrap;gap:5px;padding:3px 13px 10px}
+.desk-source-group{flex-basis:100%;padding-top:6px;font-size:10px;color:#58718b;letter-spacing:.2px}
+.desk-source-link,.desk-official-links a{display:inline-flex;align-items:center;padding:6px 9px;font-size:9.5px;font-weight:700;border-radius:6px;color:#245e95;background:#f0f7ff;border:1px solid #dce9f7;white-space:nowrap}
+.desk-source-link:hover,.desk-official-links a:hover{background:#dbedff;border-color:#b6d5f2}
+.desk-official-links{display:flex;flex-wrap:wrap;gap:6px;padding:1px 13px 12px}
+.desk-official-links a{background:#e9f8f0;color:#176b58;border-color:#c4e5d6}
+.dark .desk-source-discovery{background:#22384e;border-color:#38546d}
+.dark .desk-source-discovery>summary{color:#cfe5ff}
+.dark .desk-source-discovery[open]>summary{background:#29445e}
+.dark .desk-source-link,.dark .desk-official-links a{background:#2c4a65;color:#d4ebff;border-color:#45657e}
+.dark .desk-source-group,.dark .desk-discovery-note{color:#b6cadf}
+@media(max-width:620px){.desk-source-discovery>summary{padding:7px 10px;font-size:10px}.desk-source-discovery>summary span{font-size:8.5px}.desk-discovery-links{padding:4px 9px 9px}.desk-source-link{padding:5px 8px;font-size:9px}}
+
 </style>
 </head>
 <body>
