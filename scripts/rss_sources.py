@@ -16,6 +16,8 @@ FEEDS=[
  ("BSE", "https://beta.bseindia.com/Data/XML/BoardMeetingsFeed.xml", "exchange"),
  ("RBI", "https://www.rbi.org.in/pressreleases_rss.xml", "policy"),
  ("RBI", "https://rbi.org.in/notifications_rss.xml", "policy"),
+ ("RBI", "https://www.rbi.org.in/speeches_rss.xml", "policy"),
+ ("RBI", "https://www.rbi.org.in/Publication_rss.xml", "policy"),
  ("SEBI", "https://www.sebi.gov.in/sebirss.xml", "policy"),
  ("PIB", "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1", "policy"),
 ]
@@ -25,6 +27,33 @@ TRACKED=[
  ("hyderabad",["Dr Reddy","DRREDDY","Aurobindo Pharma","AUROPHARMA","Divi's Laboratories","DIVISLAB","Granules India","GRANULES","Gland Pharma","GLAND","Natco Pharma","NATCOPHARM","Laurus Labs","LAURUSLABS","Neuland Laboratories","NEULANDLAB","Suven Pharmaceuticals","SUVENPHAR","Cyient","CYIENT","CCL Products","CCL","Zen Technologies","ZENTEC","Apollo Micro Systems","APOLLOMICRO","MTAR Technologies","MTARTECH","Bharat Dynamics","BDL","KIMS Hospitals","Krishna Institute of Medical Sciences","KIMS","Rainbow Childrens","RAINBOW","Medplus Health","MEDPLUS","Vijaya Diagnostic","VIJAYA","Nava Limited","NAVA","Heritage Foods","HERITGFOOD","Zaggle","ZAGGLE","KNR Constructions","KNRCON","Pennar Industries","PENIND","Tanla Platforms","TANLA","VST Industries","VSTIND","Pokarna","POKARNA","NCC Limited","NCC","Sai Silks","SAIL","Astra Microwave","ASTRAMICRO","Dodla Dairy","DODLA","Azad Engineering","Vimta Labs","VIMTALABS","Kaveri Seed","KSCL","NMDC","Mishra Dhatu Nigam","MIDHANI"] ),
  ("andhra-pradesh",["Amara Raja","AMARAJABAT","ARE&M","Andhra Paper","ANDHRAPAP","Andhra Sugars","ANDHRSUGAR","Avanti Feeds","AVANTIFEED","Apex Frozen Foods","Coastal Corporation"]),
 ]
+# Extended Hyderabad / AP businesses: local headquarters, sites and clusters.
+# A national firm's unrelated national story is not regional by default.
+TRACKED.extend([
+ ("hyderabad",[
+  "Hetero Labs","Hetero Drugs","Hetero Group","Bharat Biotech",
+  "Biological E","Indian Immunologicals","MSN Laboratories",
+  "Sai Life Sciences","Aragen Life Sciences","Shilpa Medicare",
+  "Skyroot Aerospace","Dhruva Space","Ananth Technologies",
+  "VEM Technologies","Raghu Vamsi","GMR Aero Technic",
+  "GHIAL","Hyderabad International Airport",
+  "Yashoda Hospitals","AIG Hospitals","Continental Hospitals",
+  "CARE Hospitals","Innominds","ValueLabs",
+  "Cigniti Technologies","Darwinbox","Keka Technologies",
+  "CtrlS Datacenters","T-Hub","WE Hub","T-Works",
+  "Ramky Group","My Home Group","Aparna Constructions",
+  "Rajapushpa Properties","Aurore Life Sciences","Cohance Lifesciences"
+ ]),
+ ("andhra-pradesh",[
+  "Sri City","Sri City Industrial","Andhra Pradesh Medtech Zone",
+  "Andhra Pradesh Industrial Infrastructure Corporation",
+  "APIIC","AMTZ","Brandix India Apparel City",
+  "Gangavaram Port","Visakhapatnam Port Authority",
+  "Kakinada Gateway Port","Krishnapatnam Port",
+  "Bharathi Cement","Sangam Dairy","Amara Raja Group"
+ ])
+])
+
 # Disallow short unqualified aliases matching ordinary English words.
 SHORT_ALIASES={"ccl","kims","bdl","ncc","sail","nava","gland"}
 BUSINESS=re.compile(r"\b(business|financial|economic|bank|industry|market|share|finance|rbi|sebi|investment|export|import|manufactur|port|aviation|airport|pharma|software|technology|power|energy|startup|policy|commerce|trade|tax|gst|monetary|infrastructure|corporate|results|company|ipo|employment|development|semiconductor|gdp|insurance|loan|logistic|industrial|capital|securities|investor|mutual|deposit|interest|bond|pension|circular|credit|fraud|payment|consumer)\w*\b",re.I)
@@ -33,8 +62,8 @@ LINK_OK=("nseindia.com","bseindia.com","rbi.org.in","pib.gov.in","sebi.gov.in")
 PF_WORDS=re.compile(r'fixed deposits?|bank deposits?|interest rate|sovereign gold bond|\bsgb\b|gold bonds?|domestic money transfer|mutual fund|investor|investing|pension|retirement|\bppf\b|\bepf\b|\bnps\b|insurance|credit card|personal loan|home loan|gold loan|recurring deposit|savings account|tax savings?|credit score|digital payment|upi|\bkyc\b|financial literacy|consumer protection|ombudsman|bank customer|borrower|unclaimed deposit|nomination|fraud|cybersecurity',re.I)
 LOCAL_WORDS=[
  ("hyderabad",re.compile(r'\bhyderabad|secunderabad|shamshabad|gachibowli|medchal\b',re.I)),
- ("andhra-pradesh",re.compile(r'andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|guntur|kakinada',re.I)),
- ("telangana",re.compile(r'\btelangana\b|warangal|karimnagar|sangareddy|khammam',re.I))
+ ("andhra-pradesh",re.compile(r'andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|guntur|kakinada|sri city|nellore|ananthapur|eluru|srikakulam',re.I)),
+ ("telangana",re.compile(r'\btelangana\b|warangal|karimnagar|sangareddy|khammam|nizamabad|mahbubnagar|medak|siddipet|adilabad',re.I))
 ]
 def explicit_locality(subject):
  for name,p in LOCAL_WORDS:
