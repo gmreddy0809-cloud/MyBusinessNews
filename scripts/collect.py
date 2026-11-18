@@ -2,6 +2,7 @@
 """Keyless source-link news index; no full article republishing."""
 import json, re, os, sys
 from rss_sources import collect_official, company_for
+from avi_ivi import collect_avi_ivi
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -96,9 +97,17 @@ def main():
             entry["time_basis"]="feed"
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
-    good=len(official)>0
+    misc_rows,misc_status=collect_avi_ivi()
+    for entry in misc_rows:
+        prev=news.get(entry["url"])
+        if prev and entry.get("time_basis")=="first_seen":
+            entry["seen"]=prev.get("seen") or entry["seen"]
+        if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
+            news[entry["url"]]=entry
+    good=len(official)>0 or misc_status["successful_feeds"]>0
     count_by_region={}
     for item in news.values():
+        if item.get("desk")=="avi-ivi":continue
         region=item.get("region") or ""
         count_by_region[region]=count_by_region.get(region,0)+1
     cycle=int(datetime.now(timezone.utc).timestamp()//1800)
@@ -138,8 +147,11 @@ def main():
     rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
-    rows=rows[:1300]
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official)},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
+    business_rows=[x for x in rows if x.get("desk")!="avi-ivi"][:1050]
+    magazine_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:250]
+    rows=sorted(business_rows+magazine_rows,key=lambda x:dt(x.get("seen")),reverse=True)
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
