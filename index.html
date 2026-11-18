@@ -630,11 +630,10 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
           <section class="publisher-hub" id="publisherHub" aria-label="Direct publisher homepages and approved RSS headlines">
             <div class="publisher-headline">
               <span class="publisher-headline-icon" id="publisherIcon">📰</span>
-              <div><div class="publisher-overline">DIRECT TO THE ORIGINAL PUBLISHER</div><h3 id="publisherHeading">తెలుగు పత్రికలు</h3><p id="publisherSubheading">పత్రిక పేరును క్లిక్ చేస్తే నేరుగా ఆ పత్రిక హోమ్‌పేజీ తెరుచుకుంటుంది.</p></div>
+              <div><h3 id="publisherHeading">తెలుగు పత్రికలు</h3><p id="publisherSubheading">పత్రిక పేరును నొక్కితే నేరుగా హోమ్‌పేజీ తెరుచుకుంటుంది.</p></div>
             </div>
-            <div id="publisherCards" class="publisher-cards"></div>
-            <div class="publisher-rights"><span>✅ Official site link</span><span>🔒 Publisher retains copyright</span><span>📰 RSS only with documented display permission</span></div>
-            <div class="publisher-feed-note" id="publisherFeedNote">అనుమతి ఉన్న RSS కథనాలు కింద కనిపిస్తాయి. మిగిలిన పత్రికలకు నేరుగా హోమ్‌పేజీ లింకులు అందుబాటులో ఉంటాయి.</div>
+            <nav id="publisherCards" class="publisher-cards" aria-label="Original publisher homepages"></nav>
+            <p class="publisher-feed-note" id="publisherFeedNote">అనుమతి ఉన్న RSS కథనాలు మాత్రమే కింద కనిపిస్తాయి.</p>
             <div class="publisher-life-chips" id="publisherLifeChips"></div>
           </section>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
@@ -922,32 +921,35 @@ function renderPublisherHub(){
  $('publisherHeading').textContent=publisherTitle(desk);
  $('publisherIcon').textContent=telugu?'📰':'📚';
  $('publisherSubheading').textContent=telugu?
- 'పత్రిక పేరును క్లిక్ చేస్తే Google సెర్చ్‌ కాకుండా నేరుగా అసలు హోమ్‌పేజీ తెరుచుకుంటుంది.':
- 'Click any magazine to visit its original homepage directly — not a search results page.';
+ 'పేరు నొక్కితే నేరుగా అసలు హోమ్‌పేజీ తెరుచుకుంటుంది.':
+ 'Tap a name to open the publisher homepage.';
  const outlets=telugu?PUBLISHER_TELUGU:PUBLISHER_ENGLISH;
  $('publisherCards').replaceChildren();
- for(const [name,url,desc,emoji] of outlets){
+ for(const [name,url] of outlets){
    const link=document.createElement('a');
    link.className='publisher-card';
    link.href=url;
    link.target='_blank';
    link.rel='noopener noreferrer';
-   const icon=document.createElement('span');icon.className='publisher-card-emoji';icon.textContent=emoji;
-   const copy=document.createElement('span');copy.className='publisher-card-text';
-   const heading=document.createElement('strong');heading.textContent=name;
+   link.title=name+' — open original homepage';
+   link.textContent=name;
    if(name==='Dharani News'||name==='The Conversation'){
      const rss=document.createElement('span');
-     rss.className='publisher-rss-marker';rss.textContent='RSS ✓';
-     heading.append(' ',rss);
+     rss.className='publisher-rss-marker';rss.textContent='RSS';
+     rss.title='Permitted RSS source';
+     link.append(' ',rss);
    }
-   const sub=document.createElement('small');sub.textContent=desc;
-   const arrow=document.createElement('span');arrow.className='publisher-card-arrow';arrow.textContent='↗';
-   copy.append(heading,sub);link.append(icon,copy,arrow);$('publisherCards').append(link);
+   const arrow=document.createElement('span');
+   arrow.className='publisher-card-arrow';
+   arrow.textContent='↗';
+   arrow.setAttribute('aria-hidden','true');
+   link.append(arrow);
+   $('publisherCards').append(link);
  }
  const feedCount=state.stories.filter(x=>x.desk===desk).length;
  $('publisherFeedNote').textContent=telugu?
-  'RSSని అగ్రిగేటర్‌లో ఉపయోగించడానికి అనుమతి ఉన్న మూలాల కథనాల లింకులే కింద కనిపిస్తాయి ('+feedCount+'). ఈనాడు, సాక్షి, ఆంధ్రజ్యోతి తదితర ప్రముఖ పత్రికల లింకులు హోమ్‌పేజీలకే; వాటి RSSను అనుమతి లేకుండా సేకరించడం లేదు.':
-  'Below: '+feedCount+' source-linked RSS headlines from The Conversation (Creative Commons) and any other explicitly authorised sources. Other magazine tiles link to homepages only; no article text or images are copied.';
+  feedCount+' తాజా అనుమతించిన RSS లింకులు కింద. ఇతర పత్రికల పేర్లు నొక్కితే వాటి హోమ్‌పేజీలు తెరుచుకుంటాయి.':
+  feedCount+' permitted RSS headlines below. Other links open publisher homepages; no subscription bypass.';
  const chips=$('publisherLifeChips');
  chips.replaceChildren();
  chips.hidden=telugu;
