@@ -960,7 +960,7 @@ function renderPublisherHub(){
    link.rel='noopener noreferrer';
    link.title=name+' — open original homepage';
    link.textContent=name;
-   if(name==='Dharani News'||name==='The Conversation'){
+   if(name==='Dharani News'||name==='The Conversation'||name==='Oneindia Telugu'){
      const rss=document.createElement('span');
      rss.className='publisher-rss-marker';rss.textContent='RSS';
      rss.title='Permitted RSS source';
@@ -975,7 +975,7 @@ function renderPublisherHub(){
  }
  const feedCount=state.stories.filter(x=>x.desk===desk).length;
  $('publisherFeedNote').textContent=telugu?
-  feedCount+' తాజా అనుమతించిన RSS లింకులు కింద. ఇతర పత్రికల పేర్లు నొక్కితే వాటి హోమ్‌పేజీలు తెరుచుకుంటాయి.':
+  feedCount+' RSS కథనాల లింకులు కింద ఉన్నాయి. Oneindia Telugu, Dharani News అధికారిక ఫీడ్ల నుంచి శీర్షికలు మాత్రమే; పూర్తి కథనం అసలు సైట్‌లో తెరుచుకుంటుంది.':
   feedCount+' permitted RSS headlines below. Other links open publisher homepages; no subscription bypass.';
  const chips=$('publisherLifeChips');
  chips.replaceChildren();
