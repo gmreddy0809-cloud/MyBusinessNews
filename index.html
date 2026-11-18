@@ -136,6 +136,8 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
         <button class="nav-item" data-region="andhra-pradesh"><span class="nav-emoji">📍</span> Andhra Pradesh</button>
         <button class="nav-item" data-region="telangana"><span class="nav-emoji">📍</span> Telangana</button>
         <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> Telugu States</button>
+        <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
+        <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> Personal Finance</button>
         <button class="nav-item" data-region="saved"><span class="nav-emoji">☆</span> Saved Stories <span class="nav-count" id="savedNavCount">0</span></button>
       </nav>
       <div class="nav-label sectors-title">NEWS BY SECTOR</div>
@@ -194,18 +196,28 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
             <button class="region-tab" data-region="andhra-pradesh">Andhra Pradesh</button>
             <button class="region-tab" data-region="telangana">Telangana</button>
             <button class="region-tab" data-region="telugu-states">Telugu States</button>
+            <button class="region-tab" data-region="telugu-companies">🏢 Telugu Companies</button>
+            <button class="region-tab" data-region="personal-finance">💰 Personal Finance</button>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
-          <div class="watch-section">
-            <div class="watch-title"><span>🏢</span><strong>Telugu States Company Watch</strong><span class="watch-desc">Listed companies &amp; major Hyderabad businesses</span></div>
-            <div class="company-watch" id="companyWatch"></div>
-            <div class="official-quicklinks">
-              <a href="https://www.nseindia.com/companies-listing/corporate-filings-announcements" target="_blank" rel="noopener noreferrer">📊 NSE Announcements ↗</a>
-              <a href="https://www.nseindia.com/companies-listing/corporate-filings-financial-results" target="_blank" rel="noopener noreferrer">🧾 NSE Results ↗</a>
-              <a href="https://www.bseindia.com/corporates/ann" target="_blank" rel="noopener noreferrer">🏛 BSE Announcements ↗</a>
-              <a href="https://www.rbi.org.in/Scripts/rss.aspx" target="_blank" rel="noopener noreferrer">🏦 RBI Updates ↗</a>
+          <section class="source-hub" aria-label="Official sources and India financial dailies">
+            <div class="source-hub-heading"><span class="source-hub-icon">🌐</span><div><strong>India's Business Newsroom</strong><small>Official market disclosures &amp; live searches across major financial dailies</small></div></div>
+            <div class="source-hub-row">
+              <div class="source-hub-label">OFFICIAL UPDATES</div>
+              <div class="official-quicklinks">
+                <a href="https://www.nseindia.com/companies-listing/corporate-filings-announcements" target="_blank" rel="noopener noreferrer">📊 NSE Filings ↗</a>
+                <a href="https://www.nseindia.com/companies-listing/corporate-filings-financial-results" target="_blank" rel="noopener noreferrer">🧾 NSE Results ↗</a>
+                <a href="https://www.bseindia.com/corporates/ann" target="_blank" rel="noopener noreferrer">🏛 BSE Announcements ↗</a>
+                <a href="https://rbi.org.in/Scripts/rss.aspx" target="_blank" rel="noopener noreferrer">🏦 RBI Updates ↗</a>
+                <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">⚖️ SEBI ↗</a>
+              </div>
             </div>
-          </div>
+            <div class="source-hub-row">
+              <div class="source-hub-label">FINANCIAL DAILIES · LIVE WEB SEARCH</div>
+              <div class="financial-dailies" id="financialDailies"></div>
+            </div>
+            <p class="source-hub-note">Newspaper searches open Google News in a new tab. Articles belong to their publishers; their RSS feeds are not reproduced here.</p>
+          </section>
 <div class="results-bar"><span id="resultsCount">Loading latest business news…</span><span class="timezone-hint">IST · Indexed time; check original source time</span></div>
           <div class="web-search-help" id="webSearchHelp" hidden><span id="webSearchInfo">Need news beyond the site index?</span><button id="webSearchHelpButton" type="button">Search live Google News ↗</button></div>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
@@ -222,7 +234,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
@@ -262,9 +274,6 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
 function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||''};}
 
-const WATCH_COMPANIES=[
- ['Dr Reddy’s','Dr Reddy'],['Aurobindo Pharma','Aurobindo Pharma'],['Divi’s Labs',"Divi's"],['Granules India','Granules'],['Gland Pharma','Gland Pharma'],['Natco Pharma','Natco Pharma'],['Laurus Labs','Laurus Labs'],['Cyient','Cyient'],['KIMS','Krishna Institute of Medical Sciences'],['Rainbow Hospitals','Rainbow'],['Bharat Dynamics','Bharat Dynamics'],['Zen Technologies','Zen Technologies'],['MTAR Technologies','MTAR'],['MedPlus','Medplus'],['NCC','NCC Limited'],['Heritage Foods','Heritage Foods'],['Amara Raja','Amara Raja'],['Andhra Paper','Andhra Paper'],['Avanti Feeds','Avanti Feeds'],['GMR Aero Technic','GMR Aero Technic'],['Sai Parenterals','Sai Parenterals']
-];
 const googleNewsUrl=q=>'https://news.google.com/search?q='+encodeURIComponent(q)+'&hl=en-IN&gl=IN&ceid=IN%3Aen';
 function webSearch(query){
  const q=String(query||$('searchInput').value||'').trim();
@@ -328,9 +337,6 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  const popular=['All Sectors','Aviation & Airports','GCCs','Startups','Funding & Investments','Pharma & Life Sciences','IT & AI','Automobiles & EV','Markets & IPOs','Banking & Finance','Real Estate','Healthcare & Hospitals'];
  for(const sector of popular){const b=document.createElement('button');b.type='button';b.className='sector-chip'+(sector==='All Sectors'?' active':'');b.dataset.sector=sector==='All Sectors'?'all':sector;b.textContent=sector;$('sectorQuickbar').append(b)}
  $('sectorQuickbar').addEventListener('click',e=>{const b=e.target.closest('[data-sector]');if(b)setSector(b.dataset.sector)});
- const watch=$('companyWatch');
- for(const [label,term] of WATCH_COMPANIES){const b=document.createElement('button');b.type='button';b.className='company-pill';b.textContent=label;b.dataset.company=term;watch.append(b)}
- watch.addEventListener('click',event=>{const b=event.target.closest('[data-company]');if(!b)return;resetFilters();state.region='all';if(location.hash!=='#all')location.hash='all';state.search=b.dataset.company;$('searchInput').value=state.search;render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});});
  $('searchWebButton').addEventListener('click',()=>webSearch());
  $('webSearchHelpButton').addEventListener('click',()=>webSearch());
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
