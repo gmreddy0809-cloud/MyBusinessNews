@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T17:34:29.190143+00:00",
+  "generated_at": "2026-11-18T17:41:01.951313+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -4653,7 +4653,7 @@
   "source_status": {
     "gdelt": {
       "last_attempt": "2026-11-18T17:34:16.974748+00:00",
-      "state": "rate_limited",
+      "state": "cooldown",
       "retry_after": "2026-11-18T19:34:16.974748+00:00"
     },
     "official_rss_matches": 30,
@@ -4663,8 +4663,8 @@
         "PIB India": 0,
         "NASA": 10,
         "WHO": 0,
-        "UN News": 0,
-        "UN News Climate": 0
+        "UN News": 30,
+        "UN News Climate": 8
       },
       "warnings": []
     },
