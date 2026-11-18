@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Keyless source-link news index; no full article republishing."""
+import json, re, time, os, sys
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+from urllib.parse import urlencode, urlparse
+from urllib.request import Request, urlopen
+
+ROOT=Path(__file__).resolve().parents[1]
+DEST=ROOT/"data"/"news.json"
+API="https://api.gdeltproject.org/api/v2/doc/doc"
+QUERIES=[
+ ("india", '(business OR industry OR investment OR funding OR earnings) sourcecountry:india sourcelang:english'),
+ ("india", '(aviation OR pharmaceutical OR startup OR manufacturing OR banking) sourcecountry:india sourcelang:english'),
+ ("hyderabad",'Hyderabad (business OR investment OR startup OR GCC OR pharma OR aviation)'),
+ ("telangana",'Telangana (investment OR company OR infrastructure OR pharma OR factory)'),
+ ("andhra-pradesh", '("Andhra Pradesh" OR Visakhapatnam OR Amaravati OR Vijayawada OR Tirupati) (business OR investment OR company OR infrastructure OR factory)'),
+ ("world", '(business OR markets OR economy OR earnings OR IPO OR acquisition) sourcelang:english'),
+ ("world", '(aviation OR automotive OR renewable OR technology OR startup OR banking) sourcelang:english')
+]
+BLOCKED=("wsj.com","ft.com","bloomberg.com","nytimes.com","economist.com","livemint.com","thehindu.com","thehindubusinessline.com","economictimes.indiatimes.com","business-standard.com","theinformation.com")
+RELEVANT=re.compile(r'\b(business|industr|econom|invest|fund|start.?up|gcc|pharma|health|bank|financial|loan|insuran|airlin|airport|aviation|aircraft|auto|vehicle|manufactur|company|companies|profit|revenue|earnings|market|stock|ipo|shares?|equity|merger|acquisition|technology|software|AI|semiconductor|renewable|energy|solar|oil|gas|infrastructure|real estate|retail|telecom|shipping|logistics|export|import|policy|trade|factory|tourism|corporate|contract|capital|economic|hospital|investment|construction)\w*\b',re.I)
+SECTORS=[
+ ("Aviation & Airports",r'airline|airport|aviation|aircraft|boeing|airbus|aerospace|\bmro\b'),
+ ("GCCs",r'global capability|global in.house|\bgccs?\b'),
+ ("Pharma & Life Sciences",r'pharma|drugmaker|biotech|clinical|usfda|fda approval|life sciences'),
+ ("Healthcare & Hospitals",r'hospital|healthcare|diagnostic|medical'),
+ ("Automobiles & EV",r'auto|electric vehicle|automaker|maruti|car sales|suv'),
+ ("Startups",r'startup|start.up|unicorn'),
+ ("Funding & Investments",r'funding|fundrais|investment|investor|venture capital|private equity'),
+ ("IT & AI",r'software|technology|artificial intelligence|semiconductor|cybersecurity|data cent|cloud computing|\bai\b'),
+ ("Personal Finance",r'mutual fund|personal finance|retirement|life insurance|health insurance|fixed deposit|home loan|\bsip\b|\bppf\b'),
+ ("Banking & Finance",r'bank|credit|lending|\brbi\b|nbfc|finance|fintech'),
+ ("Markets & IPOs",r'\bipo\b|stock market|nifty|sensex|nasdaq|wall street|shares|equity market'),
+ ("Real Estate",r'real estate|property|housing|office space|realty'),
+ ("Energy & Renewables",r'solar|renewable|wind power|oil|gas|energy|battery|power generation'),
+ ("Infrastructure",r'infrastructure|railway|highway|construction|metro rail'),
+ ("Logistics & Shipping",r'logistics|port|shipping|cargo|supply chain'),
+ ("FMCG & Retail",r'fmcg|retail|consumer goods|supermarket|e.commerce'),
+ ("Manufacturing",r'manufactur|factory|industrial park|steel|cement'),
+ ("Telecom",r'telecom|5g|6g|mobile network'),
+ ("Tourism & Hospitality",r'tourism|hotel|hospitality|resort'),
+ ("Corporate & Results",r'earnings|profit|revenue|merger|acquisition|dividend|quarterly'),
+ ("Economy & Policy",r'economy|inflation|\bgdp\b|budget|policy|tariff|trade agreement')
+]
+REGIONS=[
+ ("hyderabad",r'hyderabad|cyberabad|secunderabad|gachibowli|shamshabad'),
+ ("andhra-pradesh",r'andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|guntur'),
+ ("telangana",r'telangana|warangal|karimnagar|nizamabad|sangareddy|khammam')
+]
+def dt(s):
+    try:
+        if re.match(r'^\d{8}T\d{6}Z$',str(s)): return datetime.strptime(s,"%Y%m%dT%H%M%SZ").replace(tzinfo=timezone.utc)
+        return datetime.fromisoformat(s.replace("Z","+00:00")).astimezone(timezone.utc)
+    except Exception: return datetime.fromtimestamp(0,timezone.utc)
+def classify(title,group,country):
+    sector=next((name for name,p in SECTORS if re.search(p,title,re.I)),"Other Business")
+    region=next((name for name,p in REGIONS if re.search(p,title,re.I)),None)
+    if region is None:
+        region="india" if (re.search(r'\b(india|indian|nifty|sensex|mumbai|delhi|bengaluru)\b',title,re.I) or str(country).lower() in ("india","in") or group=="india") else "world"
+    return region,sector
+def keep(row,group):
+    title=re.sub(r'\s+',' ',str(row.get("title") or "")).strip()
+    url=str(row.get("url") or "").strip()
+    p=urlparse(url)
+    if p.scheme not in ("https","http") or not p.hostname or len(title)<12:return None
+    domain=p.hostname.removeprefix("www.").lower()
+    if any(domain==x or domain.endswith("."+x) for x in BLOCKED):return None
+    if group in ("india","world") and not RELEVANT.search(title):return None
+    country=row.get("sourcecountry") or ""
+    region,sector=classify(title,group,country)
+    return {"id":url,"url":url,"title":title,"source":row.get("domain") or domain,"domain":domain,"region":region,"sector":sector,"seen":row.get("seendate") or "","language":row.get("language") or "","sourcecountry":country}
+def request(query):
+    url=API+"?"+urlencode({"query":query,"mode":"artlist","format":"json","maxrecords":150,"timespan":"2d","sort":"datedesc"})
+    req=Request(url,headers={"User-Agent":"MyBusinessNews/1.0 open-link-index","Accept":"application/json"})
+    with urlopen(req,timeout=30) as res: data=json.loads(res.read(3_000_000).decode("utf-8-sig"))
+    return data.get("articles",[])
+def main():
+    try: old=json.loads(DEST.read_text(encoding="utf-8"))
+    except Exception:old={"articles":[]}
+    news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
+    good=0
+    for idx,(group,q) in enumerate(QUERIES):
+        if idx:time.sleep(6)
+        try:
+            rows=request(q)
+            count=0
+            for row in rows:
+                item=keep(row,group)
+                if item and (item["url"] not in news or dt(item["seen"])>=dt(news[item["url"]].get("seen"))):
+                    news[item["url"]]=item
+                    count+=1
+            good+=1
+            print(group,"received",len(rows),"accepted",count,flush=True)
+        except Exception as exc:print("feed warning",group,str(exc),file=sys.stderr,flush=True)
+    cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+    rows=[x for x in news.values() if dt(x.get("seen"))>cutoff]
+    rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows[:1400],"sources":["The GDELT Project"],"note":"GDELT observation time, not verified publisher publication time; original links are controlled by publishers."}
+    DEST.parent.mkdir(parents=True,exist_ok=True)
+    DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
+    print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
+if __name__=="__main__":main()
