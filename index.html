@@ -520,6 +520,45 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 .dark .regional-general-bar a,.dark .moneycontrol-direct{background:#2b4b6b;color:#d9ecff;border-color:#456785}
 @media(max-width:620px){.regional-general-bar{gap:5px;padding:6px 9px}.regional-general-label{flex-basis:100%;font-size:9.5px}.regional-general-bar a{font-size:9.5px;padding:5px 8px}}
 
+
+/* AP + TG newsroom: identify each article's state at a glance. */
+.regional-general-bar{gap:6px!important}
+.regional-state-chips{display:flex;flex:1 1 auto;gap:5px;flex-wrap:wrap;align-items:center}
+.regional-state-chip{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 9px;border:1px solid #d5e2ee;border-radius:7px;background:#fff;color:#54728d;font-size:10.5px;font-weight:800;cursor:pointer}
+.regional-state-chip>span{font-weight:750;color:#7a8da4;font-variant-numeric:tabular-nums}
+.regional-state-chip.is-andhra{border-color:#b8d9f8;color:#245fa0;background:#eef6ff}
+.regional-state-chip.is-telangana{border-color:#b4e7d9;color:#157c64;background:#ecfbf6}
+.regional-state-chip.active{background:#234d7b;color:#fff;border-color:#234d7b}
+.regional-state-chip.is-andhra.active{background:#226cba;border-color:#226cba;color:#fff}
+.regional-state-chip.is-telangana.active{background:#158b77;border-color:#158b77;color:#fff}
+.regional-state-chip.active>span{color:#fff}
+.region-label.regional-ap,.region-label.regional-tg{display:inline-flex;align-items:center;border-radius:5px;padding:4px 7px;font-size:10px;font-weight:850}
+.region-label.regional-ap{background:#e8f3ff;color:#1762ae;border:1px solid #bfd8f6}
+.region-label.regional-tg{background:#e9f9f0;color:#13765d;border:1px solid #b9ead2}
+.regional-publisher-disclosure{flex:0 1 auto}
+.regional-publisher-disclosure>summary{cursor:pointer;list-style:none;font-size:10px;font-weight:780;padding:6px 9px;border:1px solid #d9e4ef;border-radius:7px;background:#fff;color:#315c83;white-space:nowrap}
+.regional-publisher-disclosure>summary::-webkit-details-marker{display:none}
+.regional-publisher-disclosure[open]{flex-basis:100%;order:2}
+.regional-publisher-disclosure[open]>summary{display:inline-flex;background:#eaf5ff;border-color:#bad8f4}
+.regional-publisher-links{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:7px 0 2px}
+.regional-publisher-links a{font-size:9.5px!important}
+.regional-publisher-links small{display:block;flex-basis:100%;color:#71849a;font-size:9px}
+.regional-live-link{font-size:10px!important}
+.dark .regional-state-chip{background:#243b52;color:#cfdfef;border-color:#45647d}
+.dark .regional-state-chip.is-andhra{background:#203d60;color:#d9eaff;border-color:#326fa3}
+.dark .regional-state-chip.is-telangana{background:#214c48;color:#d8fff0;border-color:#3c856e}
+.dark .regional-state-chip.active{background:#215f9d;color:#fff}
+.dark .regional-state-chip.is-telangana.active{background:#137b66;color:#fff}
+.dark .region-label.regional-ap{background:#183a62;border-color:#33689c;color:#d5eaff}
+.dark .region-label.regional-tg{background:#194b42;border-color:#327968;color:#c5f9e4}
+.dark .regional-publisher-disclosure>summary{background:#274561;color:#d2e7ff;border-color:#406281}
+@media(max-width:620px){
+ .regional-state-chips{flex-basis:100%}
+ .regional-state-chip{padding:6px 7px;font-size:9.5px}
+ .regional-publisher-disclosure>summary{font-size:9.5px;padding:5px 8px}
+ .region-label.regional-ap,.region-label.regional-tg{font-size:9.5px;padding:3px 6px}
+}
+
 </style>
 </head>
 <body>
