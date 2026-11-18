@@ -26,6 +26,10 @@ FEEDS=[
  ("The Conversation", "https://theconversation.com/articles.atom?language=en", "english-magazines", "general"),
  ("The Conversation Health", "https://theconversation.com/au/health/articles.atom", "english-magazines", "health"),
  ("The Conversation Arts", "https://theconversation.com/uk/arts/articles.atom", "english-magazines", "Culture & Heritage"),
+ ("The Conversation US", "https://theconversation.com/us/articles.atom", "english-magazines", "general"),
+ ("The Conversation Australia", "https://theconversation.com/au/articles.atom", "english-magazines", "general"),
+ ("The Conversation Environment", "https://theconversation.com/au/environment/articles.atom", "english-magazines", "Environment & Nature"),
+ ("The Conversation Education", "https://theconversation.com/uk/education/articles.atom", "english-magazines", "Education & Careers"),
  ("Dharani News", "https://dharaninews.com/feed/", "telugu-patrikalu", "general"),
 ]
 DOMAINS={"english-magazines":("theconversation.com",),"telugu-patrikalu":("dharaninews.com",)}
@@ -58,7 +62,7 @@ def find_link(node):
 
 def title_topic(title,kind,desk):
     if kind=="health":return "Health & Wellbeing"
-    if kind=="Culture & Heritage":return kind
+    if kind in ("Culture & Heritage","Education & Careers","Environment & Nature"):return kind
     if desk=="telugu-patrikalu":return "Telugu News"
     return topic_for(title,"general") or "World & Society"
 
