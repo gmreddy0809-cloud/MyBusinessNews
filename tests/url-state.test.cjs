@@ -87,6 +87,14 @@ assert(html.includes('.publisher-cards{display:flex!important;flex-wrap:wrap!imp
 assert(!html.includes('class="publisher-rights"'),'Unnecessary publisher badge boxes must be removed');
 
 
+assert(html.includes("'telugu-states':'AP + TG General News'"),'AP+TG should be general news rather than duplicate regional business');
+assert(html.includes("['telugu-patrikalu','regional-general'].includes(item.desk)"),
+       'AP+TG must show Telugu publisher RSS plus English regional general news, not business filings');
+assert(html.includes("if(!isTeluguCompanyStory(item))return false"),
+       'Telugu Companies must still show corporate-only headlines');
+assert(html.includes('id="regionalGeneralBar"'),'Missing English/Telugu live regional updates');
+assert(html.includes('class="moneycontrol-direct"'),'Missing direct original Moneycontrol News link');
+assert(html.includes("state.region!=='telugu-states'"),'Only show AP+TG regional news filter in that desk');
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
 assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
 assert(html.includes('InvTGOfficial')&&html.includes('THubHyd')&&html.includes('AP_EDB'),'Regional source profiles missing');
