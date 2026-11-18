@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T20:37:19.122624+00:00",
+  "generated_at": "2026-11-18T21:37:49.096100+00:00",
   "articles": [
     {
       "id": "https://theconversation.com/floridas-flooding-deja-vu-is-a-sign-of-things-to-come-so-who-is-most-at-risk-and-how-can-they-prepare-297006",
@@ -1335,6 +1335,36 @@
       "domain": "news.un.org",
       "region": "world",
       "sector": "World & Society",
+      "seen": "2026-11-18T12:00:00+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
+    },
+    {
+      "id": "https://news.un.org/feed/view/en/story/2026/11/1168833",
+      "url": "https://news.un.org/feed/view/en/story/2026/11/1168833",
+      "title": "COP31 deadlock persists as countries launch new ‘climate reality check’",
+      "source": "UN News • Official",
+      "domain": "news.un.org",
+      "region": "world",
+      "sector": "Environment & Nature",
+      "seen": "2026-11-18T12:00:00+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
+    },
+    {
+      "id": "https://news.un.org/feed/view/en/story/2026/11/1168832",
+      "url": "https://news.un.org/feed/view/en/story/2026/11/1168832",
+      "title": "Patients running out of options as antibiotics stop working against common infections",
+      "source": "UN News • Official",
+      "domain": "news.un.org",
+      "region": "world",
+      "sector": "Health & Wellbeing",
       "seen": "2026-11-18T12:00:00+00:00",
       "time_basis": "feed",
       "sourcecountry": "",
@@ -4013,10 +4043,10 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168824",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168824",
       "title": "COP31: The push to protect warming oceans reaches the negotiating table",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
-      "sector": "Environment & Nature",
+      "sector": "World & Society",
       "seen": "2026-11-17T12:00:00+00:00",
       "time_basis": "feed",
       "sourcecountry": "",
@@ -4808,7 +4838,7 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168817",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168817",
       "title": "AI gets climate science right – until users push back",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
       "sector": "Environment & Nature",
@@ -4838,7 +4868,7 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168812",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168812",
       "title": "COP31 enters decisive week as climate talks face political test and AI initiatives gather pace",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
       "sector": "Environment & Nature",
@@ -5408,7 +5438,7 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168776",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168776",
       "title": "When the rains fail: Preparing for drought in Central America",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
       "sector": "Environment & Nature",
@@ -5767,7 +5797,7 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168802",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168802",
       "title": "COP31: Climate finance falls short as calls grow for polluters to pay",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
       "sector": "Environment & Nature",
@@ -5797,7 +5827,7 @@
       "id": "https://news.un.org/feed/view/en/story/2026/11/1168798",
       "url": "https://news.un.org/feed/view/en/story/2026/11/1168798",
       "title": "COP31: New initiative targets AI and reliable climate change information",
-      "source": "UN News Climate • Official",
+      "source": "UN News • Official",
       "domain": "news.un.org",
       "region": "world",
       "sector": "Environment & Nature",
@@ -6337,9 +6367,9 @@
   ],
   "source_status": {
     "gdelt": {
-      "last_attempt": "2026-11-18T19:43:10.327879+00:00",
-      "state": "cooldown",
-      "retry_after": "2026-11-18T20:43:10.327879+00:00"
+      "last_attempt": "2026-11-18T21:37:38.034245+00:00",
+      "state": "rate_limited",
+      "retry_after": "2026-11-18T23:37:38.034245+00:00"
     },
     "official_rss_matches": 9,
     "avi_ivi": {
@@ -6348,8 +6378,8 @@
         "PIB India": 0,
         "NASA": 10,
         "WHO": 0,
-        "UN News": 0,
-        "UN News Climate": 8
+        "UN News": 30,
+        "UN News Climate": 0
       },
       "warnings": []
     },
