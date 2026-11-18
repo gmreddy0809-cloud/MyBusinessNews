@@ -314,7 +314,7 @@ function webSearch(query){
  const opened=window.open(url,'_blank','noopener,noreferrer');
  if(!opened){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()}
 }
-const PF_PATTERN=/\b(?:personal finance|fixed deposit|savings account|deposit rates?|mutual funds?|\bsip\b|\bppf\b|\bepf\b|\bnps\b|pension|retirement|life insurance|health insurance|tax saving|income tax|credit card|credit score|home loan|gold loan|term insurance|financial planning|property tax|capital gains|investment planning|loan emi|borrower|household savings|debt management|wealth management)\b/i;
+const PF_PATTERN=/\b(?:personal finance|fixed deposit|savings account|deposit rates?|mutual funds?|\bsip\b|\bppf\b|\bepf\b|\bnps\b|pension|retirement|life insurance|health insurance|tax saving|income tax|credit card|credit score|home loan|gold loan|sovereign gold bond|\bsgb\b|gold bond|money transfer|term insurance|financial planning|property tax|capital gains|investment planning|loan emi|borrower|household savings|debt management|wealth management)\b/i;
 function isPersonalFinanceStory(item){return item.sector==='Personal Finance'||PF_PATTERN.test(item.title)}
 function isTeluguCompanyStory(item){
  if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;
@@ -378,7 +378,11 @@ function render(){const title=REGION_NAMES[state.region]||REGION_NAMES.all;const
  }
  const help=$('webSearchHelp'),term=state.search.trim();
  help.hidden=!term;
- if(term){$('webSearchInfo').textContent=visible.length+' local matches for "'+term.slice(0,75)+'". Need more?';}
+ if(term){$('webSearchInfo').textContent=visible.length+' indexed matches for "'+term.slice(0,75)+'". More in financial dailies?';}
+ if(!term&&state.region==='personal-finance'){
+   help.hidden=false;
+   $('webSearchInfo').textContent='Personal finance coverage is growing. See live savings, tax, insurance and investment stories across financial dailies.';
+ }
  $('feedStatus').textContent=state.isFetching?'Updating…':state.lastError?'Source connection issue':state.checked?'News index available':'Awaiting feed';}
 function mergeStories(rows){const byURL=new Map(state.stories.map(x=>[x.url,x]));for(const raw of rows){const entry=normalise(raw);if(entry&&!byURL.has(entry.url))byURL.set(entry.url,entry)}state.stories=Array.from(byURL.values()).sort((a,b)=>dateKey(b.seen)-dateKey(a.seen)).slice(0,1400)}
 function buildQuery(query){const params=new URLSearchParams({query,mode:'artlist',format:'json',sort:'datedesc',maxrecords:'100',timespan:'24h'});return `${GDELT_URL}?${params}`}
@@ -412,7 +416,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  }
  dailies.addEventListener('click',e=>{const a=e.target.closest('[data-site]');if(a){const term=state.search|| (state.region==='personal-finance'?'personal finance savings investment':'business economy markets');a.href=googleNewsUrl('site:'+a.dataset.site+' '+term)}});
  $('searchWebButton').addEventListener('click',()=>webSearch());
- $('webSearchHelpButton').addEventListener('click',()=>webSearch());
+ $('webSearchHelpButton').addEventListener('click',()=>webSearch(state.search||(state.region==='personal-finance'?'India personal finance savings insurance investment tax':'India business news')));
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
