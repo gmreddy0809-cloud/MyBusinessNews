@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keyless source-link news index; no full article republishing."""
 import json, re, time, os, sys
-from rss_sources import collect_official
+from rss_sources import collect_official, company_for
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -56,8 +56,11 @@ def dt(s):
         return datetime.fromisoformat(s.replace("Z","+00:00")).astimezone(timezone.utc)
     except Exception: return datetime.fromtimestamp(0,timezone.utc)
 def classify(title,group,country):
-    sector=next((name for name,p in SECTORS if re.search(p,title,re.I)),"Other Business")
+    PF_RE=re.compile(r'fixed deposit|savings account|mutual fund|personal finance|retirement|pension|\bsip\b|\bppf\b|\bepf\b|health insurance|life insurance|term insurance|credit score|credit card|income tax|tax saving|gold loan|home loan|wealth planning|recurring deposit',re.I)
+    sector="Personal Finance" if PF_RE.search(title) else next((name for name,p in SECTORS if re.search(p,title,re.I)),"Other Business")
     region=next((name for name,p in REGIONS if re.search(p,title,re.I)),None)
+    if region is None:
+        region,_=company_for(title)
     if region is None:
         region=group if group in ("hyderabad","telangana","andhra-pradesh") else ("india" if (re.search(r'\b(india|indian|nifty|sensex|mumbai|delhi|bengaluru)\b',title,re.I) or str(country).lower() in ("india","in") or group=="india") else "world")
     return region,sector
@@ -119,7 +122,7 @@ def main():
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     rows=rows[:1300]
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","PIB","The GDELT Project"],"note":"Publisher times are unverified unless explicitly in official feed; GDELT timestamps reflect indexing. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","The GDELT Project"],"note":"Publisher times are unverified unless explicitly in official feed; GDELT timestamps reflect indexing. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
