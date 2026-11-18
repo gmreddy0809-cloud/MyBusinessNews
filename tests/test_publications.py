@@ -47,6 +47,16 @@ class PublicationTests(unittest.TestCase):
         self.assertNotIn("description",rows[0])
         self.assertNotIn("image",rows[0])
 
+    def test_oneindia_category_path_tags_ap_without_place_in_headline(self):
+        now=datetime.now(timezone.utc)
+        date=now.strftime("%a, %d %b %Y %H:%M:%S +0000")
+        xml=('<rss><channel><item><title>రాష్ట్రంలో విద్యుత్ డిమాండ్ పెరిగినట్లు అధికారుల వెల్లడి</title>'
+             '<link>https://telugu.oneindia.com/news/andhra-pradesh/energy-review-1234.html</link>'
+             '<pubDate>'+date+'</pubDate></item></channel></rss>').encode("utf8")
+        rows=publications.parse_feed(xml,"Oneindia Telugu","telugu-patrikalu","general",now)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["region"],"andhra-pradesh")
+
     def test_dharani_recent_archive_is_dated_not_first_seen(self):
         now=datetime.now(timezone.utc)
         past=now-timedelta(days=15)
