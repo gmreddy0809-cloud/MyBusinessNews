@@ -677,6 +677,17 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <p class="source-hub-note">Newspaper searches open Google News in a new tab. Articles belong to their publishers; their RSS feeds are not reproduced here.</p>
           </section>
           </details>
+          <details class="desk-source-discovery" id="pfSourceDiscovery" hidden>
+            <summary>₹ PF Sources · Financial dailies, banks, MFs, insurers, blogs &amp; official updates <span>Browse original-source searches ▾</span></summary>
+            <p class="desk-discovery-note">Live original-source searches, NOT syndicated RSS. The indexed PF stories appear below. Some publishers limit RSS to personal use.</p>
+            <div class="desk-discovery-links" id="pfSourceLinks"></div>
+            <div class="desk-official-links"><a href="https://www.amfiindia.com/rss-feeds" target="_blank" rel="noopener noreferrer">AMFI official MF RSS ↗</a><a href="https://rbi.org.in/Scripts/rss.aspx" target="_blank" rel="noopener noreferrer">RBI official RSS ↗</a><a href="https://www.sebi.gov.in/rss.html" target="_blank" rel="noopener noreferrer">SEBI official RSS ↗</a></div>
+          </details>
+          <details class="desk-source-discovery" id="regionBusinessDiscovery" hidden>
+            <summary>🏢 Telugu Companies · Hyderabad · TG · AP <span>Browse financial dailies, startups &amp; official sources ▾</span></summary>
+            <p class="desk-discovery-note">Direct publisher-restricted live news searches and official sources. They do not imply syndicated RSS rights.</p>
+            <div class="desk-discovery-links" id="regionalBusinessLinks"></div>
+          </details>
 <div class="results-bar"><span id="resultsCount">Loading latest business news…</span><span class="timezone-hint">IST · Feed date / first seen / indexed (not always publisher time)</span></div>
           <div class="web-search-help" id="webSearchHelp" hidden><span id="webSearchInfo">Need news beyond the site index?</span><button id="webSearchHelpButton" type="button">Search live Google News ↗</button></div>
           <section class="x-watch-panel" id="xWatchPanel" aria-label="Social business news discovery" hidden>
@@ -812,6 +823,104 @@ function webSearch(query){
  const url=googleNewsUrl(q);
  const opened=window.open(url,'_blank','noopener,noreferrer');
  if(!opened){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()}
+}
+/* Extra publisher directories are navigation links, not licensed RSS content. */
+const DESK_SOURCE_DIRECTORY={
+ pf:[
+  ['Financial Dailies','Economic Times Wealth','economictimes.indiatimes.com'],
+  ['Financial Dailies','Mint Money','livemint.com'],
+  ['Financial Dailies','Business Standard','business-standard.com'],
+  ['Financial Dailies','Financial Express','financialexpress.com'],
+  ['Financial Dailies','Moneycontrol','moneycontrol.com'],
+  ['Financial Dailies','NDTV Profit','ndtvprofit.com'],
+  ['Financial Dailies','CNBC TV18','cnbctv18.com'],
+  ['Financial Dailies','Outlook Money','outlookmoney.com'],
+  ['PF Blogs & Research','freefincal','freefincal.com'],
+  ['PF Blogs & Research','Value Research','valueresearchonline.com'],
+  ['PF Blogs & Research','FundsIndia','fundsindia.com'],
+  ['PF Blogs & Research','JagoInvestor','jagoinvestor.com'],
+  ['PF Blogs & Research','BasuNivesh','basunivesh.com'],
+  ['PF Blogs & Research','Stable Investor','stableinvestor.com'],
+  ['PF Blogs & Research','Upstox Originals','upstox.com'],
+  ['PF Blogs & Research','Whalesbook','whalesbook.com'],
+  ['Banking & Loans','SBI','sbi.co.in'],
+  ['Banking & Loans','HDFC Bank','hdfcbank.com'],
+  ['Banking & Loans','ICICI Bank','icicibank.com'],
+  ['Banking & Loans','Axis Bank','axisbank.com'],
+  ['Banking & Loans','Kotak Bank','kotak.com'],
+  ['Banking & Loans','Bank of Baroda','bankofbaroda.in'],
+  ['Banking & Loans','PNB','pnbindia.in'],
+  ['Banking & Loans','IDFC FIRST Bank','idfcfirstbank.com'],
+  ['Mutual Funds','AMFI','amfiindia.com'],
+  ['Mutual Funds','SBI Mutual Fund','sbimf.com'],
+  ['Mutual Funds','HDFC Mutual Fund','hdfcfund.com'],
+  ['Mutual Funds','ICICI Pru MF','icicipruamc.com'],
+  ['Mutual Funds','Nippon MF','nipponindiaim.com'],
+  ['Mutual Funds','Mirae Asset','miraeassetmf.co.in'],
+  ['Mutual Funds','PPFAS','ppfas.com'],
+  ['Insurance','IRDAI','irdai.gov.in'],
+  ['Insurance','LIC India','licindia.in'],
+  ['Insurance','HDFC Life','hdfclife.com'],
+  ['Insurance','ICICI Pru Life','iciciprulife.com'],
+  ['Insurance','SBI Life','sbilife.co.in'],
+  ['Insurance','Star Health','starhealth.in'],
+  ['Insurance','Niva Bupa','nivabupa.com'],
+  ['Government & Regulators','RBI','rbi.org.in'],
+  ['Government & Regulators','SEBI','sebi.gov.in'],
+  ['Government & Regulators','PFRDA','pfrda.org.in'],
+  ['Government & Regulators','EPFO','epfindia.gov.in'],
+  ['Government & Regulators','Income Tax','incometax.gov.in'],
+  ['Government & Regulators','NPCI','npci.org.in'],
+  ['Government & Regulators','DICGC','dicgc.org.in']
+ ],
+ regional:[
+  ['Stock Exchange Filings','NSE India','nseindia.com'],
+  ['Stock Exchange Filings','BSE India','bseindia.com'],
+  ['Financial Dailies','Moneycontrol','moneycontrol.com'],
+  ['Financial Dailies','Business Standard','business-standard.com'],
+  ['Financial Dailies','Economic Times','economictimes.indiatimes.com'],
+  ['Financial Dailies','BusinessLine','thehindubusinessline.com'],
+  ['Financial Dailies','The Hindu','thehindu.com'],
+  ['Financial Dailies','Financial Express','financialexpress.com'],
+  ['Financial Dailies','NDTV Profit','ndtvprofit.com'],
+  ['Financial Dailies','Reuters','reuters.com'],
+  ['Telugu States Reporting','Deccan Chronicle','deccanchronicle.com'],
+  ['Telugu States Reporting','Telangana Today','telanganatoday.com'],
+  ['Telugu States Reporting','Times of India','timesofindia.indiatimes.com'],
+  ['Telugu States Reporting','New Indian Express','newindianexpress.com'],
+  ['Telugu States Reporting','Siasat','siasat.com'],
+  ['Startups & IT','YourStory','yourstory.com'],
+  ['Startups & IT','Inc42','inc42.com'],
+  ['Startups & IT','Entrackr','entrackr.com'],
+  ['Startups & IT','TechCircle','techcircle.in'],
+  ['Startups & IT','ET CIO','cio.economictimes.indiatimes.com'],
+  ['Govt, Industry & Startups','PIB','pib.gov.in'],
+  ['Govt, Industry & Startups','T-Hub','t-hub.co'],
+  ['Govt, Industry & Startups','APIIC','apiic.in'],
+  ['Govt, Industry & Startups','Invest Telangana','invest.telangana.gov.in']
+ ]
+};
+function setupDeskSourceDirectories(){
+ for(const [desk,elementId] of [['pf','pfSourceLinks'],['regional','regionalBusinessLinks']]){
+  const host=$(elementId);
+  let lastGroup='';
+  for(const [group,name,domain] of DESK_SOURCE_DIRECTORY[desk]){
+   if(group!==lastGroup){
+    const heading=document.createElement('strong');
+    heading.className='desk-source-group';heading.textContent=group;
+    host.append(heading);lastGroup=group;
+   }
+   const a=document.createElement('a');
+   a.className='desk-source-link';a.textContent=name+' ↗';
+   const query=desk==='pf'?
+    'site:'+domain+' (personal finance OR mutual funds OR insurance OR tax OR savings OR loan) after:2026-11-13':
+    'site:'+domain+' (Hyderabad OR Telangana OR "Andhra Pradesh") (company OR pharma OR startup OR investment OR GCC) after:2026-11-13';
+   a.href=googleNewsUrl(query);
+   a.target='_blank';a.rel='noopener noreferrer';
+   a.title='Live news search restricted to '+name+'; not an RSS feed';
+   host.append(a);
+  }
+ }
 }
 const PF_PATTERN=/\b(?:personal finance|fixed deposit|savings account|deposit rates?|mutual funds?|\bsip\b|\bppf\b|\bepf\b|\bnps\b|pension|retirement|life insurance|health insurance|tax saving|income tax|credit card|credit score|home loan|gold loan|sovereign gold bond|\bsgb\b|gold bond|money transfer|term insurance|financial planning|property tax|capital gains|investment planning|loan emi|borrower|household savings|debt management|wealth management)\b/i;
 function isPersonalFinanceStory(item){return item.desk==='personal-finance'||item.reader_finance||item.sector==='Personal Finance'||PF_PATTERN.test(item.title)}
@@ -1158,6 +1267,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('regionalGeneralBar').hidden=state.region!=='telugu-states';
+ $('pfSourceDiscovery').hidden=state.region!=='personal-finance';
+ $('regionBusinessDiscovery').hidden=state.region!=='telugu-companies';
  const regionalStories=state.stories.filter(item=>['telugu-patrikalu','regional-general'].includes(item.desk)&&['hyderabad','telangana','andhra-pradesh'].includes(item.region));
  $('regionalCountAll').textContent=regionalStories.length.toLocaleString('en-IN');
  $('regionalCountAP').textContent=regionalStories.filter(item=>item.region==='andhra-pradesh').length.toLocaleString('en-IN');
@@ -1203,7 +1314,7 @@ async function fetchLive(){const qs=[
  ];let n=0;for(const query of qs){try{const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),13000);let response;try{response=await fetch(buildQuery(query),{signal:ctl.signal,cache:'no-store'})}finally{clearTimeout(t)}if(!response.ok)throw Error(`News API: ${response.status}`);const data=await response.json();const rows=(data.articles||[]).map(x=>normalise(x));mergeStories(rows.filter(Boolean));n+=rows.length;state.lastError=null;state.checked=new Date().toISOString();render();}catch(e){if(!state.stories.length)state.lastError=String(e.message||e);console.warn('GDELT live fallback:',e)}if(query!==qs[qs.length-1])await new Promise(resolve=>setTimeout(resolve,5600));}return n}
 async function refresh(){if(state.isFetching)return;state.isFetching=true;state.lastError=null;render();try{const r=await fetch('data/news.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('News index unavailable');const data=await r.json();state.sourceStatus=data.source_status||null;if(!Array.isArray(data.articles)||!data.articles.length)throw Error('News index empty');const fresh=new Map();for(const raw of data.articles){const item=normalise(raw);if(item)fresh.set(item.url,item)}if(fresh.size){const cutoff=Date.now()-7*86400000;const seed=window.__MBN_SEED||{};const seededRecently=dateKey(seed.generated_at)>cutoff;const seedURLs=new Set((seed.articles||[]).map(x=>x.url));const combined=new Map();for(const previous of state.stories){if(dateKey(previous.seen)>=cutoff||(seededRecently&&!dateKey(previous.seen)&&seedURLs.has(previous.url)))combined.set(previous.url,previous)}for(const [url,item] of fresh)combined.set(url,item);state.stories=[...combined.values()].sort((a,b)=>dateKey(b.seen)-dateKey(a.seen)).slice(0,1400);state.checked=data.generated_at||null}state.lastError=null}catch(e){console.warn('News index refresh:',e);if(!state.stories.length)state.lastError=String(e.message||e)}finally{state.isFetching=false;render()}}
 function tickClock(){$('clock').textContent=`IST • ${new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true}).format(new Date())}`}
-function init(){state.saved=getSaved();
+function init(){state.saved=getSaved();setupDeskSourceDirectories();
  const seeded=window.__MBN_SEED;
  if(seeded && Array.isArray(seeded.articles) && dateKey(seeded.generated_at)>Date.now()-7*86400000){
    mergeStories(seeded.articles);
