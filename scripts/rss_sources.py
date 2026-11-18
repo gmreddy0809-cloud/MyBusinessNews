@@ -30,7 +30,7 @@ SHORT_ALIASES={"ccl","kims","bdl","ncc","sail","nava","gland"}
 BUSINESS=re.compile(r"\b(business|financial|economic|bank|industry|market|share|finance|rbi|sebi|investment|export|import|manufactur|port|aviation|airport|pharma|software|technology|power|energy|startup|policy|commerce|trade|tax|gst|monetary|infrastructure|corporate|results|company|ipo|employment|development|semiconductor|gdp|insurance|loan|logistic|industrial|capital|securities|investor|mutual|deposit|interest|bond|pension|circular|credit|fraud|payment|consumer)\w*\b",re.I)
 LINK_OK=("nseindia.com","bseindia.com","rbi.org.in","pib.gov.in","sebi.gov.in")
 
-PF_WORDS=re.compile(r'fixed deposits?|bank deposits?|interest rate|mutual fund|investor|investing|pension|retirement|\bppf\b|\bepf\b|\bnps\b|insurance|credit card|personal loan|home loan|gold loan|recurring deposit|savings account|tax savings?|credit score|digital payment|upi|\bkyc\b|financial literacy|consumer protection|ombudsman|bank customer|borrower|unclaimed deposit|nomination|fraud|cybersecurity',re.I)
+PF_WORDS=re.compile(r'fixed deposits?|bank deposits?|interest rate|sovereign gold bond|\bsgb\b|gold bonds?|domestic money transfer|mutual fund|investor|investing|pension|retirement|\bppf\b|\bepf\b|\bnps\b|insurance|credit card|personal loan|home loan|gold loan|recurring deposit|savings account|tax savings?|credit score|digital payment|upi|\bkyc\b|financial literacy|consumer protection|ombudsman|bank customer|borrower|unclaimed deposit|nomination|fraud|cybersecurity',re.I)
 LOCAL_WORDS=[
  ("hyderabad",re.compile(r'\bhyderabad|secunderabad|shamshabad|gachibowli|medchal\b',re.I)),
  ("andhra-pradesh",re.compile(r'andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|guntur|kakinada',re.I)),
