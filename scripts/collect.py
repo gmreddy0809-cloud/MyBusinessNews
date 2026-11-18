@@ -74,7 +74,7 @@ def keep(row,group):
     if group in ("india","world") and not RELEVANT.search(title):return None
     country=row.get("sourcecountry") or ""
     region,sector=classify(title,group,country)
-    return {"id":url,"url":url,"title":title,"source":row.get("domain") or domain,"domain":domain,"region":region,"sector":sector,"seen":row.get("seendate") or "","language":row.get("language") or "","sourcecountry":country}
+    return {"id":url,"url":url,"title":title,"source":row.get("domain") or domain,"domain":domain,"region":region,"sector":sector,"seen":row.get("seendate") or "","time_basis":"indexed","language":row.get("language") or "","sourcecountry":country}
 def request(query):
     url=API+"?"+urlencode({"query":query,"mode":"artlist","format":"json","maxrecords":150,"timespan":"2d","sort":"datedesc"})
     req=Request(url,headers={"User-Agent":"MyBusinessNews/1.0 open-link-index","Accept":"application/json"})
@@ -86,7 +86,15 @@ def main():
     news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
     official=collect_official()
     for entry in official:
-        if entry["url"] not in news or dt(entry["seen"])>=dt(news[entry["url"]].get("seen")):
+        prev=news.get(entry["url"])
+        # RSS entries without a published date use first-observed time.
+        # Keep that original observation on every later refresh, never inflate recency.
+        if prev and entry.get("time_basis")=="first_seen":
+            entry["seen"]=prev.get("seen") or entry["seen"]
+        if prev and entry.get("time_basis")!="feed" and prev.get("time_basis")=="feed":
+            entry["seen"]=prev.get("seen") or entry["seen"]
+            entry["time_basis"]="feed"
+        if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     good=len(official)>0
     count_by_region={}
