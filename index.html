@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-18-design-r3">
+<meta name="mbn-site-version" content="2026-11-18-design-r4">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -123,7 +123,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
 <body>
   <div class="site-shell">
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-      <a class="brand" href="#all" aria-label="MyBusinessNews home">
+      <a class="brand" href="./#all" aria-label="MyBusinessNews home">
         <span class="brand-icon">M<span>.</span></span>
         <span class="brand-lines"><strong>My<span>Business</span>News</strong><small>THE BUSINESS NEWS DESK</small></span>
       </a>
@@ -274,6 +274,9 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
 function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||''};}
 
+const FINANCIAL_DAILIES=[
+ ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
+];
 const googleNewsUrl=q=>'https://news.google.com/search?q='+encodeURIComponent(q)+'&hl=en-IN&gl=IN&ceid=IN%3Aen';
 function webSearch(query){
  const q=String(query||$('searchInput').value||'').trim();
@@ -282,6 +285,14 @@ function webSearch(query){
  const opened=window.open(url,'_blank','noopener,noreferrer');
  if(!opened){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()}
 }
+const PF_PATTERN=/\b(?:personal finance|fixed deposit|savings account|deposit rates?|mutual funds?|\bsip\b|\bppf\b|\bepf\b|\bnps\b|pension|retirement|life insurance|health insurance|tax saving|income tax|credit card|credit score|home loan|gold loan|term insurance|financial planning|property tax|capital gains|investment planning|loan emi|borrower|household savings|debt management|wealth management)\b/i;
+function isPersonalFinanceStory(item){return item.sector==='Personal Finance'||PF_PATTERN.test(item.title)}
+function isTeluguCompanyStory(item){
+ if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;
+ if(/^(NSE|BSE)\s*•\s*Official/.test(item.source))return true;
+ return /\b(?:limited|ltd|company|companies|startup|funding|investment|acquisition|expansion|corporate|result|profit|revenue|contract|pharma|laborator|industr|manufactur|gCC|global capability|aerospace|airline|airport|software|technology|hotel|hospital|financial|factory|business|launch|plant|facility|office)\b/i.test(item.title)||!['Economy & Policy','Other Business'].includes(item.sector)
+}
+
 function matchSearch(item,query){
  const q=query.trim().toLowerCase();
  if(!q)return true;
@@ -296,10 +307,35 @@ function getSaved(){try{return JSON.parse(localStorage.getItem('mbn-saved-v1')||
 function saveStored(){try{localStorage.setItem('mbn-saved-v1',JSON.stringify(state.saved))}catch{showToast('Browser storage is unavailable')}}
 function savedCount(){return Object.keys(state.saved).length}
 function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest'}
-function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;if(location.hash!=='#'+next)location.hash=next;render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
-function setSector(next){state.sector=next;state.display=25;$('sectorSelect').value=next;render()}
+function addressForView(){
+ const url=new URL(location.href);
+ for(const param of ['sector','q','hours','sort'])url.searchParams.delete(param);
+ if(state.sector!=='all')url.searchParams.set('sector',state.sector);
+ if(state.search)url.searchParams.set('q',state.search);
+ if(state.hours!=='all')url.searchParams.set('hours',state.hours);
+ if(state.sort!=='newest')url.searchParams.set('sort',state.sort);
+ url.hash=state.region==='all'?'all':state.region;
+ return url.pathname+url.search+url.hash;
+}
+function saveView(push=false){history[push?'pushState':'replaceState']({mbn:true},'',addressForView())}
+function restoreView(){
+ const q=new URLSearchParams(location.search),r=location.hash.replace(/^#/,'');
+ state.region=Object.hasOwn(REGION_NAMES,r)?r:'all';
+ const sec=q.get('sector');
+ state.sector=SECTORS.includes(sec)?sec:'all';
+ state.search=(q.get('q')||'').slice(0,160);
+ state.hours=['all','24','48','168'].includes(q.get('hours'))?q.get('hours'):'all';
+ state.sort=['newest','oldest','source'].includes(q.get('sort'))?q.get('sort'):'newest';
+ state.display=25;
+ $('sectorSelect').value=state.sector;
+ $('searchInput').value=state.search;
+ $('timeSelect').value=state.hours;
+ $('sortSelect').value=state.sort;
+}
+function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
+function setSector(next){if(next!=='all'&&!SECTORS.includes(next))next='all';state.sector=next;state.display=25;$('sectorSelect').value=next;saveView(true);render()}
 function toggleSaved(id){const item=state.stories.find(x=>x.id===id)||state.saved[id];if(!item)return;if(state.saved[id]){delete state.saved[id];showToast('Removed from saved stories')}else{state.saved[id]=item;showToast('Story saved in this browser')}saveStored();render()}
-function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{if(state.region!=='all'&&state.region!=='saved'){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
+function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{if(state.region!=='all'&&state.region!=='saved'){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isTeluguCompanyStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(state.search&&!matchSearch(item,state.search))return false;return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
@@ -332,28 +368,38 @@ function init(){state.saved=getSaved();
    if(feedDesc)feedDesc.textContent='Automatically refreshed source-linked business news. Source times are indexed times, not independently verified publication times.';
  }
 try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('dark')}catch{}
- const h=location.hash.replace(/^#/,'');if(Object.hasOwn(REGION_NAMES,h))state.region=h;
+ // View restoration runs after dynamic sector selectors are populated.
  for(const sector of SECTORS.slice(1)){const op=document.createElement('option');op.value=sector;op.textContent=sector;$('sectorSelect').append(op);const b=document.createElement('button');b.className='sector-side';b.dataset.sector=sector;b.innerHTML=`<span class="sector-bullet"></span>${escapeHTML(sector)}`;b.onclick=()=>{setSector(sector);$('sectorSelect').value=sector;document.getElementById('sidebar').classList.remove('open')};$('sideSectors').append(b)}
  const popular=['All Sectors','Aviation & Airports','GCCs','Startups','Funding & Investments','Pharma & Life Sciences','IT & AI','Automobiles & EV','Markets & IPOs','Banking & Finance','Real Estate','Healthcare & Hospitals'];
  for(const sector of popular){const b=document.createElement('button');b.type='button';b.className='sector-chip'+(sector==='All Sectors'?' active':'');b.dataset.sector=sector==='All Sectors'?'all':sector;b.textContent=sector;$('sectorQuickbar').append(b)}
  $('sectorQuickbar').addEventListener('click',e=>{const b=e.target.closest('[data-sector]');if(b)setSector(b.dataset.sector)});
+ const dailies=$('financialDailies');
+ for(const [name,site] of FINANCIAL_DAILIES){
+   const a=document.createElement('a');
+   a.className='daily-source';
+   a.href=googleNewsUrl('site:'+site+' ('+(state.region==='personal-finance'?'personal finance OR savings OR insurance':'business OR finance OR markets')+')');
+   a.target='_blank';a.rel='noopener noreferrer';
+   a.textContent=name+' ↗';a.dataset.site=site;dailies.append(a)
+ }
+ dailies.addEventListener('click',e=>{const a=e.target.closest('[data-site]');if(a){const term=state.search|| (state.region==='personal-finance'?'personal finance savings investment':'business economy markets');a.href=googleNewsUrl('site:'+a.dataset.site+' '+term)}});
  $('searchWebButton').addEventListener('click',()=>webSearch());
  $('webSearchHelpButton').addEventListener('click',()=>webSearch());
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
- $('searchInput').addEventListener('input',e=>{if(state.region!=='all'||state.sector!=='all'||state.hours!=='all'){state.region='all';state.sector='all';state.hours='all';$('sectorSelect').value='all';$('timeSelect').value='all';if(location.hash!=='#all')history.replaceState(null,'','#all')}state.search=e.target.value;state.display=25;render()});
+ $('searchInput').addEventListener('input',e=>{if(state.region!=='all'||state.sector!=='all'||state.hours!=='all'){state.region='all';state.sector='all';state.hours='all';$('sectorSelect').value='all';$('timeSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
- $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;render()});
- $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;render()});
+ $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;saveView(true);render()});
+ $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;saveView(true);render()});
  $('newsList').addEventListener('click',e=>{const btn=e.target.closest('[data-save]');if(btn)toggleSaved(btn.dataset.save)});
  $('loadMore').addEventListener('click',()=>{state.display+=25;render()});
  $('refreshButton').addEventListener('click',()=>refresh(true));
  $('menuToggle').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
  $('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('dark');try{localStorage.setItem('mbn-theme',document.body.classList.contains('dark')?'dark':'light')}catch{}});
  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('searchInput').focus()}if(e.key==='Escape'){$('sidebar').classList.remove('open');$('searchInput').blur()}});
- window.addEventListener('hashchange',()=>{const h=location.hash.replace(/^#/,'');if(Object.hasOwn(REGION_NAMES,h)&&h!==state.region){resetFilters();state.region=h;render();if(h==='all')refresh()}});
- $('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
+ window.addEventListener('popstate',()=>{restoreView();render()});
+ window.addEventListener('hashchange',()=>{restoreView();render()});
+ restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
 }
 document.addEventListener('DOMContentLoaded',init);
 })();
