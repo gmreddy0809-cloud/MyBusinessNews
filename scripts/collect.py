@@ -5,6 +5,7 @@ from rss_sources import collect_official, company_for
 from avi_ivi import collect_avi_ivi
 from publications import collect_publications
 from regional_general import REGIONAL_QUERIES, keep_general
+from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_publisher, index_gdelt, pf_match, pf_cutoff
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -89,6 +90,8 @@ def main():
     news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
     official=collect_official()
     for entry in official:
+        if pf_match(entry.get("title","")):
+            entry["reader_finance"]=True
         prev=news.get(entry["url"])
         # RSS entries without a published date use first-observed time.
         # Keep that original observation on every later refresh, never inflate recency.
@@ -107,7 +110,9 @@ def main():
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     publication_rows,publication_status=collect_publications()
+    pub_tags=from_telugu_publisher(publication_rows)
     for entry in publication_rows:
+        entry.update(pub_tags.get(entry["url"],{}))
         prev=news.get(entry["url"])
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
@@ -115,23 +120,24 @@ def main():
     count_by_region={}
     regional_general_count=sum(1 for item in news.values() if item.get("desk")=="regional-general")
     for item in news.values():
-        if item.get("desk") in ("avi-ivi","telugu-patrikalu","english-magazines","regional-general"):continue
+        if item.get("desk") in ("avi-ivi","telugu-patrikalu","english-magazines","regional-general","personal-finance","regional-business"):continue
         region=item.get("region") or ""
         count_by_region[region]=count_by_region.get(region,0)+1
     cycle=int(datetime.now(timezone.utc).timestamp()//1800)
     # Check just one query per run: the free GDELT endpoint frequently rate-limits multi-query bursts.
-    if count_by_region.get("india",0)<5:
-        selected=QUERIES[0]
-        regional_mode=False
-    elif count_by_region.get("hyderabad",0)<3:
-        selected=QUERIES[1]
-        regional_mode=False
-    elif regional_general_count<20 or cycle%3==0:
-        selected=REGIONAL_QUERIES[cycle%len(REGIONAL_QUERIES)]
-        regional_mode=True
+    # Balanced, keyless-source polling: PF and AP/TG businesses each receive
+    # two slots per six cycles. Remaining slots serve general/business news.
+    # Each half-hour slot performs AT MOST one GDELT request.
+    search_type=("pf","regional-business","regional-general",
+                 "pf","regional-business","business")[cycle%6]
+    if search_type=="pf":
+        selected=PF_QUERIES[(cycle//3)%len(PF_QUERIES)]
+    elif search_type=="regional-business":
+        selected=REGIONAL_BUSINESS_QUERIES[(cycle//3)%len(REGIONAL_BUSINESS_QUERIES)]
+    elif search_type=="regional-general":
+        selected=REGIONAL_QUERIES[(cycle//6)%len(REGIONAL_QUERIES)]
     else:
-        selected=QUERIES[cycle%len(QUERIES)]
-        regional_mode=False
+        selected=QUERIES[(cycle//6)%len(QUERIES)]
     group,q=selected
     now=datetime.now(timezone.utc)
     gdelt_state=dict((old.get("source_status") or {}).get("gdelt") or {})
@@ -145,21 +151,32 @@ def main():
             rows=request(q)
             count=0
             for row in rows:
-                item=keep_general(row,group) if regional_mode else keep(row,group)
+                if search_type=="regional-general":
+                    item=keep_general(row,group)
+                elif search_type in ("pf","regional-business"):
+                    item=index_gdelt(row,search_type,group)
+                else:
+                    item=keep(row,group)
+                    if item and pf_match(item["title"]):
+                        item["reader_finance"]=True
                 if item and (item["url"] not in news or dt(item["seen"])>=dt(news[item["url"]].get("seen"))):
                     news[item["url"]]=item
                     count+=1
             good=True
             gdelt_state={"state":"ok","last_attempt":now.isoformat(),"last_success":now.isoformat(),"retry_after":(now+timedelta(minutes=30)).isoformat()}
-            print(("AP/TG general" if regional_mode else group),"received",len(rows),"accepted",count,flush=True)
+            print(search_type,group,"received",len(rows),"accepted",count,flush=True)
         except Exception as exc:
             limited=getattr(exc,"code",None)==429
             next_time=now+timedelta(hours=2 if limited else 1)
             gdelt_state.update({"state":"rate_limited" if limited else "temporarily_unavailable","retry_after":next_time.isoformat()})
             print("GDELT feed unavailable; retry after",next_time.isoformat(),str(exc),file=sys.stderr,flush=True)
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+    pf_from=pf_cutoff()
     rows=[x for x in news.values()
           if dt(x.get("seen"))>cutoff or (
+              (x.get("desk")=="personal-finance" or x.get("reader_finance")) and
+              dt(x.get("seen"))>=pf_from
+          ) or (
               x.get("desk")=="telugu-patrikalu" and
               x.get("source","").startswith("Dharani News") and
               dt(x.get("seen"))>datetime.now(timezone.utc)-timedelta(days=30)
@@ -167,13 +184,17 @@ def main():
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
+    # Reserve space per desk: abundant national news must never crowd out PF
+    # and regional corporate disclosures during the 14-Nov onward backfill.
     business_rows=[x for x in rows if x.get("desk","business")=="business"][:925]
+    pf_rows=[x for x in rows if x.get("desk")=="personal-finance"][:350]
+    regional_business_rows=[x for x in rows if x.get("desk")=="regional-business"][:350]
     misc_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:225]
     english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:160]
     regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:180]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
-    rows=sorted(business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
