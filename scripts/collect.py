@@ -157,7 +157,7 @@ def main():
     business_rows=[x for x in rows if x.get("desk","business")=="business"][:925]
     misc_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:225]
     english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:160]
-    telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:90]
+    telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+misc_rows+english_rows+telugu_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
