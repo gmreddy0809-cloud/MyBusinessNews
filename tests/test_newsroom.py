@@ -25,10 +25,10 @@ class NewsroomTests(unittest.TestCase):
 
     def test_rss_feed_time_and_first_seen_time_are_distinguished(self):
         feed_time=datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
-        xml=("<rss><channel>
+        xml=("""<rss><channel>
           <item><title>Zen Technologies Limited - Board meeting</title><link>https://www.nseindia.com/test/meeting</link><pubDate>{feed_time}</pubDate></item>
           <item><title>Zen Technologies Limited - Disclosure</title><link>https://www.nseindia.com/test/disclosure</link></item>
-        </channel></rss>").format(feed_time=feed_time).encode("utf8")
+        </channel></rss>""").format(feed_time=feed_time).encode("utf8")
         with patch.object(rss_sources,"urlopen",return_value=FakeResponse(xml)):
             rows=rss_sources.fetch_one("NSE","https://nsearchives.nseindia.com/test.xml","exchange")
         self.assertEqual(len(rows),2)
