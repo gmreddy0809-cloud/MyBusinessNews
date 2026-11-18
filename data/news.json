@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T18:15:38.633980+00:00",
+  "generated_at": "2026-11-18T18:26:04.853227+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -14,6 +14,36 @@
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss"
+    },
+    {
+      "id": "https://telugu.oneindia.com/news/india/bihar-jewellery-showroom-robbery-gold-worth-40-crore-stolen-broad-daylight-they-promised-to-return-515571.html",
+      "url": "https://telugu.oneindia.com/news/india/bihar-jewellery-showroom-robbery-gold-worth-40-crore-stolen-broad-daylight-they-promised-to-return-515571.html",
+      "title": "Bihar jewellery heist: పట్టపగలే జ్యువెలరీ షాపులో దూరి.. రూ. 40 కోట్ల బంగారంతో జంప్.. మళ్లీ వస్తామంటూ..",
+      "source": "Oneindia Telugu • RSS",
+      "domain": "telugu.oneindia.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-18T18:15:15+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-announces-mid-power-electric-rocket-challenge-for-us-companies/",
+      "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-announces-mid-power-electric-rocket-challenge-for-us-companies/",
+      "title": "NASA Announces Mid-Power Electric Rocket Challenge for US Companies",
+      "source": "NASA • Official",
+      "domain": "nasa.gov",
+      "region": "world",
+      "sector": "Science & Space",
+      "seen": "2026-11-18T18:12:32+00:00",
+      "time_basis": "feed",
+      "sourcecountry": "",
+      "origin": "official-rss",
+      "desk": "avi-ivi",
+      "language": "English"
     },
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63996",
@@ -6285,7 +6315,7 @@
         "NASA": 10,
         "WHO": 0,
         "UN News": 0,
-        "UN News Climate": 8
+        "UN News Climate": 0
       },
       "warnings": []
     },
