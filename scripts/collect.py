@@ -4,6 +4,7 @@ import json, re, os, sys
 from rss_sources import collect_official, company_for
 from avi_ivi import collect_avi_ivi
 from publications import collect_publications
+from regional_general import REGIONAL_QUERIES, keep_general
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -112,18 +113,25 @@ def main():
             news[entry["url"]]=entry
     good=len(official)>0 or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
     count_by_region={}
+    regional_general_count=sum(1 for item in news.values() if item.get("desk")=="regional-general")
     for item in news.values():
-        if item.get("desk") in ("avi-ivi","telugu-patrikalu","english-magazines"):continue
+        if item.get("desk") in ("avi-ivi","telugu-patrikalu","english-magazines","regional-general"):continue
         region=item.get("region") or ""
         count_by_region[region]=count_by_region.get(region,0)+1
     cycle=int(datetime.now(timezone.utc).timestamp()//1800)
     # Check just one query per run: the free GDELT endpoint frequently rate-limits multi-query bursts.
     if count_by_region.get("india",0)<5:
         selected=QUERIES[0]
+        regional_mode=False
     elif count_by_region.get("hyderabad",0)<3:
         selected=QUERIES[1]
+        regional_mode=False
+    elif regional_general_count<20 or cycle%3==0:
+        selected=REGIONAL_QUERIES[cycle%len(REGIONAL_QUERIES)]
+        regional_mode=True
     else:
         selected=QUERIES[cycle%len(QUERIES)]
+        regional_mode=False
     group,q=selected
     now=datetime.now(timezone.utc)
     gdelt_state=dict((old.get("source_status") or {}).get("gdelt") or {})
@@ -137,13 +145,13 @@ def main():
             rows=request(q)
             count=0
             for row in rows:
-                item=keep(row,group)
+                item=keep_general(row,group) if regional_mode else keep(row,group)
                 if item and (item["url"] not in news or dt(item["seen"])>=dt(news[item["url"]].get("seen"))):
                     news[item["url"]]=item
                     count+=1
             good=True
             gdelt_state={"state":"ok","last_attempt":now.isoformat(),"last_success":now.isoformat(),"retry_after":(now+timedelta(minutes=30)).isoformat()}
-            print(group,"received",len(rows),"accepted",count,flush=True)
+            print(("AP/TG general" if regional_mode else group),"received",len(rows),"accepted",count,flush=True)
         except Exception as exc:
             limited=getattr(exc,"code",None)==429
             next_time=now+timedelta(hours=2 if limited else 1)
@@ -162,8 +170,9 @@ def main():
     business_rows=[x for x in rows if x.get("desk","business")=="business"][:925]
     misc_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:225]
     english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:160]
+    regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:180]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
-    rows=sorted(business_rows+misc_rows+english_rows+telugu_rows,key=lambda x:dt(x.get("seen")),reverse=True)
+    rows=sorted(business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
