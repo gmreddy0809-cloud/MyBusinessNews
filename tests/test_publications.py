@@ -32,6 +32,34 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(rows[0]["desk"],"telugu-patrikalu")
         self.assertEqual(rows[0]["source"],"Dharani News • RSS")
 
+    def test_oneindia_official_rss_headline(self):
+        now=datetime.now(timezone.utc)
+        date=now.strftime("%a, %d %b %Y %H:%M:%S +0000")
+        xml=('<rss><channel><item><title>తెలంగాణలో ఆరోగ్యంపై కొత్త కార్యక్రమం వివరాలు</title>'
+          '<link>https://telugu.oneindia.com/news/telangana/health-123456.html</link>'
+          '<pubDate>'+date+'</pubDate><description>Do not store or republish content</description>'
+          '</item></channel></rss>').encode("utf8")
+        rows=publications.parse_feed(xml,"Oneindia Telugu","telugu-patrikalu","health",now)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["source"],"Oneindia Telugu • RSS")
+        self.assertEqual(rows[0]["region"],"telangana")
+        self.assertEqual(rows[0]["sector"],"Health & Wellbeing")
+        self.assertNotIn("description",rows[0])
+        self.assertNotIn("image",rows[0])
+
+    def test_dharani_recent_archive_is_dated_not_first_seen(self):
+        now=datetime.now(timezone.utc)
+        past=now-timedelta(days=15)
+        xml=('<rss><channel><item><title>హైదరాబాద్‌ వార్తలు: తాజా అంశాల విశ్లేషణ</title>'
+          '<link>https://dharaninews.com/hyderabad-story-2341/</link>'
+          '<pubDate>'+past.strftime("%a, %d %b %Y %H:%M:%S +0000")+'</pubDate>'
+          '</item></channel></rss>').encode("utf8")
+        rows=publications.parse_feed(xml,"Dharani News","telugu-patrikalu","general",now)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["time_basis"],"feed")
+        self.assertEqual(rows[0]["region"],"hyderabad")
+        self.assertEqual(rows[0]["seen"][:10],past.date().isoformat())
+
     def test_unlicensed_publisher_links_rejected(self):
         now=datetime.now(timezone.utc)
         xml=('<rss><channel><item><title>Latest Telugu newspaper health story</title>'
