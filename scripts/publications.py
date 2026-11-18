@@ -80,7 +80,7 @@ def title_topic(title,kind,desk):
         return "Lifestyle & Living"
     return topic_for(title,"general") or "World & Society"
 
-def telugu_region(title):
+def telugu_region(title,url=''):
     """Assign regional tag only when a place is explicitly mentioned."""
     if re.search(r"హైదరాబాద్|హైద‌రాబాద్|సికింద్రాబాద్|గచ్చిబౌలి|Hyderabad|Secunderabad",title,re.I):
         return "hyderabad"
@@ -88,6 +88,10 @@ def telugu_region(title):
         return "andhra-pradesh"
     if re.search(r"తెలంగాణ|వరంగల్|కరీంనగర్|ఖమ్మం|Telangana",title,re.I):
         return "telangana"
+    path=urlparse(url).path.lower()
+    if "/andhra-pradesh/" in path or "/ap/" in path:return "andhra-pradesh"
+    if "/telangana/" in path:return "telangana"
+    if "/hyderabad/" in path:return "hyderabad"
     return "india"
 
 def parse_feed(xml,source,desk,kind,now=None):
@@ -106,7 +110,7 @@ def parse_feed(xml,source,desk,kind,now=None):
         out.append({
             "id":url,"url":url,"title":title,"source":source+" • RSS",
             "domain":urlparse(url).hostname.lower().removeprefix("www."),
-            "region":telugu_region(title) if desk=="telugu-patrikalu" else "world",
+            "region":telugu_region(title,url) if desk=="telugu-patrikalu" else "world",
             "sector":title_topic(title,kind,desk),
             "seen":dt.isoformat(),"time_basis":"feed",
             "language":"Telugu" if desk=="telugu-patrikalu" else "English",
