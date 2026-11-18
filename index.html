@@ -202,7 +202,7 @@ body{background:linear-gradient(180deg,#f6f9ff 0%,#f5f9fd 32%,#ffffff 100%)}
             <div class="official-quicklinks">
               <a href="https://www.nseindia.com/companies-listing/corporate-filings-announcements" target="_blank" rel="noopener noreferrer">📊 NSE Announcements ↗</a>
               <a href="https://www.nseindia.com/companies-listing/corporate-filings-financial-results" target="_blank" rel="noopener noreferrer">🧾 NSE Results ↗</a>
-              <a href="https://www.bseindia.com/corporates/ann.html" target="_blank" rel="noopener noreferrer">🏛 BSE Announcements ↗</a>
+              <a href="https://www.bseindia.com/corporates/ann" target="_blank" rel="noopener noreferrer">🏛 BSE Announcements ↗</a>
               <a href="https://www.rbi.org.in/Scripts/rss.aspx" target="_blank" rel="noopener noreferrer">🏦 RBI Updates ↗</a>
             </div>
           </div>
@@ -336,7 +336,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
- $('searchInput').addEventListener('input',e=>{state.search=e.target.value;state.display=25;render()});
+ $('searchInput').addEventListener('input',e=>{if(state.region!=='all'||state.sector!=='all'||state.hours!=='all'){state.region='all';state.sector='all';state.hours='all';$('sectorSelect').value='all';$('timeSelect').value='all';if(location.hash!=='#all')history.replaceState(null,'','#all')}state.search=e.target.value;state.display=25;render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
  $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;render()});
  $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;render()});
