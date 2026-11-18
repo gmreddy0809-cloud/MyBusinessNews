@@ -385,6 +385,73 @@ function matchSearch(item,query){
 function getSaved(){try{return JSON.parse(localStorage.getItem('mbn-saved-v1')||'{}')||{}}catch{return{}}}
 function saveStored(){try{localStorage.setItem('mbn-saved-v1',JSON.stringify(state.saved))}catch{showToast('Browser storage is unavailable')}}
 function savedCount(){return Object.keys(state.saved).length}
+
+/* X Business Watch — free, live search + optional official public timeline embeds */
+const X_WATCH_REGIONS=[
+ {id:'hyderabad',title:'Hyderabad',icon:'🏙️',terms:'("Hyderabad" OR "Secunderabad" OR "Gachibowli")'},
+ {id:'telangana',title:'Telangana',icon:'🌐',terms:'("Telangana" OR "Warangal" OR "Sangareddy")'},
+ {id:'andhra',title:'Andhra Pradesh',icon:'🌊',terms:'("Andhra Pradesh" OR "Visakhapatnam" OR "Amaravati" OR "Vijayawada")'}
+];
+const X_BUSINESS_TOPICS=[
+ ['Latest business','(investment OR business OR startup OR funding OR GCC OR pharma OR expansion)'],
+ ['Investments & projects','(investment OR factory OR manufacturing OR "new plant" OR MoU OR expansion)'],
+ ['Startups & GCCs','(startup OR funding OR GCC OR software OR technology OR hiring)'],
+ ['Pharma & industry','(pharma OR biotechnology OR industry OR hospital OR aerospace OR aviation)']
+];
+const X_PUBLIC_PROFILES=[
+ ['THubHyd','T-Hub · Hyderabad startups','🏙️'],
+ ['InvTGOfficial','Invest Telangana · investments','🌱'],
+ ['AP_EDB','AP Economic Development Board','🏗️']
+];
+function xSearchUrl(query){return 'https://x.com/search?q='+encodeURIComponent(query)+'&src=typed_query&f=live'}
+function setupXWatch(){
+ const host=$('xWatchCards');
+ host.innerHTML=X_WATCH_REGIONS.map(region=>{
+  const links=X_BUSINESS_TOPICS.map(([label,terms])=>'<a href="'+escapeHTML(xSearchUrl(region.terms+' '+terms+' -filter:replies'))+'" target="_blank" rel="noopener noreferrer">'+escapeHTML(label)+' ↗</a>').join('');
+  return '<article class="x-watch-card x-watch-'+escapeHTML(region.id)+'"><div class="x-watch-card-title"><span>'+region.icon+'</span><h4>'+escapeHTML(region.title)+'</h4></div><p>Latest business-related mentions across X</p><div class="x-watch-search-links">'+links+'</div></article>';
+ }).join('');
+ $('xAccountActions').innerHTML=X_PUBLIC_PROFILES.map(([handle,title,icon])=>'<button class="x-profile-load" type="button" data-x-profile="'+escapeHTML(handle)+'">'+icon+' '+escapeHTML(title)+' · Show public posts</button>').join('');
+ $('xAccountActions').addEventListener('click',event=>{
+  const button=event.target.closest('[data-x-profile]');
+  if(button)loadXProfile(button.dataset.xProfile);
+ });
+}
+function loadXProfile(handle){
+ const record=X_PUBLIC_PROFILES.find(([name])=>name===handle);
+ if(!record)return;
+ const slot=$('xTimelineSlot');
+ slot.replaceChildren();
+ const label=document.createElement('div');
+ label.className='x-embed-caption';
+ const direct=document.createElement('a');
+ direct.href='https://x.com/'+handle;
+ direct.target='_blank';direct.rel='noopener noreferrer';
+ direct.textContent='Open @'+handle+' on X ↗';
+ label.textContent=record[1]+' · Public X posts';
+ label.append(' · ',direct);
+ slot.append(label);
+ const timeline=document.createElement('a');
+ timeline.className='twitter-timeline';
+ timeline.href=direct.href;
+ timeline.textContent='Posts by @'+handle;
+ timeline.setAttribute('data-height','450');
+ timeline.setAttribute('data-theme',document.body.classList.contains('dark')?'dark':'light');
+ timeline.setAttribute('data-chrome','nofooter');
+ slot.append(timeline);
+ const run=()=>{if(window.twttr&&window.twttr.widgets&&window.twttr.widgets.load)window.twttr.widgets.load(slot)};
+ if(window.twttr&&window.twttr.widgets){run();return}
+ let loader=document.getElementById('mbn-x-embed-loader');
+ if(!loader){
+  loader=document.createElement('script');
+  loader.id='mbn-x-embed-loader';
+  loader.src='https://platform.twitter.com/widgets.js';
+  loader.async=true;
+  loader.onload=run;
+  loader.onerror=()=>{label.append(' · Embedded view unavailable; use the direct X link.')};
+  document.head.append(loader);
+ }else loader.addEventListener('load',run,{once:true});
+}
+
 function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
 function addressForView(){
  const url=new URL(location.href);
@@ -436,7 +503,7 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(!sourceMatches(item))return false;
  if(state.search&&!matchSearch(item,state.search))return false;return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
-function render(){const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=`${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.length.toLocaleString('en-IN')} in feed`;
+function render(){document.body.classList.toggle('x-watch-open',state.region==='x-watch');const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=state.region==='x-watch'?'𝕏 X Business <span class="heading-light">Watch</span>':`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=`${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.length.toLocaleString('en-IN')} in feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
@@ -526,7 +593,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('searchInput').focus()}if(e.key==='Escape'){$('sidebar').classList.remove('open');$('searchInput').blur()}});
  window.addEventListener('popstate',()=>{restoreView();render()});
  window.addEventListener('hashchange',()=>{restoreView();render()});
- restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
+ setupXWatch();restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
 }
 document.addEventListener('DOMContentLoaded',init);
 })();
