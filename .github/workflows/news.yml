@@ -38,7 +38,12 @@ jobs:
           git add data/news.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh business news feed"
-            git push
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "News index stored in repository"
+            else
+              echo "::warning::Could not save updated feed to repository; continuing with live deploy"
+              git rebase --abort || true
+            fi
           fi
       - name: Prepare static site
         run: |
