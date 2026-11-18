@@ -34,7 +34,7 @@ TOPICS = [
     ("Education & Careers", re.compile(r"school|university|college|student|teacher|education|scholarship|examination|literacy|skills|apprentice|research fellow|curriculum|employment|career|learning", re.I)),
     ("Culture & Heritage", re.compile(r"culture|heritage|museum|festival|\bart\b|literat|\bbooks?\b|author|creative|film|music|historic|tradition|archaeolog|cuisine|crafts|language", re.I)),
     ("Politics & Public Affairs", re.compile(r"parliament|cabinet|election|politic|governance|court|supreme court|legislation|law|policy|constitution|rights|assembly|minister|diplomacy|foreign affairs|democrac|bilateral|treaty", re.I)),
-    ("Lifestyle & Living", re.compile(r"lifestyle|wellbeing|travel|food|fitness|exercise|fashion|touris|beauty|home|housing|sleep|diet|family|parenting|work.life", re.I)),
+    ("Lifestyle & Living", re.compile(r"\blifestyle\b|\bwellbeing\b|\btravel tips\b|\bfood recipes?\b|\brecipe\b|\bcuisine\b|\bfitness\b|\bexercise\b|\bfashion\b|\btouris\w*\b|\bbeauty\b|\bhome decor\b|\bhousing design\b|\bsleep\b|\bdiet\b|\bparenting\b|\bwork.life\b", re.I)),
     ("People & Ideas", re.compile(r"women|youth|community|village|tribal|innovation|volunteer|inspir|empower|social|rural|local hero|people|citizen|livelihood|accessibility", re.I)),
 ]
 LOW_SIGNAL = re.compile(r"^(\s*(?:minister|union minister|secretary|president)\s+(?:greets|congratulates|condoles|extends greetings|visits|attends)\b)|(?:special campaign \d+|swachhata pakhwada|birth anniversary greetings)", re.I)
