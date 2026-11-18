@@ -11,7 +11,7 @@ function harness(url){
    URL,URLSearchParams,
    location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
-   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ'},
+   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines'},
    MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],PUBLISHER_TOPIC_OPTIONS:[['all','Everything'],['Health & Wellbeing','Health'],['Lifestyle & Living','Lifestyle']],
    render(){},refresh(){}
  };
