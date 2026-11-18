@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T18:33:08.691032+00:00",
+  "generated_at": "2026-11-18T18:35:06.221476+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -6318,6 +6318,7 @@
     "The Conversation",
     "Oneindia Telugu",
     "Dharani News",
+    "AMFI",
     "The GDELT Project"
   ],
   "source_status": {
@@ -6351,6 +6352,12 @@
         "Oneindia Telugu": 143,
         "Dharani News": 6
       },
+      "warnings": []
+    },
+    "amfi_rss": {
+      "directory_checked": true,
+      "feeds_found": 1,
+      "accepted": 0,
       "warnings": []
     },
     "dedicated_desks": {
