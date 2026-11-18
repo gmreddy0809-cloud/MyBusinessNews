@@ -296,7 +296,9 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
         <button class="nav-item" data-region="telugu-companies"><span class="nav-emoji">🏢</span> Telugu Companies</button>
         <button class="nav-item" data-region="personal-finance"><span class="nav-emoji">₹</span> Personal Finance</button>
         <button class="nav-item" data-region="x-watch"><span class="nav-emoji">𝕏</span> X Business Watch</button>
-        <button class="nav-item" data-region="avi-ivi"><span class="nav-emoji">✨</span> అవీ ఇవీ <span class="new-nav-pill">NEW</span></button>
+        <button class="nav-item" data-region="avi-ivi"><span class="nav-emoji">✨</span> అవీ ఇవీ</button>
+        <button class="nav-item" data-region="telugu-patrikalu"><span class="nav-emoji">📰</span> తెలుగు పత్రికలు</button>
+        <button class="nav-item" data-region="english-magazines"><span class="nav-emoji">📚</span> English Magazines <span class="new-nav-pill">NEW</span></button>
         <button class="nav-item" data-region="saved"><span class="nav-emoji">☆</span> Saved Stories <span class="nav-count" id="savedNavCount">0</span></button>
       </nav>
       <div class="nav-label sectors-title">NEWS BY SECTOR</div>
@@ -368,6 +370,8 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
             <button class="region-tab" data-region="personal-finance">💰 Personal Finance</button>
             <button class="region-tab" data-region="x-watch">𝕏 X Business Watch</button>
             <button class="region-tab" data-region="avi-ivi">✨ అవీ ఇవీ</button>
+            <button class="region-tab" data-region="telugu-patrikalu">📰 తెలుగు పత్రికలు</button>
+            <button class="region-tab" data-region="english-magazines">📚 English Magazines</button>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
           <section class="source-hub" aria-label="Official sources and India financial dailies">
@@ -414,11 +418,18 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
             <div class="misc-live-search"><div><strong>READ BEYOND THE FEED</strong><span>Magazine features, health, public affairs and Telugu stories — live on Google News</span></div><button id="miscSearchLive" type="button">🔎 Search selected topic live ↗</button></div>
             <div class="misc-filter-group"><strong>CHOOSE A TOPIC</strong><div class="misc-topic-chips" id="miscTopicChips"></div></div>
             <div class="misc-filter-group"><strong>CHOOSE A REGION</strong><div class="misc-area-chips" id="miscAreaChips"></div></div>
-            <div class="misc-source-grid">
-              <section class="misc-source-card"><h4>📚 English magazines &amp; long reads</h4><p>Discover the latest original articles from leading Indian magazines and specialist publications.</p><div class="misc-publication-links" id="miscMagazines"></div><button type="button" id="miscSearchMagazines" class="misc-search-all">Search Indian magazines ↗</button></section>
-              <section class="misc-source-card"><h4>📰 తెలుగు వార్తాపత్రికలు</h4><p>ఈనాడు, సాక్షి, ఆంధ్రజ్యోతి తదితర పత్రికల్లో తాజా కథనాల కోసం వెతకండి.</p><div class="misc-publication-links" id="miscTeluguPapers"></div><button type="button" id="miscSearchTelugu" class="misc-search-all">Search Telugu papers ↗</button></section>
-            </div>
+            <div class="misc-tab-bridge"><span>మీకు నచ్చిన పత్రిక లేదా మ్యాగజైన్‌ నేరుగా తెరవాలా?</span><button type="button" data-region="telugu-patrikalu">📰 తెలుగు పత్రికలు</button><button type="button" data-region="english-magazines">📚 English Magazines</button></div>
             <div class="misc-editorial-note"><strong>Source policy:</strong> Official NASA, WHO, UN News and PIB headlines may appear below when feeds are available. Independent journalism and magazine stories are opened through publisher-specific Google News searches. Press releases are not presented as independent reporting. Publisher permissions and paywalls are respected.</div>
+          </section>
+          <section class="publisher-hub" id="publisherHub" aria-label="Direct publisher homepages and approved RSS headlines">
+            <div class="publisher-headline">
+              <span class="publisher-headline-icon" id="publisherIcon">📰</span>
+              <div><div class="publisher-overline">DIRECT TO THE ORIGINAL PUBLISHER</div><h3 id="publisherHeading">తెలుగు పత్రికలు</h3><p id="publisherSubheading">పత్రిక పేరును క్లిక్ చేస్తే నేరుగా ఆ పత్రిక హోమ్‌పేజీ తెరుచుకుంటుంది.</p></div>
+            </div>
+            <div id="publisherCards" class="publisher-cards"></div>
+            <div class="publisher-rights"><span>✅ Official site link</span><span>🔒 Publisher retains copyright</span><span>📰 RSS only with documented display permission</span></div>
+            <div class="publisher-feed-note" id="publisherFeedNote">అనుమతి ఉన్న RSS కథనాలు కింద కనిపిస్తాయి. మిగిలిన పత్రికలకు నేరుగా హోమ్‌పేజీ లింకులు అందుబాటులో ఉంటాయి.</div>
+            <div class="publisher-life-chips" id="publisherLifeChips"></div>
           </section>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
@@ -434,7 +445,7 @@ body.avi-ivi-open .news-meta .tag{background:#f8edf5;color:#a04f85}
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'Telugu States Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
