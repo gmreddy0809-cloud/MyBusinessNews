@@ -20,8 +20,12 @@ from avi_ivi import topic_for
 # - Dharani News explicitly supports RSS for aggregators, with attribution
 #   and original link. Public link-only, informational use; not for
 #   unauthorized mass republication or future monetization.
-# - Eenadu, Sakshi, Andhrajyothy, Samayam, India Today, TOI, IE etc.
-#   intentionally excluded until explicit public display permission.
+# - Oneindia Telugu maintains publisher-operated RSS subscriptions at
+#   https://telugu.oneindia.com/rss.html. Extract only the source-attributed
+#   headline and direct link, never text, photos, feed descriptions or snippets.
+#   Its RSS availability is not permission to republish full stories.
+# - Eenadu, Sakshi, Andhrajyothy, Samayam, Namasthe Telangana etc.
+#   excluded from RSS ingestion without clear external-display permission.
 FEEDS=[
  ("The Conversation", "https://theconversation.com/articles.atom?language=en", "english-magazines", "general"),
  ("The Conversation Health", "https://theconversation.com/au/health/articles.atom", "english-magazines", "health"),
@@ -30,9 +34,15 @@ FEEDS=[
  ("The Conversation Australia", "https://theconversation.com/au/articles.atom", "english-magazines", "general"),
  ("The Conversation Environment", "https://theconversation.com/au/environment/articles.atom", "english-magazines", "Environment & Nature"),
  ("The Conversation Education", "https://theconversation.com/uk/education/articles.atom", "english-magazines", "Education & Careers"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/oneindia-telugu-fb.xml", "telugu-patrikalu", "general"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/telugu-news-fb.xml", "telugu-patrikalu", "general"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/telugu-health-fb.xml", "telugu-patrikalu", "health"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/telugu-science-technology-fb.xml", "telugu-patrikalu", "Science & Space"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/education-jobs-fb.xml", "telugu-patrikalu", "Education & Careers"),
+ ("Oneindia Telugu", "https://telugu.oneindia.com/rss/feeds/telugu-entertainment-fb.xml", "telugu-patrikalu", "Culture & Heritage"),
  ("Dharani News", "https://dharaninews.com/feed/", "telugu-patrikalu", "general"),
 ]
-DOMAINS={"english-magazines":("theconversation.com",),"telugu-patrikalu":("dharaninews.com",)}
+DOMAINS={"english-magazines":("theconversation.com",),"telugu-patrikalu":("dharaninews.com","telugu.oneindia.com")}
 ATOM="{http://www.w3.org/2005/Atom}"
 RSS_MAX_BYTES=1_300_000
 
@@ -62,13 +72,23 @@ def find_link(node):
 
 def title_topic(title,kind,desk):
     if kind=="health":return "Health & Wellbeing"
-    if kind in ("Culture & Heritage","Education & Careers","Environment & Nature"):return kind
+    if kind in ("Culture & Heritage","Education & Careers","Environment & Nature","Science & Space"):return kind
     if desk=="telugu-patrikalu":return "Telugu News"
     if re.search(r"\b(?:acupuncture|weight loss|nutrition|acne|vaccine|vaccination|blood pressure|mental health|diabetes|medical|health|disease|heart health|gut bacteria)\b",title,re.I):
         return "Health & Wellbeing"
     if re.search(r"\b(?:sleep|recipes?|cooking|eating|foods?|groceries|meal|organic|holiday|travel|backpackers?|tourism|parents?|parenting|families|family|baby|garden|hobbies|fashion|wellness|diet|fitness|beauty tips|vacation|work.life|healthy living)\b",title,re.I):
         return "Lifestyle & Living"
     return topic_for(title,"general") or "World & Society"
+
+def telugu_region(title):
+    """Assign regional tag only when a place is explicitly mentioned."""
+    if re.search(r"హైదరాబాద్|హైద‌రాబాద్|సికింద్రాబాద్|గచ్చిబౌలి|Hyderabad|Secunderabad",title,re.I):
+        return "hyderabad"
+    if re.search(r"ఆంధ్రప్రదేశ్|ఆంధ్ర ప్రదేశ్|అమరావతి|విశాఖపట్నం|విజయవాడ|తిరుపతి|Andhra Pradesh",title,re.I):
+        return "andhra-pradesh"
+    if re.search(r"తెలంగాణ|వరంగల్|కరీంనగర్|ఖమ్మం|Telangana",title,re.I):
+        return "telangana"
+    return "india"
 
 def parse_feed(xml,source,desk,kind,now=None):
     now=now or datetime.now(timezone.utc)
@@ -82,11 +102,11 @@ def parse_feed(xml,source,desk,kind,now=None):
         dt=feed_date(raw)
         # A missing date must not make an older magazine article look newly
         # published. Keep only feed-stamped items, no inferred publication date.
-        if not dt or dt>now+timedelta(hours=2) or dt<now-timedelta(days=7):continue
+        if not dt or dt>now+timedelta(hours=2) or dt<now-timedelta(days=30 if source=="Dharani News" else 7):continue
         out.append({
             "id":url,"url":url,"title":title,"source":source+" • RSS",
             "domain":urlparse(url).hostname.lower().removeprefix("www."),
-            "region":"india" if desk=="telugu-patrikalu" else "world",
+            "region":telugu_region(title) if desk=="telugu-patrikalu" else "world",
             "sector":title_topic(title,kind,desk),
             "seen":dt.isoformat(),"time_basis":"feed",
             "language":"Telugu" if desk=="telugu-patrikalu" else "English",
@@ -108,7 +128,7 @@ def collect_publications():
             items=parse_feed(payload,name,desk,kind)
             links.extend(items)
             status["successful_feeds"]+=1
-            status["counts"][name]=len(items)
+            status["counts"][name]=status["counts"].get(name,0)+len(items)
             print("Permitted RSS",name,"items",len(items),"bytes",len(payload),flush=True)
             if not items and desk=="telugu-patrikalu":
                 sample=[]
