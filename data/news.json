@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T18:28:09.937199+00:00",
+  "generated_at": "2026-11-18T18:31:22.807060+00:00",
   "articles": [
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63997",
@@ -6326,18 +6326,17 @@
       "state": "cooldown",
       "retry_after": "2026-11-18T19:34:16.974748+00:00"
     },
-    "official_rss_matches": 29,
+    "official_rss_matches": 16,
     "avi_ivi": {
-      "successful_feeds": 4,
+      "successful_feeds": 5,
       "feed_matches": {
         "PIB India": 0,
+        "NASA": 10,
         "WHO": 0,
         "UN News": 0,
         "UN News Climate": 0
       },
-      "warnings": [
-        "NASA: HTTP Error 429: Too Many Requests"
-      ]
+      "warnings": []
     },
     "publications": {
       "successful_feeds": 14,
