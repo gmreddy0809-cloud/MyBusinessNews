@@ -12,7 +12,7 @@ function harness(url){
    location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
    REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ'},
-   MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],
+   MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],PUBLISHER_TOPIC_OPTIONS:[['all','Everything'],['Health & Wellbeing','Health'],['Lifestyle & Living','Lifestyle']],
    render(){},refresh(){}
  };
  function navigate(_state,_title,path){context.location=new URL(path,context.location.href)}
@@ -52,6 +52,20 @@ assert.equal(magazine.state.region,'avi-ivi','F5 lost Avii Ivii tab');
 assert.equal(magazine.state.miscTopic,'Health & Wellbeing','F5 lost magazine topic');
 assert.equal(magazine.state.miscArea,'telugu','F5 lost magazine area');
 assert(html.includes('id="miscHub"'),'Avii Ivii panel missing');
+assert(html.includes('data-region="telugu-patrikalu"'),'Telugu Patrikalu tab missing');
+assert(html.includes('data-region="english-magazines"'),'English Magazines tab missing');
+run("setRegion('telugu-patrikalu')",a);
+let telugu=harness(a.location.href);run('restoreView()',telugu);
+assert.equal(telugu.state.region,'telugu-patrikalu','F5 lost Telugu paper reader');
+run("setRegion('english-magazines')",a);
+a.state.publicationTopic='Health & Wellbeing';run('saveView(true)',a);
+assert.equal(a.location.searchParams.get('pubtopic'),'Health & Wellbeing');
+let mag=harness(a.location.href);run('restoreView()',mag);
+assert.equal(mag.state.region,'english-magazines','F5 lost English magazine reader');
+assert.equal(mag.state.publicationTopic,'Health & Wellbeing','F5 lost lifestyle category');
+assert(html.includes('https://www.eenadu.net/'),'Direct Eenadu homepage link missing');
+assert(html.includes('https://www.indiatoday.in/'),'Direct India Today homepage link missing');
+
 assert(html.includes('id="xWatchPanel"'),'X Business Watch panel missing');
 assert(html.includes('https://platform.twitter.com/widgets.js'),'Official X embed loader missing');
 assert(html.includes('InvTGOfficial')&&html.includes('THubHyd')&&html.includes('AP_EDB'),'Regional source profiles missing');
