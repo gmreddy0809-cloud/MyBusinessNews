@@ -26,7 +26,7 @@ jobs:
       - name: Test deep links and F5 view restoration
         run: node tests/url-state.test.cjs
       - name: Verify official RSS timestamps and company matching
-        run: python -m unittest discover -s tests -p "test_newsroom.py"
+        run: python -m unittest discover -s tests -p "test_*.py"
       - name: Prepare website
         run: |
           mkdir -p public/data
