@@ -20,8 +20,8 @@ FEEDS=[
 # Curated coverage groups for editorial monitoring, not a definitive census of listed companies.
 # Company aliases are matched in BOTH exchange titles and descriptions.
 TRACKED=[
- ("hyderabad",["Dr Reddy","DRREDDY","Aurobindo Pharma","AUROPHARMA","Divi's Laboratories","DIVISLAB","Granules India","GRANULES","Gland Pharma","GLAND","Natco Pharma","NATCOPHARM","Laurus Labs","LAURUSLABS","Neuland Laboratories","NEULANDLAB","Suven Pharmaceuticals","SUVENPHAR","Cyient","CYIENT","CCL Products","CCL","Zen Technologies","ZENTEC","Apollo Micro Systems","APOLLOMICRO","MTAR Technologies","MTARTECH","Bharat Dynamics","BDL","KIMS Hospitals","Krishna Institute of Medical Sciences","KIMS","Rainbow Childrens","RAINBOW","Medplus Health","MEDPLUS","Vijaya Diagnostic","VIJAYA","Nava Limited","NAVA","Heritage Foods","HERITGFOOD","Zaggle","ZAGGLE","KNR Constructions","KNRCON","Pennar Industries","PENIND","Tanla Platforms","TANLA","VST Industries","VSTIND","Pokarna","POKARNA","NCC Limited","NCC","Sai Silks","SAIL","VST Industries"] ),
- ("andhra-pradesh",["Amara Raja","AMARAJABAT","ARE&M","Andhra Paper","ANDHRAPAP","Andhra Sugars","ANDHRSUGAR","Avanti Feeds","AVANTIFEED"]),
+ ("hyderabad",["Dr Reddy","DRREDDY","Aurobindo Pharma","AUROPHARMA","Divi's Laboratories","DIVISLAB","Granules India","GRANULES","Gland Pharma","GLAND","Natco Pharma","NATCOPHARM","Laurus Labs","LAURUSLABS","Neuland Laboratories","NEULANDLAB","Suven Pharmaceuticals","SUVENPHAR","Cyient","CYIENT","CCL Products","CCL","Zen Technologies","ZENTEC","Apollo Micro Systems","APOLLOMICRO","MTAR Technologies","MTARTECH","Bharat Dynamics","BDL","KIMS Hospitals","Krishna Institute of Medical Sciences","KIMS","Rainbow Childrens","RAINBOW","Medplus Health","MEDPLUS","Vijaya Diagnostic","VIJAYA","Nava Limited","NAVA","Heritage Foods","HERITGFOOD","Zaggle","ZAGGLE","KNR Constructions","KNRCON","Pennar Industries","PENIND","Tanla Platforms","TANLA","VST Industries","VSTIND","Pokarna","POKARNA","NCC Limited","NCC","Sai Silks","SAIL","Astra Microwave","ASTRAMICRO","Dodla Dairy","DODLA","Azad Engineering","Vimta Labs","VIMTALABS","Kaveri Seed","KSCL","NMDC","Mishra Dhatu Nigam","MIDHANI"] ),
+ ("andhra-pradesh",["Amara Raja","AMARAJABAT","ARE&M","Andhra Paper","ANDHRAPAP","Andhra Sugars","ANDHRSUGAR","Avanti Feeds","AVANTIFEED","Apex Frozen Foods","Coastal Corporation"]),
 ]
 # Disallow short unqualified aliases matching ordinary English words.
 SHORT_ALIASES={"ccl","kims","bdl","ncc","sail","nava","gland"}
@@ -67,8 +67,21 @@ def fetch_one(source,url,kind):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; public official RSS headline index)","Accept":"application/rss+xml, application/xml, text/xml;q=0.9,*/*;q=0.1"})
     with urlopen(req,timeout=18) as response:
         xml=response.read(2_500_000)
-    root=ET.fromstring(xml)
-    items=root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
+    try:
+        root=ET.fromstring(xml)
+        items=root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
+    except ET.ParseError as error:
+        # A busy BSE RSS endpoint may return a truncated XML response.
+        # Recover complete item elements only; never invent missing rows.
+        print("RSS partial XML, recovering complete items",source,str(error),file=sys.stderr,flush=True)
+        items=[]
+        wrapper=b'<root xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">'
+        for raw in re.findall(rb"<item(?:\s[^>]*)?>[\s\S]*?</item>",xml,re.I):
+            try:
+                node=ET.fromstring(wrapper+raw+b"</root>")[0]
+                items.append(node)
+            except ET.ParseError:
+                continue
     now=datetime.now(timezone.utc)
     entries=[]
     for node in items:
