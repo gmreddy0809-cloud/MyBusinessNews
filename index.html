@@ -382,7 +382,7 @@ const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & F
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
 const GDELT_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
-const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
+const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
 const $ = id => document.getElementById(id);
 const escapeHTML = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isHttp = s => {try {const u=new URL(s);return u.protocol==='https:'||u.protocol==='http:'}catch{return false}};
@@ -415,7 +415,7 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
  ['Economy & Policy',/economy|inflation|gdp\b|budget|government policy|export|import|tariff|trade agreement|fiscal|economic growth|central bank/]
  ];return patterns.find(([,re])=>re.test(x))?.[0]||'Other Business';}
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
-function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||''};}
+function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business'};}
 
 const FINANCIAL_DAILIES=[
  ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
@@ -599,15 +599,17 @@ function setupMiscHub(){
  $('miscSearchTelugu').addEventListener('click',()=>searchCollection(MISC_TELUGU_PAPERS));
 }
 
-function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
+function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.miscTopic='all';state.miscArea='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
 function addressForView(){
  const url=new URL(location.href);
- for(const param of ['sector','q','hours','sort','origin'])url.searchParams.delete(param);
+ for(const param of ['sector','q','hours','sort','origin','topic','area'])url.searchParams.delete(param);
  if(state.sector!=='all')url.searchParams.set('sector',state.sector);
  if(state.search)url.searchParams.set('q',state.search);
  if(state.hours!=='all')url.searchParams.set('hours',state.hours);
  if(state.sort!=='newest')url.searchParams.set('sort',state.sort);
  if(state.origin!=='all')url.searchParams.set('origin',state.origin);
+ if(state.region==='avi-ivi'&&state.miscTopic!=='all')url.searchParams.set('topic',state.miscTopic);
+ if(state.region==='avi-ivi'&&state.miscArea!=='all')url.searchParams.set('area',state.miscArea);
  url.hash=state.region==='all'?'all':state.region;
  return url.pathname+url.search+url.hash;
 }
@@ -621,6 +623,8 @@ function restoreView(){
  state.hours=['all','24','48','168'].includes(q.get('hours'))?q.get('hours'):'all';
  state.sort=['newest','oldest','source'].includes(q.get('sort'))?q.get('sort'):'newest';
  state.origin=['all','official','exchange','publisher','nse','bse','rbi'].includes(q.get('origin'))?q.get('origin'):'all';
+ state.miscTopic=MISC_TOPICS.some(([id])=>id===q.get('topic'))?q.get('topic'):'all';
+ state.miscArea=MISC_AREAS.some(([id])=>id===q.get('area'))?q.get('area'):'all';
  state.display=25;
  $('sectorSelect').value=state.sector;
  $('searchInput').value=state.search;
@@ -645,22 +649,26 @@ function timeLabel(item){
  const kind=item.time_basis==='feed'?'Feed date':item.time_basis==='first_seen'?'First seen':'Indexed';
  return kind+' · '+formatIST(item.seen);
 }
-function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{if(state.region!=='all'&&state.region!=='saved'){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isTeluguCompanyStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
+function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{
+ if(state.region==='avi-ivi'){if(!miscFiltered(item))return false;}else if(state.region!=='saved'&&item.desk==='avi-ivi')return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isTeluguCompanyStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(!sourceMatches(item))return false;
  if(state.search&&!matchSearch(item,state.search))return false;return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
-function render(){document.body.classList.toggle('x-watch-open',state.region==='x-watch');const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=state.region==='x-watch'?'𝕏 X Business <span class="heading-light">Watch</span>':`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=`${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.length.toLocaleString('en-IN')} in feed`;
+function render(){document.body.classList.toggle('x-watch-open',state.region==='x-watch');document.body.classList.toggle('avi-ivi-open',state.region==='avi-ivi');const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=state.region==='x-watch'?'𝕏 X Business <span class="heading-light">Watch</span>':`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=state.region==='avi-ivi'?`${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:`${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk!=='avi-ivi').length.toLocaleString('en-IN')} in business feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
+ document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
+ document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
+ $('feedDescription').textContent=state.region==='avi-ivi'?'Curated links from official public sources. Explore independent English magazines and Telugu papers above.':'Original-source business headlines and official filings, indexed and refreshed automatically.';
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
- const total=state.stories;
+ const total=state.stories.filter(x=>x.desk!=='avi-ivi');
  $('pulseTelugu').textContent=total.filter(isTeluguCompanyStory).length.toLocaleString('en-IN');
  $('pulsePF').textContent=total.filter(isPersonalFinanceStory).length.toLocaleString('en-IN');
  $('pulseOfficial').textContent=total.filter(isOfficialStory).length.toLocaleString('en-IN');
  $('pulseFresh').textContent=total.filter(x=>dateKey(x.seen)>Date.now()-24*3600000).length.toLocaleString('en-IN');
  let list=visible.slice(0,state.display);$('loadMore').hidden=visible.length<=state.display;
- if(state.isFetching&&!state.stories.length){$('newsList').innerHTML='<div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div>';}else if(!visible.length){let detail=state.lastError?'Could not reach the news feed right now. Please refresh or try again later.':'Try another region, sector, or search term.';if(state.region==='saved')detail='Use the bookmark button on stories to save them here in this browser.';$('newsList').innerHTML=`<div class="empty-state"><div style="font-size:35px">◈</div><h3>${state.lastError?'Source temporarily unavailable':'No stories in this view'}</h3><p>${escapeHTML(detail)}</p>${state.lastError?'<p>More news: <a target="_blank" rel="noopener noreferrer" href="https://www.gdeltproject.org/">GDELT</a> · <a target="_blank" rel="noopener noreferrer" href="https://pib.gov.in/">PIB</a></p>':''}</div>`;}else{
+ if(state.isFetching&&!state.stories.length){$('newsList').innerHTML='<div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div>';}else if(!visible.length){let detail=state.lastError?'Could not reach the news feed right now. Please refresh or try again later.':'Try another region, sector, or search term.';if(state.region==='saved')detail='Use the bookmark button on stories to save them here in this browser.';if(state.region==='avi-ivi')detail='No official-source stories match these filters yet. Try another topic or explore magazines and Telugu newspapers above.';$('newsList').innerHTML=`<div class="empty-state"><div style="font-size:35px">◈</div><h3>${state.lastError?'Source temporarily unavailable':'No stories in this view'}</h3><p>${escapeHTML(detail)}</p>${state.lastError?'<p>More news: <a target="_blank" rel="noopener noreferrer" href="https://www.gdeltproject.org/">GDELT</a> · <a target="_blank" rel="noopener noreferrer" href="https://pib.gov.in/">PIB</a></p>':''}</div>`;}else{
  $('newsList').innerHTML=list.map(item=>{const saved=Boolean(state.saved[item.id]);const regionLabel=REGION_NAMES[item.region]?.replace(' Business News','')||'World';const href=escapeHTML(safeURL(item.url));return `<article class="news-article"><div class="story-icon" aria-hidden="true">${escapeHTML(ICONS[item.sector]||'◈')}</div><div><div class="news-meta"><span class="tag">${escapeHTML(item.sector)}</span><span class="source">${escapeHTML(item.source)}</span><span class="time">◷ ${escapeHTML(timeLabel(item))}</span><span class="region-label">${escapeHTML(regionLabel)}</span></div><a class="news-title" href="${href}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)} ↗</a><p class="news-desc">Read the original story at ${escapeHTML(item.domain)}. External publisher access rules may apply.</p></div><div class="story-actions"><button class="save-btn ${saved?'saved':''}" data-save="${escapeHTML(item.id)}" title="${saved?'Remove saved story':'Save story'}" aria-label="${saved?'Remove saved story':'Save story'}">${saved?'★':'☆'}</button><a class="open-btn" href="${href}" target="_blank" rel="noopener noreferrer" title="Open original story" aria-label="Open original story">↗</a></div></article>`}).join('');
  }
  const help=$('webSearchHelp'),term=state.search.trim();
@@ -719,7 +727,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open')}));
- $('searchInput').addEventListener('input',e=>{if(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all'){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
+ $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
  $('timeSelect').addEventListener('change',e=>{state.hours=e.target.value;state.display=25;saveView(true);render()});
  $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;saveView(true);render()});
@@ -740,7 +748,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('searchInput').focus()}if(e.key==='Escape'){$('sidebar').classList.remove('open');$('searchInput').blur()}});
  window.addEventListener('popstate',()=>{restoreView();render()});
  window.addEventListener('hashchange',()=>{restoreView();render()});
- setupXWatch();restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
+ setupXWatch();setupMiscHub();restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
 }
 document.addEventListener('DOMContentLoaded',init);
 })();
