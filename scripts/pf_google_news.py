@@ -67,11 +67,14 @@ PF_EXCLUDE=re.compile(
     r'movie|film star|box office|celebrity|'
     r'insurance broker buyouts|military retirement ceremony|'
     r'judicial officers retirement age|retirement age of.*judicial|forced retirement|'
-    r'business news live, share market news|latest finance news, ipo)\b)',
+    r'business news live, share market news|latest finance news, ipo|'
+    r'checking my bank account|regular plan portfolio)\b)',
     re.I
 )
 def pf_editorial_match(title):
-    return not PF_EXCLUDE.search(title) and bool(pf_match(title) or PF_EXTRA.search(title))
+    clean=(title or "").strip()
+    if len(clean)<28 or (len(clean)<85 and clean.isupper()):return False
+    return not PF_EXCLUDE.search(clean) and bool(pf_match(clean) or PF_EXTRA.search(clean))
 
 PF_TOPICS=(
  '("personal finance" OR "income tax" OR "tax refund" OR "tax saving" OR "tax return" OR ITR)',
