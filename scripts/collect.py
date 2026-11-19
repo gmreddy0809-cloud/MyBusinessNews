@@ -10,6 +10,7 @@ from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_pub
 from amfi_official import collect_amfi
 from pf_google_news import collect_personal_finance, pf_editorial_match
 from regional_google_news import collect_regional
+from hyderabad_business_news import collect_hyderabad_business
 from snippets import enrich
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -93,7 +94,7 @@ def request(query):
 def main():
     try: old=json.loads(DEST.read_text(encoding="utf-8"))
     except Exception:old={"articles":[]}
-    news={x["url"]:x for x in old.get("articles",[]) if x.get("url") and not (x.get("origin")=="google-news-rss" and not pf_editorial_match(x.get("title","")))}
+    news={x["url"]:x for x in old.get("articles",[]) if x.get("url") and not (x.get("origin")=="google-news-rss" and x.get("desk")=="personal-finance" and not pf_editorial_match(x.get("title","")))}
     official=collect_official()
     for entry in official:
         if pf_match(entry.get("title","")):
@@ -171,6 +172,16 @@ def main():
                 if not entry.get(field) and prev.get(field):
                     entry[field]=prev[field]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
+            news[entry["url"]]=entry
+    # Regional-business discovery for Hyderabad GCCs, unlisted pharma and startups.
+    hyd_business_rows,hyd_business_status=collect_hyderabad_business()
+    for entry in hyd_business_rows:
+        previous=news.get(entry["url"])
+        if previous:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and previous.get(key):
+                    entry[key]=previous[key]
+        if not previous or dt(entry["seen"])>=dt(previous.get("seen")):
             news[entry["url"]]=entry
     good=bool(pf_discovery_status["successful_feeds"] or official or amfi_rows) or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
     count_by_region={}
@@ -262,7 +273,7 @@ def main():
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     snippet_status=enrich(rows)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"regional_discovery":regional_discovery_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"world_discovery":world_discovery_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"regional_discovery":regional_discovery_status,"hyderabad_business_discovery":hyd_business_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"world_discovery":world_discovery_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
