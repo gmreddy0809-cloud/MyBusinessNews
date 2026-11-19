@@ -49,7 +49,7 @@ PF_SOURCES=(
 # evidence of a personal-finance story. Keep household-money, consumer credit,
 # retirement, insurance, taxes and investor decision topics, not macro stories.
 PF_EXTRA=re.compile(
-    r'(?:\b(?:investing|investments?|investment strategy|asset allocation|portfolio|'
+    r'(?:\b(?:investing|investment strategy|asset allocation|portfolio|'
     r'wealth|taxpayer|taxation|\bitat\b|\bltcg\b|\bstcg\b|'
     r'gold prices?|gold rates?|silver prices?|gold jewellery|'
     r'government bonds?|\bnsc\b|dearness allowance|\bda hike\b|'
@@ -62,8 +62,15 @@ PF_EXTRA=re.compile(
     r'పొదుపు|బీమా|పన్ను|రుణం|పెన్షన్|మ్యూచువల్|బంగారం|వడ్డీ)',
     re.I
 )
+PF_EXCLUDE=re.compile(
+    r'(?:\b(?:ipl|cricket|football|tennis|athlete|sportsperson|'
+    r'movie|film star|box office|celebrity|'
+    r'insurance broker buyouts|military retirement ceremony|'
+    r'judicial officers retirement age)\b)',
+    re.I
+)
 def pf_editorial_match(title):
-    return bool(pf_match(title) or PF_EXTRA.search(title))
+    return not PF_EXCLUDE.search(title) and bool(pf_match(title) or PF_EXTRA.search(title))
 
 PF_TOPICS=(
  '("personal finance" OR "income tax" OR "tax refund" OR "tax saving" OR "tax return" OR ITR)',
