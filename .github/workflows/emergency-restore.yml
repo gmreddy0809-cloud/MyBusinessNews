@@ -1,0 +1,48 @@
+name: Emergency restore MyBusinessNews site
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/emergency-restore.yml'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: mybusinessnews-pages
+  cancel-in-progress: true
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 10
+    steps:
+      - name: Checkout known good news data and repaired page
+        uses: actions/checkout@v4
+      - name: Validate available data and restored page
+        run: |
+          python - <<'PY'
+          import json,re,pathlib
+          data=json.loads(pathlib.Path("data/news.json").read_text(encoding="utf-8"))
+          assert isinstance(data.get("articles"),list) and len(data["articles"])>0, "Empty news data"
+          page=pathlib.Path("index.html").read_text(encoding="utf-8")
+          assert 'Independent news-list recovery' in page
+          assert 'Listed Cos.' in page and 'Telugu Cos.' not in page
+          print("Restoring",len(data["articles"]),"headlines with working recovery UI")
+          PY
+          mkdir -p public/data
+          cp index.html public/index.html
+          cp data/news.json public/data/news.json
+          touch public/.nojekyll
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload restored site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Deploy restored site
+        id: deployment
+        uses: actions/deploy-pages@v4
