@@ -98,18 +98,24 @@ def collect_hyderabad_business(cycle=None):
     selected=[QUERIES[(cycle*6+i)%len(QUERIES)] for i in range(6)]
     status={"queries":len(selected),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     out={}
-    for term in selected:
+    from concurrent.futures import ThreadPoolExecutor
+    def fetch_topic(term):
         url=BASE+"?"+urlencode({"q":"("+term+") when:7d","hl":"en-IN","gl":"IN","ceid":"IN:en"})
         try:
             req=Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; attributed local business headline discovery)","Accept":"application/rss+xml,application/xml,text/xml;q=0.9"})
-            with urlopen(req,timeout=14) as resp:xml=resp.read(1_600_000)
-            items=parse(xml)
+            with urlopen(req,timeout=12) as resp:xml=resp.read(1_600_000)
+            return parse(xml),None
+        except Exception as exc:
+            return [],type(exc).__name__+": "+str(exc)[:90]
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        for items,error in pool.map(fetch_topic,selected):
+            if error:
+                status["warnings"].append(error)
+                print("Hyderabad business RSS discovery unavailable",error,file=sys.stderr)
+                continue
             status["successful_feeds"]+=1
             for item in items:
                 out[item["url"]]=item
                 status["by_source"][item["source"]]=status["by_source"].get(item["source"],0)+1
-        except Exception as exc:
-            status["warnings"].append(type(exc).__name__+": "+str(exc)[:90])
-            print("Hyderabad business RSS discovery unavailable",type(exc).__name__,str(exc)[:90],file=sys.stderr)
     status["accepted"]=len(out)
     return list(out.values()),status
