@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-19T11:22:31.607426+00:00",
+  "generated_at": "2026-11-19T11:23:46.708452+00:00",
   "articles": [
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
       "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
-      "title": "Avanti Feeds Ltd (512573) — Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ende",
+      "title": "Avanti Feeds Ltd-$ (512573) — Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ende",
       "source": "BSE • Official",
       "domain": "www.bseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-19T11:21:55.283721+00:00",
+      "seen": "2026-11-19T11:23:10.891993+00:00",
       "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
@@ -24,7 +24,7 @@
       "domain": "nsearchives.nseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-19T11:21:52.671060+00:00",
+      "seen": "2026-11-19T11:23:07.581725+00:00",
       "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
@@ -240,22 +240,6 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
-      "title": "Invest in NFO on Coin - Zerodha Coin",
-      "source": "Zerodha Coin • Google News",
-      "domain": "coin.zerodha.com",
-      "region": "india",
-      "sector": "Personal Finance",
-      "desk": "personal-finance",
-      "seen": "2026-11-19T10:23:45+00:00",
-      "time_basis": "google_rss",
-      "language": "English",
-      "origin": "google-news-rss",
-      "link_type": "google-news-redirect",
-      "sourcecountry": "India"
     },
     {
       "id": "https://telugu.oneindia.com/news/telangana/tpcc-chief-mahesh-kumar-goud-key-comments-on-rajagopal-reddy-anirudh-reddy-issue-everyone-equal-be-515653.html",
@@ -1916,6 +1900,22 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "title": "Invest in NFO on Coin - Zerodha Coin",
+      "source": "Zerodha Coin • Google News",
+      "domain": "coin.zerodha.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-18T22:27:49+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
     },
     {
       "id": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
@@ -12739,24 +12739,32 @@
   "source_status": {
     "personal_finance_discovery": {
       "queries": 10,
-      "successful_feeds": 10,
+      "successful_feeds": 9,
       "accepted": 27,
       "by_source": {
         "Groww": 1,
-        "Zerodha": 5,
+        "Zerodha": 4,
         "Business Standard PF page": 13,
         "India-wide PF": 11
       },
-      "warnings": [],
+      "warnings": [
+        "Zerodha: HTTPError: HTTP Error 429: Too Many Requests"
+      ],
       "discovery": "google-news-rss"
     },
     "telugu_snippets": {
-      "configured": false,
-      "provider": "none",
-      "attempted": 0,
+      "configured": true,
+      "provider": "github",
+      "attempted": 50,
       "completed": 0,
       "pending": 845,
-      "errors": []
+      "errors": [
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+      ]
     },
     "gdelt": {
       "state": "cooldown",
