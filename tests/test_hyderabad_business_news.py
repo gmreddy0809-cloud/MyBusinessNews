@@ -30,6 +30,30 @@ class HyderabadBusinessTests(unittest.TestCase):
         self.assertEqual(results[0]["sector"],"Pharma & Life Sciences")
         self.assertEqual(results[0]["time_basis"],"google_rss")
 
+    def test_listed_editorial_headline_is_flagged_for_both_tabs(self):
+        xml=('<rss><channel><item>'
+             '<title>Cyient announces major technology partnership and investment</title>'
+             '<link>https://news.google.com/rss/articles/CYIENT_EXAMPLE</link>'
+             '<pubDate>Thu, 19 Nov 2026 09:00:00 GMT</pubDate>'
+             '<source url="https://example.com">Example News</source>'
+             '</item></channel></rss>').encode()
+        rows=parse(xml,now=datetime(2026,11,19,12,tzinfo=timezone.utc))
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["region"],"hyderabad")
+        self.assertTrue(rows[0]["listed_company"])
+
+    def test_unlisted_biosol_remains_hyderabad_but_not_listed(self):
+        xml=('<rss><channel><item>'
+             '<title>BE Biosol and Gates Foundation sign partnership agreement</title>'
+             '<link>https://news.google.com/rss/articles/BIOSOL_EXAMPLE</link>'
+             '<pubDate>Thu, 19 Nov 2026 09:00:00 GMT</pubDate>'
+             '<source url="https://example.com">Example News</source>'
+             '</item></channel></rss>').encode()
+        rows=parse(xml,now=datetime(2026,11,19,12,tzinfo=timezone.utc))
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["region"],"hyderabad")
+        self.assertFalse(rows[0]["listed_company"])
+
     def test_unrelated_country_news_not_regional(self):
         xml=('<rss><channel><item>'
              '<title>International vaccine manufacturer expands production</title>'
