@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-11-19T11:38:48.764482+00:00",
+  "generated_at": "2026-11-19T11:44:33.446509+00:00",
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQU0piWVFqLXRENUR3dWpSTzdXbUZ1Rko2SC1MWHNVRi1vYzlGWGVLU1RaVUJOQkRnT1BIeTRoblVobXBQbkZpbFhwWDZZNjJLd1U4cjRJbHhXT0NqamxzM2hjRzM4NWxhS0VMSzNnbXVmclowNUNadUE4alF2UmlXNm82akRROFBPYXlLa09KRFRfazRHQnNjNk50c1B4ekFFLTNGa0tnajU3OFJzU0xN0gG0AUFVX3lxTE15djI0UFdTLTkxNEtEU3NodkU5ckVNMzJRdWJVX3NKeVd0SmJmNE9qUmVQc21BQnI5eUJ2d2I3Qnp5NEdIRnlQNVA4MGg3MW8tX28xVlNUVl9kaEZVenNqSjZvYml2M1ctWktNQWJfRHU0MEVrQ3k1QVlfRHp4NzVWaE5wUWI2ZE14N1dnTWc3dnl1QXRiRFlmbGxVZm5IVjNoQlVVMU01NTBFSHlRN3FDT0hJcw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQU0piWVFqLXRENUR3dWpSTzdXbUZ1Rko2SC1MWHNVRi1vYzlGWGVLU1RaVUJOQkRnT1BIeTRoblVobXBQbkZpbFhwWDZZNjJLd1U4cjRJbHhXT0NqamxzM2hjRzM4NWxhS0VMSzNnbXVmclowNUNadUE4alF2UmlXNm82akRROFBPYXlLa09KRFRfazRHQnNjNk50c1B4ekFFLTNGa0tnajU3OFJzU0xN0gG0AUFVX3lxTE15djI0UFdTLTkxNEtEU3NodkU5ckVNMzJRdWJVX3NKeVd0SmJmNE9qUmVQc21BQnI5eUJ2d2I3Qnp5NEdIRnlQNVA4MGg3MW8tX28xVlNUVl9kaEZVenNqSjZvYml2M1ctWktNQWJfRHU0MEVrQ3k1QVlfRHp4NzVWaE5wUWI2ZE14N1dnTWc3dnl1QXRiRFlmbGxVZm5IVjNoQlVVMU01NTBFSHlRN3FDT0hJcw?oc=5",
+      "title": "Keralam launches online portal to digitise Students Savings Scheme",
+      "source": "CNBC TV18 • Google News",
+      "domain": "cnbctv18.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T11:31:53+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
     {
       "id": "https://telugu.oneindia.com/education-jobs/telangana-inter-public-exams-2027-tsbie-announces-examination-schedule-515667.html",
       "url": "https://telugu.oneindia.com/education-jobs/telangana-inter-public-exams-2027-tsbie-announces-examination-schedule-515667.html",
@@ -106,6 +122,21 @@
       "language": "Telugu/English",
       "sourcecountry": "India",
       "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://theconversation.com/as-diesel-prices-spike-free-public-transport-and-bike-hire-can-be-beneficial-for-commuters-health-and-their-finances-296707",
+      "url": "https://theconversation.com/as-diesel-prices-spike-free-public-transport-and-bike-hire-can-be-beneficial-for-commuters-health-and-their-finances-296707",
+      "title": "As diesel prices spike, free public transport and bike hire can be beneficial for commuters’ health and their finances",
+      "source": "The Conversation • RSS",
+      "domain": "theconversation.com",
+      "region": "world",
+      "sector": "Health & Wellbeing",
+      "seen": "2026-11-19T10:53:14+00:00",
+      "time_basis": "feed",
+      "language": "English",
+      "origin": "permitted-rss",
+      "desk": "english-magazines",
+      "sourcecountry": ""
     },
     {
       "id": "https://telugu.oneindia.com/entertainment/samantha-post-about-her-delivery-date-performs-special-prayers-with-her-husband-photos-viral-online-515661.html",
@@ -14997,8 +15028,8 @@
       "successful_feeds": 10,
       "accepted": 91,
       "by_source": {
-        "CNBC-TV18": 66,
-        "Zee Business": 35,
+        "CNBC-TV18": 67,
+        "Zee Business": 34,
         "NDTV Profit PF page": 25,
         "India-wide PF": 3
       },
@@ -15023,7 +15054,7 @@
       "provider": "github",
       "attempted": 50,
       "completed": 0,
-      "pending": 986,
+      "pending": 988,
       "errors": [
         "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
         "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
@@ -15033,10 +15064,10 @@
       ]
     },
     "gdelt": {
-      "state": "cooldown",
-      "last_attempt": "2026-11-19T10:39:19.378363+00:00",
+      "state": "rate_limited",
+      "last_attempt": "2026-11-19T11:44:22.174978+00:00",
       "last_success": "2026-11-19T04:09:36.766060+00:00",
-      "retry_after": "2026-11-19T11:39:19.378363+00:00"
+      "retry_after": "2026-11-19T13:44:22.174978+00:00"
     },
     "official_rss_matches": 24,
     "avi_ivi": {
@@ -15045,7 +15076,7 @@
         "PIB India": 0,
         "NASA": 10,
         "WHO": 0,
-        "UN News": 30,
+        "UN News": 0,
         "UN News Climate": 9
       },
       "warnings": []
@@ -15072,7 +15103,7 @@
       "warnings": []
     },
     "dedicated_desks": {
-      "personal_finance_links": 431,
+      "personal_finance_links": 432,
       "regional_business_links": 0,
       "personal_finance_from_14_nov_2026": "2026-11-13T18:30:00+00:00"
     }
