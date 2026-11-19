@@ -66,7 +66,8 @@ PF_EXCLUDE=re.compile(
     r'(?:\b(?:ipl|cricket|football|tennis|athlete|sportsperson|'
     r'movie|film star|box office|celebrity|'
     r'insurance broker buyouts|military retirement ceremony|'
-    r'judicial officers retirement age)\b)',
+    r'judicial officers retirement age|retirement age of.*judicial|forced retirement|'
+    r'business news live, share market news|latest finance news, ipo)\b)',
     re.I
 )
 def pf_editorial_match(title):
