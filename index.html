@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-pf-week-r13">
+<meta name="mbn-site-version" content="2026-11-19-pf-week-r14">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -979,11 +979,11 @@ function setupDeskSourceDirectories(){
    const a=document.createElement('a');
    a.className='desk-source-link';a.textContent=name+' ↗';
    const query=group==='Telugu Personal Finance'?
-    'site:'+domain+' (పొదుపు OR బీమా OR పన్ను OR మ్యూచువల్ ఫండ్ OR రుణం OR వడ్డీ) after:2026-11-13':
+    'site:'+domain+' (పొదుపు OR బీమా OR పన్ను OR మ్యూచువల్ ఫండ్ OR రుణం OR వడ్డీ) when:7d':
     group==='Telugu Business Media'?
     'site:'+domain+' (హైదరాబాద్ OR తెలంగాణ OR ఆంధ్రప్రదేశ్ OR విశాఖ) (పెట్టుబడి OR కంపెనీ OR పరిశ్రమ OR వ్యాపారం OR ఫార్మా) after:2026-11-13':
     desk==='pf'?
-    'site:'+domain+' (personal finance OR mutual funds OR insurance OR tax OR savings OR loan) after:2026-11-13':
+    pfGoogleQuery('',domain):
     'site:'+domain+' (Hyderabad OR Telangana OR "Andhra Pradesh") (company OR pharma OR startup OR investment OR GCC) after:2026-11-13';
    a.href=googleNewsUrl(query);
    a.target='_blank';a.rel='noopener noreferrer';
