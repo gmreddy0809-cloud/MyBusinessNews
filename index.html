@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-robust-loader-r18">
+<meta name="mbn-site-version" content="2026-11-19-regional-feed-restore-r19">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -1341,7 +1341,7 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
    if(selectedDesk==='english-magazines'&&state.publicationTopic!=='all'&&item.sector!==state.publicationTopic)return false;
- }else if(selectedDesk!=='saved'&&item.desk!=='business')return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
+ }else if(selectedDesk!=='saved'&&!['business','regional-business'].includes(item.desk))return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(!sourceMatches(item))return false;
