@@ -1,0 +1,45 @@
+name: Publish website UI changes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - '.github/workflows/site-ui.yml'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: mybusinessnews-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout latest site
+        uses: actions/checkout@v4
+      - name: Prepare website with existing news index
+        run: |
+          mkdir -p public/data
+          cp index.html public/index.html
+          cp data/news.json public/data/news.json
+          touch public/.nojekyll
+          echo "UI markers in published HTML:"
+          grep -o 'Listed Cos\.' public/index.html | head -1
+          if grep -q 'Telugu Cos\.' public/index.html; then
+            echo 'ERROR: old navigation label remains'
+            exit 1
+          fi
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Deploy latest UI
+        id: deployment
+        uses: actions/deploy-pages@v4
