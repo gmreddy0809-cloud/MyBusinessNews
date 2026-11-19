@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-snippet-r12">
+<meta name="mbn-site-version" content="2026-11-19-pf-week-r13">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -584,6 +584,8 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 
 /* News excerpts: two-to-three-line reading preview across every newsroom desk */
 .news-desc{font-size:12.5px;line-height:1.7;max-width:900px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;white-space:normal}
+
+.pf-week-search{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;padding:8px 0}.pf-week-search button{border:1px solid #b6d5f3;background:#eef6ff;color:#164b7c;border-radius:8px;padding:9px 12px;font-weight:750;cursor:pointer}.pf-week-search button:hover{background:#dceeff}
 </style>
 </head>
 <body>
@@ -705,6 +707,14 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
           <details class="desk-source-discovery" id="pfSourceDiscovery" hidden>
             <summary>₹ PF Sources · Financial dailies, banks, MFs, insurers, blogs &amp; official updates <span>Browse original-source searches ▾</span></summary>
             <p class="desk-discovery-note">Live original-source searches, NOT syndicated RSS. The indexed PF stories appear below. Some publishers limit RSS to personal use.</p>
+            <div class="pf-week-search" id="pfWeekSearch" aria-label="Personal Finance searches from last seven days">
+              <button type="button" data-pf-week="all">🔎 గత 7 రోజుల PF వార్తలన్నీ</button>
+              <button type="button" data-pf-week="tax">పన్నులు / ITR</button>
+              <button type="button" data-pf-week="savings">FD / బ్యాంకింగ్</button>
+              <button type="button" data-pf-week="funds">MF / SIP</button>
+              <button type="button" data-pf-week="insurance">బీమా</button>
+              <button type="button" data-pf-week="loans">రుణాలు / EMI</button>
+            </div>
             <div class="desk-discovery-links" id="pfSourceLinks"></div>
             <div class="desk-official-links"><a href="https://www.amfiindia.com/rss-feeds" target="_blank" rel="noopener noreferrer">AMFI official MF RSS ↗</a><a href="https://rbi.org.in/Scripts/rss.aspx" target="_blank" rel="noopener noreferrer">RBI official RSS ↗</a><a href="https://www.sebi.gov.in/rss.html" target="_blank" rel="noopener noreferrer">SEBI official RSS ↗</a></div>
           </details>
@@ -842,10 +852,19 @@ const FINANCIAL_DAILIES=[
  ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
 ];
 const googleNewsUrl=q=>'https://news.google.com/search?q='+encodeURIComponent(q)+'&hl=en-IN&gl=IN&ceid=IN%3Aen';
+const PF_ALL_WEEK='("personal finance" OR "fixed deposit" OR "mutual fund" OR SIP OR "income tax" OR "health insurance" OR "life insurance" OR "credit card" OR "home loan" OR "gold loan" OR pension OR EPF OR PPF OR NPS OR "banking fraud" OR "tax refund") when:7d';
+const PF_SOURCE_SITES=['cnbctv18.com','zeebiz.com','upstox.com','moneycontrol.com','financialexpress.com','business-standard.com','economictimes.indiatimes.com','livemint.com','ndtvprofit.com','thehindubusinessline.com','businesstoday.in','outlookmoney.com','goodreturns.in','freefincal.com'];
+function pfGoogleQuery(term='',domain=''){
+ const q=String(term||'').trim();
+ const subject=q? '('+q+')' : PF_ALL_WEEK;
+ const site=domain?' site:'+domain:'';
+ return subject+site+(q?' when:7d':'');
+}
 function webSearch(query){
  const q=String(query||$('searchInput').value||'').trim();
- if(!q){$('searchInput').focus();showToast('Type a company, keyword or Hyderabad based to search the web');return}
- const url=googleNewsUrl(q);
+ const isPF=state.region==='personal-finance';
+ if(!q && !isPF){$('searchInput').focus();showToast('Enter a keyword to search Google News');return}
+ const url=googleNewsUrl(isPF?pfGoogleQuery(q):q);
  const opened=window.open(url,'_blank','noopener,noreferrer');
  if(!opened){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove()}
 }
@@ -1398,8 +1417,21 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
    const url=googleNewsUrl('('+domains+') '+term);
    const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';document.body.append(a);a.click();a.remove();
  });
+ $('pfWeekSearch').addEventListener('click',e=>{
+   const b=e.target.closest('[data-pf-week]');if(!b)return;
+   const terms={
+     all:PF_ALL_WEEK,
+     tax:'("income tax" OR ITR OR "tax refund" OR "tax saving" OR "capital gains") when:7d',
+     savings:'("fixed deposit" OR "savings account" OR "bank interest" OR "RBI" OR "credit score") when:7d',
+     funds:'("mutual fund" OR SIP OR "new fund offer" OR NFO OR "index fund") when:7d',
+     insurance:'("health insurance" OR "life insurance" OR "term insurance" OR "insurance claim") when:7d',
+     loans:'("home loan" OR "personal loan" OR "gold loan" OR EMI OR "loan prepayment") when:7d'
+   };
+   const url=googleNewsUrl(terms[b.dataset.pfWeek]||PF_ALL_WEEK);
+   window.open(url,'_blank','noopener,noreferrer');
+ });
  $('searchWebButton').addEventListener('click',()=>webSearch());
- $('webSearchHelpButton').addEventListener('click',()=>webSearch(state.search||(state.region==='personal-finance'?'India personal finance savings insurance investment tax':'India business news')));
+ $('webSearchHelpButton').addEventListener('click',()=>webSearch(state.search||(state.region==='personal-finance'?'':'India business news')));
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open');const more=$('moreRegionTabs');if(more)more.open=false}));
