@@ -36,15 +36,15 @@ jobs:
         continue-on-error: true
         timeout-minutes: 3
         run: python -m unittest discover -s tests -p "test_*.py"
-      - name: Retrieve latest source-linked news
+      - name: Parallel half-hour news refresh (independent desk feeds)
         id: collect
         continue-on-error: true
-        timeout-minutes: 18
+        timeout-minutes: 12
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
           MBN_SNIPPETS_PER_RUN: '0'
-        run: python -u scripts/collect.py
+        run: python -u scripts/quick_refresh.py
       - name: Check news data even when a feed fails
         run: |
           python - <<'PY'
