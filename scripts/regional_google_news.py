@@ -17,20 +17,55 @@ SOURCES=(
     ("Eenadu","eenadu.net"),
     ("Sakshi","sakshi.com"),
     ("Andhra Jyothy","andhrajyothy.com"),
-    ("Namasthe Telangana","ntnews.com"),
-    ("Telangana Today","telanganatoday.com"),
-    ("The Hans India","thehansindia.com"),
-    ("Greatandhra","greatandhra.com"),
+    ("ETV Bharat Telugu","etvbharat.com"),
     ("TV9 Telugu","tv9telugu.com"),
     ("NTV Telugu","ntvtelugu.com"),
+    ("ABP Desam","telugu.abplive.com"),
+    ("V6 Velugu","v6velugu.com"),
+    ("Telangana Today","telanganatoday.com"),
     ("10TV Telugu","10tv.in"),
-    ("V6 News","v6velugu.com"),
+    ("Namasthe Telangana","ntnews.com"),
+    ("Samayam Telugu","telugu.samayam.com"),
     ("News18 Telugu","telugu.news18.com"),
+    ("The Hans India","thehansindia.com"),
+    ("TV5 Telugu","tv5news.in"),
+    ("HMTV","hmtvlive.com"),
+    ("Andhra Prabha","prabhanews.com"),
+    ("Prajasakti","prajasakti.com"),
+    ("Nava Telangana","navatelangana.com"),
+    ("Mana Telangana","manatelangana.news"),
+    ("Disha Daily","dishadaily.com"),
+    ("Greatandhra","greatandhra.com"),
+    ("AP7AM","ap7am.com"),
+    ("Telugu360","telugu360.com"),
+    ("BBC Telugu","bbc.com"),
+    ("Oneindia Telugu","telugu.oneindia.com"),
     ("The Hindu","thehindu.com"),
     ("Deccan Chronicle","deccanchronicle.com"),
     ("New Indian Express","newindianexpress.com"),
     ("Times of India","timesofindia.indiatimes.com"),
+    ("The Hindu BusinessLine","thehindubusinessline.com"),
+    ("Economic Times","economictimes.indiatimes.com"),
+    ("Business Standard","business-standard.com"),
+    ("Financial Express","financialexpress.com"),
+    ("Moneycontrol","moneycontrol.com"),
+    ("Siasat","siasat.com"),
+    ("The News Minute","thenewsminute.com"),
+    ("India Today","indiatoday.in"),
+    ("Hindustan Times","hindustantimes.com"),
+    ("NDTV","ndtv.com"),
+    ("ABP Live","abplive.com"),
+    ("Zee News Telugu","zeenews.india.com"),
+    ("The Print","theprint.in"),
+    ("Outlook India","outlookindia.com"),
+    ("Telugu Post","telugupost.com"),
+    ("Telugu One","teluguone.com"),
+    ("Telugu Global","teluguglobal.com"),
+    ("Asianet News Telugu","telugu.asianetnews.com"),
+    ("Telugu Prabha","teluguprabha.net"),
+    ("Etemaad","etemaaddaily.com"),
 )
+
 REGIONS=(
     '(Andhra Pradesh OR Amaravati OR Vijayawada OR Visakhapatnam OR Tirupati OR "ఆంధ్రప్రదేశ్" OR "అమరావతి" OR "విజయవాడ" OR "విశాఖ")',
     '(Telangana OR Hyderabad OR Warangal OR "తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్")'
@@ -120,10 +155,13 @@ def collect_telanganatoday_rss(now=None):
 
 def collect_regional(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
-    # Six source/state checks every half hour; all 32 combinations rotate.
-    total=len(SOURCES)*len(REGIONS)
-    chosen=[(SOURCES[((cycle*6+i)%total)//len(REGIONS)],REGIONS[(cycle*6+i)%len(REGIONS)]) for i in range(6)]
-    status={"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
+    # Poll six priority outlets every run, plus 16 rotating publisher checks.
+    # Each query covers BOTH states; classify strictly from headline evidence.
+    priority=SOURCES[:8]
+    others=SOURCES[8:]
+    rotating=[others[(cycle*16+i)%len(others)] for i in range(min(16,len(others)))]
+    chosen=list(dict.fromkeys(priority+rotating))
+    status={"sources_configured":len(SOURCES),"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     found={}
     # Dedicated Telangana Today RSS every run; Google News remains a backup.
     try:
@@ -134,7 +172,9 @@ def collect_regional(cycle=None):
     except Exception as exc:
         status["warnings"].append("Telangana Today RSS: "+type(exc).__name__+": "+str(exc)[:80])
         print("Telangana Today RSS unavailable",type(exc).__name__,str(exc)[:80],file=sys.stderr)
-    for (name,domain),location in chosen:
+    for name,domain in chosen:
+        # Keep the queries short: Google's indexing may not preserve all OR terms.
+        location='("Andhra Pradesh" OR Telangana OR Hyderabad OR Amaravati OR Visakhapatnam OR "ఆంధ్రప్రదేశ్" OR "తెలంగాణ" OR "హైదరాబాద్")'
         query="site:"+domain+" "+location+" when:7d"
         url=RSS_URL+"?"+urlencode({"q":query,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
         try:
