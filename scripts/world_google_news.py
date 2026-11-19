@@ -16,23 +16,40 @@ from avi_ivi import topic_for
 RSS_BASE="https://news.google.com/rss/search"
 # A rotating collection of worldwide, non-business editorial topics.
 TOPIC_QUERIES=(
- ("Science & Space",'("scientific discovery" OR "space exploration" OR astronomy OR paleontology) when:7d'),
- ("Environment & Nature",'("wildlife conservation" OR biodiversity OR endangered species OR ecosystem) when:7d'),
- ("Health & Wellbeing",'("medical discovery" OR "public health" OR "health research" OR "medical research") when:7d'),
- ("Education & Careers",'("education innovation" OR "university research" OR "student achievement") when:7d'),
- ("Culture & Heritage",'("archaeological discovery" OR "cultural heritage" OR "ancient history") when:7d'),
- ("Lifestyle & Living",'("travel destinations" OR "food culture" OR "living traditions") when:7d'),
- ("People & Ideas",'("human interest" OR "community hero" OR "inspiring story") when:7d'),
- ("Science & Space",'("new species discovered" OR "scientists discover" OR "rare discovery") when:7d'),
- ("Environment & Nature",'("ocean discovery" OR "forest restoration" OR "animal rescue") when:7d'),
- ("Culture & Heritage",'("museum exhibition" OR "world heritage" OR "historic discovery") when:7d'),
- ("People & Ideas",'("remarkable people" OR "social innovation" OR "local community initiative") when:7d'),
- ("Lifestyle & Living",'("unusual places" OR "world travel" OR "cultural festival") when:7d'),
- ("Health & Wellbeing",'("nutrition research" OR "sleep science" OR "health breakthrough") when:7d'),
- ("Education & Careers",'("learning innovation" OR "school education" OR "skills training") when:7d'),
- ("Science & Space",'("technology breakthrough" OR "scientific innovation" OR "robotics research") when:7d'),
- ("People & Ideas",'("extraordinary story" OR "rare event" OR "unexpected discovery") when:7d'),
+ ("Science & Space","(scientific discovery OR space research OR astronomy OR exoplanet) when:2d"),
+ ("Science & Space","(new species discovered OR dinosaur fossil OR paleontology) when:2d"),
+ ("Science & Space","(robotics research OR new invention OR breakthrough technology) when:2d"),
+ ("Science & Space","(ocean exploration OR deep sea discovery OR polar expedition) when:2d"),
+ ("Environment & Nature","(wildlife conservation OR endangered animals OR animal rescue) when:2d"),
+ ("Environment & Nature","(biodiversity OR rainforest OR coral reef OR nature discovery) when:2d"),
+ ("Environment & Nature","(climate science OR sustainable cities OR forest restoration) when:2d"),
+ ("Environment & Nature","(unusual weather OR volcano research OR earthquake science) when:2d"),
+ ("Health & Wellbeing","(medical discovery OR health research OR public health) when:2d"),
+ ("Health & Wellbeing","(nutrition study OR sleep science OR mental wellbeing) when:2d"),
+ ("Health & Wellbeing","(new treatment research OR disease prevention OR healthcare innovation) when:2d"),
+ ("Health & Wellbeing","(global health initiative OR community healthcare OR vaccination) when:2d"),
+ ("Culture & Heritage","(archaeological discovery OR ancient artifacts OR heritage conservation) when:2d"),
+ ("Culture & Heritage","(museum exhibition OR ancient civilization OR historical finding) when:2d"),
+ ("Culture & Heritage","(traditional crafts OR cultural festival OR indigenous heritage) when:2d"),
+ ("Culture & Heritage","(literature festival OR contemporary art OR world culture) when:2d"),
+ ("Lifestyle & Living","(travel destinations OR hidden places OR nature tourism) when:2d"),
+ ("Lifestyle & Living","(food traditions OR local cuisine OR culinary culture) when:2d"),
+ ("Lifestyle & Living","(traditional lifestyle OR interesting architecture OR home design) when:2d"),
+ ("Lifestyle & Living","(unusual travel OR cultural tourism OR unique festivals) when:2d"),
+ ("People & Ideas","(human interest OR inspiring community OR local hero) when:2d"),
+ ("People & Ideas","(social innovation OR volunteer rescue OR acts of kindness) when:2d"),
+ ("People & Ideas","(extraordinary achievement OR remarkable people OR everyday heroes) when:2d"),
+ ("People & Ideas","(unusual story OR world record OR remarkable discovery) when:2d"),
+ ("Education & Careers","(education innovation OR school experiment OR student invention) when:2d"),
+ ("Education & Careers","(university research OR science education OR learning initiative) when:2d"),
+ ("Education & Careers","(scholarship program OR rural education OR educational access) when:2d"),
+ ("Education & Careers","(skills training OR vocational education OR student achievement) when:2d"),
+ ("World & Society","(interesting world news OR unusual global events OR surprising news) when:2d"),
+ ("World & Society","(international human interest OR social change OR society) when:2d"),
+ ("World & Society","(cities around the world OR urban innovations OR remarkable places) when:2d"),
+ ("World & Society","(global discoveries OR extraordinary events OR unusual happenings) when:2d"),
 )
+
 # Generic headlines and pure financial-market news are outside this desk.
 EXCLUDE=re.compile(r'\b(?:stock price|share price|earnings per share|quarterly results|IPO allotment|mutual fund NAV|live updates|live blog)\b',re.I)
 MAX_BYTES=1_500_000
@@ -71,12 +88,15 @@ def parse_feed(xml,category,now=None):
 
 def collect_world(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
-    # Four topic searches per scheduled run, all 16 covered within two hours.
-    chosen=[TOPIC_QUERIES[(cycle*4+i)%len(TOPIC_QUERIES)] for i in range(4)]
-    report={"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_topic":{},"warnings":[]}
+    # Twelve varied searches each half-hour; all 32 themes within 90 minutes.
+    per_run=12
+    chosen=[TOPIC_QUERIES[(cycle*per_run+i)%len(TOPIC_QUERIES)] for i in range(per_run)]
+    report={"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_topic":{},"by_source":{},"warnings":[]}
     found={}
-    for category,query in chosen:
-        url=RSS_BASE+"?"+urlencode({"q":query,"hl":"en-US","gl":"US","ceid":"US:en"})
+    locales=(("en-US","US","US:en"),("en-GB","GB","GB:en"),("en-IN","IN","IN:en"),("en-AU","AU","AU:en"),("en-CA","CA","CA:en"),("en-SG","SG","SG:en"),("en-ZA","ZA","ZA:en"))
+    for i,(category,query) in enumerate(chosen):
+        hl,gl,ceid=locales[(cycle+i)%len(locales)]
+        url=RSS_BASE+"?"+urlencode({"q":query,"hl":hl,"gl":gl,"ceid":ceid})
         try:
             req=Request(url,headers={
                 "User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; worldwide headline discovery)",
@@ -86,7 +106,9 @@ def collect_world(cycle=None):
             items=parse_feed(xml,category)
             report["successful_feeds"]+=1
             report["by_topic"][category]=report["by_topic"].get(category,0)+len(items)
-            for item in items:found[item["url"]]=item
+            for item in items:
+                found[item["url"]]=item
+                report["by_source"][item["source"]]=report["by_source"].get(item["source"],0)+1
         except Exception as exc:
             report["warnings"].append(category+": "+type(exc).__name__+": "+str(exc)[:90])
             print("World discovery warning",category,type(exc).__name__,str(exc)[:90],file=sys.stderr)
