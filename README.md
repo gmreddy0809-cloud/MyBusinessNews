@@ -25,3 +25,10 @@ The collector retains items first indexed on/after **14 Nov 2026 IST**, subject 
 
 ## Verification
 `python -m unittest discover -s tests -p "test_*.py"`
+
+## Personal Finance source discovery
+The PF collector uses a rotating Google News RSS search across **22 Indian financial publishers** and four personal-finance query families, plus category-scoped discovery for Upstox, Moneycontrol, Business Standard and NDTV Profit. It attempts ten feed searches each 30-minute run, so all 22 publishers receive source-topic coverage across approximately 5.5 hours if scheduled workflows keep succeeding.
+
+Only dated, publisher-attributed, editorially relevant headline links are stored. Google News RSS links are Google click-throughs, not guaranteed original publisher URLs. The collector rejects non-PF articles that Google search sometimes includes and removes previously indexed false positives. A successful search does not prove every original article is indexed. This is a best-effort headline directory; content licensing, indexing limitations and downtime may affect coverage. For unindexed items, users can open the publisher-specific Google News searches from the PF source directory.
+
+Look at `data/news.json → source_status.personal_finance_discovery` for per-run successes, failures and candidate counts; distinguish this from the final curated PF total. Never republish full stories or infer snippets from headlines without supporting facts.
