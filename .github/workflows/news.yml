@@ -68,6 +68,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             mkdir -p data
+            python scripts/merge_news_index.py data/news.json "$RUNNER_TEMP/mybusinessnews-index.json"
             cp "$RUNNER_TEMP/mybusinessnews-index.json" data/news.json
             git add data/news.json
             if git diff --cached --quiet; then
