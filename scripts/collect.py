@@ -8,6 +8,7 @@ from regional_general import REGIONAL_QUERIES, keep_general
 from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_publisher, index_gdelt, pf_match, pf_cutoff
 from amfi_official import collect_amfi
 from pf_google_news import collect_personal_finance, pf_editorial_match
+from regional_google_news import collect_regional
 from snippets import enrich
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -152,6 +153,16 @@ def main():
                     entry[field]=prev[field]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
+    # Broaden AP/TG news discovery without copying restricted publisher RSS or bodies.
+    regional_discovery_rows,regional_discovery_status=collect_regional()
+    for entry in regional_discovery_rows:
+        prev=news.get(entry["url"])
+        if prev:
+            for field in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(field) and prev.get(field):
+                    entry[field]=prev[field]
+        if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
+            news[entry["url"]]=entry
     good=bool(pf_discovery_status["successful_feeds"] or official or amfi_rows) or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
     count_by_region={}
     regional_general_count=sum(1 for item in news.values() if item.get("desk")=="regional-general")
@@ -239,7 +250,7 @@ def main():
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     snippet_status=enrich(rows)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"regional_discovery":regional_discovery_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
