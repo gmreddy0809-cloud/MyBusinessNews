@@ -201,7 +201,8 @@ def main():
             for key in ("title_te","snippet_te","snippet_basis","summary"):
                 if not entry.get(key) and previous.get(key):
                     entry[key]=previous[key]
-    cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+    # Preserve the 14-Nov-2026 archive instead of dropping older business articles weekly.
+    cutoff=datetime(2026,11,13,18,30,tzinfo=timezone.utc)
     pf_from=pf_cutoff()
     rows=[x for x in news.values()
           if dt(x.get("seen"))>cutoff or (
@@ -217,12 +218,12 @@ def main():
     # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
     # Reserve space per desk: abundant national news must never crowd out PF
     # and regional corporate disclosures during the 14-Nov onward backfill.
-    business_rows=[x for x in rows if x.get("desk","business")=="business"][:925]
-    pf_rows=[x for x in rows if x.get("desk")=="personal-finance"][:350]
+    business_rows=[x for x in rows if x.get("desk","business")=="business"][:12000]
+    pf_rows=[x for x in rows if x.get("desk")=="personal-finance"][:12000]
     regional_business_rows=[x for x in rows if x.get("desk")=="regional-business"][:350]
-    misc_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:225]
-    english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:160]
-    regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:180]
+    misc_rows=[x for x in rows if x.get("desk")=="avi-ivi"][:12000]
+    english_rows=[x for x in rows if x.get("desk")=="english-magazines"][:12000]
+    regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:12000]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     snippet_status=enrich(rows)
