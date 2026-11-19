@@ -1012,6 +1012,8 @@ function isPersonalFinanceStory(item){return item.desk==='personal-finance'||ite
 // Unlisted firms, GCCs and startups belong in Hyderabad business, not Listed Cos.
 const LISTED_AP_TG=/\b(?:dr\.? reddy|drreddy|aurobindo pharma|divi.?s lab|divislab|granules india|granules|laurus labs|natco pharma|natcopharm|neuland lab|cyient|zen technologies|zentec|astra microwave|astramicro|bharat dynamics|midhani|mtar technologies|apollo micro systems|kims hospitals|krishna institute of medical sciences|rainbow children|medplus|vijaya diagnostic|heritage foods|dodla dairy|cc l products|ccl products|tanla platforms|zaggle|ncc limited|ncc ltd|knr constructions|pennar industries|pokarna|azad engineering|amara raja|andhra paper|avanti feeds|apex frozen|andhra sugars|suven pharma|gland pharma|nava limited|vst industries|kaveri seed|shilpa medicare|sai silks|vimta labs|nmdc)\b/i;
 const HYDERABAD_BUSINESS_ALIASES=/\b(?:biological e|be[ -]?biosol|bharat biotech|hetero|skyroot|dhruva space|darwinbox|keka|ctrls|t-hub|lpl financial|gmr aero technic|aragen life sciences|sai life sciences|msn laboratories|indian immunologicals|yashoda hospitals|aig hospitals|continental hospitals|care hospitals|valueLabs|innoMinds)\b|బీఈ బయోసోల్|బయోలాజికల్/i;
+// Hyderabad-headquartered listed issuers, not AP-only listed firms.
+const HYDERABAD_LISTED_ALIASES=/\b(?:dr\.? reddy|drreddy|aurobindo|divi.?s lab|divislab|granules india|laurus labs|natco pharma|neuland lab|cyient|zen technologies|astra microwave|bharat dynamics|midhani|mishra dhatu nigam|mtar technologies|apollo micro systems|kims hospitals|krishna institute of medical sciences|rainbow children|medplus|vijaya diagnostic|heritage foods|dodla dairy|ccl products|tanla platforms|zaggle|ncc limited|knr constructions|pennar industries|pokarna|azad engineering|suven pharma|gland pharma|nava limited|vst industries|kaveri seed|shilpa medicare|sai silks|vimta labs|nmdc)\b/i;
 function isListedCompanyStory(item){
  if(!['hyderabad','telangana','andhra-pradesh'].includes(item.region))return false;
  if(/^(NSE|BSE)\s*•\s*Official/.test(item.source||''))return true;
@@ -1020,7 +1022,9 @@ function isListedCompanyStory(item){
 }
 function isHyderabadBusinessStory(item){
  const title=item.title||'';
- const location=item.region==='hyderabad'||(['hyderabad','telangana'].includes(item.region)&&HYDERABAD_BUSINESS_ALIASES.test(title));
+ const location=item.region==='hyderabad'
+   ||(item.region==='telangana'&&(HYDERABAD_BUSINESS_ALIASES.test(title)||HYDERABAD_LISTED_ALIASES.test(title)))
+   ||(item.region==='india'&&/\b(?:hyderabad|secunderabad|gachibowli|shamshabad)\b|హైదరాబాద్|సికింద్రాబాద్/i.test(title));
  if(!location)return false;
  if(item.desk==='business'||item.desk==='regional-business')return true;
  return item.desk==='telugu-patrikalu'&&Boolean(item.regional_business);
