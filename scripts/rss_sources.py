@@ -32,6 +32,7 @@ TRACKED=[
 TRACKED.extend([
  ("hyderabad",[
   "Hetero Labs","Hetero Drugs","Hetero Group","Bharat Biotech",
+  "BE BioSol","BE Biosol","BE-Biosol","Biological E","బీఈ బయోసోల్","బీఈ బయోసాల్","బయోలాజికల్ ఇ",
   "Biological E","Indian Immunologicals","MSN Laboratories",
   "Sai Life Sciences","Aragen Life Sciences","Shilpa Medicare",
   "Skyroot Aerospace","Dhruva Space","Ananth Technologies",
