@@ -1,6 +1,36 @@
 {
-  "generated_at": "2026-11-19T10:39:29.089535+00:00",
+  "generated_at": "2026-11-19T11:22:31.607426+00:00",
   "articles": [
+    {
+      "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
+      "title": "Avanti Feeds Ltd (512573) — Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ende",
+      "source": "BSE • Official",
+      "domain": "www.bseindia.com",
+      "region": "andhra-pradesh",
+      "sector": "Corporate & Results",
+      "seen": "2026-11-19T11:21:55.283721+00:00",
+      "time_basis": "first_seen",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss",
+      "summary": "Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ended September 30, 2026"
+    },
+    {
+      "id": "https://nsearchives.nseindia.com/corporate/AVANTIFEEDS_19112026163229_AFL_Intimation_Q2FY_Presentation.pdf",
+      "url": "https://nsearchives.nseindia.com/corporate/AVANTIFEEDS_19112026163229_AFL_Intimation_Q2FY_Presentation.pdf",
+      "title": "Avanti Feeds Limited — Avanti Feeds Limited has informed the Exchange about Investor Presentation |SUBJECT: Investor Presentation",
+      "source": "NSE • Official",
+      "domain": "nsearchives.nseindia.com",
+      "region": "andhra-pradesh",
+      "sector": "Corporate & Results",
+      "seen": "2026-11-19T11:21:52.671060+00:00",
+      "time_basis": "first_seen",
+      "sourcecountry": "India",
+      "language": "English",
+      "origin": "official-rss",
+      "summary": "Avanti Feeds Limited has informed the Exchange about Investor Presentation |SUBJECT: Investor Presentation"
+    },
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63999",
       "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63999",
@@ -15,6 +45,66 @@
       "language": "English",
       "origin": "official-rss",
       "summary": "Government of India has announced the sale (re-issue) of Government Securities, as detailed below, through auction to be held on November 20, 2026 (Friday) . As per the extant scheme of underwriting commitment notified on November 14, 2007, the amounts of Minimum Underwriting Commitment (MUC) and the minimum bidding commitment under Additional Competitive Underwriting (ACU) auc"
+    },
+    {
+      "id": "https://telugu.oneindia.com/news/telangana/cyclone-akvan-to-hit-coast-on-nov-20-heavy-rain-warning-for-ap-rain-likely-in-telangana-in-these-d-515663.html",
+      "url": "https://telugu.oneindia.com/news/telangana/cyclone-akvan-to-hit-coast-on-nov-20-heavy-rain-warning-for-ap-rain-likely-in-telangana-in-these-d-515663.html",
+      "title": "దూసుకొస్తున్న అక్వాన్ తుఫాను.. తెలంగాణకు వర్ష సూచన, ఎప్పుడంటే!",
+      "source": "Oneindia Telugu • RSS",
+      "domain": "telugu.oneindia.com",
+      "region": "telangana",
+      "sector": "Telugu News",
+      "seen": "2026-11-19T11:03:33+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://telugu.oneindia.com/news/india/vsbabu-died-news-a-significant-development-in-tamil-nadu-politics-kolathur-mla-vs-babu-passes-away-515657.html",
+      "url": "https://telugu.oneindia.com/news/india/vsbabu-died-news-a-significant-development-in-tamil-nadu-politics-kolathur-mla-vs-babu-passes-away-515657.html",
+      "title": "స్టాలిన్ ను ఓడించిన టీవీకే ఎమ్మెల్యే మృతి.. సీఎం విజయ్ కు బిగ్ షాక్..",
+      "source": "Oneindia Telugu • RSS",
+      "domain": "telugu.oneindia.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-19T11:01:19+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://telugu.oneindia.com/entertainment/samantha-post-about-her-delivery-date-performs-special-prayers-with-her-husband-photos-viral-online-515661.html",
+      "url": "https://telugu.oneindia.com/entertainment/samantha-post-about-her-delivery-date-performs-special-prayers-with-her-husband-photos-viral-online-515661.html",
+      "title": "సమంత డెలివరీ డేట్ ఎప్పుడో తెలుసా..? ఇన్ స్టా పోస్టు వైరల్..",
+      "source": "Oneindia Telugu • RSS",
+      "domain": "telugu.oneindia.com",
+      "region": "india",
+      "sector": "Culture & Heritage",
+      "seen": "2026-11-19T10:49:32+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://telugu.oneindia.com/news/india/big-relief-for-epf-subscribers-epfo-approves-monthly-instalment-based-pf-withdrawal-scheme-515655.html",
+      "url": "https://telugu.oneindia.com/news/india/big-relief-for-epf-subscribers-epfo-approves-monthly-instalment-based-pf-withdrawal-scheme-515655.html",
+      "title": "PF చందాదారులకు భారీ గుడ్ న్యూస్- విత్ డ్రా విధానంలో కీలక మార్పులు..!",
+      "source": "Oneindia Telugu • RSS",
+      "domain": "telugu.oneindia.com",
+      "region": "india",
+      "sector": "Telugu News",
+      "seen": "2026-11-19T10:45:44+00:00",
+      "time_basis": "feed",
+      "language": "Telugu",
+      "origin": "permitted-rss",
+      "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
     },
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/84c50a53-3c5b-447a-b2a2-171757fab128.pdf",
@@ -92,29 +182,14 @@
       "summary": "Mishra Dhatu Nigam Limited has informed the Exchange about Link of Recording |SUBJECT: Analysts/Institutional Investor Meet/Con. Call Updates"
     },
     {
-      "id": "https://telugu.oneindia.com/news/india/vsbabu-died-news-a-significant-development-in-tamil-nadu-politics-kolathur-mla-vs-babu-passes-away-515657.html",
-      "url": "https://telugu.oneindia.com/news/india/vsbabu-died-news-a-significant-development-in-tamil-nadu-politics-kolathur-mla-vs-babu-passes-away-515657.html",
-      "title": "స్టాలిన్ ను ఓడించిన టీవీకే ఎమ్మెల్యే మృతి.. సీఎం విజయ్ కు బిగ్ షాక్..",
+      "id": "https://telugu.oneindia.com/news/telangana/hyderabad-pod-taxis-plan-govt-moves-to-ease-traffic-with-prts-project-eco-friendly-commute-boost-515659.html",
+      "url": "https://telugu.oneindia.com/news/telangana/hyderabad-pod-taxis-plan-govt-moves-to-ease-traffic-with-prts-project-eco-friendly-commute-boost-515659.html",
+      "title": "హైదరాబాద్ పాడ్ టాక్సీలపై కీలక ముందడుగ.. ట్రాఫిక్ జామ్ లకు చెక్!",
       "source": "Oneindia Telugu • RSS",
       "domain": "telugu.oneindia.com",
-      "region": "india",
+      "region": "hyderabad",
       "sector": "Telugu News",
-      "seen": "2026-11-19T10:35:37+00:00",
-      "time_basis": "feed",
-      "language": "Telugu",
-      "origin": "permitted-rss",
-      "desk": "telugu-patrikalu",
-      "sourcecountry": "India"
-    },
-    {
-      "id": "https://telugu.oneindia.com/news/india/big-relief-for-epf-subscribers-epfo-approves-monthly-instalment-based-pf-withdrawal-scheme-515655.html",
-      "url": "https://telugu.oneindia.com/news/india/big-relief-for-epf-subscribers-epfo-approves-monthly-instalment-based-pf-withdrawal-scheme-515655.html",
-      "title": "PF చందాదారులకు భారీ గుడ్ న్యూస్- విత్ డ్రా విధానంలో కీలక మార్పులు..!",
-      "source": "Oneindia Telugu • RSS",
-      "domain": "telugu.oneindia.com",
-      "region": "india",
-      "sector": "Telugu News",
-      "seen": "2026-11-19T10:34:40+00:00",
+      "seen": "2026-11-19T10:37:39+00:00",
       "time_basis": "feed",
       "language": "Telugu",
       "origin": "permitted-rss",
@@ -167,6 +242,22 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "title": "Invest in NFO on Coin - Zerodha Coin",
+      "source": "Zerodha Coin • Google News",
+      "domain": "coin.zerodha.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T10:23:45+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/telangana/tpcc-chief-mahesh-kumar-goud-key-comments-on-rajagopal-reddy-anirudh-reddy-issue-everyone-equal-be-515653.html",
       "url": "https://telugu.oneindia.com/news/telangana/tpcc-chief-mahesh-kumar-goud-key-comments-on-rajagopal-reddy-anirudh-reddy-issue-everyone-equal-be-515653.html",
       "title": "కోమటిరెడ్డి రాజగోపాల్, అనిరుధ్ రెడ్డి వ్యాఖ్యలపై మహేష్ కుమార్ గౌడ్ కీలకవ్యాఖ్యలు.. సర్వత్రా ఉత్కంఠ!",
@@ -179,6 +270,38 @@
       "language": "Telugu",
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNc25lRi1uZmRHU2FremE0QzQteTN3X0JMSk1pRHVRdjVkdFdrRU1qWllqUnJJeU0xWExrZXkzWkdTOUdwQ2tYcmZMUHBoZXdiZ1BERkpfY0ZFV2lpRDU5N3dEQzRmZ3RGTkdjb3FPeHQtZ0dnQXYxODh0ZkROMlJ1ZDBwMzR5N29sdjRCRmRLS0k4MThQQXpQQ3hiSmtURmFRMjdaaW9oVkJwLTNKd0V2dXlzRnRuUnZzbkVCZ1lzUUdyNEl4d3pzVi1FMHlCYThOZTg3VVI0WENrX2s30gHiAUFVX3lxTE5PWkdGRnBYc21KQ2RMYXVsUHFNTUpSWndDbFpILVAzTzdWSEtPRHRfZHlTSEU0eWNNU1h3WVpzRXl6cTA1eGMtY2RkSGYwdGRzdk5nc19LdXlpTzMxQmp0dEk2LWYtSU8tQUhWR3VEMEY5ekQ4elVjSUlhRFotajIybUZ6MTBmeTFNS0M2RTg5Z3hMQUVVLUtSaWVqM1pTM3F4cDAwcjJTckJpM3JYTW9CSUNlUHFaSVpxVkp3NW11dFdDRkEydXJsQnBvbEQxaE5IbWxvLWtCWURfQ3o0TGpTYUE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNc25lRi1uZmRHU2FremE0QzQteTN3X0JMSk1pRHVRdjVkdFdrRU1qWllqUnJJeU0xWExrZXkzWkdTOUdwQ2tYcmZMUHBoZXdiZ1BERkpfY0ZFV2lpRDU5N3dEQzRmZ3RGTkdjb3FPeHQtZ0dnQXYxODh0ZkROMlJ1ZDBwMzR5N29sdjRCRmRLS0k4MThQQXpQQ3hiSmtURmFRMjdaaW9oVkJwLTNKd0V2dXlzRnRuUnZzbkVCZ1lzUUdyNEl4d3pzVi1FMHlCYThOZTg3VVI0WENrX2s30gHiAUFVX3lxTE5PWkdGRnBYc21KQ2RMYXVsUHFNTUpSWndDbFpILVAzTzdWSEtPRHRfZHlTSEU0eWNNU1h3WVpzRXl6cTA1eGMtY2RkSGYwdGRzdk5nc19LdXlpTzMxQmp0dEk2LWYtSU8tQUhWR3VEMEY5ekQ4elVjSUlhRFotajIybUZ6MTBmeTFNS0M2RTg5Z3hMQUVVLUtSaWVqM1pTM3F4cDAwcjJTckJpM3JYTW9CSUNlUHFaSVpxVkp3NW11dFdDRkEydXJsQnBvbEQxaE5IbWxvLWtCWURfQ3o0TGpTYUE?oc=5",
+      "title": "Check fixed deposit rates in mid-Nov: Top lenders offer up to 8.25%",
+      "source": "Business Standard • Google News",
+      "domain": "business-standard.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T10:15:49+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNM3V3MVFWMlpISVhTWjQ3dmd6bTlGMDZhSk9wdlZ1YlAyaTM4dk9NbUs1WTBRQ2VQODRDbGg0ejJzX1BUc1FId08wZDRNZml2SktwNm1HbWxqVmdXNlJjdnRqZ1NvUlNHajltZnpoSkR3NXAya2hlNzhLelBGLTJzZW5xSDcxRUQ0RGNHY3pReDlNdUlMUVpBNmdFMkRqVDliT1JySnozN1kySS0yV2x2bXN2YVdPZllIQ1hiYzhqVTRnSkJFcUJKa2I1MWsxNkJOUTRjTVllTHd6OWRCNnprVG930gHnAUFVX3lxTE40bzllUnZyWlRqSjV4NUV4QVNiak9lZWZvc1UwZ0JCRWpjbFdzYTFhZzJqaTM0TGVFSFBMMk8tTFNCVDZScHZudU1tREJBSjFXM19HRkJQYmo4R3BLTERxbEIxdHZTRS1rR19mbjBIaEpPRDhIY2FOTmlKY2VfZ0tTaTg0MW1KVEpkSS0wSlk2cjFwT2RaeGo2ZDVJSXRnaDhLY1RYdUlKcEJ1Q3B3eDUyOWY5ellPckxYTlUzVTAyTWpZNkt2bGthQm1hckQ2WlA0YlI4WjQ2RGxxbzNUcXdpVnphdDBmOA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNM3V3MVFWMlpISVhTWjQ3dmd6bTlGMDZhSk9wdlZ1YlAyaTM4dk9NbUs1WTBRQ2VQODRDbGg0ejJzX1BUc1FId08wZDRNZml2SktwNm1HbWxqVmdXNlJjdnRqZ1NvUlNHajltZnpoSkR3NXAya2hlNzhLelBGLTJzZW5xSDcxRUQ0RGNHY3pReDlNdUlMUVpBNmdFMkRqVDliT1JySnozN1kySS0yV2x2bXN2YVdPZllIQ1hiYzhqVTRnSkJFcUJKa2I1MWsxNkJOUTRjTVllTHd6OWRCNnprVG930gHnAUFVX3lxTE40bzllUnZyWlRqSjV4NUV4QVNiak9lZWZvc1UwZ0JCRWpjbFdzYTFhZzJqaTM0TGVFSFBMMk8tTFNCVDZScHZudU1tREJBSjFXM19HRkJQYmo4R3BLTERxbEIxdHZTRS1rR19mbjBIaEpPRDhIY2FOTmlKY2VfZ0tTaTg0MW1KVEpkSS0wSlk2cjFwT2RaeGo2ZDVJSXRnaDhLY1RYdUlKcEJ1Q3B3eDUyOWY5ellPckxYTlUzVTAyTWpZNkt2bGthQm1hckQ2WlA0YlI4WjQ2RGxxbzNUcXdpVnphdDBmOA?oc=5",
+      "title": "Missed ITR deadline? You may claim Section 54 capital gains tax relief",
+      "source": "Business Standard • Google News",
+      "domain": "business-standard.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T10:05:21+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
       "sourcecountry": "India"
     },
     {
@@ -256,6 +379,22 @@
       "language": "Telugu",
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOTU8wM2VVRVcyYmtZVWtUcWl0cFRwQmhVVFJFRG9HeHl1UUh3X1FVTnBjQ0FKMzlSaGEzNkdWcW9DNi1rV0NucklDeHp1OERENTBiNWNEN0lUWE9ldzNCWUpXdGwtR3BhM09YT2IydWlVZV95M2t2MXFNQ2ozQlBFYjgwNjdISE1VWUxvM3FXUGoyOEVjd2RWSzdNZ3NqWF84Szlab0kxcXY5eXBreFVZZDIySWVJd09zcnVqaWlKbjJrM3NGSG5MYjJtTVBTcS1BaWfSAdcBQVVfeXFMTUlPVkJEX2RRY1FhMTRBak42NkUzaE5KdG50SldnWl85NWVoeDdJYlZnM2o5S0ExZU0tc3NnWUcyWnRTd2ZyWk5hcDNCa2RtX1pCR2hsaW10bWN2Tmxnd3k3WVVrTFlaYy1Xdm1FT2YtOTFjZTZHWTd4bnVHZDBJSXlfcEtvbUJnVU42QUlMMjVnem8tTHF2OXViZUE2TDRwUm9VUlZwMXludllGb3h2Vnc5ak1mcjMxLTNHdVFnZnBLYjBJc05KMVRUbWN4V21hb2FXX2VnSzA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOTU8wM2VVRVcyYmtZVWtUcWl0cFRwQmhVVFJFRG9HeHl1UUh3X1FVTnBjQ0FKMzlSaGEzNkdWcW9DNi1rV0NucklDeHp1OERENTBiNWNEN0lUWE9ldzNCWUpXdGwtR3BhM09YT2IydWlVZV95M2t2MXFNQ2ozQlBFYjgwNjdISE1VWUxvM3FXUGoyOEVjd2RWSzdNZ3NqWF84Szlab0kxcXY5eXBreFVZZDIySWVJd09zcnVqaWlKbjJrM3NGSG5MYjJtTVBTcS1BaWfSAdcBQVVfeXFMTUlPVkJEX2RRY1FhMTRBak42NkUzaE5KdG50SldnWl85NWVoeDdJYlZnM2o5S0ExZU0tc3NnWUcyWnRTd2ZyWk5hcDNCa2RtX1pCR2hsaW10bWN2Tmxnd3k3WVVrTFlaYy1Xdm1FT2YtOTFjZTZHWTd4bnVHZDBJSXlfcEtvbUJnVU42QUlMMjVnem8tTHF2OXViZUE2TDRwUm9VUlZwMXludllGb3h2Vnc5ak1mcjMxLTNHdVFnZnBLYjBJc05KMVRUbWN4V21hb2FXX2VnSzA?oc=5",
+      "title": "Capital gains on mutual fund units not taxable in India under Mauritius treaty, rules Delhi HC",
+      "source": "Livemint • Google News",
+      "domain": "livemint.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T09:19:17+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
       "sourcecountry": "India"
     },
     {
@@ -8353,6 +8492,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1UT0dweUFPTVkxMVgtVFdfbXhCYk5hMzdRN0Mxa3NqQ2RSMFNMbFpwQmhYMTNDTUVuZjdPVzFVeUlzcXN5NTRCV1FudEFZekxhWGVvQnd5Tlk?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1UT0dweUFPTVkxMVgtVFdfbXhCYk5hMzdRN0Mxa3NqQ2RSMFNMbFpwQmhYMTNDTUVuZjdPVzFVeUlzcXN5NTRCV1FudEFZekxhWGVvQnd5Tlk?oc=5",
+      "title": "UTI Mutual Fund - UTI Gold Exchange Traded Fund",
+      "source": "Zerodha • Google News",
+      "domain": "zerodha.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-17T06:06:33+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNbE4zcUU5b3YyN1ZnV2E3cTdLZ0R5WHE5aFZUVFdSOE1teEtoVHdFWkRfMjJFV0F4UjNON3p0bkN5RXZVWlhKWjRTQVdIQTE2ZUh3YmRXTGtVM3ZYSTFIcmNka01QLWRqZ0U4bUNDOWtNWkQ1WUNhV2x1elR0TWh4LXl0YmJEd0l4WW9jM0k3SUlTTk9jU09rX0JXRUhqbXhhZWZuc0dHamFPVmpqRG05NFpJWlVXSkJwWFZhZ2NIb3loNTVLSlBIUTZNbGtQR2xGWmZ3RkRVTWdBOGhSbExWa0g1eDlQTEdMZktwRlB5N1ZEblNiZGcyNkMzQURlcGxV?oc=5",
       "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNbE4zcUU5b3YyN1ZnV2E3cTdLZ0R5WHE5aFZUVFdSOE1teEtoVHdFWkRfMjJFV0F4UjNON3p0bkN5RXZVWlhKWjRTQVdIQTE2ZUh3YmRXTGtVM3ZYSTFIcmNka01QLWRqZ0U4bUNDOWtNWkQ1WUNhV2x1elR0TWh4LXl0YmJEd0l4WW9jM0k3SUlTTk9jU09rX0JXRUhqbXhhZWZuc0dHamFPVmpqRG05NFpJWlVXSkJwWFZhZ2NIb3loNTVLSlBIUTZNbGtQR2xGWmZ3RkRVTWdBOGhSbExWa0g1eDlQTEdMZktwRlB5N1ZEblNiZGcyNkMzQURlcGxV?oc=5",
       "title": "Quant and PPFAS Mutual Fund among 4 AMCs that pared cash holdings by over Rs 1,000 crore in October",
@@ -9061,6 +9216,22 @@
       "sector": "Personal Finance",
       "desk": "personal-finance",
       "seen": "2026-11-16T15:12:55+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPaFlOMTNPQzE5ZkwxSU1RX3NFVnRnUnhzQ1pMSnJCZkJwQ0lCX3FETUxWNW1vRGhOUlVRdnAtejZEbzY5eWdLUDgtRmNNWkhRUFU3bmZ4MF9fUVhzbWRwRUQ2aVpnOU9YblJTVHBaa19UNkdtWEtRazh1dHVDbjBhLXVqa21WWHRCY2tF?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPaFlOMTNPQzE5ZkwxSU1RX3NFVnRnUnhzQ1pMSnJCZkJwQ0lCX3FETUxWNW1vRGhOUlVRdnAtejZEbzY5eWdLUDgtRmNNWkhRUFU3bmZ4MF9fUVhzbWRwRUQ2aVpnOU9YblJTVHBaa19UNkdtWEtRazh1dHVDbjBhLXVqa21WWHRCY2tF?oc=5",
+      "title": "How to Check EPF Balance & Passbook on WhatsApp",
+      "source": "Zerodha • Google News",
+      "domain": "zerodha.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-16T14:53:02+00:00",
       "time_basis": "google_rss",
       "language": "English",
       "origin": "google-news-rss",
@@ -12331,6 +12502,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX3VjNXhhN1lmeGstS3NvQ1hJRnNIQzVobzc5YkhrMzRvZFVsZ0xvY1p1UmtsYWswNnhBdlhJUEZILUFVU05FU3BVS2hNdVR4VGZ0dGRqTWhGdTVCY3FpdUVzT3VPTmhjMmxFMFR5YWZXWWlWSGYyRGgzeEpXZXljMkx5VEJJclU?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX3VjNXhhN1lmeGstS3NvQ1hJRnNIQzVobzc5YkhrMzRvZFVsZ0xvY1p1UmtsYWswNnhBdlhJUEZILUFVU05FU3BVS2hNdVR4VGZ0dGRqTWhGdTVCY3FpdUVzT3VPTmhjMmxFMFR5YWZXWWlWSGYyRGgzeEpXZXljMkx5VEJJclU?oc=5",
+      "title": "Zerodha CASE Multi Asset Passive FoF Direct Growth - NAV, Mutual Fund Performance & Portfolio",
+      "source": "Groww • Google News",
+      "domain": "groww.in",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-14T01:45:10+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNc3lDSkFKeDRwVEktVElsbkpKYWRlTWdEUThNcnhBc1l4cHhlcHZvNHU3c1hqQWlIX3hXcFUwY0NMY1RGaFdWcXVXeWVoVlZIaTItWnVLckxVMEI3cUY1SDNqV3d5QmFGY0pHQUZIc1o3a3E4TTQ5Nkx0X1p0RWEwN09fcFZieEphYXRuUHZHVExlUG10RHBGQ0pWemVEQmFHMmZFRzRCNzFtS3ZPRmFwdi1WR01Uam1melpDellTNndLaWQ4ZjRZaGdhRkJjQlVrU2p3aGllN2JIZ19INnJrMGtoRzEyZERXZzdaUDRObHViMTN5eFZVOExpVnFYbjNiaHowYmRVSdIBjAJBVV95cUxOeG0xelNCMVh1R3hHbGpMNVhUTW9zdkF1VGI2U1JDYkl1d2djMU5HWWVGSUdTNzdJdEhYNGo0MDdPN0pab2x6Vkg3U2I4bTNEekV2dTZ0Vzk2Z0h4Mnp6WjAxYXNXNkZVOW01RE5FS0p0MGZpc0FyV1hpcnNFbUpERkNMMkM3RUtBUlkzUEt6WG1FMWN1SHFWQy1zV0dIQVpjSG5kZktCVW5VempoWGg1aFN0RWIzUXp3OFlnRXZyS20wZE5qMDBScVhER2FZSjNlaUJFQWZObjhWWEhuaUpINUdjekRfeWRNc2k1OEtseGZWMDVHNGpvRGJXSHZVX29ldGxYMnNPakppWmdQ?oc=5",
       "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNc3lDSkFKeDRwVEktVElsbkpKYWRlTWdEUThNcnhBc1l4cHhlcHZvNHU3c1hqQWlIX3hXcFUwY0NMY1RGaFdWcXVXeWVoVlZIaTItWnVLckxVMEI3cUY1SDNqV3d5QmFGY0pHQUZIc1o3a3E4TTQ5Nkx0X1p0RWEwN09fcFZieEphYXRuUHZHVExlUG10RHBGQ0pWemVEQmFHMmZFRzRCNzFtS3ZPRmFwdi1WR01Uam1melpDellTNndLaWQ4ZjRZaGdhRkJjQlVrU2p3aGllN2JIZ19INnJrMGtoRzEyZERXZzdaUDRObHViMTN5eFZVOExpVnFYbjNiaHowYmRVSdIBjAJBVV95cUxOeG0xelNCMVh1R3hHbGpMNVhUTW9zdkF1VGI2U1JDYkl1d2djMU5HWWVGSUdTNzdJdEhYNGo0MDdPN0pab2x6Vkg3U2I4bTNEekV2dTZ0Vzk2Z0h4Mnp6WjAxYXNXNkZVOW01RE5FS0p0MGZpc0FyV1hpcnNFbUpERkNMMkM3RUtBUlkzUEt6WG1FMWN1SHFWQy1zV0dIQVpjSG5kZktCVW5VempoWGg1aFN0RWIzUXp3OFlnRXZyS20wZE5qMDBScVhER2FZSjNlaUJFQWZObjhWWEhuaUpINUdjekRfeWRNc2k1OEtseGZWMDVHNGpvRGJXSHZVX29ldGxYMnNPakppWmdQ?oc=5",
       "title": "8th Pay Commission: 5 latest official website updates central government employees and pensioners should know",
@@ -12553,30 +12740,31 @@
     "personal_finance_discovery": {
       "queries": 10,
       "successful_feeds": 10,
-      "accepted": 33,
+      "accepted": 27,
       "by_source": {
-        "BankBazaar": 0,
-        "ET Money": 3,
-        "Moneycontrol PF page": 29,
-        "India-wide PF": 3
+        "Groww": 1,
+        "Zerodha": 5,
+        "Business Standard PF page": 13,
+        "India-wide PF": 11
       },
       "warnings": [],
       "discovery": "google-news-rss"
     },
     "telugu_snippets": {
       "configured": false,
+      "provider": "none",
       "attempted": 0,
       "completed": 0,
-      "pending": 833,
+      "pending": 845,
       "errors": []
     },
     "gdelt": {
-      "state": "temporarily_unavailable",
+      "state": "cooldown",
       "last_attempt": "2026-11-19T10:39:19.378363+00:00",
       "last_success": "2026-11-19T04:09:36.766060+00:00",
       "retry_after": "2026-11-19T11:39:19.378363+00:00"
     },
-    "official_rss_matches": 23,
+    "official_rss_matches": 24,
     "avi_ivi": {
       "successful_feeds": 5,
       "feed_matches": {
@@ -12610,7 +12798,7 @@
       "warnings": []
     },
     "dedicated_desks": {
-      "personal_finance_links": 352,
+      "personal_finance_links": 359,
       "regional_business_links": 0,
       "personal_finance_from_14_nov_2026": "2026-11-13T18:30:00+00:00"
     }
