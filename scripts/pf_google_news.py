@@ -18,6 +18,7 @@ from desk_coverage import pf_match, pf_cutoff
 RSS_BASE="https://news.google.com/rss/search"
 ATOM="{http://www.w3.org/2005/Atom}"
 MAX_BYTES=1_600_000
+# A 7-day window is used for each search, including the source-specific sweeps.
 # Publishers with identifiable source domains. A source directory is NOT
 # a claim that the publisher permits article syndication.
 PF_SOURCES=(
@@ -94,7 +95,13 @@ def parse_google_news(xml, now=None, expected_domain=None):
         if not any(domain_matches(source_url,d) for _,d in PF_SOURCES):
             continue
         title=clean_title(raw_title,publisher)
-        if len(title)<15 or not pf_match(title):
+        if len(title)<15:
+            continue
+        # Site-scoped searches already match the PF topic at search-index level.
+        # Their headline need not repeat the exact keyword; keep those results
+        # rather than falsely discarding PF explainers with question headlines.
+        # Broad India-wide searches still require explicit PF terms in title.
+        if not expected_domain and not pf_match(title):
             continue
         link=cleanup(first_text(node,["link"]))
         if not allowed_link(link):
