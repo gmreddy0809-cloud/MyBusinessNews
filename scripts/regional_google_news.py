@@ -187,20 +187,27 @@ def collect_regional(cycle=None):
     except Exception as exc:
         status["warnings"].append("Telangana Today RSS: "+type(exc).__name__+": "+str(exc)[:80])
         print("Telangana Today RSS unavailable",type(exc).__name__,str(exc)[:80],file=sys.stderr)
-    for name,domain in chosen:
-        # Keep the queries short: Google's indexing may not preserve all OR terms.
+    # Fetch independent publishers concurrently; do not serialize 24 HTTP timeouts.
+    from concurrent.futures import ThreadPoolExecutor
+    def fetch_publisher(pair):
+        name,domain=pair
         location='("Andhra Pradesh" OR Telangana OR Hyderabad OR Amaravati OR Visakhapatnam OR "ఆంధ్రప్రదేశ్" OR "తెలంగాణ" OR "హైదరాబాద్")'
         query="site:"+domain+" "+location+" when:7d"
         url=RSS_URL+"?"+urlencode({"q":query,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
         try:
             req=Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; attributed regional headline discovery)","Accept":"application/rss+xml,application/xml,text/xml;q=0.9"})
-            with urlopen(req,timeout=14) as response:xml=response.read(1_600_000)
-            rows=parse(xml,domain)
+            with urlopen(req,timeout=12) as response:xml=response.read(1_600_000)
+            return name,parse(xml,domain),None
+        except Exception as exc:
+            return name,[],type(exc).__name__+": "+str(exc)[:80]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for name,rows,error in pool.map(fetch_publisher,chosen):
+            if error:
+                status["warnings"].append(name+": "+error)
+                print("Regional Google News discovery warning",name,error,file=sys.stderr)
+                continue
             status["successful_feeds"]+=1
             status["by_source"][name]=status["by_source"].get(name,0)+len(rows)
             for item in rows:found[item["url"]]=item
-        except Exception as exc:
-            status["warnings"].append(name+": "+type(exc).__name__+": "+str(exc)[:80])
-            print("Regional Google News discovery warning",name,type(exc).__name__,str(exc)[:80],file=sys.stderr)
     status["accepted"]=len(found)
     return list(found.values()),status
