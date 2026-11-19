@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-site-recovery-r16">
+<meta name="mbn-site-version" content="2026-11-19-news-loading-hotfix-r17">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -1385,7 +1385,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  if(isPublisherDesk(state.region))renderPublisherHub();
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
  const total=state.stories.filter(x=>x.desk==='business');
- $('pulseTelugu').textContent=state.stories.filter(x=>(x.desk==='regional-business'||x.regional_business||(x.desk==='business'&&isTeluguCompanyStory(x)))).length.toLocaleString('en-IN');
+ $('pulseTelugu').textContent=state.stories.filter(isListedCompanyStory).length.toLocaleString('en-IN');
  $('pulsePF').textContent=state.stories.filter(x=>(x.desk==='personal-finance'||x.reader_finance||(x.desk==='business'&&isPersonalFinanceStory(x)))).length.toLocaleString('en-IN');
  $('pulseOfficial').textContent=total.filter(isOfficialStory).length.toLocaleString('en-IN');
  $('pulseFresh').textContent=total.filter(x=>dateKey(x.seen)>Date.now()-24*3600000).length.toLocaleString('en-IN');
