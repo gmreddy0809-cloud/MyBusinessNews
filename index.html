@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-pf-week-r14">
+<meta name="mbn-site-version" content="2026-11-19-pf-rss-r15">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -846,7 +846,7 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
  ['Economy & Policy',/economy|inflation|gdp\b|budget|government policy|export|import|tariff|trade agreement|fiscal|economic growth|central bank/]
  ];return patterns.find(([,re])=>re.test(x))?.[0]||'Other Business';}
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
-function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return new URL(data.url).hostname.replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,title_te:String(data.title_te||'').trim().slice(0,220),source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business',reader_finance:Boolean(data.reader_finance),regional_business:Boolean(data.regional_business),snippet_te:String(data.snippet_te||data.summary_te||'').trim().slice(0,500),summary:String(data.summary||'').trim().slice(0,500)};}
+function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return (data.origin==='google-news-rss'&&data.domain?String(data.domain):new URL(data.url).hostname).replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||isKnownPaywall(domain))return null;return {id:data.id||data.url,url:data.url,title,title_te:String(data.title_te||'').trim().slice(0,220),source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business',reader_finance:Boolean(data.reader_finance),regional_business:Boolean(data.regional_business),snippet_te:String(data.snippet_te||data.summary_te||'').trim().slice(0,500),summary:String(data.summary||'').trim().slice(0,500)};}
 
 const FINANCIAL_DAILIES=[
  ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
@@ -1292,7 +1292,7 @@ function sourceMatches(item){
  return item.source.toLowerCase().startsWith(id+' ');
 }
 function timeLabel(item){
- const kind=item.time_basis==='feed'?'Feed date':item.time_basis==='first_seen'?'First seen':'Indexed';
+ const kind=item.time_basis==='feed'?'Feed date':item.time_basis==='google_rss'?'Google News date':item.time_basis==='first_seen'?'First seen':'Indexed';
  return kind+' · '+formatIST(item.seen);
 }
 function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{
@@ -1349,7 +1349,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  state.region==='telugu-states'?
  'Politics, CM & ministers, government decisions, welfare, education, agriculture and civic issues in English and Telugu.':
  state.region==='personal-finance'?
- 'From 14 Nov 2026 where dated: savings, mutual funds, insurance, income tax, banking, loans and retirement. Original publishers and official sources.':
+ 'Personal finance headlines discovered via Google News RSS and official sources, with publisher credit. Google News click-throughs may redirect to publishers; coverage is not guaranteed complete.':
  state.region==='telugu-companies'?
  'Hyderabad, Telangana and AP corporate news: pharma, GCCs, IT, startups, funding, hospitals, aviation and listed company disclosures.':
  state.region==='avi-ivi'?
