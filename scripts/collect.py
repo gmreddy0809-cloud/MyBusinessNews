@@ -7,7 +7,7 @@ from publications import collect_publications
 from regional_general import REGIONAL_QUERIES, keep_general
 from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_publisher, index_gdelt, pf_match, pf_cutoff
 from amfi_official import collect_amfi
-from pf_google_news import collect_personal_finance
+from pf_google_news import collect_personal_finance, pf_editorial_match
 from snippets import enrich
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -91,7 +91,7 @@ def request(query):
 def main():
     try: old=json.loads(DEST.read_text(encoding="utf-8"))
     except Exception:old={"articles":[]}
-    news={x["url"]:x for x in old.get("articles",[]) if x.get("url")}
+    news={x["url"]:x for x in old.get("articles",[]) if x.get("url") and not (x.get("origin")=="google-news-rss" and not pf_editorial_match(x.get("title","")))}
     official=collect_official()
     for entry in official:
         if pf_match(entry.get("title","")):
