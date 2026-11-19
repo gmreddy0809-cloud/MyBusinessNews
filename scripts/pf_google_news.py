@@ -45,6 +45,26 @@ PF_SOURCES=(
  ("Groww","groww.in"),
  ("Zerodha","zerodha.com"),
 )
+# Personal-finance editorial gate: a Google source-scoped hit alone is not
+# evidence of a personal-finance story. Keep household-money, consumer credit,
+# retirement, insurance, taxes and investor decision topics, not macro stories.
+PF_EXTRA=re.compile(
+    r'(?:\\b(?:investing|investments?|investment strategy|asset allocation|portfolio|'
+    r'wealth|taxpayer|taxation|\\bitat\\b|\\bltcg\\b|\\bstcg\\b|'
+    r'gold prices?|gold rates?|silver prices?|gold jewellery|'
+    r'government bonds?|\\bnsc\\b|dearness allowance|\\bda hike\\b|'
+    r'8th pay commission|\\b8th cpc\\b|salary arrears|'
+    r'financial wellbeing|household budget|financial mistakes|'
+    r'estate planning|inheritance|property succession|will drafting|'
+    r'loan guarantor|bank account|\\bupi\\b|creditworthiness|'
+    r'digital life certificate|gratuity|employee provident fund|'
+    r'\\beps\\b|pension funds?|mortgage|\\bit return\\b)\\b|'
+    r'పొదుపు|బీమా|పన్ను|రుణం|పెన్షన్|మ్యూచువల్|బంగారం|వడ్డీ)',
+    re.I
+)
+def pf_editorial_match(title):
+    return bool(pf_match(title) or PF_EXTRA.search(title))
+
 PF_TOPICS=(
  '("personal finance" OR "income tax" OR "tax refund" OR "tax saving" OR "tax return" OR ITR)',
  '("mutual fund" OR SIP OR "NFO" OR "stock investing" OR "financial planning" OR "retirement")',
@@ -105,11 +125,9 @@ def parse_google_news(xml, now=None, expected_domain=None):
         title=clean_title(raw_title,publisher)
         if len(title)<15:
             continue
-        # Site-scoped searches already match the PF topic at search-index level.
-        # Their headline need not repeat the exact keyword; keep those results
-        # rather than falsely discarding PF explainers with question headlines.
-        # Broad India-wide searches still require explicit PF terms in title.
-        if not expected_domain and not pf_match(title):
+        # Site-scoped Google News queries can return unrelated headlines.
+        # Require editorial PF evidence in the headline on every source.
+        if not pf_editorial_match(title):
             continue
         link=cleanup(first_text(node,["link"]))
         if not allowed_link(link):
