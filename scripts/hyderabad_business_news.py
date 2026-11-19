@@ -11,7 +11,7 @@ from datetime import datetime,timezone,timedelta
 from urllib.parse import urlencode,urlparse
 from urllib.request import Request,urlopen
 from xml.etree import ElementTree as ET
-from rss_sources import cleanup,first_text,feed_date,company_for
+from rss_sources import cleanup,first_text,feed_date,company_for,TRACKED
 from desk_coverage import local_business_match,CORPORATE_EN,CORPORATE_TE
 
 BASE="https://news.google.com/rss/search"
@@ -30,6 +30,16 @@ QUERIES=(
   '("Telangana" OR "Hyderabad") (గ్లోబల్ OR జీసీసీ OR పెట్టుబడి OR కంపెనీ OR పరిశ్రమ OR స్టార్టప్)',
   '("హైదరాబాద్" OR "తెలంగాణ") (ఫార్మా OR ఒప్పందం OR విస్తరణ OR నిధులు OR వ్యాపారం)',
 )
+# Local listed-company coverage from editorial reporting, not only exchange notices.
+LISTED_NEWS_QUERIES=(
+ '("Dr Reddy" OR "Aurobindo Pharma" OR "Divis Laboratories" OR "Laurus Labs") (partnership OR investment OR result OR approval OR expansion)',
+ '("Cyient" OR "Zen Technologies" OR "Astra Microwave" OR "MTAR Technologies") (deal OR contract OR investment OR revenue OR order)',
+ '("Granules India" OR "Natco Pharma" OR "Neuland Laboratories" OR "Suven Pharma") (business OR approval OR profit OR deal)',
+ '("KIMS Hospitals" OR "Medplus" OR "Vijaya Diagnostic" OR "Rainbow Children") (business OR expansion OR results)',
+ '("Amara Raja" OR "Avanti Feeds" OR "Andhra Paper" OR "Apex Frozen") (investment OR result OR expansion)',
+ '("Bharat Dynamics" OR "NMDC" OR "NCC Limited" OR "KNR Constructions") (contract OR earnings OR expansion)',
+)
+LISTED_ALIASES={name.lower() for _,names in TRACKED[:2] for name in names}
 BUSINESS=re.compile(
  r'\b(?:business|company|companies|corporate|startup|funding|investment|invests?|'
  r'contract|agreement|partnership|collaborat|acquisition|merger|expansion|expand|'
@@ -81,7 +91,10 @@ def parse(xml,now=None):
         if u.scheme!="https" or (u.hostname or "").lower()!="news.google.com":continue
         dt=feed_date(first_text(node,["pubDate"]))
         if not dt or dt>now+timedelta(hours=2) or dt<now-timedelta(days=7):continue
+        matched_region,matched_company=company_for(title)
+        is_listed=bool(matched_region and matched_company and matched_company.lower() in LISTED_ALIASES)
         found.append({
+            "listed_company":is_listed,
             "id":link,"url":link,"title":title,
             "source":publisher+" • Google News","domain":host,
             "region":place,"sector":sector(title),"desk":"regional-business",
@@ -96,6 +109,7 @@ def collect_hyderabad_business(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
     # Six searches every half hour; all twelve search themes rotate hourly.
     selected=[QUERIES[(cycle*6+i)%len(QUERIES)] for i in range(6)]
+    selected.extend(LISTED_NEWS_QUERIES[(cycle*2+i)%len(LISTED_NEWS_QUERIES)] for i in range(2))
     status={"queries":len(selected),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     out={}
     from concurrent.futures import ThreadPoolExecutor
