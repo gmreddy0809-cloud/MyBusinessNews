@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-news-loading-hotfix-r17">
+<meta name="mbn-site-version" content="2026-11-19-robust-loader-r18">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -1487,6 +1487,55 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  setupXWatch();setupMiscHub();setupPublisherHub();restoreView();$('copyrightYear').textContent=new Date().getFullYear();tickClock();setInterval(tickClock,30000);render();refresh();setInterval(()=>{if(!document.hidden)refresh()},5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(!state.checked||Date.now()-dateKey(state.checked)>5*60*1000))refresh()});
 }
 document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<script>
+/* Independent news-list recovery: works even if the main application fails. */
+(function(){
+  function recover(){
+    var host=document.getElementById('newsList');
+    if(!host || !host.querySelector('.loading-state'))return;
+    var seed=window.__MBN_SEED;
+    function show(data,note){
+      if(!host.querySelector('.loading-state'))return;
+      var articles=data&&Array.isArray(data.articles)?data.articles:[];
+      if(!articles.length)return;
+      var rows=articles.filter(function(x){return x&&x.title&&/^https?:\/\//.test(x.url||'');}).slice(0,100);
+      if(!rows.length)return;
+      host.replaceChildren();
+      var banner=document.createElement('div');
+      banner.style.cssText='padding:14px 18px;background:#eaf3ff;color:#174578;font-weight:750;border-bottom:1px solid #c8ddf5';
+      banner.textContent='News recovery view • '+rows.length+' stories • '+note;
+      host.appendChild(banner);
+      rows.forEach(function(item){
+        var article=document.createElement('article');article.className='news-article';
+        article.style.cssText='padding:13px 18px;border-bottom:1px solid #e7edf5;display:block';
+        var source=document.createElement('div');source.className='news-meta';
+        source.textContent=(item.source||'News source')+' • '+(item.region||'');
+        var link=document.createElement('a');link.className='news-title';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=item.title_te||item.title;
+        article.appendChild(source);article.appendChild(link);
+        if(item.snippet_te||item.snippet_en||item.summary){
+          var desc=document.createElement('p');desc.className='news-desc';desc.textContent=item.snippet_te||item.snippet_en||item.summary;
+          article.appendChild(desc);
+        }
+        host.appendChild(article);
+      });
+      var status=document.getElementById('feedStatus');
+      if(status)status.textContent='Recovery news loaded';
+      var count=document.getElementById('resultsCount');
+      if(count)count.textContent=rows.length+' headlines loaded (recovery view)';
+    }
+    var timer=setTimeout(function(){show(seed,'saved headlines')},9000);
+    fetch('data/news.json?recovery='+Date.now(),{cache:'no-store'}).then(function(r){
+      if(!r.ok)throw Error('News index unavailable');
+      return r.json();
+    }).then(function(d){clearTimeout(timer);show(d,'latest saved index')}).catch(function(){
+      clearTimeout(timer);show(seed,'saved headlines');
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(recover,1500)});
+  }else{setTimeout(recover,1500)}
 })();
 </script>
 </body>
