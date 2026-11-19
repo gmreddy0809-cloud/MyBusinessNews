@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/**'
       - 'tests/**'
+      - 'index.html'
       - '.github/workflows/news.yml'
 permissions:
   contents: write
