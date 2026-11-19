@@ -70,8 +70,23 @@ REGIONS=(
     '(Andhra Pradesh OR Amaravati OR Vijayawada OR Visakhapatnam OR Tirupati OR "ఆంధ్రప్రదేశ్" OR "అమరావతి" OR "విజయవాడ" OR "విశాఖ")',
     '(Telangana OR Hyderabad OR Warangal OR "తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్")'
 )
-AP=re.compile(r'ఆంధ్రప్రదేశ్|ఆంధ్ర ప్రదేశ్|అమరావతి|విశాఖ|విజయవాడ|తిరుపతి|గుంటూరు|కాకినాడ|నెల్లూరు|కర్నూలు|చంద్రబాబు|పవన్ కళ్యాణ్|జగన్|andhra pradesh|amaravati|visakhapatnam|vijayawada|tirupati|guntur|kakinada|nellore|chandrababu|pawan kalyan',re.I)
-TG=re.compile(r'తెలంగాణ|హైదరాబాద్|సికింద్రాబాద్|వరంగల్|కరీంనగర్|ఖమ్మం|నిజామాబాద్|రేవంత్|కేసీఆర్|కేటీఆర్|telangana|hyderabad|secunderabad|warangal|karimnagar|khammam|revanth reddy',re.I)
+# Only explicit place names or clearly regional political references assign a state.
+AP=re.compile(
+ r'ఆంధ్రప్రదేశ్|ఆంధ్ర ప్రదేశ్|ఏపీ|అమరావతి|విశాఖ|విజయవాడ|తిరుపతి|గుంటూరు|కాకినాడ|నెల్లూరు|కర్నూలు|'
+ r'చంద్రబాబు|పవన్ కల్యాణ్|పవన్ కళ్యాణ్|జగన్|లోకేశ్|శ్రీకాకుళం|విజయనగరం|అనకాపల్లి|'
+ r'రాజమండ్రి|రాజమహేంద్రవరం|ఏలూరు|భీమవరం|ఒంగోలు|నంద్యాల|అనంతపురం|కడప|చిత్తూరు|'
+ r'andhra pradesh|amaravati|visakhapatnam|vizag|vijayawada|tirupati|guntur|kakinada|'
+ r'nellore|kurnool|chandrababu|pawan kalyan|ys jagan|nara lokesh|'
+ r'srikakulam|vizianagaram|anakapalli|rajahmundry|eluru|ongole|nandyal|'
+ r'anantapur|kadapa|chittoor|east godavari|west godavari',re.I)
+TG=re.compile(
+ r'తెలంగాణ|హైదరాబాద్|సికింద్రాబాద్|వరంగల్|కరీంనగర్|ఖమ్మం|నిజామాబాద్|'
+ r'రేవంత్|కేసీఆర్|కేటీఆర్|సంగారెడ్డి|మెదక్|సిద్దిపేట|నల్గొండ|నల్గొండ|'
+ r'సూర్యాపేట|మహబూబ్‌నగర్|నిర్మల్|ఆదిలాబాద్|జగిత్యాల|పెద్దపల్లి|భూపాలపల్లి|'
+ r'రంగారెడ్డి|మేడ్చల్|జనగామ|వికారాబాద్|మంచిర్యాల|'
+ r'telangana|hyderabad|secunderabad|warangal|karimnagar|khammam|nizamabad|'
+ r'revanth reddy|\bkcr\b|\bktr\b|sangareddy|medak|siddipet|nalgonda|'
+ r'suryapet|mahabubnagar|adilabad|jagtial|peddapalli|rangareddy|medchal|vikarabad',re.I)
 GEO_NOISE=re.compile(r'weather in hyderabad|hyderabad weather today',re.I)
 
 def region(title):
