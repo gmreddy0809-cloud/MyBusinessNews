@@ -39,6 +39,17 @@ class PFNewsFeedTests(unittest.TestCase):
         xml=feed(item("Tax refund status for taxpayers - Upstox","Upstox",
             "https://upstox.com","", "https://evil.example/story"))
         self.assertEqual(parse_google_news(xml,now=NOW),[])
+    def test_source_search_does_not_admit_unrelated_news(self):
+        xml=feed(
+          item("Van Gogh painting sells for $190.4 million - Livemint","Livemint",
+               "https://www.livemint.com","Thu, 19 Nov 2026 04:00:00 GMT",
+               "https://news.google.com/rss/articles/art"),
+          item("Fixed deposit interest rates increase - Livemint","Livemint",
+               "https://www.livemint.com","Thu, 19 Nov 2026 04:00:00 GMT",
+               "https://news.google.com/rss/articles/pf"))
+        rows=parse_google_news(xml,now=NOW,expected_domain="livemint.com")
+        self.assertEqual(len(rows),1)
+        self.assertIn("Fixed deposit",rows[0]["title"])
     def test_query_locale_and_topics(self):
         self.assertIn("ceid=IN%3Aen",rss_url(topic_query("zeebiz.com",PF_TOPICS[0])))
         self.assertIn("when%3A7d",rss_url(topic_query("zeebiz.com",PF_TOPICS[0])))
