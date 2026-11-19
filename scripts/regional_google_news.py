@@ -83,6 +83,41 @@ def parse(xml,expected_domain,now=None):
         })
     return out
 
+def collect_telanganatoday_rss(now=None):
+    """Poll publisher's public RSS for attributed headlines and direct links only."""
+    now=now or datetime.now(timezone.utc)
+    endpoint="https://telanganatoday.com/feed"
+    req=Request(endpoint,headers={
+        "User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; headline link reader)",
+        "Accept":"application/rss+xml,application/xml,text/xml;q=0.9"
+    })
+    with urlopen(req,timeout=15) as response:
+        xml=response.read(1_600_000)
+    root=ET.fromstring(xml)
+    found={}
+    for node in root.findall(".//item")[:150]:
+        title=cleanup(first_text(node,["title"]))
+        link=cleanup(first_text(node,["link"]))
+        hostname=(urlparse(link).hostname or "").lower().removeprefix("www.")
+        if hostname!="telanganatoday.com" or not link.startswith("https://"):continue
+        if not 15<=len(title)<=280:continue
+        published=feed_date(first_text(node,["pubDate"]))
+        if not published or published>now+timedelta(hours=2) or published<now-timedelta(days=7):continue
+        place=region(title)
+        # Headlines need explicit AP/TG evidence, or a clear publisher section path.
+        path=urlparse(link).path.lower()
+        if not place and re.search(r"/(?:hyderabad|telangana)/",path):place="hyderabad" if "/hyderabad/" in path else "telangana"
+        if not place and re.search(r"/(?:andhra-pradesh|andhra)/",path):place="andhra-pradesh"
+        if not place:continue
+        found[link]={
+            "id":link,"url":link,"title":title,"source":"Telangana Today • RSS",
+            "domain":"telanganatoday.com","region":place,
+            "sector":"Regional General News","desk":"regional-general",
+            "seen":published.isoformat(),"time_basis":"feed","origin":"publisher-rss",
+            "language":"English","sourcecountry":"India"
+        }
+    return list(found.values())
+
 def collect_regional(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
     # Six source/state checks every half hour; all 32 combinations rotate.
@@ -90,6 +125,15 @@ def collect_regional(cycle=None):
     chosen=[(SOURCES[((cycle*6+i)%total)//len(REGIONS)],REGIONS[(cycle*6+i)%len(REGIONS)]) for i in range(6)]
     status={"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     found={}
+    # Dedicated Telangana Today RSS every run; Google News remains a backup.
+    try:
+        direct=collect_telanganatoday_rss()
+        status["successful_feeds"]+=1
+        status["by_source"]["Telangana Today RSS"]=len(direct)
+        for item in direct:found[item["url"]]=item
+    except Exception as exc:
+        status["warnings"].append("Telangana Today RSS: "+type(exc).__name__+": "+str(exc)[:80])
+        print("Telangana Today RSS unavailable",type(exc).__name__,str(exc)[:80],file=sys.stderr)
     for (name,domain),location in chosen:
         query="site:"+domain+" "+location+" when:7d"
         url=RSS_URL+"?"+urlencode({"q":query,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
