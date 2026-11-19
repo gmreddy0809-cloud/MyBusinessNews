@@ -51,9 +51,17 @@ PF_TOPICS=(
  '("fixed deposit" OR "savings account" OR "bank deposit" OR "PPF" OR "EPF" OR "NPS" OR "pension")',
  '("health insurance" OR "life insurance" OR "term insurance" OR "credit card" OR "home loan" OR "gold loan" OR EMI)',
 )
-# Every run: 8 source/topic searches + 2 broad India discovery searches.
-# All source/topic combinations rotate within 11 hours at twice-hourly polling.
+# Every run: 8 source/topic searches + 1 PF-section search + 1 India discovery search.
+# All source/topic combinations rotate within 5.5 hours at twice-hourly polling.
 PER_RUN=8
+# Published Personal Finance section paths, checked as an additional
+# source-scoped discovery route. Search indexing is not exhaustive.
+PF_SECTION_PATHS=(
+ ("Upstox","upstox.com","upstox.com/news/personal-finance/"),
+ ("Moneycontrol","moneycontrol.com","moneycontrol.com/news/business/personal-finance/"),
+ ("Business Standard","business-standard.com","business-standard.com/finance/personal-finance/"),
+ ("NDTV Profit","ndtvprofit.com","ndtvprofit.com/personal-finance/"),
+)
 GLOBAL_QUERIES=(
  '("personal finance" OR "tax saving" OR "mutual funds" OR "fixed deposit") India when:7d',
  '("health insurance" OR "home loan" OR "credit card" OR "retirement planning") India when:7d',
@@ -133,8 +141,10 @@ def collect_personal_finance(cycle=None):
     combinations=[(source,domain,topic) for source,domain in PF_SOURCES for topic in PF_TOPICS]
     start=(cycle*PER_RUN)%len(combinations)
     batch=[combinations[(start+i)%len(combinations)] for i in range(PER_RUN)]
-    # Rotate the two broad topic searches and avoid more than nine calls/run.
+    # Rotate broad searches and one source PF-section path (ten requests/run).
     selected=[(topic_query(domain,topic),domain,source) for source,domain,topic in batch]
+    section,section_domain,path=PF_SECTION_PATHS[cycle%len(PF_SECTION_PATHS)]
+    selected.append(("site:"+path+" when:7d",section_domain,section+" PF page"))
     selected.append((GLOBAL_QUERIES[cycle%len(GLOBAL_QUERIES)],None,"India-wide PF"))
     status={"queries":len(selected),"successful_feeds":0,"accepted":0,
             "by_source":{},"warnings":[],"discovery":"google-news-rss"}
