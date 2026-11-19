@@ -175,7 +175,7 @@ def collect_regional(cycle=None):
     priority=SOURCES[:8]
     others=SOURCES[8:]
     rotating=[others[(cycle*16+i)%len(others)] for i in range(min(16,len(others)))]
-    chosen=list(dict.fromkeys(priority+rotating))
+    chosen=list(dict.fromkeys(list(priority)+rotating))
     status={"sources_configured":len(SOURCES),"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     found={}
     # Dedicated Telangana Today RSS every run; Google News remains a backup.
