@@ -11,6 +11,7 @@ on:
       - '.github/workflows/news.yml'
 permissions:
   contents: write
+  models: read
   pages: write
   id-token: write
 concurrency:
@@ -34,6 +35,7 @@ jobs:
       - name: Retrieve and enrich source-linked news
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
           MBN_SNIPPETS_PER_RUN: '45'
         run: python scripts/collect.py
       - name: Preserve latest news index
