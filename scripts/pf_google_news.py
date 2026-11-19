@@ -49,16 +49,16 @@ PF_SOURCES=(
 # evidence of a personal-finance story. Keep household-money, consumer credit,
 # retirement, insurance, taxes and investor decision topics, not macro stories.
 PF_EXTRA=re.compile(
-    r'(?:\\b(?:investing|investments?|investment strategy|asset allocation|portfolio|'
-    r'wealth|taxpayer|taxation|\\bitat\\b|\\bltcg\\b|\\bstcg\\b|'
+    r'(?:\b(?:investing|investments?|investment strategy|asset allocation|portfolio|'
+    r'wealth|taxpayer|taxation|\bitat\b|\bltcg\b|\bstcg\b|'
     r'gold prices?|gold rates?|silver prices?|gold jewellery|'
-    r'government bonds?|\\bnsc\\b|dearness allowance|\\bda hike\\b|'
-    r'8th pay commission|\\b8th cpc\\b|salary arrears|'
+    r'government bonds?|\bnsc\b|dearness allowance|\bda hike\b|'
+    r'8th pay commission|\b8th cpc\b|salary arrears|'
     r'financial wellbeing|household budget|financial mistakes|'
     r'estate planning|inheritance|property succession|will drafting|'
-    r'loan guarantor|bank account|\\bupi\\b|creditworthiness|'
+    r'loan guarantor|bank account|\bupi\b|creditworthiness|'
     r'digital life certificate|gratuity|employee provident fund|'
-    r'\\beps\\b|pension funds?|mortgage|\\bit return\\b)\\b|'
+    r'\beps\b|pension funds?|mortgage|\bit return\b)\b|'
     r'పొదుపు|బీమా|పన్ను|రుణం|పెన్షన్|మ్యూచువల్|బంగారం|వడ్డీ)',
     re.I
 )
