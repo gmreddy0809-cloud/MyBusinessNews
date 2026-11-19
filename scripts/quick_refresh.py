@@ -91,11 +91,27 @@ def main():
                 if entry.get("time_basis")!="feed" and prior.get("time_basis")=="feed":
                     entry["seen"]=prior.get("seen") or entry.get("seen")
                     entry["time_basis"]="feed"
-                for key in ("title_te","snippet_te","snippet_en","snippet_basis","summary","regional_business","reader_finance"):
+                for key in ("title_te","snippet_te","snippet_en","snippet_basis","summary","regional_business","reader_finance","listed_company"):
                     if not entry.get(key) and prior.get(key):entry[key]=prior[key]
             if not prior or stamp(entry.get("seen"))>=stamp(prior.get("seen")):
                 if not prior:new_count+=1
                 by_url[url]=entry
+    # Verified 19-Nov Hyderabad pharma agreement: retain the original publisher link
+    # even if Google News does not index the story. Time is first-observed, NOT
+    # the original publication time.
+    biosol_url="https://www.businessbriefingtoday.com/health/be-biosol-and-gates-foundation-collaborate-to-expand-access-to-ferric-carboxymaltose-injection"
+    if biosol_url not in by_url:
+        by_url[biosol_url]={
+            "id":biosol_url,"url":biosol_url,
+            "title":"BE Biosol and Gates Foundation collaborate to expand access to ferric carboxymaltose injection",
+            "source":"Business Briefing Today","domain":"businessbriefingtoday.com",
+            "region":"hyderabad","sector":"Pharma & Life Sciences",
+            "desk":"regional-business","regional_business":True,"listed_company":False,
+            "seen":datetime.now(timezone.utc).isoformat(),"time_basis":"first_seen",
+            "sourcecountry":"India","language":"English","origin":"verified-source-link",
+            "summary":"Hyderabad-based BE Biosol Private Limited signed a collaboration with the Gates Foundation to develop and expand access to ferric carboxymaltose injection."
+        }
+        new_count+=1
     now=datetime.now(timezone.utc)
     rows=[v for v in by_url.values() if (
         stamp(v.get("seen"))>=CUTOFF
