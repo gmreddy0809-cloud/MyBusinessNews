@@ -236,15 +236,18 @@ def main():
     # Preserve the 14-Nov-2026 archive instead of dropping older business articles weekly.
     cutoff=datetime(2026,11,13,18,30,tzinfo=timezone.utc)
     pf_from=pf_cutoff()
+    # Avii Ivii relaunch: start its archive from 19 Nov 2026, 00:00 IST.
+    avi_start=datetime(2026,11,18,18,30,tzinfo=timezone.utc)
     rows=[x for x in news.values()
-          if dt(x.get("seen"))>cutoff or (
+          if (x.get("desk")!="avi-ivi" or dt(x.get("seen"))>=avi_start)
+          and (dt(x.get("seen"))>cutoff or (
               (x.get("desk")=="personal-finance" or x.get("reader_finance")) and
               dt(x.get("seen"))>=pf_from
           ) or (
               x.get("desk")=="telugu-patrikalu" and
               x.get("source","").startswith("Dharani News") and
               dt(x.get("seen"))>datetime.now(timezone.utc)-timedelta(days=30)
-          )]
+          ))]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
