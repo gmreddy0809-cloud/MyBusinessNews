@@ -94,7 +94,9 @@ def collect_world(cycle=None):
     report={"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_topic":{},"by_source":{},"warnings":[]}
     found={}
     locales=(("en-US","US","US:en"),("en-GB","GB","GB:en"),("en-IN","IN","IN:en"),("en-AU","AU","AU:en"),("en-CA","CA","CA:en"),("en-SG","SG","SG:en"),("en-ZA","ZA","ZA:en"))
-    for i,(category,query) in enumerate(chosen):
+    from concurrent.futures import ThreadPoolExecutor
+    def fetch_topic(entry):
+        i,(category,query)=entry
         hl,gl,ceid=locales[(cycle+i)%len(locales)]
         url=RSS_BASE+"?"+urlencode({"q":query,"hl":hl,"gl":gl,"ceid":ceid})
         try:
@@ -102,15 +104,20 @@ def collect_world(cycle=None):
                 "User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; worldwide headline discovery)",
                 "Accept":"application/rss+xml,application/xml,text/xml;q=0.9"
             })
-            with urlopen(req,timeout=14) as response:xml=response.read(MAX_BYTES)
-            items=parse_feed(xml,category)
+            with urlopen(req,timeout=12) as response:xml=response.read(MAX_BYTES)
+            return category,parse_feed(xml,category),None
+        except Exception as exc:
+            return category,[],type(exc).__name__+": "+str(exc)[:90]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for category,items,error in pool.map(fetch_topic,enumerate(chosen)):
+            if error:
+                report["warnings"].append(category+": "+error)
+                print("World discovery warning",category,error,file=sys.stderr)
+                continue
             report["successful_feeds"]+=1
             report["by_topic"][category]=report["by_topic"].get(category,0)+len(items)
             for item in items:
                 found[item["url"]]=item
                 report["by_source"][item["source"]]=report["by_source"].get(item["source"],0)+1
-        except Exception as exc:
-            report["warnings"].append(category+": "+type(exc).__name__+": "+str(exc)[:90])
-            print("World discovery warning",category,type(exc).__name__,str(exc)[:90],file=sys.stderr)
     report["accepted"]=len(found)
     return list(found.values()),report
