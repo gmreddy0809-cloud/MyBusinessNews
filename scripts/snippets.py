@@ -9,7 +9,8 @@ import json, os, re, sys, time
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
-API="https://api.openai.com/v1/chat/completions"
+OPENAI_API="https://api.openai.com/v1/chat/completions"
+GITHUB_API="https://models.github.ai/inference/chat/completions"
 MODEL=os.getenv("MBN_SNIPPET_MODEL","gpt-4.1-mini")
 MAX_NEW=int(os.getenv("MBN_SNIPPETS_PER_RUN","45"))
 TELUGU=re.compile(r"[\u0c00-\u0c7f]")
@@ -17,9 +18,9 @@ def valid(s):
     return isinstance(s,str) and 8<=len(s)<=500 and bool(TELUGU.search(s))
 def missing(item):
     return not valid(item.get("title_te")) or not valid(item.get("snippet_te"))
-def prompt_batch(batch, key):
+def prompt_batch(batch, key, provider):
     request_body={
-        "model":MODEL,
+        "model":("openai/"+MODEL if provider=="github" and "/" not in MODEL else MODEL),
         "temperature":0,
         "response_format":{"type":"json_object"},
         "messages":[
@@ -40,7 +41,8 @@ def prompt_batch(batch, key):
         ]
     }
     payload=json.dumps(request_body,ensure_ascii=False).encode()
-    req=Request(API,data=payload,method="POST",headers={
+    endpoint=GITHUB_API if provider=="github" else OPENAI_API
+    req=Request(endpoint,data=payload,method="POST",headers={
         "Authorization":"Bearer "+key,"Content-Type":"application/json",
         "User-Agent":"MyBusinessNews/1.0"
     })
@@ -49,8 +51,11 @@ def prompt_batch(batch, key):
     data=json.loads(output["choices"][0]["message"]["content"])
     return data.get("items",[])
 def enrich(rows):
-    key=os.getenv("OPENAI_API_KEY","").strip()
-    stats={"configured":bool(key),"attempted":0,"completed":0,"pending":0,"errors":[]}
+    openai_key=os.getenv("OPENAI_API_KEY","").strip()
+    github_key=os.getenv("GITHUB_TOKEN","").strip()
+    provider="openai" if openai_key else "github" if github_key else "none"
+    key=openai_key or github_key
+    stats={"configured":bool(key),"provider":provider,"attempted":0,"completed":0,"pending":0,"errors":[]}
     if not key:
         stats["pending"]=sum(missing(x) for x in rows)
         return stats
@@ -64,7 +69,7 @@ def enrich(rows):
                for i,x in enumerate(chosen)]
         stats["attempted"]+=len(chosen)
         try:
-            answer=prompt_batch(batch,key)
+            answer=prompt_batch(batch,key,provider)
             mapped={str(x.get("id")):x for x in answer if isinstance(x,dict)}
             for idx,item in enumerate(chosen):
                 result=mapped.get(str(idx),{})
