@@ -7,6 +7,7 @@ from publications import collect_publications
 from regional_general import REGIONAL_QUERIES, keep_general
 from desk_coverage import PF_QUERIES, REGIONAL_BUSINESS_QUERIES, from_telugu_publisher, index_gdelt, pf_match, pf_cutoff
 from amfi_official import collect_amfi
+from snippets import enrich
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
@@ -102,6 +103,10 @@ def main():
         if prev and entry.get("time_basis")!="feed" and prev.get("time_basis")=="feed":
             entry["seen"]=prev.get("seen") or entry["seen"]
             entry["time_basis"]="feed"
+        if prev:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and prev.get(key):
+                    entry[key]=prev[key]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     misc_rows,misc_status=collect_avi_ivi()
@@ -109,6 +114,10 @@ def main():
         prev=news.get(entry["url"])
         if prev and entry.get("time_basis")=="first_seen":
             entry["seen"]=prev.get("seen") or entry["seen"]
+        if prev:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and prev.get(key):
+                    entry[key]=prev[key]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     publication_rows,publication_status=collect_publications()
@@ -116,11 +125,19 @@ def main():
     for entry in publication_rows:
         entry.update(pub_tags.get(entry["url"],{}))
         prev=news.get(entry["url"])
+        if prev:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and prev.get(key):
+                    entry[key]=prev[key]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     amfi_rows,amfi_status=collect_amfi()
     for entry in amfi_rows:
         prev=news.get(entry["url"])
+        if prev:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and prev.get(key):
+                    entry[key]=prev[key]
         if not prev or dt(entry["seen"])>=dt(prev.get("seen")):
             news[entry["url"]]=entry
     good=bool(official or amfi_rows) or misc_status["successful_feeds"]>0 or publication_status["successful_feeds"]>0
@@ -177,6 +194,13 @@ def main():
             next_time=now+timedelta(hours=2 if limited else 1)
             gdelt_state.update({"state":"rate_limited" if limited else "temporarily_unavailable","retry_after":next_time.isoformat()})
             print("GDELT feed unavailable; retry after",next_time.isoformat(),str(exc),file=sys.stderr,flush=True)
+    old_by_url={x.get("url"):x for x in old.get("articles",[]) if x.get("url")}
+    for url,entry in news.items():
+        previous=old_by_url.get(url)
+        if previous:
+            for key in ("title_te","snippet_te","snippet_basis","summary"):
+                if not entry.get(key) and previous.get(key):
+                    entry[key]=previous[key]
     cutoff=datetime.now(timezone.utc)-timedelta(days=7)
     pf_from=pf_cutoff()
     rows=[x for x in news.values()
@@ -201,7 +225,8 @@ def main():
     regional_rows=[x for x in rows if x.get("desk")=="regional-general"][:180]
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","The GDELT Project"],"source_status":{"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    snippet_status=enrich(rows)
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","The GDELT Project"],"source_status":{"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
