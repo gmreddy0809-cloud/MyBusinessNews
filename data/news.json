@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-19T11:23:46.708452+00:00",
+  "generated_at": "2026-11-19T11:25:02.618273+00:00",
   "articles": [
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
       "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/506e0214-4a46-4106-9ec1-ce62a5cec129.pdf",
-      "title": "Avanti Feeds Ltd-$ (512573) — Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ende",
+      "title": "Avanti Feeds Ltd (512573) — Investor Presentation for the Unaudited Standalone and Consolidated Financial Results of the Company for the Quarter and Half Year ende",
       "source": "BSE • Official",
       "domain": "www.bseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-19T11:23:10.891993+00:00",
+      "seen": "2026-11-19T11:21:55.283721+00:00",
       "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
@@ -24,12 +24,28 @@
       "domain": "nsearchives.nseindia.com",
       "region": "andhra-pradesh",
       "sector": "Corporate & Results",
-      "seen": "2026-11-19T11:23:07.581725+00:00",
+      "seen": "2026-11-19T11:21:52.671060+00:00",
       "time_basis": "first_seen",
       "sourcecountry": "India",
       "language": "English",
       "origin": "official-rss",
       "summary": "Avanti Feeds Limited has informed the Exchange about Investor Presentation |SUBJECT: Investor Presentation"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOaGlKUmxzZW0tREszWDIyZXlsX1JfenpVYi01bHJrY0JLTkpKNHF0SGFjLUhPc3dGaHJ4eklBRmdfWUNKaDA0bS1VYU82TDBuWWthcGk4QVhOSm9wMWdiWE1DSGFMSFdJNnd2Q1BuNDk5STlKNDFWckZHWFQ4aW45czJWQTBac0FEM0E?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOaGlKUmxzZW0tREszWDIyZXlsX1JfenpVYi01bHJrY0JLTkpKNHF0SGFjLUhPc3dGaHJ4eklBRmdfWUNKaDA0bS1VYU82TDBuWWthcGk4QVhOSm9wMWdiWE1DSGFMSFdJNnd2Q1BuNDk5STlKNDFWckZHWFQ4aW45czJWQTBac0FEM0E?oc=5",
+      "title": "Telangana opens Mee Seva route for borewell permissions",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T11:20:44+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63999",
@@ -75,6 +91,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZTdMMHFBaV9GVE5hTUwyMGdIRk15d2VwSkhGMGJ1eWVUUGExY1dDTFNySzZTZFpjTTN1TU4xVXMwc3FaRDZrSWZYOTRQYjF6SjFLRUlnZjRYbFdzUktlWjVYbHpjVXQwMGctdG5CU3c4QzFVVUZ6R1R4VlJuamRkRXJObUpxeUxrNmY5aHI2WW9odEl3QVNJcWVDNA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZTdMMHFBaV9GVE5hTUwyMGdIRk15d2VwSkhGMGJ1eWVUUGExY1dDTFNySzZTZFpjTTN1TU4xVXMwc3FaRDZrSWZYOTRQYjF6SjFLRUlnZjRYbFdzUktlWjVYbHpjVXQwMGctdG5CU3c4QzFVVUZ6R1R4VlJuamRkRXJObUpxeUxrNmY5aHI2WW9odEl3QVNJcWVDNA?oc=5",
+      "title": "Cool, hazy spell ahead for Hyderabad; rain likely in eastern Telangana",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T11:00:58+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/entertainment/samantha-post-about-her-delivery-date-performs-special-prayers-with-her-husband-photos-viral-online-515661.html",
@@ -240,6 +272,22 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
+      "title": "Invest in NFO on Coin - Zerodha Coin",
+      "source": "Zerodha Coin • Google News",
+      "domain": "coin.zerodha.com",
+      "region": "india",
+      "sector": "Personal Finance",
+      "desk": "personal-finance",
+      "seen": "2026-11-19T10:23:45+00:00",
+      "time_basis": "google_rss",
+      "language": "English",
+      "origin": "google-news-rss",
+      "link_type": "google-news-redirect",
+      "sourcecountry": "India"
     },
     {
       "id": "https://telugu.oneindia.com/news/telangana/tpcc-chief-mahesh-kumar-goud-key-comments-on-rajagopal-reddy-anirudh-reddy-issue-everyone-equal-be-515653.html",
@@ -443,6 +491,38 @@
       "summary": "(Amount in ₹ crore, Rate in Per cent) MONEY MARKETS @ --> Money Markets @ Volume (One Leg) Weighted Average Rate Range A. Overnight Segment (I+II+III+IV) 8,02,340.74 5.50 4.30-5.90 I. Call Money 15,496.85 5.55 4.30-5.70 II. Triparty Repo 5,74,038.00 5.48 5.20-5.68 III. Market Repo 2,04,275.04 5.54 4.75-5.70 IV. Repo in Corporate Bond 8,530.85 5.69 5.64-5.90 B. Term Segment I. N"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNUkhoczQ4U0NRVVJOb2VYOVhwZnBmdURfaUFuQ2RVZlVJWm9WNXU5ejBLMGtIWmFqcEROVkNWc183dEtiVWF1SGQtSkdRMFRLTUtvZ0dFSnFVSF9OWDFVQ1RXZkJHZHp1TC1LNmIwaGRlODZXbXJ5R3NBYUlPUzk2NzhnZDFGS3RBbW8tUnVZZTJuaTZrU3BPUUZQRWRINGNHQ3FXOGRkaEpjZw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNUkhoczQ4U0NRVVJOb2VYOVhwZnBmdURfaUFuQ2RVZlVJWm9WNXU5ejBLMGtIWmFqcEROVkNWc183dEtiVWF1SGQtSkdRMFRLTUtvZ0dFSnFVSF9OWDFVQ1RXZkJHZHp1TC1LNmIwaGRlODZXbXJ5R3NBYUlPUzk2NzhnZDFGS3RBbW8tUnVZZTJuaTZrU3BPUUZQRWRINGNHQ3FXOGRkaEpjZw?oc=5",
+      "title": "BJP steps up poll preparations for council and municipal elections in Telangana",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T08:59:12+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNNERBdTBVVHg0OEpqS21zUkh1cm5OcDhNRnZ5cWlTLXczUXVCSl92ZzZ4SzJQcktmakduQ2I1UDg2OFJZWkNqTHFiWjVRTXBXYmM0anJvbDdxTW1RdjE5SmxGeWtIUWE0ZjZiZmhXNnZIcWlacHVYakVncGN2anRsazJUbGM1dlN3THRmRDdR?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNNERBdTBVVHg0OEpqS21zUkh1cm5OcDhNRnZ5cWlTLXczUXVCSl92ZzZ4SzJQcktmakduQ2I1UDg2OFJZWkNqTHFiWjVRTXBXYmM0anJvbDdxTW1RdjE5SmxGeWtIUWE0ZjZiZmhXNnZIcWlacHVYakVncGN2anRsazJUbGM1dlN3THRmRDdR?oc=5",
+      "title": "KCR condoles demise of Telangana activist Accha Vidyasagar",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T08:50:42+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/andhra-pradesh/anantha-sriram-parents-join-janasena-mother-uma-rani-to-contest-sarpanch-elections-in-dodditipalli-515643.html",
       "url": "https://telugu.oneindia.com/news/andhra-pradesh/anantha-sriram-parents-join-janasena-mother-uma-rani-to-contest-sarpanch-elections-in-dodditipalli-515643.html",
       "title": "జనసేనలో చేరిన సినీ గేయ రచయిత కుటుంబం, మంత్రి ఇలాకా లో ఎన్నికల్లో పోటీ..!!",
@@ -609,6 +689,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZ0lYNHF5dzVpdUJucktDX0p2OUdEejZJdFJ5UW5XUEhNUnZ6b29XTmtoUnJfS204OEZFUVVnelE1eERfZy1LYi16ZUJKMzI1bXJvaHE0NUpHQXdTQndDRFFYNzNxUkgtSk04VkxUQ2M4eFB1bjZWVXFuTERUdEI2NjVIODM0aUxSY21mdnJQejZsWVU?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZ0lYNHF5dzVpdUJucktDX0p2OUdEejZJdFJ5UW5XUEhNUnZ6b29XTmtoUnJfS204OEZFUVVnelE1eERfZy1LYi16ZUJKMzI1bXJvaHE0NUpHQXdTQndDRFFYNzNxUkgtSk04VkxUQ2M4eFB1bjZWVXFuTERUdEI2NjVIODM0aUxSY21mdnJQejZsWVU?oc=5",
+      "title": "Raja Singh backs Rajgopal Reddy’s remarks against Revanth Reddy",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T07:25:49+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/news/telangana/congress-faces-internal-challenges-as-own-party-leaders-raise-concerns-aicc-seek-report-515629.html",
@@ -1050,6 +1146,22 @@
       "origin": "official-rss",
       "desk": "avi-ivi",
       "language": "English"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPWk9jX0lIb09pWDZOWFVwVDRFa3lsNl8yWHh6Vk1FUEN3bWkxTzJJRjlWc0JWUGhxQjhnOXpNRDY3SDVDa2JIRVBjMmhtM0dKaDEtV3BGUThINmNad2M0WmVkYjRpTWNhV1U4U3YzVWtlUndxUXpHREtlSGZSWmgzcUVBSVdfXzU0Y3NHanhiajBiakE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPWk9jX0lIb09pWDZOWFVwVDRFa3lsNl8yWHh6Vk1FUEN3bWkxTzJJRjlWc0JWUGhxQjhnOXpNRDY3SDVDa2JIRVBjMmhtM0dKaDEtV3BGUThINmNad2M0WmVkYjRpTWNhV1U4U3YzVWtlUndxUXpHREtlSGZSWmgzcUVBSVdfXzU0Y3NHanhiajBiakE?oc=5",
+      "title": "Telangana HC hears plea seeking compensation for submerged structures by Singoor project",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-19T04:59:02+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/news/international/islam-set-to-surpass-christianity-by-2035-pew-highlights-global-demographic-shift-515603.html",
@@ -1887,6 +1999,22 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNb1VQQ21Bcm5kQTgzMHhvZ2oxVzZQQm1vSmhleW9KTTZfWUowcW1LTVBfWUxndnVXM0JVdGZCWnlIVVozelhtdVpQN0J5bXhFSGhzb3dLOWx3QW9qUjcta21XS2tSWkRXLTBsdm9WTDJnVzlPeWUycDM4TDVpRkhSSkVPdl9Ha0lsWUlTTVNQMm4yTGZIOW00TUNqUjNaaXpTYzhlckh4ZlljaFBBNkRwMEd1amI3N2oxZjN5Ql9MZC1GVEJRMWh0S0hqU182ZFNQSlRENExGT3pSRkpvWE9Jc1lnbDV2ZzRnSkE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNb1VQQ21Bcm5kQTgzMHhvZ2oxVzZQQm1vSmhleW9KTTZfWUowcW1LTVBfWUxndnVXM0JVdGZCWnlIVVozelhtdVpQN0J5bXhFSGhzb3dLOWx3QW9qUjcta21XS2tSWkRXLTBsdm9WTDJnVzlPeWUycDM4TDVpRkhSSkVPdl9Ha0lsWUlTTVNQMm4yTGZIOW00TUNqUjNaaXpTYzhlckh4ZlljaFBBNkRwMEd1amI3N2oxZjN5Ql9MZC1GVEJRMWh0S0hqU182ZFNQSlRENExGT3pSRkpvWE9Jc1lnbDV2ZzRnSkE?oc=5",
+      "title": "Kaloji Kalakshetram - Namasthe Telangana",
+      "source": "Namasthe Telangana • Google News",
+      "domain": "ntnews.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T22:45:52+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://theconversation.com/westpacs-new-hazard-risk-reports-should-sound-a-warning-for-nz-homeowners-296695",
       "url": "https://theconversation.com/westpacs-new-hazard-risk-reports-should-sound-a-warning-for-nz-homeowners-296695",
       "title": "Westpac’s new hazard risk reports should sound a warning for NZ homeowners",
@@ -1900,22 +2028,6 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB4WXkzRWtRZ2VGM3FnaFlzZ0xvZG4wWnJlcGQyMHdKSWktSXoxSlJGVjVEbjIwZF9DWWxTN0JCaGNvVTlDaW9fREQtbno2aHotM09OYVRhdEtQZHVNaXQtdm12ZnZjRi02VGoyOE50ME00NWZuamtESmxsRQ?oc=5",
-      "title": "Invest in NFO on Coin - Zerodha Coin",
-      "source": "Zerodha Coin • Google News",
-      "domain": "coin.zerodha.com",
-      "region": "india",
-      "sector": "Personal Finance",
-      "desk": "personal-finance",
-      "seen": "2026-11-18T22:27:49+00:00",
-      "time_basis": "google_rss",
-      "language": "English",
-      "origin": "google-news-rss",
-      "link_type": "google-news-redirect",
-      "sourcecountry": "India"
     },
     {
       "id": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
@@ -2208,6 +2320,38 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNY0wyZEl0ZXVyMWJ4SnV6azlNcG4yUEswZXdQRER6UHZGeFV3OFl2NF9XaHpER196SG8wWGNoQ2JuaDFWSWVtNWhqSGdlTTEyWVhWeG5ZNzF1bHZmY3V1M1BWWWdUZTFWVEN2Z25JUVBlWnlnbHFFWlJCaWxlYlVRYzZUUmZiVllrSnFORHBfQmdIRUpPYmJsVFdfeUhzamo5MUQxcG9WREZCZ29kaGxxeDl4Y0o5Y2hpU0Z3?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNY0wyZEl0ZXVyMWJ4SnV6azlNcG4yUEswZXdQRER6UHZGeFV3OFl2NF9XaHpER196SG8wWGNoQ2JuaDFWSWVtNWhqSGdlTTEyWVhWeG5ZNzF1bHZmY3V1M1BWWWdUZTFWVEN2Z25JUVBlWnlnbHFFWlJCaWxlYlVRYzZUUmZiVllrSnFORHBfQmdIRUpPYmJsVFdfeUhzamo5MUQxcG9WREZCZ29kaGxxeDl4Y0o5Y2hpU0Z3?oc=5",
+      "title": "Hyderabad: Indian Road Congress to focus on climate-resilient infrastructure, new technologies",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T18:28:05+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSVJEWXJRV1pTRlJMWDhWbGI5enpaNjlWRzNodWNxTE5uaVljSk5vSkpObWJobzdXUUh0ZmxQN0ZUT3lhUGc4VjBtU05jMmR4NjhRSm83d3k1amlOaWtkS2V4WnJlMFRYV0g1SjNINUZSN0hDNG80Wm80am5kV3kwbHFtV05qWmpI?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSVJEWXJRV1pTRlJMWDhWbGI5enpaNjlWRzNodWNxTE5uaVljSk5vSkpObWJobzdXUUh0ZmxQN0ZUT3lhUGc4VjBtU05jMmR4NjhRSm83d3k1amlOaWtkS2V4WnJlMFRYV0g1SjNINUZSN0hDNG80Wm80am5kV3kwbHFtV05qWmpI?oc=5",
+      "title": "Hyderabad Yacht Club wins World Sailing award",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T18:15:50+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/india/bihar-jewellery-showroom-robbery-gold-worth-40-crore-stolen-broad-daylight-they-promised-to-return-515571.html",
       "url": "https://telugu.oneindia.com/news/india/bihar-jewellery-showroom-robbery-gold-worth-40-crore-stolen-broad-daylight-they-promised-to-return-515571.html",
       "title": "Bihar jewellery heist: పట్టపగలే జ్యువెలరీ షాపులో దూరి.. రూ. 40 కోట్ల బంగారంతో జంప్.. మళ్లీ వస్తామంటూ..",
@@ -2270,6 +2414,22 @@
       "reader_finance": true
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOMmN3TGVBWjJrSnpBaEtYSWhnLW9WZ1d3TFJYYW1vZ05zbFpDYzNOQ1RfSVBIcENQM2ZZa21NOU1vdExXbGY2MVRJUVR0ODVKZkVZX3BpSkpGelV5MEN2M1p3eWpGeEhRc1otNml1U2p5UDhyU2JHMS1sR1FUNVRoNk9kTzZyaUUxYXdldmE2MVhqaU53UmEtaGQ0aktUZzA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOMmN3TGVBWjJrSnpBaEtYSWhnLW9WZ1d3TFJYYW1vZ05zbFpDYzNOQ1RfSVBIcENQM2ZZa21NOU1vdExXbGY2MVRJUVR0ODVKZkVZX3BpSkpGelV5MEN2M1p3eWpGeEhRc1otNml1U2p5UDhyU2JHMS1sR1FUNVRoNk9kTzZyaUUxYXdldmE2MVhqaU53UmEtaGQ0aktUZzA?oc=5",
+      "title": "Hyderabad’s Praanjala ranked ninth among India’s junior badminton players",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T17:53:20+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://www.nasa.gov/image-article/empire-state-building-goes-gold-for-voyager/",
       "url": "https://www.nasa.gov/image-article/empire-state-building-goes-gold-for-voyager/",
       "title": "Empire State Building Goes Gold for Voyager",
@@ -2299,6 +2459,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTE5FRUN0cUFFRFM5NDhyVjFCM3AyOGdlV2k1bGNnWlo0TlZLRGJrcURJX01oYkphZ0tNbU1xRjlZNFdpX2tUck5oTnkzUkN6YTB4SzAyQWRMOVlURlRvTjhwdU5idTdzNUJUX1BLUU9rQWd5MWJGbFhKVTlOX0dkTjNMbVVLbjItZFFsSFhCdmJtWWxMd3FKaEo0YWk5cFlYRHJYS1BXekUyUTA2TWc?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTE5FRUN0cUFFRFM5NDhyVjFCM3AyOGdlV2k1bGNnWlo0TlZLRGJrcURJX01oYkphZ0tNbU1xRjlZNFdpX2tUck5oTnkzUkN6YTB4SzAyQWRMOVlURlRvTjhwdU5idTdzNUJUX1BLUU9rQWd5MWJGbFhKVTlOX0dkTjNMbVVLbjItZFFsSFhCdmJtWWxMd3FKaEo0YWk5cFlYRHJYS1BXekUyUTA2TWc?oc=5",
+      "title": "Hyderabad doctor secures affordable rare disease drug for seven children with AHDS",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T17:43:44+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-the-moon-base/",
@@ -2753,6 +2929,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOOXcxWWVnR01HRUdWcC04QzVHazdDcTlyN0ljN3dSeDkwdVU4UkFXLVZKdi1EQnJaQzJUR1JuYXZkam9rdTBSN25DZWdNS0FhNGhFaGh3ZjI0YlFHakNvamtIdk5TMHphU1dHN096Ym9RZDNHUFdWQTd3WkhGVUZMQTY0UHJsOUdwVmdwVDM4OHBqMkdGUU1R?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOOXcxWWVnR01HRUdWcC04QzVHazdDcTlyN0ljN3dSeDkwdVU4UkFXLVZKdi1EQnJaQzJUR1JuYXZkam9rdTBSN25DZWdNS0FhNGhFaGh3ZjI0YlFHakNvamtIdk5TMHphU1dHN096Ym9RZDNHUFdWQTd3WkhGVUZMQTY0UHJsOUdwVmdwVDM4OHBqMkdGUU1R?oc=5",
+      "title": "Hyderabad: Liquor shop owner arrested for adulteration in Nizampet",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T14:53:18+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/andhra-pradesh/nara-lokesh-hits-back-at-ys-jagan-over-fee-reimbursement-remarks-515557.html",
       "url": "https://telugu.oneindia.com/news/andhra-pradesh/nara-lokesh-hits-back-at-ys-jagan-over-fee-reimbursement-remarks-515557.html",
       "title": "\"ఆ మాత్రం తేడా తెలియదా ?\"- జగన్ కు లోకేష్ ఘాటు కౌంటర్..!",
@@ -2766,6 +2958,38 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNVWw4NFEtUWRDYVc2aGJCV0UxbnRSVXMyeS1DU3czdDU2bnowd01FaWY1X0N4YW1RYnhEMk5vclYtWFV1RFAyLU1id0s2RkkyeFdwSjhpZDl6YVExQTFpSExFWV9LRUFBWWJJQXVWaVdxYmhVZkwzRTVFUTUxVnBsUjhlR3JjR0dCMkQ2RGRieEM3VUVVN2RtUVZTOTV0dWw4ZmdVeDZEUjM?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNVWw4NFEtUWRDYVc2aGJCV0UxbnRSVXMyeS1DU3czdDU2bnowd01FaWY1X0N4YW1RYnhEMk5vclYtWFV1RFAyLU1id0s2RkkyeFdwSjhpZDl6YVExQTFpSExFWV9LRUFBWWJJQXVWaVdxYmhVZkwzRTVFUTUxVnBsUjhlR3JjR0dCMkQ2RGRieEM3VUVVN2RtUVZTOTV0dWw4ZmdVeDZEUjM?oc=5",
+      "title": "Telangana Under-19 chess selection tournament scheduled for November 21 and 22",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T14:49:23+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxNVjQzUjg0eXZpc0ZoYlVMa2JtUElGcmZldUlYUG80b09ZR1ZoeWppaEtpX3Q0VmdDaENENjhucW1GRkxkbTc2eDZlS0dWbTlMdFpCVTlHNzM0c0JDV1Z5bG45Z2dqQTNKaEhxR19reXBGQ01pWE4zUzJxekN0TjBHQ2E4V2RGLWQzVnpZdWtIN1hWS2dWcW13NzVjZFZPdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNVjQzUjg0eXZpc0ZoYlVMa2JtUElGcmZldUlYUG80b09ZR1ZoeWppaEtpX3Q0VmdDaENENjhucW1GRkxkbTc2eDZlS0dWbTlMdFpCVTlHNzM0c0JDV1Z5bG45Z2dqQTNKaEhxR19reXBGQ01pWE4zUzJxekN0TjBHQ2E4V2RGLWQzVnpZdWtIN1hWS2dWcW13NzVjZFZPdw?oc=5",
+      "title": "Contract assistant professors protest across 12 Telangana universities",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T14:49:04+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/75a7eda2-ab34-43ee-926c-9a1311754a45.pdf",
@@ -3095,6 +3319,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPLWtQTzlsSHRkU0tBQWRoZTNwVGpDb0lYa21NTkxuV3VVUlNTSEVhQk50RDd4bjJYZ3pXTGFVNmZjbWxuekludDE5LVFJZm5UdE9KQ2IzS0pVaEpPNGtQQ215RTlYQkdMb1d3S2xiaFFfRGg0cklsbmV1cUpqSy1TZWUyOW9TOXFLSWVPMw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPLWtQTzlsSHRkU0tBQWRoZTNwVGpDb0lYa21NTkxuV3VVUlNTSEVhQk50RDd4bjJYZ3pXTGFVNmZjbWxuekludDE5LVFJZm5UdE9KQ2IzS0pVaEpPNGtQQ215RTlYQkdMb1d3S2xiaFFfRGg0cklsbmV1cUpqSy1TZWUyOW9TOXFLSWVPMw?oc=5",
+      "title": "Yashoda Hospitals hosts wellbeing roundtable in Hyderabad",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T14:20:44+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/sports/kolkata-knight-riders-us-firm-ares-management-to-buy-22-5-stake-in-shah-rukh-khan-kkr-for-400-mil-515553.html",
       "url": "https://telugu.oneindia.com/sports/kolkata-knight-riders-us-firm-ares-management-to-buy-22-5-stake-in-shah-rukh-khan-kkr-for-400-mil-515553.html",
       "title": "షారుఖ్ ఖాన్ జట్టుకు బిగ్ ట్విస్ట్.. కేకేఆర్‌లో పెట్టుబడి పెట్టనున్న అమెరికన్ దిగ్గజం!",
@@ -3154,6 +3394,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNQkdycnpVOWdUT1hHMnY5TWlZVXQzZFl6eXBFSFJubExobUhWTTNCbW5oaGlqelNWeXNzVFlnSWJXd2RGWUVqWGZ4YjhRTm9LZDl1TThmUE9FLXN4dWt3ZkR1NnRSLTBzN1FodERYUWxzYzdVSW9wQVkzOWctLWZmZUR5ajdVcmRhUlQ4UENXSW1PejIySnc?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNQkdycnpVOWdUT1hHMnY5TWlZVXQzZFl6eXBFSFJubExobUhWTTNCbW5oaGlqelNWeXNzVFlnSWJXd2RGWUVqWGZ4YjhRTm9LZDl1TThmUE9FLXN4dWt3ZkR1NnRSLTBzN1FodERYUWxzYzdVSW9wQVkzOWctLWZmZUR5ajdVcmRhUlQ4UENXSW1PejIySnc?oc=5",
+      "title": "Hyderabad fall short against Vidarbha in Syed Mushtaq Ali Trophy",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T13:41:33+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/news/international/ukraine-objects-to-donald-trump-xi-jinping-putin-trilateral-meeting-in-china-urges-pressure-on-ru-515549.html",
@@ -3381,6 +3637,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUlpBY0U0eHRRLVpQQ0ZZQXBpYUtad2dsYUFnbmVDeTQ4QWxnZ2tVa2lnYlZqMVJ4bkptT01VY28wbHJoTWlyWmlSckRRZDF2a0t3UlJvWlZmMDlJR2dlc1hkTUFnVmtVR3JfUVZfNldUZXNrOGxwWTViZFM4Y1o1WWFjMFhyTmdxUk9PdnFEdlpfZjdiSE12MU5FdjRyczlheFV1VTAtU213S2ppVlF2cHNuOA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUlpBY0U0eHRRLVpQQ0ZZQXBpYUtad2dsYUFnbmVDeTQ4QWxnZ2tVa2lnYlZqMVJ4bkptT01VY28wbHJoTWlyWmlSckRRZDF2a0t3UlJvWlZmMDlJR2dlc1hkTUFnVmtVR3JfUVZfNldUZXNrOGxwWTViZFM4Y1o1WWFjMFhyTmdxUk9PdnFEdlpfZjdiSE12MU5FdjRyczlheFV1VTAtU213S2ppVlF2cHNuOA?oc=5",
+      "title": "Voters left out of draft rolls can seek inclusion before final list, says Telangana CEO",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T13:12:18+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://theconversation.com/how-poetry-can-offer-a-vital-humane-response-to-dementia-296730",
       "url": "https://theconversation.com/how-poetry-can-offer-a-vital-humane-response-to-dementia-296730",
       "title": "How poetry can offer a vital, humane response to dementia",
@@ -3441,6 +3713,22 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOMUNQS0o2YWNpWjRHZUhuUkMyd09NUXYxM0ZIN3RfSGgtLUh5eEt6eUFfaXotc08yVnVNQnFfczRYX1RFWE5FeDlDVXBGMlFmWVRwWUVUa2owZjdPdkV3aW03NE5nLXliR1NuU2kxZzloaEJMWi1hakIzLTFYejdIX090YmtLSTBUR3c?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOMUNQS0o2YWNpWjRHZUhuUkMyd09NUXYxM0ZIN3RfSGgtLUh5eEt6eUFfaXotc08yVnVNQnFfczRYX1RFWE5FeDlDVXBGMlFmWVRwWUVUa2owZjdPdkV3aW03NE5nLXliR1NuU2kxZzloaEJMWi1hakIzLTFYejdIX090YmtLSTBUR3c?oc=5",
+      "title": "Telangana gears up to host Khelo India Youth Games 2026",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T12:49:50+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/telangana/youngwoman-in-trouble-while-trying-to-shock-her-ex-boyfriend-who-broke-up-with-her-a-year-ago-hyd-515541.html",
       "url": "https://telugu.oneindia.com/news/telangana/youngwoman-in-trouble-while-trying-to-shock-her-ex-boyfriend-who-broke-up-with-her-a-year-ago-hyd-515541.html",
       "title": "ఫేక్ షీ టీమ్ నోటీసుతో ప్రియుడ్ని భయపెట్టాలని చూసిన యువతి.. చివరికి.. ఏమైందంటే..?",
@@ -3454,6 +3742,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQX3diMXNyTDlwVVZENHljMEJqMTRHampHQ25SajhfMWxBWWRCYjFpbHVYTDhEWXhkXzc4UHNvWjZKZ09JNE85LXpWZWs4ME4wOWFRdUd3Wm5nbXZPemswRU5MM1BqaXFjNXN2UXQyNGVta1NRWlQwcmFvODhSTmtoMW1ydVBwczZxeDRUb3I4dFQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQX3diMXNyTDlwVVZENHljMEJqMTRHampHQ25SajhfMWxBWWRCYjFpbHVYTDhEWXhkXzc4UHNvWjZKZ09JNE85LXpWZWs4ME4wOWFRdUd3Wm5nbXZPemswRU5MM1BqaXFjNXN2UXQyNGVta1NRWlQwcmFvODhSTmtoMW1ydVBwczZxeDRUb3I4dFQ?oc=5",
+      "title": "Andhra Pradesh plans 5,000-acre semiconductor hub in Tirupati",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T12:40:10+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/news/india/shaina-nc-tears-bal-thackerays-photo-during-sonia-gandhi-book-protest-sparks-political-row-515539.html",
@@ -3484,6 +3788,38 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPb1lzV0RpZUFNN1h2R19nTHRoZHJEYmdnZGd3bmxpV1QyQ1FKQ2FnTkdEZXA3aEEwSm9uNGlUb2tTazVFUk1jYzI2UTJfeFBMT2E0Y3hmZXh2azFneVJsSUhBRDRXbEVId1o5cUV4dkpBUmFBNFFJVV9HU0VjMGJWVg?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPb1lzV0RpZUFNN1h2R19nTHRoZHJEYmdnZGd3bmxpV1QyQ1FKQ2FnTkdEZXA3aEEwSm9uNGlUb2tTazVFUk1jYzI2UTJfeFBMT2E0Y3hmZXh2azFneVJsSUhBRDRXbEVId1o5cUV4dkpBUmFBNFFJVV9HU0VjMGJWVg?oc=5",
+      "title": "Hyderabad Entrepreneurship Summit on November 20",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T12:37:31+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQSVFPbjR0eERfMldFbjdQX3lXSWF4UlhSOGh2TERGejJScDhWOW9rLWdLYUtCdm9yeU9lRzhOV1ZXZC1RakhOVzRpR2VEbXlhWm1RbjRwOHRsQ0piSGR0Q2ticFdSTHV0V0x0TnhQd1h0YWw2cDBtSGR1Z0hyM1RWNnV5c0pCWFU2UmFpZG85QUlkbGtTUVh6TTBxbFM0SHM?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQSVFPbjR0eERfMldFbjdQX3lXSWF4UlhSOGh2TERGejJScDhWOW9rLWdLYUtCdm9yeU9lRzhOV1ZXZC1RakhOVzRpR2VEbXlhWm1RbjRwOHRsQ0piSGR0Q2ticFdSTHV0V0x0TnhQd1h0YWw2cDBtSGR1Z0hyM1RWNnV5c0pCWFU2UmFpZG85QUlkbGtTUVh6TTBxbFM0SHM?oc=5",
+      "title": "YSRCP workers protest as police stop nomination rally in Andhra Pradesh",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T12:28:12+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNeW1yUjVsVndWeWZlanQ2Um81ajdDei1OX1Znb0xSUDVodk1zN3FVV0FmQjJFcDFDazM5UjNiNDF1eFZQTnhvRzd6NkxOSG1KenRMU1VqalhGTlhQQnFxMi1HbDhrZVF1SGlqSW9sU0dhY2xudmhhcHAwcjFrc01hMWIzSG1HaUdlajFlREF2VWFHSGlvbzB1dHBSMGtXbVBQS1k0cndJUWlvanI2QXJjb3ZrcnlTa1g4bXN6TFMzaFJZX0JhbGh1Mi1ObzZlVDJQSmtQYzdJaDdvM1pnSEtSS3o1TjBFQ2MwcDQ0?oc=5",
@@ -3608,6 +3944,22 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBhc0lxQVdsaWRFam5qNmlFenJfZXRqZlo4UUFJb2wxNWwzS0NvOTA3NEdPZ3lobWtYN19qS1FmUjdPZFVjemN2MWs3cTJib1kzQWdMTjRxUEUyUGpKNWY5bVJvaHZOSXBlalA1U1FrdFIzX3lvM2xwZFc4WUZNdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBhc0lxQVdsaWRFam5qNmlFenJfZXRqZlo4UUFJb2wxNWwzS0NvOTA3NEdPZ3lobWtYN19qS1FmUjdPZFVjemN2MWs3cTJib1kzQWdMTjRxUEUyUGpKNWY5bVJvaHZOSXBlalA1U1FrdFIzX3lvM2xwZFc4WUZNdw?oc=5",
+      "title": "Prehistoric rock art site found near Hyderabad",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T11:57:58+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/business/gold-and-silver-prices-crash-gold-drops-rs-62-000-from-record-high-amid-us-fed-rate-hike-fears-515531.html",
       "url": "https://telugu.oneindia.com/news/business/gold-and-silver-prices-crash-gold-drops-rs-62-000-from-record-high-amid-us-fed-rate-hike-fears-515531.html",
       "title": "కుప్పకూలిన బంగారం, వెండి ధరలు.. ఏకంగా రూ. 62 వేలు తగ్గిన పసిడి!",
@@ -3714,6 +4066,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNV3RjbWdBSF9IcEVERmllcFBJRk5TaEpZVGNqLXUxNmswVTZiRmY0MkprODFlcHNLMzFGQkR2b2lWVy10N0pCUmRCWlFXMExhTnpRRURHSWdIaWthLWRvVG9fY3Jnc1BMMzJZS0J5T0gxVlI4UDAxNVJzVjNYQm1qY3hDNUcwZ2pKN1FrVHhqdzIzTE9wNzRjVA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNV3RjbWdBSF9IcEVERmllcFBJRk5TaEpZVGNqLXUxNmswVTZiRmY0MkprODFlcHNLMzFGQkR2b2lWVy10N0pCUmRCWlFXMExhTnpRRURHSWdIaWthLWRvVG9fY3Jnc1BMMzJZS0J5T0gxVlI4UDAxNVJzVjNYQm1qY3hDNUcwZ2pKN1FrVHhqdzIzTE9wNzRjVA?oc=5",
+      "title": "IIIT Junction flyover works gather pace after monsoon in Hyderabad",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T11:35:26+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNnZ5VmozVmduLVVPT2ZBZmVYNUoyMFJxcXdNcjhCWFk0N3BxQ1Y1Y0RXZzJGRTd1SGhIdzRrdGhnejNoek5VVGM1M0t5QUtfUHRNdGZSRE9kU05jTzF2R0lkUFRYSkdQTElWU1NJZjRkdEpWQjU2OXhXT2lETVlZSWpkeGUxSUtxMWRkWWF5RkRSS3VZSEFyR0hwWDM0ZEI1MEUyUWVneVh4U3Qzem5LM0EyUjNEa1BNaUJ5dnY1dlgzYVpCTS1QcUtwekYxODF4dG45OWZtSkhtaWJjZHV5UjJGaGhoT1VzdWpkc2k1aVFNUkM2eHc40gH8AUFVX3lxTE5PRkdiNlBKbmZfNGRhSVRidEdhSDhyUUt0UEZ0SHFodmhicmhHTVFTRnJERkY3b3ZJc2hwLWwxZkphdmp2b2t2SGFiS0VVczRUV3Jab2xMbnB1VVRfcWhpc2dkeWVIR0dkeU11YndoOHRJSTZlSTBDMGxuMGQ1LThOTXFnbHlrN3ZRd2ttbFlVcmxJSU8yNG0zZWFFSlFsU2NSS2pFNXhqWTBBaGhIX3YwT2lVMUZkRzhmR3pqX0hXRXVPTU9rYzJmN1NuYTQ3YzNaZnQ4QUFaNjhxZEZnOE5MeXlKNXpuSndQdUxQZzRDc2FzdTdzSXVoXzFYVw?oc=5",
@@ -3888,6 +4256,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbkhrU2FPLUZZeUFvdVFoVXpEOHlHZTU3N0lIaUpzMGRkTnRKaFNOeTZXUWlZSEFQWG1JM0l4aS0zZktDOG5SLXRnMVI0SVdySUJVMW8tZ2JUNUkzNU1lbVJkYWpFallxVW9OZXVON3V3cU5XM2paSjlndm9jWDMwX0pfYTdOWWwtRHFPWnFhbUZEZTB1SVhlaDZQdkdPUQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbkhrU2FPLUZZeUFvdVFoVXpEOHlHZTU3N0lIaUpzMGRkTnRKaFNOeTZXUWlZSEFQWG1JM0l4aS0zZktDOG5SLXRnMVI0SVdySUJVMW8tZ2JUNUkzNU1lbVJkYWpFallxVW9OZXVON3V3cU5XM2paSjlndm9jWDMwX0pfYTdOWWwtRHFPWnFhbUZEZTB1SVhlaDZQdkdPUQ?oc=5",
+      "title": "Hyderabad to get IMAX screenings again after a decade from December 18",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T10:55:21+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://telugu.oneindia.com/news/andhra-pradesh/apsrtc-launches-strishakti-shceme-in-ac-buses-in-visakha-as-pilot-project-to-extend-across-the-state-515517.html",
       "url": "https://telugu.oneindia.com/news/andhra-pradesh/apsrtc-launches-strishakti-shceme-in-ac-buses-in-visakha-as-pilot-project-to-extend-across-the-state-515517.html",
       "title": "ఏసీ బస్సుల్లో మహిళలకు ఉచిత ప్రయాణం - ముందుగా ఈ మార్గాల్లో ప్రారంభం..!!",
@@ -3901,6 +4285,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNU0tEY3FOSE4xUUx3N09ta2FMbjRZajJoV2pNQlJpU2RtbW9Sb0FodXJWS1hkMk9iYWtYNU5RWHJWeS1SeUNtRlNMRU1YOFFwMWlXTnpscnpuT0lWVU1kSzR2MDhra2tLdzNYWUJmQ0VkczY4alVQXzhYeDIwel9pcnhwbm14VVRhM2Vj?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNU0tEY3FOSE4xUUx3N09ta2FMbjRZajJoV2pNQlJpU2RtbW9Sb0FodXJWS1hkMk9iYWtYNU5RWHJWeS1SeUNtRlNMRU1YOFFwMWlXTnpscnpuT0lWVU1kSzR2MDhra2tLdzNYWUJmQ0VkczY4alVQXzhYeDIwel9pcnhwbm14VVRhM2Vj?oc=5",
+      "title": "HYDRAA warning fails to move unsafe hostels in Hyderabad",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T10:50:13+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/news/andhra-pradesh/shocker-to-ys-jagan-as-ed-files-chargesheet-in-dalmia-cements-case-515515.html",
@@ -5029,6 +5429,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNFg3ZWNDT0tlTkVEb1FRTUxvQ3ZCOXNRZzlyR0d4VHJtZDRrMlEtN3JpVTF2bkdqR09oV3A2SXE3eHZYcDRoVUg2bzMwZlU0RFV2eW5kS1NsUVVNZWtDdHF2N3FQeUdKaFN6OW5ZVi1Pd3JSclN0eE1WTXRVRk1CZWRLdWd2Um1nTmFDSjFSVGtSTi01ZG91TnFpSmlob2UteUlBOG5CMEdud0ttNERnWDgxckdxejA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNFg3ZWNDT0tlTkVEb1FRTUxvQ3ZCOXNRZzlyR0d4VHJtZDRrMlEtN3JpVTF2bkdqR09oV3A2SXE3eHZYcDRoVUg2bzMwZlU0RFV2eW5kS1NsUVVNZWtDdHF2N3FQeUdKaFN6OW5ZVi1Pd3JSclN0eE1WTXRVRk1CZWRLdWd2Um1nTmFDSjFSVGtSTi01ZG91TnFpSmlob2UteUlBOG5CMEdud0ttNERnWDgxckdxejA?oc=5",
+      "title": "Telangana High Court directs safeguards in placement of rescued women in Protective Homes",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T04:05:52+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNU1J3aHNldXBmVGlxeFVoM1hVZDBJZWpPNXV1cjQ0azRTLWFrbUFiVkhORGFHSmgtcUlXR1FpNmxmSmZCU2hqdlNJZmJOdlhOUDRSWEZITVRDS1VhbXVsTmgyTGZUbnVwdnRlWjNhQjd0RTlYZXRQTENKMWhnSWtzZFJSTm42Slhyc2VGeGdhZkZBcmJJdTFRbDI1eDhJSGwxd3hLazFXLWFIVWVCWjdpUWVKMlFpQmhXcmlpNnZpN3hhQ1FMS24zS3dmMU8wbVdxOFVRMS13WUQzUlJUU1NudXQwb081MjhsVWM1RFpyWHRGMHhhZThpZ1dZUVIzblZYTkNULUVPUy1ic08zeWfSAZMCQVVfeXFMTk13LXpmOFBaTGJPdENTdDJzMG95QVNNQkpVRkVrbV96LVAtUW9rZXhaeWtNUVhsdlNySl9IbnBwOHFCMHlGTjRpLWVLZC1wbHNOTlhNMHlHSmNFUnRfMWFmazBMQ21fWGpISWRhTnVHODBHNWQ4TDBSUEJodFFGczBIQlZGc0FaUmYyNEZub2FydWVYQ3pZM2t2NUpCTlh2Xzk0WFI0VF9EbXdTR3NpdmtCam5ZelR5bURkZklkV0lpendaT1RLWlZITUdoM2lBSHc1clVTaTRJMGxHSE9FcnRnZlBrQnVRakVTRDlTdzZGSWp1Wmk5ZHpWTDg1WC1QVkZwMzQ4WHZ2M0xXTXJDS1lTT0U?oc=5",
       "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNU1J3aHNldXBmVGlxeFVoM1hVZDBJZWpPNXV1cjQ0azRTLWFrbUFiVkhORGFHSmgtcUlXR1FpNmxmSmZCU2hqdlNJZmJOdlhOUDRSWEZITVRDS1VhbXVsTmgyTGZUbnVwdnRlWjNhQjd0RTlYZXRQTENKMWhnSWtzZFJSTm42Slhyc2VGeGdhZkZBcmJJdTFRbDI1eDhJSGwxd3hLazFXLWFIVWVCWjdpUWVKMlFpQmhXcmlpNnZpN3hhQ1FMS24zS3dmMU8wbVdxOFVRMS13WUQzUlJUU1NudXQwb081MjhsVWM1RFpyWHRGMHhhZThpZ1dZUVIzblZYTkNULUVPUy1ic08zeWfSAZMCQVVfeXFMTk13LXpmOFBaTGJPdENTdDJzMG95QVNNQkpVRkVrbV96LVAtUW9rZXhaeWtNUVhsdlNySl9IbnBwOHFCMHlGTjRpLWVLZC1wbHNOTlhNMHlHSmNFUnRfMWFmazBMQ21fWGpISWRhTnVHODBHNWQ4TDBSUEJodFFGczBIQlZGc0FaUmYyNEZub2FydWVYQ3pZM2t2NUpCTlh2Xzk0WFI0VF9EbXdTR3NpdmtCam5ZelR5bURkZklkV0lpendaT1RLWlZITUdoM2lBSHc1clVTaTRJMGxHSE9FcnRnZlBrQnVRakVTRDlTdzZGSWp1Wmk5ZHpWTDg1WC1QVkZwMzQ4WHZ2M0xXTXJDS1lTT0U?oc=5",
       "title": "Gold, silver prices today 18 Nov Wednesday: Check 24K, 22K yellow metal and 999 silver rates in Delhi, Mumbai, Kolkata",
@@ -5043,6 +5459,38 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOREF0NU8wRjBrQ19oMWlLT2VGazJjandSRFZLTk1OTWRRSm03Q3pJWUM0TWdoMXhKdWltRG52d1RFcy13Z29KcTZUQjJpbFJzeXBDd3B0ekJJdlBuZkZ3LUhwdzFOOHIzbnl4QS1DUUlMUnEzT3BPc19kZWs2TTRoZlVoUGFvWGpWM2REdkt4ajF1bFpTd0pXUHJYemtLeGpBVjVrc25n?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOREF0NU8wRjBrQ19oMWlLT2VGazJjandSRFZLTk1OTWRRSm03Q3pJWUM0TWdoMXhKdWltRG52d1RFcy13Z29KcTZUQjJpbFJzeXBDd3B0ekJJdlBuZkZ3LUhwdzFOOHIzbnl4QS1DUUlMUnEzT3BPc19kZWs2TTRoZlVoUGFvWGpWM2REdkt4ajF1bFpTd0pXUHJYemtLeGpBVjVrc25n?oc=5",
+      "title": "Telangana High Court issues notices over alleged illegal Task Force searches",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T03:57:04+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQa0N5Vy1QVHRIT0ZFUlRqby1nemN5TEdpdHhZdWxWTlBwcjNCd2FsVmhFaDJWQWJCM0pfNWZxTHVtZ1JQNXhWeVhxQVJhYlVUdG54c0ZLcTlsZ2dVSHpjaWR3X2laUVNEb291RnZqTU5UdFVxYzFrX1NWUW0tTnF1NzdRMmdUN0ZUN2o0RThIUDBSenFpbUcweWRMUWY0bS1rTmFtRTNrbUhPNWlGRkhVX1VCMWFCc3FRcFE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQa0N5Vy1QVHRIT0ZFUlRqby1nemN5TEdpdHhZdWxWTlBwcjNCd2FsVmhFaDJWQWJCM0pfNWZxTHVtZ1JQNXhWeVhxQVJhYlVUdG54c0ZLcTlsZ2dVSHpjaWR3X2laUVNEb291RnZqTU5UdFVxYzFrX1NWUW0tTnF1NzdRMmdUN0ZUN2o0RThIUDBSenFpbUcweWRMUWY0bS1rTmFtRTNrbUhPNWlGRkhVX1VCMWFCc3FRcFE?oc=5",
+      "title": "Telangana High Court directs government to finalise elevator safety Bill within eight weeks",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-18T03:44:37+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOZE1EdF90NUwzXzN2bGtoY3ZSZEp3UGVYZVQyeVNsYXRNSE82bXZGTWVSTzZycTJrNlpjSEhYT0hvc3JEQ3ByZThvNGk1YzRiV3FkRVEzQTNHQkZrSlltWHNaWWJ6V0tTQjF2QmpIRkEtTDM0dUgzUnBuaDZxZEdLdWtzNUxjcXQxWE94eEJGUG5tcW1HUHJNWlRjY0dpLW5qcTRjTHlpeGRWcDNocFZUblF3bXB6SEkxaXYwdEZhNWk1YjN0NTVRQU51WC1YTUhZWVV5U2RpWS1oU0FkVVRXR9IB5gFBVV95cUxNZjZnWW92d3lqWkV6OUNwMVhmWHJhRWpSbE43a25sSm91dkh5Mk9XSUVmS3JSaThIVEFONVo5Qkk4cXZvemRLeDM4VUdpWEhsdDMxZ1hHYUJ6LVNPaDB4UVR6R3hkNXFwc3diU3NPZWtIYU5hYkdDUnlybUNiYjBncm5GNTZoS3Z6VFVDSUg0S3pkVW9LVTFkd3FLaW5BQ3A5MjBWTF9iV2RWLWpfYmRSOHdCaG04WmsyamVaM0dJZUo0ZjgyWE5sSkFWSV95elJjRDhHSUpZSGE4amtRSjA2VXoydUdiZw?oc=5",
@@ -7108,6 +7556,22 @@
       "language": "English"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWkFfZEVnRW1mRnZ4VWpZS1dFRjY5ajFGSkYwMlo0UlRiY1J1ZlplMkJpZDFaZjMxS1NGUGdVTkFMREg4Q0o4OU50dFMxRGp2RUhqSlhVcW92R1VxbWxfRHE5WkFMWVJXREtDcXVOSUZWSFNxU284LWp5VmJXcGFRRExqZEYyOWNjLVJ1anJaTUs5TFFDekNnVEd2Qml1Z2lrZUM1UVNQYXdhWG1i?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWkFfZEVnRW1mRnZ4VWpZS1dFRjY5ajFGSkYwMlo0UlRiY1J1ZlplMkJpZDFaZjMxS1NGUGdVTkFMREg4Q0o4OU50dFMxRGp2RUhqSlhVcW92R1VxbWxfRHE5WkFMWVJXREtDcXVOSUZWSFNxU284LWp5VmJXcGFRRExqZEYyOWNjLVJ1anJaTUs5TFFDekNnVEd2Qml1Z2lrZUM1UVNQYXdhWG1i?oc=5",
+      "title": "ECI extends Telangana SIR deadline to December 15, final voter list on December 22",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T16:45:32+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63989",
       "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63989",
       "title": "State Government Securities - Full Auction Result",
@@ -7182,6 +7646,22 @@
       "origin": "permitted-rss",
       "desk": "english-magazines",
       "sourcecountry": ""
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxONHhFRVhZQ0lGa0tTaWNqQXE3NG9sejhad0dEeUlKaUlYV1N4c1pCbGFQOGxsZ1N4UDVQcmZEMVQ2M2dWOXNrX3lLVk43TVFaWGxBMU9YMS05UV9xZUVoV3F4MTFNOWE4YzJNUVRCbEtTNjc4QTZjYWphcTV6S1JkemVpTjVCajRsUGVXcXFPNmZzVkFmR2ZTeDlfbkRkdTZO?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxONHhFRVhZQ0lGa0tTaWNqQXE3NG9sejhad0dEeUlKaUlYV1N4c1pCbGFQOGxsZ1N4UDVQcmZEMVQ2M2dWOXNrX3lLVk43TVFaWGxBMU9YMS05UV9xZUVoV3F4MTFNOWE4YzJNUVRCbEtTNjc4QTZjYWphcTV6S1JkemVpTjVCajRsUGVXcXFPNmZzVkFmR2ZTeDlfbkRkdTZO?oc=5",
+      "title": "YMCA Secunderabad defeat Alpha Basketball Academy in league championship",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T16:20:31+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://theconversation.com/an-atlas-of-vanished-places-how-climate-change-is-rewriting-the-books-on-our-shelves-296224",
@@ -7351,6 +7831,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNW1rNmwtdFUweTZMejhzWlcwUmRwc0dfZEVUQUtsMW9ZTk9DNldzWFh4Wk5tUTBvU1kydHdOU2JaczhZS2FPR0NfMUFkYmk5bElGMU9xVC0zejR1Y2xpRHFmSTNxSDJXRzFhMkNTaERwVWtVNGR3X29JejJoVEF0SG1HY2s3NFZLcVg5a1k4eGd3VGt0SXp0cHZxNGZ1WVNueTh0Q0pwMTBPOEU?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNW1rNmwtdFUweTZMejhzWlcwUmRwc0dfZEVUQUtsMW9ZTk9DNldzWFh4Wk5tUTBvU1kydHdOU2JaczhZS2FPR0NfMUFkYmk5bElGMU9xVC0zejR1Y2xpRHFmSTNxSDJXRzFhMkNTaERwVWtVNGR3X29JejJoVEF0SG1HY2s3NFZLcVg5a1k4eGd3VGt0SXp0cHZxNGZ1WVNueTh0Q0pwMTBPOEU?oc=5",
+      "title": "BRS decade built Telangana’s economic base, growth slows under Congress: CESS study",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T14:23:05+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNbkhiRGpsTWdjb0JDZ2NRS2xyZ1JZNUxoNVZ1ekNrbEFlN2RKd0tCTVlkeHlNSGhad29YVWZaMmZPS0h3YzAzdGRYeldObWdmZDJweHRtbVFmTmwyVjNuN3RUeE00X3lTd3owWWpZS0FWc0pUeldxeXVjbVdfUU45V3U2bm1POUZWRVFJRmkxcUEwRmpDcHZoZmdYcEVEUWxudl91eXRkd05DRGNoNlJkTXd1cTFUeVRwSzNYM1l6a3RmVmY0VzFVcmE1ZWs3ckk3U0HSAdoBQVVfeXFMTTBCWlQ5bWJiYUVHeUx3dHZFc0FYMlREalV0MjhTeUQ0R2R2bkVpZVU1eGZzS3lRbS1tMmYzb0pCS1R1M0ZJajV0RG53dTFJRDVCT1lEZDhDNUsyVnN1NnRteUUtTjlFaWthclpsZXg4VUc1VW1HLWp6dzNLeXpQM01BUjRiSVItTVY2WGRvYUtEcngxUmJxNUpDQ2FWQzFwQXV2RHZ0dlZWMG1CT0RlZEpuVUFKSGUwS3F1S3lOM3Z4TVM4WFRwX1VpUVVHOF9Ldmk1ZEhTMVpfa0E?oc=5",
@@ -7534,6 +8030,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOQkExOE1HXzRJX08wdjh5NmxCTXJORlZaamxZUEhPWUk0ZWtibDZlaWg0TFhYOVJwcXFXYm1NVDEzekIwT1N5Z2RzTzNxYVoxSmlYN1ItNXVIS0lubUc3Zy1tTmdWUTB4T3FLS25VXzNFMG1tZXB2cGF0ay1VZjRzbWJ0OXV2QnpZNzFOVHNkWFE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOQkExOE1HXzRJX08wdjh5NmxCTXJORlZaamxZUEhPWUk0ZWtibDZlaWg0TFhYOVJwcXFXYm1NVDEzekIwT1N5Z2RzTzNxYVoxSmlYN1ItNXVIS0lubUc3Zy1tTmdWUTB4T3FLS25VXzNFMG1tZXB2cGF0ay1VZjRzbWJ0OXV2QnpZNzFOVHNkWFE?oc=5",
+      "title": "Interstate egg donation racket: 43 women rescued in Hyderabad",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T12:50:37+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/health/alasandalu-health-benefits-why-this-alasandalu-deserves-a-place-on-your-plate-know-the-values-515379.html",
@@ -7798,6 +8310,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNTHp1RnRsdDRCWVliQ1JaRi1fR2xzU3hDbXVBUUEyYmVNdEVrdzdWWUIzNWZ2QlVzczJ1enVyV2lIM1NtR1F3MUhLTmMySDYzZ1ZUd2JoMlliS3VCTkJuLVZqLU1mSEoyRDB6NWw2SndOeEtvSTRSNFdmaHEzMjJLMnZsdUJiYWZZRGFMaW5XYThLOWVrQjlyNEZ1azVuMlE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNTHp1RnRsdDRCWVliQ1JaRi1fR2xzU3hDbXVBUUEyYmVNdEVrdzdWWUIzNWZ2QlVzczJ1enVyV2lIM1NtR1F3MUhLTmMySDYzZ1ZUd2JoMlliS3VCTkJuLVZqLU1mSEoyRDB6NWw2SndOeEtvSTRSNFdmaHEzMjJLMnZsdUJiYWZZRGFMaW5XYThLOWVrQjlyNEZ1azVuMlE?oc=5",
+      "title": "KTR accuses Congress of failing Telangana, calls manifesto ‘biggest fraud’",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T11:21:20+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOYUktR3JXX0JkZG1VWVdCamxhMThsWWpsT2xxTGhaV0lDWFV4QkFrN3pvQ3NTdkZ6XzYwVTBwaHdaLXFHVy1MRVBlYmk3NUhrclZjMXlmd1I4bFB0bVJkUVMxNlpsVk51UFItaTdCX3VGWVFETmNmWEtqM1B0S1F4QS02M2podVdick5DdndXT0dfbUtfNEk3ZlA3MGF2X3dVYWZ3QzFkblE5bkFxTmtMQmRBQ28wOGVabEJQeDVobVE5Ylh3UkNnOTRvVdIB0gFBVV95cUxNNFpLSGE2czFQdWMyWlFmUWtnMG5IZ21lYXNsQ0hVM3A3cXFoaFBlLUd3UW53Q054Nm1DRE92MmZ5dmJEeGZ2NGRqa1p1b0JRbjNmYS10M3JnNDYxN3RMYWpQeVkzeVJ6ZVlPbS1iS0M4ZWEyaW5QeWJuRDZpTDJFNm5VbUdEUW5OLWM5U2Y2RVNZWTdQMEtmb2lsZlNHbURpX0JqTHBlLXpMN2U0UVpxUUhyWldTSGFBOTdlck01SFNoNnVYM19xdy1ETzF0dkJtcnc?oc=5",
       "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOYUktR3JXX0JkZG1VWVdCamxhMThsWWpsT2xxTGhaV0lDWFV4QkFrN3pvQ3NTdkZ6XzYwVTBwaHdaLXFHVy1MRVBlYmk3NUhrclZjMXlmd1I4bFB0bVJkUVMxNlpsVk51UFItaTdCX3VGWVFETmNmWEtqM1B0S1F4QS02M2podVdick5DdndXT0dfbUtfNEk3ZlA3MGF2X3dVYWZ3QzFkblE5bkFxTmtMQmRBQ28wOGVabEJQeDVobVE5Ylh3UkNnOTRvVdIB0gFBVV95cUxNNFpLSGE2czFQdWMyWlFmUWtnMG5IZ21lYXNsQ0hVM3A3cXFoaFBlLUd3UW53Q054Nm1DRE92MmZ5dmJEeGZ2NGRqa1p1b0JRbjNmYS10M3JnNDYxN3RMYWpQeVkzeVJ6ZVlPbS1iS0M4ZWEyaW5QeWJuRDZpTDJFNm5VbUdEUW5OLWM5U2Y2RVNZWTdQMEtmb2lsZlNHbURpX0JqTHBlLXpMN2U0UVpxUUhyWldTSGFBOTdlck01SFNoNnVYM19xdy1ETzF0dkJtcnc?oc=5",
       "title": "FGLOC to seek RBI recognition as SRO for gold loan NBFCs",
@@ -7939,6 +8467,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBRNld0amI4ZnVqdXB3WGRMQ1VmZmQ0YldzLWVqUTJEOVB4dXpfeE04eDlMdnJ2VzdETTlYWkFpOUhhdTVLdHNWd0hKSUhzR05WVGlmamo3OVZqcTNCQ0xJQ0VVWlctQUUtSEE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBRNld0amI4ZnVqdXB3WGRMQ1VmZmQ0YldzLWVqUTJEOVB4dXpfeE04eDlMdnJ2VzdETTlYWkFpOUhhdTVLdHNWd0hKSUhzR05WVGlmamo3OVZqcTNCQ0xJQ0VVWlctQUUtSEE?oc=5",
+      "title": "Author at Telangana Today-page - 6873",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-17T10:23:54+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPMHlkMkdyNlJJcEZaeUVOMU56NXhWU05JQlVoU3V3NXdXTHNCLTl4ZnlLbkdqWEptWmZ5QWRibmdvT0lFQzBBX1VhVms2cEozOUNoalhxeTJuSnZURkphWnBtQllZckNlbHJ5b1YxSTFNQUpFX3NZa0ZieUZNR3pUcVpqVzRZQ2s2YjZXaXVzdzlLNGU5N295Skc4bF9Sa3FLdHBxQzZ0dHBuYllZem5iVFM2ZVlWNGVRV3dXeWZhZTAtaU5EVDZESmtBVFBqNU1NT1BlRDc0eXdhMURzNEF0SVdlYjFWWU9PQTZNV09YcVFvN0NOTm15eHIwdTlFemMyQVQw0gGIAkFVX3lxTFAzOUNVUkRPakhCOE1STWw0MEFVNmN1b2NMbjlwbHZESWxJNTk4bVFiRzZtVXJmVnM1VHhIa1Q0c1hKZHRCSEItaDlYT0lzcS1QRTlLQWNDcE8wbkowVUdsNk1USF9VVlFkVTU5dXFmbW90RzZzaFhPd2x6bE41YVZaU2tIdGNNc3RudllGTHNQN0pqbDU2b2NzcHBtWWs5dGxZTFdVR1Q2eDRDZGxSTE43V3h2TGZEVmM0U2JtNndOVFV3NFROMnB6WFJ5S2l5Y280N0xyNzV5STBvZWFyaVQ0dWVMZ2FoamdmOXFIN3RkXy1vd2dLdEZ2cGtvTWFkdTNBNThnRjNtcg?oc=5",
@@ -8962,6 +9506,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQLUgxX1RpcVlPT3pJb29rNFpvTHQ2WWdRWEFJZ2p2WmhFZnpjSTFqd3NQSlY4TFV6cUxXSWNYQ2lYY0VxMmRIeW1NSW1NeEJkVmtzejBiR21WMUJ4Zy04SEgxRGdvc3dGdnNMdkhlZDRrYS1OVWtncTg2ZG1QbEtGN0p4cWhCQ0kxZ3RlNw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQLUgxX1RpcVlPT3pJb29rNFpvTHQ2WWdRWEFJZ2p2WmhFZnpjSTFqd3NQSlY4TFV6cUxXSWNYQ2lYY0VxMmRIeW1NSW1NeEJkVmtzejBiR21WMUJ4Zy04SEgxRGdvc3dGdnNMdkhlZDRrYS1OVWtncTg2ZG1QbEtGN0p4cWhCQ0kxZ3RlNw?oc=5",
+      "title": "IMD steps up rain alert for Telangana under Cyclone Akvan",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-16T18:48:24+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://theconversation.com/sentinels-is-an-urgent-call-to-action-on-bird-flu-and-capitalism-gone-wild-its-also-a-joy-to-read-293348",
       "url": "https://theconversation.com/sentinels-is-an-urgent-call-to-action-on-bird-flu-and-capitalism-gone-wild-its-also-a-joy-to-read-293348",
       "title": "Sentinels is an urgent call to action on bird flu, and capitalism gone wild. It’s also a joy to read",
@@ -9855,6 +10415,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVW1oWmJHanMxSEpkSkktaVFjZGh1SS1yT3BoUnBSTmNSdGJRYmRWSXhsdHhNZ0xxR25XQS1VTE1EUkNHbFJlcTFMTVVDSTdPUVZnNnVWNWJNaUVGNzR5RU1pYWRLR2pkZFVZVkJYczBOVTlBTUFCQ05NektwWHVpUkt2RHNrV1JQcmJCenNkOXV0V2F6YUQyTkN2N3FEcDg?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVW1oWmJHanMxSEpkSkktaVFjZGh1SS1yT3BoUnBSTmNSdGJRYmRWSXhsdHhNZ0xxR25XQS1VTE1EUkNHbFJlcTFMTVVDSTdPUVZnNnVWNWJNaUVGNzR5RU1pYWRLR2pkZFVZVkJYczBOVTlBTUFCQ05NektwWHVpUkt2RHNrV1JQcmJCenNkOXV0V2F6YUQyTkN2N3FEcDg?oc=5",
+      "title": "Telangana faces drinking water crisis over delayed river board meetings",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-16T11:01:55+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxNbE5aSlByMzVFNm1OOW5NbGduZG1KQjBZU0RsdXhGQVZkU2E3RTFpR0xVVExCb2FPMGZIWW9fMXBZMWtNcUd6MW11Zk13MEdManh2a3JFZ19uYkhlem5IejMzSmlpSWJ6LXFWemRkZDFLTmljLVMxOHJyTm5vQVY3ZWdIWkZMWUxzQ05HRzdmOFlwTWo2WkVZU09EdFdqNUhEYmpMV1preEEyWS1EY3ZlQ05lbXctVVkxWmRDM2tkOG5JRDZWak92NjNSQ2xldnkxYWJOUlAwdHJVTFZnNlo1Rmw3U2JIZVNCZms2R0gwUUwtNjlILVVFcGNoSzJkbHlJM0VPY0loNUd5MERjeTlLcVc5VHU2WjE1Q3FSdFlNT0x0V1RoaTdjd2I0bUpYNlRPQWF3ZUxIWEdqSDE2ZV9yb3dpNDZBM1Jm?oc=5",
       "url": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxNbE5aSlByMzVFNm1OOW5NbGduZG1KQjBZU0RsdXhGQVZkU2E3RTFpR0xVVExCb2FPMGZIWW9fMXBZMWtNcUd6MW11Zk13MEdManh2a3JFZ19uYkhlem5IejMzSmlpSWJ6LXFWemRkZDFLTmljLVMxOHJyTm5vQVY3ZWdIWkZMWUxzQ05HRzdmOFlwTWo2WkVZU09EdFdqNUhEYmpMV1preEEyWS1EY3ZlQ05lbXctVVkxWmRDM2tkOG5JRDZWak92NjNSQ2xldnkxYWJOUlAwdHJVTFZnNlo1Rmw3U2JIZVNCZms2R0gwUUwtNjlILVVFcGNoSzJkbHlJM0VPY0loNUd5MERjeTlLcVc5VHU2WjE1Q3FSdFlNT0x0V1RoaTdjd2I0bUpYNlRPQWF3ZUxIWEdqSDE2ZV9yb3dpNDZBM1Jm?oc=5",
       "title": "She bought a new home after selling her old flat, yet taxman denied Section 54 relief for not filing ITR; but ITAT said ITR filing isn't a condition for the exemption",
@@ -10504,6 +11080,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOR3hQUVFiTUtRb3ZaaFFfTnZXOGVwSHcwck16b3NVQmNmSkozWWRoLWVEWGlfX1dSa0lZUzJRSjU4dUlIU1hRYjBuLV9ZQmR6bXN2bm9ld2pyczJQXzhaTDhzblNSY3B6Z3RhaUFQX1Y5SXBQZzR4d0xHUU4wVEIyNjdtYV9Gam9PWWt5ZFhHcnd1MTQtNVBOeUctX2NvSnBtVmNvV0ZLVkw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOR3hQUVFiTUtRb3ZaaFFfTnZXOGVwSHcwck16b3NVQmNmSkozWWRoLWVEWGlfX1dSa0lZUzJRSjU4dUlIU1hRYjBuLV9ZQmR6bXN2bm9ld2pyczJQXzhaTDhzblNSY3B6Z3RhaUFQX1Y5SXBQZzR4d0xHUU4wVEIyNjdtYV9Gam9PWWt5ZFhHcnd1MTQtNVBOeUctX2NvSnBtVmNvV0ZLVkw?oc=5",
+      "title": "Hyderabad: Newly purchased car rams into medical shop in Ramnagar, woman injured",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "hyderabad",
+      "sector": "Regional General News",
+      "seen": "2026-11-16T05:37:45+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMilAJBVV95cUxObFpON19hSFRXcmZaUWgwT1FJRnZVTjZHa3FUWFRZSU8wck04eU5VY3E3aXhyS21FdFg4QU5xS1ljaXMxUnRaeXN0ZGFDdGkzLUcyN2I4Ti1ScDRZSi15YTFIb25qYm1TU0NTd093cmdtOXl0d2NQdm9HU2xDdkRlMWZLYnB4SEhtLXE0UF9EQTJwYV9EM2Y0NDJQUUQ0TmtYY2d6VnF5YmEydExYV3N3aERqUnlCNlluTzlpa25CNEJiYXJjUTZ1ajBVQWtxTERrOWpRb0dXUm9lZHl4dnNQeXVURXVmYlo3anFhRVFjOWZOSF85dW02SU9ndFZRQl9tcmFzS1h0cnFxdm0zbVRlQkpENjLSAZoCQVVfeXFMTm9CSVlPNFlqS19HMi0zUlVfcTQ4QTRPU004WmZBSDlGeDlKSHVRYjNXZUo5ajRvX0J5NDYwZzMybUV6RkZOZTRWbnNkaWRhcS0wY2JGX0ktcXdPS2VJUVlJUkx6NHgtcG5WLUNNNFZFOWpBeDFyLTJNcWVQQVF0dnZYanJGblJ0dFZPWHVpM2tfYUFFTE9qOVFmM01WM0FYd255cG5JNEZDLW1rWjlYUUpkcEozSkh0cHdaRHNncFE4NVc1Y0s4aV84SDZXTmVTMTdzNWR1blZmRlJTTTcwTkVNcXJ6UW51d0VnSkNlQ3FXdmJvOEt2d1lJMEd2Sm5MUmc3MVlrQVZiYUgxTl8zSDd2WEtZaDZsQlhR?oc=5",
       "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxObFpON19hSFRXcmZaUWgwT1FJRnZVTjZHa3FUWFRZSU8wck04eU5VY3E3aXhyS21FdFg4QU5xS1ljaXMxUnRaeXN0ZGFDdGkzLUcyN2I4Ti1ScDRZSi15YTFIb25qYm1TU0NTd093cmdtOXl0d2NQdm9HU2xDdkRlMWZLYnB4SEhtLXE0UF9EQTJwYV9EM2Y0NDJQUUQ0TmtYY2d6VnF5YmEydExYV3N3aERqUnlCNlluTzlpa25CNEJiYXJjUTZ1ajBVQWtxTERrOWpRb0dXUm9lZHl4dnNQeXVURXVmYlo3anFhRVFjOWZOSF85dW02SU9ndFZRQl9tcmFzS1h0cnFxdm0zbVRlQkpENjLSAZoCQVVfeXFMTm9CSVlPNFlqS19HMi0zUlVfcTQ4QTRPU004WmZBSDlGeDlKSHVRYjNXZUo5ajRvX0J5NDYwZzMybUV6RkZOZTRWbnNkaWRhcS0wY2JGX0ktcXdPS2VJUVlJUkx6NHgtcG5WLUNNNFZFOWpBeDFyLTJNcWVQQVF0dnZYanJGblJ0dFZPWHVpM2tfYUFFTE9qOVFmM01WM0FYd255cG5JNEZDLW1rWjlYUUpkcEozSkh0cHdaRHNncFE4NVc1Y0s4aV84SDZXTmVTMTdzNWR1blZmRlJTTTcwTkVNcXJ6UW51d0VnSkNlQ3FXdmJvOEt2d1lJMEd2Sm5MUmc3MVlrQVZiYUgxTl8zSDd2WEtZaDZsQlhR?oc=5",
       "title": "ITR update: Extended deadline tax audit report filings this week — Check due date, which taxpayers are eligible, details",
@@ -10564,6 +11156,22 @@
       "origin": "permitted-rss",
       "desk": "telugu-patrikalu",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFByTHRlYkRPVW9TZGluNUcyMXM3dGR2ZzgyMmpsUC1hc0dvVXZNMFJDVFJsY2sxZDNWdWE1RWRVaDBqRGk0TVlCdEttNG45eTJkTkVieHVJbk5pYTdHd2ln?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFByTHRlYkRPVW9TZGluNUcyMXM3dGR2ZzgyMmpsUC1hc0dvVXZNMFJDVFJsY2sxZDNWdWE1RWRVaDBqRGk0TVlCdEttNG45eTJkTkVieHVJbk5pYTdHd2ln?oc=5",
+      "title": "Andhra-pradesh Latest News, Andhra-pradesh News | Telangana Today - Page- 279",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-16T04:32:31+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiigJBVV95cUxPR0FpSXpybkthNG4ycDVXMXBPMG53NFFuV1lEdUlrbVpscnU3UEg5ZnhiSnY0QmVHYmJtbFNkaUZ2UFNlQnFidXkyb29yYngybU16T2xNeDFWTFc0WFFfUTZRdFZkUGF3T0JITHBkUWVBWDhYNDZoS25lSENaRE5VQ2NTM0N4cUxHQlZQTzNRbDNUeFdlQUVwSEhZcUMxYTNSazR3S1VscGVOVDU2b2MydVZBQWZuQTNmQzhTbURSZmc1akdGOXItejgtRnVWQ0wyWFEwc2xIcE5qV0F1SFM1Wi1GcHAzYmNYa3l0aHBqcHh3M0p6emtoUzBEWGthWXlCT0pxZmdMbWQwQdIBjwJBVV95cUxQME5xZ2VlTk1EbEVGazZvZFFFRm1Hb19CaUJzZW1iTVdLVlhOblR6NUd0eFdRN1lEN2N6UW9Nb0UxTnFGVVRzcXpfNVFYcjlFRVhnOTBBajZWbjdhZ2tuZlhyUHVvanRselZHQ0d0U0I1VVJESU9NUnlidVNRUGlfdmtrVVFLQ3dJeFZYZU96bDhTd28wdEM4WXNLdFI1NXN0dENtYXctaHI0OTZWdGE4SU1ySi1YZ1hBX21lYnJHbTNzZkNhaWhZYVZoSmtJZHRJVFhrX0t5WkJvaWZMTjV2ZFBtY1JWWmNOclhOZV93Ty1ZR1pWaENGclJGQTRUTW93dThjQ0ZrUjgyZzdYcVlF?oc=5",
@@ -10989,6 +11597,22 @@
       "sourcecountry": "India"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUWVTUktjY19aNWw5a0hHV1kxaDFiRW5hUm1yd0o2dWpneGhlNjAzdmxQNHdsRXg1WFRIVXlwVGRXWDIwaHh6LW8ta3RiQkRaT3FfMTN4NE9TWU50XzNtazN2UjVkcTVNSGZ6aFlkb2ZEdzA2VlRvRkZseWs5WGl1RHZiZGNHUndjblNnT3RNN1VRb1NBZWtXbTV0UTZZQ0lDaGhCOFc2eU9SekN3b1ZFNmplaw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUWVTUktjY19aNWw5a0hHV1kxaDFiRW5hUm1yd0o2dWpneGhlNjAzdmxQNHdsRXg1WFRIVXlwVGRXWDIwaHh6LW8ta3RiQkRaT3FfMTN4NE9TWU50XzNtazN2UjVkcTVNSGZ6aFlkb2ZEdzA2VlRvRkZseWs5WGl1RHZiZGNHUndjblNnT3RNN1VRb1NBZWtXbTV0UTZZQ0lDaGhCOFc2eU9SekN3b1ZFNmplaw?oc=5",
+      "title": "Cyclone alert issued for Andhra Pradesh, Odisha as Bay of Bengal depression intensifies",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-15T18:29:17+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPRG1KZXZMYkhBdjF2TEh0emNoVi1fRXpuWU01enhNZDNsQnQ5VzZOeU5DN0Y5TUJ6T3dMbkZzbk8ycVFvNngybXlVTUJZdzRlaDRVa1hjWDJlZ0dUMGE4RHQwMDJPcXYtRk84SEtFQk5DQktvZ1dkVnNsdUNJTTR1SlpZZm9sSnJDODYzOFhCeTl5RkhOMmF0a2dkTmNNVlVlbjB3ZTF6aU5tejNVX1FSQXpzeG9aT2JPd0FKU2pBYW1DV01PQXVaQzA5TFRrS195OFBMVHpjRmVDUXRpM3AwUTFpNWtLYTlZOG1HdG1jaVpiSFItZGx2bVRkRmJSblpaZWp5MlNUY1PSAY4CQVVfeXFMTWY0Mm4tdnFQUnIxTkpxeWJKdWJfMmpwQmk0dzFPUGliTUlQUzFKUVp5eUZHMTFwN0o3V2ZjcGludzc5YzhKMVQtTVVIMjJyS2dsRTEyOEtJcmFfVFlsRGNQaW43Um8zZ0VNNDFyb0dBbTlUX2IxOTRhc1QtVkZKc2xiU1loZGlRdktlQVdhaE81ZlpnODNxUjdlcWxNdG1YWVV3R0VueF9SY0tSSVZUMHl4Y05nd013N0ZEd1dpb2t4NE5tTkstVnBQcXdRNlBQbTExVm9yN05KY0pMRUtjWDlDSXNudnJ4MkFPNE1Tekw1bDVLalhrZk1IMkc3NTliSF9hdF9hQjlfaFA0aWVR?oc=5",
       "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPRG1KZXZMYkhBdjF2TEh0emNoVi1fRXpuWU01enhNZDNsQnQ5VzZOeU5DN0Y5TUJ6T3dMbkZzbk8ycVFvNngybXlVTUJZdzRlaDRVa1hjWDJlZ0dUMGE4RHQwMDJPcXYtRk84SEtFQk5DQktvZ1dkVnNsdUNJTTR1SlpZZm9sSnJDODYzOFhCeTl5RkhOMmF0a2dkTmNNVlVlbjB3ZTF6aU5tejNVX1FSQXpzeG9aT2JPd0FKU2pBYW1DV01PQXVaQzA5TFRrS195OFBMVHpjRmVDUXRpM3AwUTFpNWtLYTlZOG1HdG1jaVpiSFItZGx2bVRkRmJSblpaZWp5MlNUY1PSAY4CQVVfeXFMTWY0Mm4tdnFQUnIxTkpxeWJKdWJfMmpwQmk0dzFPUGliTUlQUzFKUVp5eUZHMTFwN0o3V2ZjcGludzc5YzhKMVQtTVVIMjJyS2dsRTEyOEtJcmFfVFlsRGNQaW43Um8zZ0VNNDFyb0dBbTlUX2IxOTRhc1QtVkZKc2xiU1loZGlRdktlQVdhaE81ZlpnODNxUjdlcWxNdG1YWVV3R0VueF9SY0tSSVZUMHl4Y05nd013N0ZEd1dpb2t4NE5tTkstVnBQcXdRNlBQbTExVm9yN05KY0pMRUtjWDlDSXNudnJ4MkFPNE1Tekw1bDVLalhrZk1IMkc3NTliSF9hdF9hQjlfaFA0aWVR?oc=5",
       "title": "Income tax department flags ₹1.5 crore deal over WhatsApp chat and ₹10 note photo; why ITAT deleted the addition",
@@ -11145,6 +11769,22 @@
       "sourcecountry": ""
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNHZhalJIdldSaVFuRFFnYWROdHVjbUNhdVdGUG5ZNG1WVEpXOE1rZTRoQXhzZUNKZW5sOG9FS0hHbFdhU1l2Y3J4dERhc1o0aVpBRjRIUHRvME1kT0tGYmtTLVdIMEVRMXdiV0dUVS0xVmdIV1lsLVgxUDhiUTJLQi1wd3dQRzZyZlVwdXpyano4M2g3QUx3RjI1LUZUTkduZ2cxek00YklqV3JjeEZ5cFU4ZjQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNHZhalJIdldSaVFuRFFnYWROdHVjbUNhdVdGUG5ZNG1WVEpXOE1rZTRoQXhzZUNKZW5sOG9FS0hHbFdhU1l2Y3J4dERhc1o0aVpBRjRIUHRvME1kT0tGYmtTLVdIMEVRMXdiV0dUVS0xVmdIV1lsLVgxUDhiUTJLQi1wd3dQRzZyZlVwdXpyano4M2g3QUx3RjI1LUZUTkduZ2cxek00YklqV3JjeEZ5cFU4ZjQ?oc=5",
+      "title": "Andhra Pradesh converts 526 investment proposals worth Rs. 17.1 lakh crore into projects",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-15T13:54:52+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVTlCS1R5UXZ2OWo3YkpOMUQxYWdJWS1GdldibWdGa2ZwdWRydjdyMksxNkJjWkhpMzdsY0hsTi1MZDNWNEhFckdLRFhFV2dHSVFDSXRadGFWOG9Udm04RUpCeU0ybHl6SVhzMDYwSFI5VV9xSTlPODVXeVNwSXUzYWlOQ1dHa19yZHR2b2hxVEhqNUpRbDlocWJHV1BRc3N1OUh4cE1MQVVTSkk4bG1ZU1VzbGx1QdIBuwFBVV95cUxOV3FwcTJuREJYSHlaODJhZWE0emNUUHE4ckZFWDNwV1h2UDNYZnZLZHNCNVBfUVBuUmtrdXA1OS0wQXpoamFlWVlOUXFjSUVVcU5kNUwzUzZfUHR5enJVQUI0bmFvb3hGckFqMWk3NWdrXzlEazNfRlhEd2RWc1lram9NcHMwTnpNTFJCd0xpLXhxSmcwRm1oNS1pRlNpMl9LcFBIMkVvdGRSOEZqZHNEX2M1N0k3WVVPM2xN?oc=5",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVTlCS1R5UXZ2OWo3YkpOMUQxYWdJWS1GdldibWdGa2ZwdWRydjdyMksxNkJjWkhpMzdsY0hsTi1MZDNWNEhFckdLRFhFV2dHSVFDSXRadGFWOG9Udm04RUpCeU0ybHl6SVhzMDYwSFI5VV9xSTlPODVXeVNwSXUzYWlOQ1dHa19yZHR2b2hxVEhqNUpRbDlocWJHV1BRc3N1OUh4cE1MQVVTSkk4bG1ZU1VzbGx1QdIBuwFBVV95cUxOV3FwcTJuREJYSHlaODJhZWE0emNUUHE4ckZFWDNwV1h2UDNYZnZLZHNCNVBfUVBuUmtrdXA1OS0wQXpoamFlWVlOUXFjSUVVcU5kNUwzUzZfUHR5enJVQUI0bmFvb3hGckFqMWk3NWdrXzlEazNfRlhEd2RWc1lram9NcHMwTnpNTFJCd0xpLXhxSmcwRm1oNS1pRlNpMl9LcFBIMkVvdGRSOEZqZHNEX2M1N0k3WVVPM2xN?oc=5",
       "title": "Got tax refund twice? Here is what you should do",
@@ -11159,6 +11799,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNU0g5V21DTl9Pc0RuaWp2NlZadk9oZUd4eTU5UWN2Y0ROSWpoTGczUjFIMjB5NDNyNW5NTjNLUnhCRTBPVVc3WllzTWtPQ2xERnB6dFVBMjlrcldoZktLQzhxQ0w3cTZERzJMLVJFb3dvM3RYeG5TTTlGczh5TVJTZ1pETkhEWTVuM3NVeGVLamUxb28xN2F4Yl9CUVNaaE1JRUE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNU0g5V21DTl9Pc0RuaWp2NlZadk9oZUd4eTU5UWN2Y0ROSWpoTGczUjFIMjB5NDNyNW5NTjNLUnhCRTBPVVc3WllzTWtPQ2xERnB6dFVBMjlrcldoZktLQzhxQ0w3cTZERzJMLVJFb3dvM3RYeG5TTTlGczh5TVJTZ1pETkhEWTVuM3NVeGVLamUxb28xN2F4Yl9CUVNaaE1JRUE?oc=5",
+      "title": "YSRCP slams Chandrababu Naidu over Vision 2050, raises price rise concerns",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-15T13:11:03+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://telugu.oneindia.com/health/nutmeg-milk-benefits-drink-milk-with-nutmeg-powder-and-a-spoon-of-ghee-amazing-health-benefits-y-515085.html",
@@ -11314,6 +11970,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMFd3MmFldXFmc3lXaUlHQ05QSXdrM21hUFEwVTh4czE3a0F6dlF0M3dGcXNSM3F1V1pGVXNmajhQbklYNU5MNkFKNEhuWEoyQk5nR2RWQS02NzZvZDdWNEhybVEwNllQcXBxYnF1bjBxZFQtalVXUUNYejJQNmRuQjIzN1pHNG44eTJVc2w0OS1qTkpnNTlHek9EZEhWbEk3?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMFd3MmFldXFmc3lXaUlHQ05QSXdrM21hUFEwVTh4czE3a0F6dlF0M3dGcXNSM3F1V1pGVXNmajhQbklYNU5MNkFKNEhuWEoyQk5nR2RWQS02NzZvZDdWNEhybVEwNllQcXBxYnF1bjBxZFQtalVXUUNYejJQNmRuQjIzN1pHNG44eTJVc2w0OS1qTkpnNTlHek9EZEhWbEk3?oc=5",
+      "title": "Cyclone Akvan may bring rain to Telangana from November 20, IMD forecasts",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "telangana",
+      "sector": "Regional General News",
+      "seen": "2026-11-15T11:32:40+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPUUYxMWdaNVo5aWh5VEFFel8yeDlHMHhxUDlBUmJWR1FTZzlhcmtPbTRMLXlSandzMHA3ZGdEQ0doY1h2SUlOb1BLRmV5THZqY0NwaU1rRUlzNzJpN2JhSmVIQ3lvNVMyLTRUdWg4QmNYN2ZsZVFQd3NZUzhKaDhNQWo5LUlIWGpCNnJSLW9fWVRlbUVUVU1ZQmRwelNjdTdnWGFQdGRPRTNGYzdtdzNmOUdXNVI5UVFIWUdOUEZqLU1rcm03WGFYYjhFaFQ0TEQycEFWLVpFbHJua3NVRVNpTUhOU0RvYTE5VEJhLVBLZkZlVld2Y3I1RFVsSG5FOFFjNnNJZUg5UdIBjAJBVV95cUxOQXdRWDRtR2pLSlo2N3M1ZjY4dmttNUhRWktiM1V3c3ZoTWtDbldxN3RaS2dibDdFVWkxbXV2WDl2SUwwLTZNUVhIeVdWb0RIaVoxZUNhYWxlQTNDVDJMR0h3WkMxbGpzZDNMVDlUVDI5a00wOVNPQVdoWGdTSXhHLWppUjR1ckJsUXBHTUNPOHNHTERYbkpSUzFPTTBCX0FHaFRiZDhhSnRPTjRoWVNKSElaT0FxQmhoXzVwc20yb2gyZnExNjBfeFI0a3VZZXZTSmMtcUl5OW9ISWVDWWE5TkN3cDY1a2hlQ2NWRnhxTzJCWkJZX01ydDBwUGRPVldaaEVnUE44T3F4bC1w?oc=5",
@@ -11551,6 +12223,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPZGFVbDV1bmpqdlFNdDFjTExaczJ3UjVydWs1bnhFZFZyVjd4WmFPN3Y2OE9rQ1JNOFY3MUIzdUdpcy1zTlV6TFN6bDlhMDl5Y1pscDRwWFdWS1N6NV95NldpNUVCUm5UUFdwaHR1ME14TVdjdDR6cTRwd0Fqb0ZUa3k2OFBmY0s2TFlrTDhVSzVDSjJkSHk2aEFNM2pOSDRHRXZaYzFud1FUUQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPZGFVbDV1bmpqdlFNdDFjTExaczJ3UjVydWs1bnhFZFZyVjd4WmFPN3Y2OE9rQ1JNOFY3MUIzdUdpcy1zTlV6TFN6bDlhMDl5Y1pscDRwWFdWS1N6NV95NldpNUVCUm5UUFdwaHR1ME14TVdjdDR6cTRwd0Fqb0ZUa3k2OFBmY0s2TFlrTDhVSzVDSjJkSHk2aEFNM2pOSDRHRXZaYzFud1FUUQ?oc=5",
+      "title": "Andhra Pradesh coast braces for another severe cyclone on November 17, warns IMD",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-15T06:00:32+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQUklsenFVZ1JoN3h6S1dzMTRUYU9nSmlqU3Z3cEw5dHBMMUZKeDhvR002MWRuaVVad01Cd0dyWWt3RTc2MUlsNURvVFdmcmR4MkdTbWVwaHpXTVhKNV8zQURDRmRybU90MGMySjRwaTlDQjdzaG9FcjZqdGNhMlRxRzRORk5wa1VsYlhTMWw4RVREVkdWQ0kzc0QxTW1WUHBzTG5sYWJtRlBuRWRFU2I0RmJEc1BsblVnZFlaem12SjFTalNIQWlnajRfZ002WnA4V1AtMGhsTzJNTTBCNXRndzdGZ0diLUF4ZWJCM0s0M1JfcXBIYTlVdXRpanN2Zzg1N01UaW1jTjJoY0xjZUY0U3NqYlVlM09w?oc=5",
@@ -11852,6 +12540,22 @@
       "origin": "google-news-rss",
       "link_type": "google-news-redirect",
       "sourcecountry": "India"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPT3BKb0FBcEw1eE4wS0NVZDA5djRoVS1Qb3BHbFZMMFZVMW5JLXpqdkMyS3lpZUhpNzRWbzZIVGhlZW5mTE5maHFHZDVKcU9Jd0NOLVhzM1ZNeWZiSkhsNW91NVRBUGdCUTN2S3JCSWZCcG9ueVVxUTg4clhsUEk3SmI0eHlJYTJsaTVrNjBjWjZ4TmFYZmNLdklPd2FGX3hXUUVxSg?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPT3BKb0FBcEw1eE4wS0NVZDA5djRoVS1Qb3BHbFZMMFZVMW5JLXpqdkMyS3lpZUhpNzRWbzZIVGhlZW5mTE5maHFHZDVKcU9Jd0NOLVhzM1ZNeWZiSkhsNW91NVRBUGdCUTN2S3JCSWZCcG9ueVVxUTg4clhsUEk3SmI0eHlJYTJsaTVrNjBjWjZ4TmFYZmNLdklPd2FGX3hXUUVxSg?oc=5",
+      "title": "Andhra Pradesh plans Visakhapatnam hub for films, gaming and digital content",
+      "source": "Telangana Today • Google News",
+      "domain": "telanganatoday.com",
+      "region": "andhra-pradesh",
+      "sector": "Regional General News",
+      "seen": "2026-11-14T14:15:22+00:00",
+      "time_basis": "google_rss",
+      "origin": "google-news-rss",
+      "desk": "regional-general",
+      "language": "Telugu/English",
+      "sourcecountry": "India",
+      "link_type": "google-news-redirect"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPNjNPMzUtdnNzTzh6UDZNSk01S01MYUV5MUUxZkZKaUozczJTYlI3VmV0Sm1ERmEycWVkNTBOM1RDX1dMVUdGYkVmX0hiVU5RWExwN1BhZzBxVlN5STVQSkZjZXhHRzQwc0gtRmpoeVZCbXB6X3RPTU9jS2Z1M3BTdXBwTE1vVHUwWWNjajFvR3BRWElYd2hQb3VXM2s0cHY2M1NfZTdMci15MWVCOHY4MGczUU5fRExaSVRBRk5BRUhTQdIBygFBVV95cUxNVS1pT056NWx3ZEZwdWZHa3lDdDVJajJsdHlaNEN2MVBhMzN3WGVadHU1MFVQWXdTNFJVZUVwb3Bjb0hxVkFDOFJEWFFUdmdUWmlvdVFvNXRwcHdydmhfbGpqcFFpU3NlRjVxeHduTng3VnRmcFd5WXhOakdYOER3VldHT1BVdTVwbXNGVGJiRVZVR3hjLXk4VmpRTy1kdDh6dkRUVm9Wdkd4c2szcW1iNGlDU1RpSUk2amVZbmZqMy1iTHlyZ05kTXJ3?oc=5",
@@ -12743,21 +13447,32 @@
       "accepted": 27,
       "by_source": {
         "Groww": 1,
-        "Zerodha": 4,
+        "Zerodha": 5,
         "Business Standard PF page": 13,
         "India-wide PF": 11
       },
       "warnings": [
-        "Zerodha: HTTPError: HTTP Error 429: Too Many Requests"
+        "Groww: HTTPError: HTTP Error 429: Too Many Requests"
       ],
       "discovery": "google-news-rss"
+    },
+    "regional_discovery": {
+      "queries": 6,
+      "successful_feeds": 6,
+      "accepted": 55,
+      "by_source": {
+        "Andhra Jyothy": 0,
+        "Namasthe Telangana": 1,
+        "Telangana Today": 59
+      },
+      "warnings": []
     },
     "telugu_snippets": {
       "configured": true,
       "provider": "github",
       "attempted": 50,
       "completed": 0,
-      "pending": 845,
+      "pending": 889,
       "errors": [
         "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
         "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
