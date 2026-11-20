@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-20-india-world-general-r24">
+<meta name="mbn-site-version" content="2026-11-20-india-world-general-r25">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -1371,6 +1371,8 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  if(state.search&&!matchSearch(item,state.search))return false;return true}).sort((a,b)=>state.sort==='oldest'?dateKey(a.seen)-dateKey(b.seen):state.sort==='source'?a.source.localeCompare(b.source):dateKey(b.seen)-dateKey(a.seen))}
 function render(){document.body.classList.toggle('x-watch-open',state.region==='x-watch');document.body.classList.toggle('avi-ivi-open',state.region==='avi-ivi');document.body.classList.toggle('publisher-open',isPublisherDesk(state.region));document.body.classList.toggle('english-magazines-open',state.region==='english-magazines');const title=REGION_NAMES[state.region]||REGION_NAMES.all;const visible=getVisible();$('crumb').textContent=title;$('feedHeading').innerHTML=state.region==='x-watch'?'𝕏 X Business <span class="heading-light">Watch</span>':`${escapeHTML(title.replace(' Business News',''))} <span class="heading-light">${state.region==='saved'?'':state.region==='all'?'Feed':'News Feed'}</span>`;$('resultsCount').textContent=isPublisherDesk(state.region)?
  `${visible.length.toLocaleString('en-IN')} permitted RSS ${visible.length===1?'headline':'headlines'} · click a publication above to open its original homepage`:
+ ['india-general','world-general'].includes(state.region)?
+ `${visible.length.toLocaleString('en-IN')} all-topic headlines · news, health, crime, sport, entertainment, science, technology and business`:
  state.region==='telugu-states'?
  `${visible.length.toLocaleString('en-IN')} AP + TG general news links · English & Telugu · politics, public affairs and daily life`:
  state.region==='avi-ivi'?
@@ -1381,7 +1383,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  `${visible.length.toLocaleString('en-IN')} Hyderabad, Telangana & Andhra Pradesh business links`:
  `${visible.length.toLocaleString('en-IN')} matching ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='business').length.toLocaleString('en-IN')} in business feed`;
  document.querySelectorAll('[data-region]').forEach(el=>el.classList.toggle('active',el.dataset.region===state.region));
- const extraTab=['telugu-states','telugu-companies','x-watch','avi-ivi','telugu-patrikalu','english-magazines'].includes(state.region);
+ const extraTab=['india-general','world-general','telugu-states','telugu-companies','x-watch','avi-ivi','telugu-patrikalu','english-magazines'].includes(state.region);
  const moreToggle=$('moreRegionTabs');if(moreToggle)moreToggle.classList.toggle('active',extraTab);
  document.querySelectorAll('.sector-side,.sector-chip').forEach(el=>el.classList.toggle('active',el.dataset.sector===state.sector));
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
@@ -1396,6 +1398,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('[data-regional-state]').forEach(el=>{const active=el.dataset.regionalState===state.regionalState;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('feedDescription').textContent=isPublisherDesk(state.region)?
  'Choose a publication above for its original homepage. Below are permitted RSS headlines, attributed to their publishers.':
+ ['india-general','world-general'].includes(state.region)?
+ 'All available India or worldwide headlines: every topic, with original publisher credit and Google News click-throughs. Feed coverage depends on sources and is not exhaustive.':
  state.region==='telugu-states'?
  'Every available AP/TG headline, without topic restrictions: politics, health, crime, sports, districts, jobs, business and more. All source links are credited.':
  state.region==='personal-finance'?
