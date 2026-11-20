@@ -87,11 +87,14 @@ TG=re.compile(
  r'telangana|hyderabad|secunderabad|warangal|karimnagar|khammam|nizamabad|'
  r'revanth reddy|\bkcr\b|\bktr\b|sangareddy|medak|siddipet|nalgonda|'
  r'suryapet|mahabubnagar|adilabad|jagtial|peddapalli|rangareddy|medchal|vikarabad',re.I)
-GEO_NOISE=re.compile(r'weather in hyderabad|hyderabad weather today',re.I)
+# Additional named districts/towns expand geographic recognition, not topic filtering.
+AP_MORE=re.compile(r'పల్నాడు|బాపట్ల|కోనసీమ|పార్వతీపురం|అల్లూరి|ప్రకాశం|పుట్టపర్తి|హిందూపురం|మాచర్ల|తెనాలి|పిడుగురాళ్ల|వేటపాలెం|భీమవరం|గుడివాడ|పెనుకొండ|ప్రొద్దుటూరు|ధర్మవరం|నర్సీపట్నం|మచిలీపట్నం|శ్రీకాళహస్తి|palnadu|bapatla|konaseema|parvathipuram|prakasam|puttaparthi|hindupur|tenali|bhimavaram|gudivada|machilipatnam|narsipatnam|proddatur|dharmavaram',re.I)
+TG_MORE=re.compile(r'ములుగు|మహబూబాబాద్|కామారెడ్డి|యాదాద్రి|భద్రాద్రి|కొత్తగూడెం|నాగర్‌కర్నూల్|వనపర్తి|గద్వాల|ఆసిఫాబాద్|శంషాబాద్|గచ్చిబౌలి|హనుమకొండ|సిరిసిల్ల|జహీరాబాద్|mulugu|mahabubabad|kamareddy|yadadri|bhadradri|kothagudem|nagarkurnool|wanaparthy|gadwal|asifabad|shamshabad|gachibowli|hanamkonda|sircilla|zaheerabad',re.I)
+GEO_NOISE=re.compile(r"(?!)")  # Weather, traffic and routine updates are news too.
 
 def region(title):
-    ap=bool(AP.search(title)); tg=bool(TG.search(title))
-    if ap and tg:return None  # Ambiguous multi-region coverage: do not force a state.
+    ap=bool(AP.search(title) or AP_MORE.search(title)); tg=bool(TG.search(title) or TG_MORE.search(title))
+    if ap and tg:return "ap-tg"  # A genuine two-state headline belongs to all three general-news tabs.
     if ap:return "andhra-pradesh"
     if tg:return "hyderabad" if re.search(r'హైదరాబాద్|సికింద్రాబాద్|hyderabad|secunderabad',title,re.I) else "telangana"
     return None
@@ -105,7 +108,7 @@ def parse(xml,expected_domain,now=None):
     try: root=ET.fromstring(xml)
     except ET.ParseError:return []
     out=[]
-    for node in root.findall(".//item")[:100]:
+    for node in root.findall(".//item"):
         source=node.find("source")
         if source is None:continue
         publisher=cleanup("".join(source.itertext()))
@@ -116,7 +119,7 @@ def parse(xml,expected_domain,now=None):
         title=cleanup(first_text(node,["title"]))
         if publisher and title.lower().endswith(" - "+publisher.lower()):
             title=title[:-(len(publisher)+3)].strip()
-        if len(title)<15 or GEO_NOISE.search(title):continue
+        if len(title)<10:continue
         place=region(title)
         if not place:continue
         link=cleanup(first_text(node,["link"]))
@@ -146,7 +149,7 @@ def collect_telanganatoday_rss(now=None):
         xml=response.read(1_600_000)
     root=ET.fromstring(xml)
     found={}
-    for node in root.findall(".//item")[:150]:
+    for node in root.findall(".//item"):
         title=cleanup(first_text(node,["title"]))
         link=cleanup(first_text(node,["link"]))
         hostname=(urlparse(link).hostname or "").lower().removeprefix("www.")
@@ -211,15 +214,21 @@ def collect_regional(cycle=None):
             status["by_source"][name]=status["by_source"].get(name,0)+len(rows)
             for item in rows:found[item["url"]]=item
     # Broader general news searches: publisher-independent, two per state per cycle.
+    # Always query AP and TG without ANY category term; rotate district coverage.
+    # Google News returns only a bounded subset per search, so independent broad
+    # location queries prevent politics/business keywords excluding other news.
     general_queries=[
-      '("Andhra Pradesh" OR Amaravati OR Vijayawada OR Visakhapatnam) (politics OR government OR welfare OR schools OR crime) when:2d',
-      '("Andhra Pradesh" OR Tirupati OR Guntur OR Nellore OR Kurnool) (jobs OR health OR weather OR sports OR police) when:2d',
-      '("ఆంధ్రప్రదేశ్" OR "అమరావతి" OR "విజయవాడ") (ప్రభుత్వం OR రాజకీయాలు OR విద్య OR నేరాలు OR క్రీడలు) when:2d',
-      '("తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్") (ప్రభుత్వం OR రాజకీయాలు OR విద్య OR నేరాలు OR క్రీడలు) when:2d',
-      '(Telangana OR Hyderabad OR Warangal OR Karimnagar) (politics OR government OR welfare OR courts OR crime) when:2d',
-      '(Telangana OR Hyderabad OR Khammam OR Nizamabad) (jobs OR health OR weather OR schools OR sports) when:2d',
+      '"Andhra Pradesh" when:2d',
+      '("ఆంధ్రప్రదేశ్" OR "ఏపీ" OR "అమరావతి") when:2d',
+      '("Vijayawada" OR "Visakhapatnam" OR "Tirupati" OR "Guntur") when:2d',
+      '("Kurnool" OR "Kakinada" OR "Nellore" OR "Srikakulam" OR "Kadapa") when:2d',
+      '"Telangana" when:2d',
+      '("తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్") when:2d',
+      '("Hyderabad" OR "Secunderabad" OR "Warangal") when:2d',
+      '("Karimnagar" OR "Nizamabad" OR "Khammam" OR "Nalgonda") when:2d',
     ]
-    selected_general=[general_queries[(cycle+i)%3] for i in range(2)]+[general_queries[3+(cycle+i)%3] for i in range(2)]
+    selected_general=[general_queries[0],general_queries[1],general_queries[2+(cycle%2)],
+                      general_queries[4],general_queries[5],general_queries[6+(cycle%2)]]
     status["general_queries"]=len(selected_general)
     def fetch_general(term):
         url=RSS_URL+"?"+urlencode({"q":term,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
