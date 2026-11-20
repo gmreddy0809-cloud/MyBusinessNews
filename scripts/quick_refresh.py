@@ -14,6 +14,7 @@ from tempfile import NamedTemporaryFile
 from rss_sources import collect_official
 from avi_ivi import collect_avi_ivi
 from world_google_news import collect_world
+from all_general_news import collect_general_news
 from regional_google_news import collect_regional
 from hyderabad_business_news import collect_hyderabad_business
 from pf_google_news import collect_personal_finance
@@ -58,6 +59,7 @@ def main():
         "official":collect_official,
         "avi_ivi":collect_avi_ivi,
         "world_discovery":collect_world,
+        "india_world_general":collect_general_news,
         "regional_discovery":collect_regional,
         "hyderabad_business_discovery":collect_hyderabad_business,
         "personal_finance_discovery":collect_personal_finance,
@@ -125,7 +127,7 @@ def main():
     ) and (v.get("desk")!="avi-ivi" or stamp(v.get("seen"))>=AVI_START)]
     rows.sort(key=lambda v:stamp(v.get("seen")),reverse=True)
     # Preserve quotas so a large national feed cannot displace local or PF news.
-    quotas={"business":12000,"personal-finance":12000,"regional-business":2000,
+    quotas={"business":12000,"personal-finance":12000,"india-general":12000,"world-general":12000,"regional-business":2000,
             "regional-general":12000,"avi-ivi":12000,"english-magazines":12000,
             "telugu-patrikalu":1500}
     desk_counts={}
