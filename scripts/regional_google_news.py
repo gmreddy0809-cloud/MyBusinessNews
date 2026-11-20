@@ -111,7 +111,8 @@ def parse(xml,expected_domain,now=None):
         publisher=cleanup("".join(source.itertext()))
         src=source.attrib.get("url","")
         hostname=(urlparse(src).hostname or "").lower().removeprefix("www.")
-        if hostname!=expected_domain and not hostname.endswith("."+expected_domain):continue
+        if not hostname or "." not in hostname:continue
+        if expected_domain and hostname!=expected_domain and not hostname.endswith("."+expected_domain):continue
         title=cleanup(first_text(node,["title"]))
         if publisher and title.lower().endswith(" - "+publisher.lower()):
             title=title[:-(len(publisher)+3)].strip()
@@ -208,6 +209,33 @@ def collect_regional(cycle=None):
                 continue
             status["successful_feeds"]+=1
             status["by_source"][name]=status["by_source"].get(name,0)+len(rows)
+            for item in rows:found[item["url"]]=item
+    # Broader general news searches: publisher-independent, two per state per cycle.
+    general_queries=[
+      '("Andhra Pradesh" OR Amaravati OR Vijayawada OR Visakhapatnam) (politics OR government OR welfare OR schools OR crime) when:2d',
+      '("Andhra Pradesh" OR Tirupati OR Guntur OR Nellore OR Kurnool) (jobs OR health OR weather OR sports OR police) when:2d',
+      '("ఆంధ్రప్రదేశ్" OR "అమరావతి" OR "విజయవాడ") (ప్రభుత్వం OR రాజకీయాలు OR విద్య OR నేరాలు OR క్రీడలు) when:2d',
+      '("తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్") (ప్రభుత్వం OR రాజకీయాలు OR విద్య OR నేరాలు OR క్రీడలు) when:2d',
+      '(Telangana OR Hyderabad OR Warangal OR Karimnagar) (politics OR government OR welfare OR courts OR crime) when:2d',
+      '(Telangana OR Hyderabad OR Khammam OR Nizamabad) (jobs OR health OR weather OR schools OR sports) when:2d',
+    ]
+    selected_general=[general_queries[(cycle+i)%3] for i in range(2)]+[general_queries[3+(cycle+i)%3] for i in range(2)]
+    status["general_queries"]=len(selected_general)
+    def fetch_general(term):
+        url=RSS_URL+"?"+urlencode({"q":term,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
+        try:
+            req=Request(url,headers={"User-Agent":"Mozilla/5.0 (MyBusinessNews AP TG General News)","Accept":"application/rss+xml,application/xml"})
+            with urlopen(req,timeout=12) as response:xml=response.read(1_600_000)
+            return parse(xml,None),None
+        except Exception as exc:
+            return [],type(exc).__name__+": "+str(exc)[:80]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for index,(rows,error) in enumerate(pool.map(fetch_general,selected_general)):
+            if error:
+                status["warnings"].append("General query "+str(index)+": "+error)
+                continue
+            status["successful_feeds"]+=1
+            status["by_source"]["AP/TG general "+str(index+1)]=len(rows)
             for item in rows:found[item["url"]]=item
     status["accepted"]=len(found)
     return list(found.values()),status
