@@ -55,6 +55,11 @@ class IndiaWorldGeneralTests(unittest.TestCase):
         self.assertIn("'world':'World Business News'",HTML)
         self.assertIn("'india-general':'India General News'",HTML)
         self.assertIn("'world-general':'World General News'",HTML)
+    def test_all_news_is_combined_general_feed_not_business_only(self):
+        self.assertIn("'all':'All News'",HTML)
+        self.assertIn("'all-business':'All Business News'",HTML)
+        self.assertIn("if(selectedDesk==='all'){/* Everything indexed:",HTML)
+        self.assertIn("else if(selectedDesk==='all-business')",HTML)
     def test_finance_is_external_link_not_scraped_quote(self):
         self.assertIn('href="https://www.google.com/finance/beta"',HTML)
         self.assertIn('target="_blank" rel="noopener noreferrer"',HTML)
