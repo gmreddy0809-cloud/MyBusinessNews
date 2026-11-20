@@ -17,7 +17,7 @@ from world_google_news import collect_world
 from regional_google_news import collect_regional
 from hyderabad_business_news import collect_hyderabad_business
 from pf_google_news import collect_personal_finance
-from publications import collect_publications
+from publications import collect_publications, telugu_region
 from desk_coverage import from_telugu_publisher, pf_match
 
 DEST=Path(__file__).resolve().parents[1]/"data"/"news.json"
@@ -48,6 +48,12 @@ def main():
     old=json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"articles":[]}
     previous=old.get("articles") if isinstance(old.get("articles"),list) else []
     by_url={row["url"]:row for row in previous if isinstance(row,dict) and isinstance(row.get("url"),str)}
+    # Backfill the region on already-indexed Telugu general news, without
+    # changing its original time, title or URL or reclassifying India-only news.
+    for row in by_url.values():
+        if row.get("desk")=="telugu-patrikalu" and row.get("region")=="india":
+            tagged=telugu_region(row.get("title",""),row.get("url",""))
+            if tagged!="india":row["region"]=tagged
     runners={
         "official":collect_official,
         "avi_ivi":collect_avi_ivi,
