@@ -1330,7 +1330,7 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
    // AP and TG are GENERAL NEWS desks, covering daily life and business alike.
    // Corporate filings live in Listed Cos.; report-based business is welcome here.
    if(!['telugu-patrikalu','regional-general','regional-business'].includes(item.desk)
-       && !(item.desk==='business'&&!/^(NSE|BSE)\\s*•\\s*Official/.test(item.source||'')))return false;
+       && !(item.desk==='business'&&!/^(NSE|BSE)\s*•\s*Official/.test(item.source||'')))return false;
    if(selectedDesk==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
    if(selectedDesk==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
    if(selectedDesk==='telugu-states'&&!['andhra-pradesh','telangana','hyderabad'].includes(item.region))return false;
