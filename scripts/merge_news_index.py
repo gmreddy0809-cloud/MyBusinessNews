@@ -33,9 +33,15 @@ def merge(current,candidate):
             winner,loser=dict(item),old_item
         else:
             winner,loser=dict(old_item),item
-        for key in ("title_te","snippet_te","snippet_en","summary","snippet_basis","reader_finance","regional_business"):
+        for key in ("title_te","snippet_te","snippet_en","summary","snippet_basis","reader_finance","regional_business","listed_company"):
             if not winner.get(key) and loser.get(key):
                 winner[key]=loser[key]
+        # Specialist news desks must survive collisions with broad general
+        # indexing of the same source headline.
+        general_desks=("india-general","world-general")
+        if winner.get("desk") in general_desks and loser.get("desk") not in general_desks:
+            for key in ("desk","region","sector","source","origin","regional_business","reader_finance","listed_company"):
+                if key in loser:winner[key]=loser[key]
         by_url[item["url"]]=winner
     latest=candidate if dt(candidate.get("generated_at"))>=dt(current.get("generated_at")) else current
     result=dict(latest)
