@@ -81,13 +81,10 @@ def title_topic(title,kind,desk):
     return topic_for(title,"general") or "World & Society"
 
 def telugu_region(title,url=''):
-    """Assign regional tag only when a place is explicitly mentioned."""
-    if re.search(r"హైదరాబాద్|హైద‌రాబాద్|సికింద్రాబాద్|గచ్చిబౌలి|Hyderabad|Secunderabad",title,re.I):
-        return "hyderabad"
-    if re.search(r"ఆంధ్రప్రదేశ్|ఆంధ్ర ప్రదేశ్|అమరావతి|విశాఖపట్నం|విజయవాడ|తిరుపతి|Andhra Pradesh",title,re.I):
-        return "andhra-pradesh"
-    if re.search(r"తెలంగాణ|వరంగల్|కరీంనగర్|ఖమ్మం|Telangana",title,re.I):
-        return "telangana"
+    """Use explicit AP/TG places and officials from headline, then section URL."""
+    from regional_google_news import region as headline_region
+    tagged=headline_region(title)
+    if tagged:return tagged
     path=urlparse(url).path.lower()
     if "/andhra-pradesh/" in path or "/ap/" in path:return "andhra-pradesh"
     if "/telangana/" in path:return "telangana"
