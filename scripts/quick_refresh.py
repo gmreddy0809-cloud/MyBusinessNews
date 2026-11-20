@@ -15,6 +15,7 @@ from rss_sources import collect_official
 from avi_ivi import collect_avi_ivi
 from world_google_news import collect_world
 from all_general_news import collect_general_news
+from reuters_google_news import collect_reuters
 from regional_google_news import collect_regional
 from hyderabad_business_news import collect_hyderabad_business
 from pf_google_news import collect_personal_finance
@@ -60,6 +61,7 @@ def main():
         "avi_ivi":collect_avi_ivi,
         "world_discovery":collect_world,
         "india_world_general":collect_general_news,
+        "reuters_discovery":collect_reuters,
         "regional_discovery":collect_regional,
         "hyderabad_business_discovery":collect_hyderabad_business,
         "personal_finance_discovery":collect_personal_finance,
