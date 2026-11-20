@@ -176,11 +176,11 @@ def collect_regional(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
     # Poll six priority outlets every run, plus 16 rotating publisher checks.
     # Each query covers BOTH states; classify strictly from headline evidence.
-    priority=SOURCES[:8]
-    others=SOURCES[8:]
+    priority=[p for p in SOURCES if p[1] in {'eenadu.net','sakshi.com','andhrajyothy.com','etvbharat.com','tv9telugu.com','v6velugu.com','telanganatoday.com','ntnews.com','navatelangana.com','manatelangana.news','dishadaily.com','siasat.com'}]
+    others=[p for p in SOURCES if p not in priority]
     rotating=[others[(cycle*16+i)%len(others)] for i in range(min(16,len(others)))]
     chosen=list(dict.fromkeys(list(priority)+rotating))
-    status={"sources_configured":len(SOURCES),"queries":len(chosen),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
+    status={"sources_configured":len(SOURCES),"queries":len(chosen)+len(priority),"successful_feeds":0,"accepted":0,"by_source":{},"warnings":[]}
     found={}
     # Dedicated Telangana Today RSS every run; Google News remains a backup.
     try:
@@ -194,8 +194,10 @@ def collect_regional(cycle=None):
     # Fetch independent publishers concurrently; do not serialize 24 HTTP timeouts.
     from concurrent.futures import ThreadPoolExecutor
     def fetch_publisher(pair):
-        name,domain=pair
+        name,domain,scope=pair
         location='("Andhra Pradesh" OR Telangana OR Hyderabad OR Amaravati OR Visakhapatnam OR "ఆంధ్రప్రదేశ్" OR "తెలంగాణ" OR "హైదరాబాద్")'
+        if scope=='tg':
+            location='(Telangana OR Hyderabad OR Warangal OR Karimnagar OR Khammam OR Nizamabad OR Siddipet OR Nalgonda OR "తెలంగాణ" OR "హైదరాబాద్" OR "వరంగల్")'
         query="site:"+domain+" "+location+" when:7d"
         url=RSS_URL+"?"+urlencode({"q":query,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
         try:
@@ -204,8 +206,11 @@ def collect_regional(cycle=None):
             return name,parse(xml,domain),None
         except Exception as exc:
             return name,[],type(exc).__name__+": "+str(exc)[:80]
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        for name,rows,error in pool.map(fetch_publisher,chosen):
+    # Independently search Telangana among its priority publishers.
+    publisher_jobs=[(name,domain,"both") for name,domain in chosen]
+    publisher_jobs += [(name,domain,"tg") for name,domain in priority]
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for name,rows,error in pool.map(fetch_publisher,publisher_jobs):
             if error:
                 status["warnings"].append(name+": "+error)
                 print("Regional Google News discovery warning",name,error,file=sys.stderr)
@@ -227,8 +232,20 @@ def collect_regional(cycle=None):
       '("Hyderabad" OR "Secunderabad" OR "Warangal") when:2d',
       '("Karimnagar" OR "Nizamabad" OR "Khammam" OR "Nalgonda") when:2d',
     ]
+    tg_district_queries=[
+      '("Siddipet" OR "Sangareddy" OR "Medak" OR "Vikarabad") when:2d',
+      '("Mahabubnagar" OR "Nagarkurnool" OR "Wanaparthy" OR "Gadwal") when:2d',
+      '("Adilabad" OR "Nirmal" OR "Asifabad" OR "Mancherial") when:2d',
+      '("Jagtial" OR "Peddapalli" OR "Sircilla" OR "Kamareddy") when:2d',
+      '("Mulugu" OR "Bhadradri" OR "Kothagudem" OR "Mahabubabad") when:2d',
+      '("Yadadri" OR "Suryapet" OR "Hanamkonda" OR "Rangareddy") when:2d',
+      '("సిద్దిపేట" OR "సంగారెడ్డి" OR "మెదక్" OR "వికారాబాద్") when:2d',
+      '("ఆదిలాబాద్" OR "నిర్మల్" OR "ములుగు" OR "గద్వాల") when:2d',
+    ]
     selected_general=[general_queries[0],general_queries[1],general_queries[2+(cycle%2)],
-                      general_queries[4],general_queries[5],general_queries[6+(cycle%2)]]
+                      general_queries[4],general_queries[5],general_queries[6],general_queries[7],
+                      tg_district_queries[cycle%len(tg_district_queries)],
+                      tg_district_queries[(cycle+3)%len(tg_district_queries)]]
     status["general_queries"]=len(selected_general)
     def fetch_general(term):
         url=RSS_URL+"?"+urlencode({"q":term,"hl":"en-IN","gl":"IN","ceid":"IN:en"})
