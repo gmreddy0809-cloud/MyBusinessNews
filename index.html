@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-20-india-world-general-r25">
+<meta name="mbn-site-version" content="2026-11-20-all-news-combined-r26">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -611,7 +611,8 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
       </a>
       <div class="nav-label">DISCOVER</div>
       <nav class="primary-nav" id="primaryNav" aria-label="Geographic sections">
-        <button class="nav-item active" data-region="all"><span class="nav-emoji">◈</span> All Business News <span class="nav-count" id="allNavCount">—</span></button>
+        <button class="nav-item active" data-region="all"><span class="nav-emoji">◈</span> All News <span class="nav-count" id="allNavCount">—</span></button>
+        <button class="nav-item" data-region="all-business"><span class="nav-emoji">▤</span> All Business News</button>
         <button class="nav-item" data-region="india"><span class="nav-emoji">🇮🇳</span> India</button>
         <button class="nav-item" data-region="world"><span class="nav-emoji">🌍</span> World</button>
         <button class="nav-item" data-region="india-general"><span class="nav-emoji">📰</span> India General News</button>
@@ -674,6 +675,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
           </div>
           <div class="region-tabs" id="regionTabs" aria-label="News categories and regions">
             <button class="region-tab active" data-region="all">All News</button>
+            <button class="region-tab" data-region="all-business">All Business</button>
             <button class="region-tab" data-region="india">India</button>
             <button class="region-tab" data-region="world">World</button>
             <button class="region-tab" data-region="india-general" title="India General News">India News</button>
@@ -830,7 +832,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','india-general':'India General News','world-general':'World General News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh General News','telangana':'Telangana General News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All News','all-business':'All Business News','india':'India Business News','world':'World Business News','india-general':'India General News','world-general':'World General News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh General News','telangana':'Telangana General News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
@@ -1307,14 +1309,14 @@ function restoreView(){
  state.miscArea=MISC_AREAS.some(([id])=>id===q.get('area'))?q.get('area'):'all';
  state.publicationTopic=PUBLISHER_TOPIC_OPTIONS.some(([id])=>id===q.get('pubtopic'))?q.get('pubtopic'):'all';
  state.regionalState=['andhra-pradesh','telangana'].includes(q.get('state'))?q.get('state'):'all';
- state.display=['telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(state.region)?100:25;
+ state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(state.region)?100:25;
  $('sectorSelect').value=state.sector;
  $('searchInput').value=state.search;
  $('timeSelect').value=state.hours;
  $('sortSelect').value=state.sort;
  $('originSelect').value=state.origin;
 }
-function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;state.display=['telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(next)?100:25;saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
+function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(next)?100:25;saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
 function setSector(next){if(next!=='all'&&!SECTORS.includes(next))next='all';state.sector=next;state.display=25;$('sectorSelect').value=next;saveView(true);render()}
 function toggleSaved(id){const item=state.stories.find(x=>x.id===id)||state.saved[id];if(!item)return;if(state.saved[id]){delete state.saved[id];showToast('Removed from saved stories')}else{state.saved[id]=item;showToast('Story saved in this browser')}saveStored();render()}
 function isOfficialStory(item){return item.origin==='official-rss'||/^(NSE|BSE|RBI|SEBI|PIB)\s*•\s*Official/.test(item.source)}
@@ -1333,7 +1335,9 @@ function timeLabel(item){
 }
 function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{
  const selectedDesk=state.region;
- if(selectedDesk==='avi-ivi'){if(!miscFiltered(item))return false;}
+ if(selectedDesk==='all'){/* Everything indexed: no desk or region exclusions. */}
+ else if(selectedDesk==='all-business'){if(!['business','regional-business'].includes(item.desk))return false;}
+ else if(selectedDesk==='avi-ivi'){if(!miscFiltered(item))return false;}
  else if(['telugu-states','andhra-pradesh','telangana'].includes(selectedDesk)){
    // The three GENERAL NEWS desks take EVERY captured regional headline,
    // regardless of topic or original desk; all other specialist tabs are unchanged.
@@ -1364,7 +1368,7 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
    if(selectedDesk==='english-magazines'&&state.publicationTopic!=='all'&&item.sector!==state.publicationTopic)return false;
- }else if(selectedDesk!=='saved'&&!['business','regional-business'].includes(item.desk))return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='india-general'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg','india'].includes(item.region))return false;}else if(state.region==='world-general'){if(item.region!=='world')return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='andhra-pradesh'){if(!['andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad','ap-tg'].includes(item.region))return false;}else if(item.region!==state.region)return false}
+ }else if(selectedDesk!=='saved'&&!['business','regional-business'].includes(item.desk))return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='all-business'){/* Business desk is multi-region. */}else if(state.region==='india-general'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg','india'].includes(item.region))return false;}else if(state.region==='world-general'){if(item.region!=='world')return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='andhra-pradesh'){if(!['andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad','ap-tg'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(!sourceMatches(item))return false;
@@ -1408,7 +1412,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  'Hyderabad, Telangana and AP corporate news: pharma, GCCs, IT, startups, funding, hospitals, aviation and listed company disclosures.':
  state.region==='avi-ivi'?
  'Latest official UN News / NASA and beyond-business stories. Select a separate publisher tab for direct magazine and Telugu paper homepages.':
- 'Original-source business headlines and official filings, indexed and refreshed automatically.';
+ state.region==='all'? 'All available Indian and world news, every topic and every desk, attributed to sources.':'Original-source business headlines and official filings, indexed and refreshed automatically.';
  if(isPublisherDesk(state.region))renderPublisherHub();
  $('savedNavCount').textContent=savedCount();$('allNavCount').textContent=state.stories.length||'—';$('metricStories').textContent=state.stories.length.toLocaleString('en-IN');$('metricSources').textContent=new Set(state.stories.map(x=>x.domain)).size.toLocaleString('en-IN');$('metricUpdated').textContent=state.checked?formatIST(state.checked):'Pending';
  const total=state.stories.filter(x=>x.desk==='business');
@@ -1504,7 +1508,7 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
    saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});
  });
  $('newsList').addEventListener('click',e=>{const btn=e.target.closest('[data-save]');if(btn)toggleSaved(btn.dataset.save)});
- $('loadMore').addEventListener('click',()=>{state.display+=['telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(state.region)?100:25;render()});
+ $('loadMore').addEventListener('click',()=>{state.display+=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(state.region)?100:25;render()});
  $('refreshButton').addEventListener('click',()=>refresh(true));
  $('menuToggle').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
  $('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('dark');try{localStorage.setItem('mbn-theme',document.body.classList.contains('dark')?'dark':'light')}catch{}});
