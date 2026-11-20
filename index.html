@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-20-complete-regional-news-r22">
+<meta name="mbn-site-version" content="2026-11-20-unfiltered-ap-tg-r23">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -789,8 +789,8 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
                 <small>పత్రికల అసలు వార్తల పేజీలు మాత్రమే. RSS పునఃప్రచురణ లేదు.</small>
               </div>
             </details>
-            <a class="regional-live-link" href="https://news.google.com/search?q=%28Telangana%20OR%20%22Andhra%20Pradesh%22%29%20%28government%20OR%20minister%20OR%20politics%20OR%20education%20OR%20health%29&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">English live ↗</a>
-            <a class="regional-live-link" href="https://news.google.com/search?q=%28%E0%B0%86%E0%B0%82%E0%B0%A7%E0%B1%8D%E0%B0%B0%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A6%E0%B1%87%E0%B0%B6%E0%B1%8D%20OR%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%82%E0%B0%97%E0%B0%BE%E0%B0%A3%29%20%28%E0%B0%B8%E0%B1%80%E0%B0%8E%E0%B0%82%20OR%20%E0%B0%AE%E0%B0%82%E0%B0%A4%E0%B1%8D%E0%B0%B0%E0%B0%BF%20OR%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%AD%E0%B1%81%E0%B0%A4%E0%B1%8D%E0%B0%B5%E0%B0%82%29&amp;hl=te&amp;gl=IN&amp;ceid=IN%3Ate" target="_blank" rel="noopener noreferrer">తెలుగు live ↗</a>
+            <a class="regional-live-link" href="https://news.google.com/search?q=(%22Andhra%20Pradesh%22%20OR%20%22Telangana%22%20OR%20%22Hyderabad%22)%20when%3A1d&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">English live ↗</a>
+            <a class="regional-live-link" href="https://news.google.com/search?q=(%22%E0%B0%86%E0%B0%82%E0%B0%A7%E0%B1%8D%E0%B0%B0%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A6%E0%B1%87%E0%B0%B6%E0%B1%8D%22%20OR%20%22%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%82%E0%B0%97%E0%B0%BE%E0%B0%A3%22%20OR%20%22%E0%B0%B9%E0%B1%88%E0%B0%A6%E0%B0%B0%E0%B0%BE%E0%B0%AC%E0%B0%BE%E0%B0%A6%E0%B1%8D%22)%20when%3A1d&amp;hl=te&amp;gl=IN&amp;ceid=IN%3Ate" target="_blank" rel="noopener noreferrer">తెలుగు live ↗</a>
           </div>
           <div class="news-list" id="newsList"><div class="empty-state loading-state"><div class="spinner"></div><h3>Gathering business news…</h3><p>Connecting to open global news feeds.</p></div></div>
           <div class="list-footer"><button id="loadMore" class="load-more" hidden>Show More Stories ↓</button><p id="coverageNote">Story titles and links are indexed from public data. Always verify details at the original source.</p></div>
@@ -1373,15 +1373,15 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  $('regionalGeneralBar').hidden=state.region!=='telugu-states';
  $('pfSourceDiscovery').hidden=state.region!=='personal-finance';
  $('regionBusinessDiscovery').hidden=state.region!=='telugu-companies';
- const regionalStories=state.stories.filter(item=>['telugu-patrikalu','regional-general'].includes(item.desk)&&['hyderabad','telangana','andhra-pradesh'].includes(item.region));
+ const regionalStories=state.stories.filter(item=>['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region));
  $('regionalCountAll').textContent=regionalStories.length.toLocaleString('en-IN');
- $('regionalCountAP').textContent=regionalStories.filter(item=>item.region==='andhra-pradesh').length.toLocaleString('en-IN');
- $('regionalCountTG').textContent=regionalStories.filter(item=>['telangana','hyderabad'].includes(item.region)).length.toLocaleString('en-IN');
+ $('regionalCountAP').textContent=regionalStories.filter(item=>['andhra-pradesh','ap-tg'].includes(item.region)).length.toLocaleString('en-IN');
+ $('regionalCountTG').textContent=regionalStories.filter(item=>['telangana','hyderabad','ap-tg'].includes(item.region)).length.toLocaleString('en-IN');
  document.querySelectorAll('[data-regional-state]').forEach(el=>{const active=el.dataset.regionalState===state.regionalState;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('feedDescription').textContent=isPublisherDesk(state.region)?
  'Choose a publication above for its original homepage. Below are permitted RSS headlines, attributed to their publishers.':
  state.region==='telugu-states'?
- 'Politics, CM & ministers, government decisions, welfare, education, agriculture and civic issues in English and Telugu.':
+ 'Every available AP/TG headline, without topic restrictions: politics, health, crime, sports, districts, jobs, business and more. All source links are credited.':
  state.region==='personal-finance'?
  'Personal finance headlines discovered via Google News RSS and official sources, with publisher credit. Google News click-throughs may redirect to publishers; coverage is not guaranteed complete.':
  state.region==='telugu-companies'?
