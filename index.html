@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: a free global business news index for India, the world, Hyderabad, Andhra Pradesh and Telangana. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-19-listed-reporting-fix-r20">
+<meta name="mbn-site-version" content="2026-11-20-ap-tg-general-r21">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -822,7 +822,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh Business News','telangana':'Telangana Business News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
+const REGION_NAMES = {'all':'All Business News','india':'India Business News','world':'World Business News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh General News','telangana':'Telangana General News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
@@ -1326,12 +1326,16 @@ function timeLabel(item){
 function getVisible(){let list=state.region==='saved'?Object.values(state.saved):state.stories;return list.filter(item=>{
  const selectedDesk=state.region;
  if(selectedDesk==='avi-ivi'){if(!miscFiltered(item))return false;}
- else if(selectedDesk==='telugu-states'){
-   // Public-interest AP/TG desk: Telugu publisher RSS plus separately indexed
-   // English regional reporting. Never mix in listed-company business filings.
-   if(!['telugu-patrikalu','regional-general'].includes(item.desk))return false;
-   if(state.regionalState==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
-   if(state.regionalState==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
+ else if(['telugu-states','andhra-pradesh','telangana'].includes(selectedDesk)){
+   // AP and TG are GENERAL NEWS desks, covering daily life and business alike.
+   // Corporate filings live in Listed Cos.; report-based business is welcome here.
+   if(!['telugu-patrikalu','regional-general','regional-business'].includes(item.desk)
+       && !(item.desk==='business'&&!/^(NSE|BSE)\\s*•\\s*Official/.test(item.source||'')))return false;
+   if(selectedDesk==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
+   if(selectedDesk==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
+   if(selectedDesk==='telugu-states'&&!['andhra-pradesh','telangana','hyderabad'].includes(item.region))return false;
+   if(selectedDesk==='telugu-states'&&state.regionalState==='andhra-pradesh'&&item.region!=='andhra-pradesh')return false;
+   if(selectedDesk==='telugu-states'&&state.regionalState==='telangana'&&!['telangana','hyderabad'].includes(item.region))return false;
  }
  else if(selectedDesk==='personal-finance'){
    if(!(item.desk==='personal-finance'||(item.desk==='business'&&isPersonalFinanceStory(item))||(item.desk==='telugu-patrikalu'&&item.reader_finance)))return false;
