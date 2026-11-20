@@ -18,6 +18,17 @@ The site still works without the key; the accurate title/source/original link ar
 ## Feeds and permissions
 Official feeds and publisher-granted RSS may supply brief source material. GDELT discovery supplies article titles/index timestamps, **not article body text**. The site never bypasses paywalls. Publisher directories (including CNBC-TV18, Zee Business, Upstox) are navigation/discovery lists, not claims of licensed RSS integration.
 
+## Reuters headline discovery
+
+A dedicated Reuters-attributed Google News RSS search now runs in the half-hour
+collector for India, World, business and regional stories. It stores Reuters
+headlines, source credit, Google News redirect links and Google RSS index times.
+This is **not a Reuters-owned RSS feed**, not a Reuters Connect subscription,
+and does not grant rights to copy Reuters article bodies or images. Search
+coverage is best effort and may miss individual articles. Reuters stories are
+shown in their corresponding news tabs; search for `Reuters` to filter them.
+Check `data/news.json -> source_status.reuters_discovery` for per-run results.
+
 ## Automatic deployment
 `.github/workflows/news.yml` runs twice an hour and on changes to scripts, tests and workflow configuration, then publishes `index.html` and `data/news.json` to GitHub Pages. Check **Actions** for build or publishing failures.
 
