@@ -94,6 +94,14 @@ def main():
                 entry["reader_finance"]=True
             prior=by_url.get(url)
             if prior:
+                # Never let an all-topic general index steal an item from an
+                # existing specialist desk (PF, AP/TG, Avii Ivii, business).
+                general_desks=("india-general","world-general")
+                prior_desk=prior.get("desk") or "business"
+                incoming_desk=entry.get("desk") or "business"
+                if incoming_desk in general_desks and prior_desk not in general_desks:
+                    for field in ("desk","region","sector","source","origin","regional_business","reader_finance","listed_company"):
+                        if field in prior:entry[field]=prior[field]
                 if entry.get("time_basis")=="first_seen":
                     entry["seen"]=prior.get("seen") or entry.get("seen")
                 if entry.get("time_basis")!="feed" and prior.get("time_basis")=="feed":
