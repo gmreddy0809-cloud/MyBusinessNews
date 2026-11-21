@@ -25,7 +25,7 @@ from publications import collect_publications, telugu_region
 from desk_coverage import from_telugu_publisher, pf_match
 
 DEST=Path(__file__).resolve().parents[1]/"data"/"news.json"
-CUTOFF=datetime(2026,11,13,18,30,tzinfo=timezone.utc)
+ARCHIVE_DAYS=7
 AVI_START=datetime(2026,11,18,18,30,tzinfo=timezone.utc)
 MAX_ARTICLES=16000
 
@@ -194,15 +194,14 @@ def main():
             "source":"Business Briefing Today","domain":"businessbriefingtoday.com",
             "region":"hyderabad","sector":"Pharma & Life Sciences",
             "desk":"regional-business","regional_business":True,"listed_company":False,
-            "seen":datetime.now(timezone.utc).isoformat(),"time_basis":"first_seen",
+            "seen":"2026-11-19T00:00:00+05:30","time_basis":"first_seen",
             "sourcecountry":"India","language":"English","origin":"verified-source-link",
             "summary":"Hyderabad-based BE Biosol Private Limited signed a collaboration with the Gates Foundation to develop and expand access to ferric carboxymaltose injection."
         }
         new_count+=1
     now=datetime.now(timezone.utc)
     rows=[v for v in by_url.values() if (
-        stamp(v.get("seen"))>=CUTOFF
-        or (v.get("desk")=="telugu-patrikalu" and stamp(v.get("seen"))>=now-timedelta(days=30))
+        stamp(v.get("seen"))>=now-timedelta(days=ARCHIVE_DAYS)
     ) and (v.get("desk")!="avi-ivi" or stamp(v.get("seen"))>=AVI_START)]
     rows.sort(key=lambda v:stamp(v.get("seen")),reverse=True)
     # Preserve quotas so a large national feed cannot displace local or PF news.
