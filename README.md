@@ -53,6 +53,26 @@ promoted to a news story. Check
 success, warnings, by-source counts and by-kind counts. Refresh failures do not
 erase the previously indexed data.
 
+## Hyderabad Mail local reporting
+
+Hyderabad Mail (https://hyderabadmail.com/) has local Hyderabad-area news and a
+dedicated [Real Estate section](https://hyderabadmail.com/category/real-estate/).
+The `hyderabad_mail_rss` collector requests the site's public `/feed/` and
+attempts the conventional WordPress `/category/real-estate/feed/` endpoint
+(the category feed has not been independently confirmed to work). It accepts
+only direct `hyderabadmail.com` article URLs with dated RSS entries, stores
+**headlines, source, feed timestamps and publisher categories only**, and
+does not copy article text/images. Failures are recorded independently in
+`data/news.json -> source_status.hyderabad_mail_rss`. RSS access and coverage
+are not guaranteed.
+
+Hyderabad Mail items that clearly concern property, HMDA, TG-RERA or a
+commercial deal appear under Hyderabad Realty (and other applicable business
+views); city-local non-business headlines remain under the TG/AP+TG general
+news views. A Hyderabad general story is not automatically classified as a
+business article. The Hyderabad Realty source list links to the publisher's
+Real Estate category as a manual fallback.
+
 ## Automatic deployment
 `.github/workflows/news.yml` runs twice an hour and on changes to scripts, tests and workflow configuration, then publishes `index.html` and `data/news.json` to GitHub Pages. Check **Actions** for build or publishing failures.
 
