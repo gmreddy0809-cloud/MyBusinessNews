@@ -14,7 +14,7 @@ from xml.etree import ElementTree as ET
 
 from rss_sources import cleanup, first_text, feed_date
 from regional_google_news import region as tagged_region
-from hyderabad_real_estate import HYD, classify as classify_realty
+from hyderabad_real_estate import HYD, classify as classify_realty, RULES, RETAIL, DEAL, REPORT, RESIDENTIAL
 
 FEEDS = (
     ("latest", "https://hyderabadmail.com/feed/"),
@@ -86,7 +86,18 @@ def parse_feed(xml,now=None,feed_name="latest"):
         realty=bool(realty_category and location in ("hyderabad","telangana"))
         if not realty and location=="hyderabad":
             realty=classify_realty(title) is not None
-        kind=(classify_realty(title) or "Market News") if realty else ""
+        kind=""
+        if realty:
+            # Regional TG-RERA headlines can lack the word Hyderabad; the
+            # publisher's property category still establishes the topic.
+            kind=classify_realty(title)
+            if not kind:
+                if RETAIL.search(title):kind="Retail"
+                elif RULES.search(title):kind="Regulation"
+                elif DEAL.search(title):kind="Deals"
+                elif REPORT.search(title):kind="Reports"
+                elif RESIDENTIAL.search(title):kind="Residential"
+                else:kind="Market News"
         business=bool(realty or STRONG_BUSINESS.search(title))
         # Hyderabad business tab is business only, while city-local general
         # stories remain available through Telangana and AP+TG general tabs.
