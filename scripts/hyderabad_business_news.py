@@ -66,7 +66,7 @@ TOPICS=(
 # stories from broader regional feeds. Politics at an office, school reports,
 # traffic or airport incidents must not be promoted into a business desk.
 REGIONAL_CORPORATE_SIGNAL=re.compile(
- r'\\b(?:\\bgcc\\b|global capability|fund(?:ed|ing)|start[ -]?ups?|'
+ r'\b(?:\bgcc\b|global capability|fund(?:ed|ing)|start[ -]?ups?|'
  r'invest(?:ment|s|ed|ing)?|acqui(?:res?|red|sition)|merger|'
  r'quarterly|earnings|revenues?|profits?|ipo|shareholders?|'
  r'pharma|biotech|usfda|us fda|fda observation|'
@@ -75,7 +75,7 @@ REGIONAL_CORPORATE_SIGNAL=re.compile(
  r'contract(?:s)?|order win|deal worth|software (?:company|firm|services)|'
  r'data cent(?:re|er)|office leas(?:e|ing)|real estate|'
  r'commercial (?:space|property)|new facility|'
- r'global tech cent(?:re|er))\\b|'
+ r'global tech cent(?:re|er))\b|'
  r'పెట్టుబడ|ఒప్పంద|విస్తరణ|ఫార్మా|పరిశ్రమ|కంపెనీ|జీసీసీ|స్టార్టప్|'
  r'ఆర్థిక ఫలితాలు|లాభాలు|నిధులు',re.I
 )
