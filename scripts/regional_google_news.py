@@ -164,6 +164,24 @@ def parse(xml,expected_domain,now=None):
         })
     return out
 
+def extract_complete_rss_items(xml):
+    """Recover intact items if a publisher serves truncated/malformed RSS.
+
+    Never invent missing content or recover incomplete XML fragments.
+    """
+    try:
+        return ET.fromstring(xml).findall(".//item")
+    except ET.ParseError as exc:
+        recovered=[]
+        wrapper=b'<root xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">'
+        for raw in re.findall(rb"<item(?:\\s[^>]*)?>[\\s\\S]*?</item>",xml,re.I):
+            try:recovered.append(ET.fromstring(wrapper+raw+b"</root>")[0])
+            except ET.ParseError:continue
+        print("Telangana Today RSS partial/malformed XML: recovered",
+              len(recovered),"complete items; error",str(exc)[:90],
+              file=sys.stderr,flush=True)
+        return recovered
+
 def collect_telanganatoday_rss(now=None):
     """Poll publisher's public RSS for attributed headlines and direct links only."""
     now=now or datetime.now(timezone.utc)
@@ -174,9 +192,9 @@ def collect_telanganatoday_rss(now=None):
     })
     with urlopen(req,timeout=15) as response:
         xml=response.read(1_600_000)
-    root=ET.fromstring(xml)
+    nodes=extract_complete_rss_items(xml)
     found={}
-    for node in root.findall(".//item"):
+    for node in nodes:
         title=cleanup(first_text(node,["title"]))
         link=cleanup(first_text(node,["link"]))
         hostname=(urlparse(link).hostname or "").lower().removeprefix("www.")
