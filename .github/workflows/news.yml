@@ -33,6 +33,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify headline parsing (do not block news delivery)
+        id: newsroom_tests
         continue-on-error: true
         timeout-minutes: 3
         run: python -m unittest discover -s tests -p "test_*.py"
@@ -56,6 +57,41 @@ jobs:
           print('Publishable headline count:',count)
           print('Last successful news data time:',obj.get('generated_at'))
           PY
+      - name: Summarize regional, PF, Realty and Reuters feed health
+        run: |
+          python - <<'PY'
+          import json,os
+          from collections import Counter
+          with open('data/news.json',encoding='utf-8') as handle:
+              obj=json.load(handle)
+          rows=obj.get('articles') or []
+          status=obj.get('source_status') or {}
+          regions=Counter(r.get('region') or 'unknown' for r in rows)
+          desks=Counter(r.get('desk') or 'legacy-business' for r in rows)
+          digest=[
+              '## MyBusinessNews backend refresh',
+              '- Generated: '+str(obj.get('generated_at')),
+              '- Total saved links: '+str(len(rows)),
+              '- Regional AP/TG/Hyderabad: '+str(sum(regions[k] for k in ('andhra-pradesh','telangana','hyderabad','ap-tg'))),
+              '- Personal Finance desk links: '+str(desks['personal-finance']),
+              '- Reuters credited links: '+str(sum('Reuters' in (r.get('source') or '') for r in rows)),
+              '- Hyderabad real-estate sector links: '+str(sum((r.get('sector')=='Real Estate' and r.get('region') in ('hyderabad','telangana','ap-tg')) for r in rows)),
+              '### Collector results',
+          ]
+          for key in ('regional_discovery','hyderabad_business_discovery','regional_business_recovery',
+                      'hyderabad_real_estate_discovery','hyderabad_mail_rss','personal_finance_discovery','reuters_discovery'):
+              v=status.get(key) or {}
+              digest.append('- '+key+': '+str(v.get('accepted',v.get('newly_collected','not reported')))
+                            +' matches, '+str(len(v.get('warnings') or []))+' warnings')
+          print('\\n'.join(digest),flush=True)
+          path=os.environ.get('GITHUB_STEP_SUMMARY')
+          if path:
+              with open(path,'a',encoding='utf-8') as out:
+                  out.write('\\n'.join(digest)+'\\n')
+          PY
+      - name: Report failing newsroom tests
+        if: steps.newsroom_tests.outcome == 'failure'
+        run: echo "::warning::Newsroom tests failed; inspect the parsing test step even though news collection continues."
       - name: Report news collection failures
         if: steps.collect.outcome == 'failure'
         run: echo "::warning::This run retained the last valid news index because collection did not complete."
