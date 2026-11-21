@@ -24,9 +24,9 @@ function harness(url){
  const elements={sectorSelect:{value:'all'},searchInput:{value:''},timeSelect:{value:'all'},sortSelect:{value:'newest'},originSelect:{value:'all'},feedHeading:{scrollIntoView(){}}};
  const context={
    URL,URLSearchParams,
-   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',regionalState:'all',display:25},
+   location:new URL(url),state:{sector:'all',region:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',regionalState:'all',realtyType:'all',display:25},
    history:{},$:key=>elements[key],SECTORS:['All Sectors','Aviation & Airports','GCCs','Personal Finance'],
-   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ','telugu-states':'AP + TG General News','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines'},
+   REGION_NAMES:{all:'All Business News',hyderabad:'Hyderabad Business News','telugu-companies':'Telugu Companies','personal-finance':'Personal Finance','hyderabad-realty':'Hyderabad Real Estate','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ','telugu-states':'AP + TG General News','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines'},
    MISC_TOPICS:[['all','Everything'],['Health & Wellbeing','Health'],['Science & Space','Science']],MISC_AREAS:[['all','Everywhere'],['telugu','Telugu'],['world','World']],PUBLISHER_TOPIC_OPTIONS:[['all','Everything'],['Health & Wellbeing','Health'],['Lifestyle & Living','Lifestyle']],
    render(){},refresh(){}
  };
@@ -49,6 +49,12 @@ assert.equal(c.state.region,'hyderabad','F5 lost Hyderabad section');
 run("setRegion('telugu-companies')",a);
 let d=harness(a.location.href);run('restoreView()',d);
 assert.equal(d.state.region,'telugu-companies','F5 lost Telugu Companies tab');
+run("setRegion('hyderabad-realty')",a);
+a.state.realtyType='Retail';run('saveView(true)',a);
+assert.equal(a.location.searchParams.get('realty'),'Retail','Hyderabad Realty filter URL missing');
+let realtyReload=harness(a.location.href);run('restoreView()',realtyReload);
+assert.equal(realtyReload.state.region,'hyderabad-realty','F5 lost Hyderabad Realty tab');
+assert.equal(realtyReload.state.realtyType,'Retail','F5 lost retail-property category');
 run("setRegion('personal-finance')",a);
 let e=harness(a.location.href);run('restoreView()',e);
 assert.equal(e.state.region,'personal-finance','F5 lost Personal Finance tab');
@@ -97,9 +103,12 @@ assert(!html.includes('class="publisher-rights"'),'Unnecessary publisher badge b
 
 
 assert(html.includes("'telugu-states':'AP + TG General News'"),'AP+TG should be general news rather than duplicate regional business');
-assert(html.includes("['telugu-patrikalu','regional-general'].includes(item.desk)"),
-       'AP+TG must show Telugu publisher RSS plus English regional general news, not business filings');
-assert(html.includes("if(!isTeluguCompanyStory(item))return false"),
+const regionalBranch=html.split("else if(['telugu-states','andhra-pradesh','telangana'].includes(selectedDesk))",2)[1]?.split("else if(selectedDesk==='india-general')",1)[0];
+assert(regionalBranch && regionalBranch.includes("['andhra-pradesh','telangana','hyderabad','ap-tg'].includes(area)"),
+       'AP+TG must accept every captured regional headline without limiting news desks');
+assert(!regionalBranch.includes('item.desk') && !regionalBranch.includes('item.sector'),
+       'AP/TG general news must not exclude property, business, health, sports or crime');
+assert(html.includes("if(!isListedCompanyStory(item))return false"),
        'Telugu Companies must still show corporate-only headlines');
 assert(html.includes('id="regionalGeneralBar"'),'Missing English/Telugu live regional updates');
 assert(html.includes('id="regionalCountAP"')&&html.includes('id="regionalCountTG"'),
