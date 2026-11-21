@@ -11,7 +11,7 @@ Every newsroom feed supports a Telugu headline (`title_te`) and a concise, 2-sen
 ## Enable automatic Telugu snippets
 In GitHub, open **Settings → Secrets and variables → Actions → New repository secret**.
 Create a secret named `OPENAI_API_KEY` with a valid key for an account that has API billing configured. This is a separately billed API service, not included in ChatGPT Plus.
-The scheduled GitHub Actions workflow enriches up to 45 new items per run (configurable via `MBN_SNIPPETS_PER_RUN`). Previously enriched fields persist on refresh. No secrets belong in HTML or committed JSON.
+The code supports enrichment of up to 45 new items per run (configurable via `MBN_SNIPPETS_PER_RUN`), but the current GitHub Actions workflow explicitly sets `MBN_SNIPPETS_PER_RUN: '0'`: no paid automatic Telugu generation is currently enabled. Before enabling nonzero enrichment, configure the API key, confirm separate API billing and test generated content editorially. Previously enriched fields persist on refresh. No secrets belong in HTML or committed JSON.
 
 The site still works without the key; the accurate title/source/original link are visible, and no fabricated Telugu summaries are displayed.
 
