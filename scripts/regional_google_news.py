@@ -64,6 +64,33 @@ SOURCES=(
     ("Asianet News Telugu","telugu.asianetnews.com"),
     ("Telugu Prabha","teluguprabha.net"),
     ("Etemaad","etemaaddaily.com"),
+
+    # Extra Telugu publisher candidates from Feedspot's Telugu News RSS
+    # directory (20 Aug 2026). Discover via Google News only; listing a feed
+    # does not establish consent for direct third-party RSS syndication.
+    ("Andhra Watch","andhrawatch.com"),
+    ("Telugu Bullet","telugu.telugubullet.com"),
+    ("Visala Andhra","visalaandhra.com"),
+    ("OkTelugu","oktelugu.com"),
+    ("Telugu Bulletin","telugubulletin.com"),
+    ("Telugu Stop","telugustop.com"),
+    ("Telugu Rajyam","telugurajyam.com"),
+    ("Adya News","adya.news"),
+    ("Vaartha","vaartha.com"),
+    ("Gulte Telugu","telugu.gulte.com"),
+    ("Prajatantra News","prajatantranews.com"),
+    ("TeluguISM","teluguism.com"),
+    ("Manalokam","manalokam.com"),
+    ("Telugu Mirchi","telugumirchi.com"),
+    ("Netidhatri","netidhatri.com"),
+    ("Suryaa","suryaa.com"),
+    ("Sakshi Post","sakshipost.com"),
+    ("Webdunia Telugu","telugu.webdunia.com"),
+    ("Telugu Gateway","telugugateway.com"),
+    ("Telugu Times","telugutimes.net"),
+    ("M9 News","m9.news"),
+    ("Janam Sakshi","janamsakshi.org"),
+    ("Telugu Journalist","telugujournalist.com"),
 )
 
 REGIONS=(
@@ -174,9 +201,9 @@ def collect_telanganatoday_rss(now=None):
 
 def collect_regional(cycle=None):
     if cycle is None:cycle=int(datetime.now(timezone.utc).timestamp()//1800)
-    # Poll six priority outlets every run, plus 16 rotating publisher checks.
-    # Each query covers BOTH states; classify strictly from headline evidence.
-    priority=[p for p in SOURCES if p[1] in {'eenadu.net','sakshi.com','andhrajyothy.com','etvbharat.com','tv9telugu.com','v6velugu.com','telanganatoday.com','ntnews.com','navatelangana.com','manatelangana.news','dishadaily.com','siasat.com'}]
+    # Poll priority regional outlets each run, plus 16 rotating publisher checks.
+    # Each source is searched for both states; priority sources get a second TG check.
+    priority=[p for p in SOURCES if p[1] in {'eenadu.net','sakshi.com','andhrajyothy.com','etvbharat.com','tv9telugu.com','ntvtelugu.com','10tv.in','v6velugu.com','telanganatoday.com','ntnews.com','navatelangana.com','manatelangana.news','dishadaily.com','siasat.com','prajatantranews.com','vaartha.com','janamsakshi.org','netidhatri.com'}]
     others=[p for p in SOURCES if p not in priority]
     rotating=[others[(cycle*16+i)%len(others)] for i in range(min(16,len(others)))]
     chosen=list(dict.fromkeys(list(priority)+rotating))
