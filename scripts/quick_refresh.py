@@ -17,7 +17,7 @@ from world_google_news import collect_world
 from all_general_news import collect_general_news
 from reuters_google_news import collect_reuters
 from regional_google_news import collect_regional
-from hyderabad_business_news import collect_hyderabad_business
+from hyderabad_business_news import collect_hyderabad_business, eligible_regional_business, sector as local_business_sector
 from hyderabad_real_estate import collect_hyderabad_real_estate
 from hyderabad_mail import collect_hyderabad_mail
 from pf_google_news import collect_personal_finance
@@ -89,6 +89,32 @@ def main():
             updates[name]=rows
             stats[name]=report
             print("Refreshed:",name,"rows:",len(rows),flush=True)
+    # When Google News's narrowly scoped Hyderabad corporate search returns
+    # few matches, recover strictly verified business headlines from the wider
+    # AP/TG general feed collected in the SAME run. Keep public affairs,
+    # politics, crime and everyday local news in their general desks.
+    recovered_new=0
+    recovered_hyderabad=0
+    for row in updates.get("regional_discovery",[]):
+        if eligible_regional_business(row):
+            row["desk"]="regional-business"
+            row["sector"]=local_business_sector(row["title"])
+            row["regional_business"]=True
+            recovered_new+=1
+            if row.get("region")=="hyderabad":recovered_hyderabad+=1
+    recovered_archive=0
+    for row in by_url.values():
+        if eligible_regional_business(row):
+            row["desk"]="regional-business"
+            row["sector"]=local_business_sector(row["title"])
+            row["regional_business"]=True
+            recovered_archive+=1
+    stats["regional_business_recovery"]={
+        "newly_collected":recovered_new,
+        "hyderabad_newly_collected":recovered_hyderabad,
+        "reclassified_prior":recovered_archive,
+        "method":"strict-commercial-titles-from-AP-TG-regional-discovery"
+    }
     new_count=0
     for name,rows in updates.items():
         for entry in rows:
