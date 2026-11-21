@@ -40,6 +40,19 @@ class TestHyderabadRealEstate(unittest.TestCase):
             self.assertEqual(row["time_basis"],"google_rss")
             self.assertEqual(row["link_type"],"google-news-redirect")
 
+    def test_retail_street_rankings_and_shop_rents(self):
+        headline=("Three Hyderabad shopping streets feature in APAC retail rankings, "
+                  "Delhi Khan Market tops India's retail streets")
+        self.assertEqual(classify(headline), "Retail")
+        self.assertEqual(classify("Banjara Hills high-street retail rents increase"), "Retail")
+        self.assertEqual(classify("Jubilee Hills shopping street rental report"), "Retail")
+        self.assertIsNone(classify("Delhi Khan Market tops India's shopping streets"))
+        rows=parse(rss(item(headline,
+                    "https://news.google.com/rss/articles/hyd-retail")),now=NOW)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]["real_estate_kind"],"Retail")
+        self.assertEqual(rows[0]["region"],"hyderabad")
+
     def test_regulatory(self):
         self.assertEqual(classify("Telangana RERA Hyderabad property project notices"),"Regulation")
 
