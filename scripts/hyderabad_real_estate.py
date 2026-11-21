@@ -38,7 +38,7 @@ PROPERTY = re.compile(
     r"land (?:deal|parcel|sale|auction|purchase|allotment|bank)|"
     r"plots?\b|floor space|built.up area|sq\.?\s?ft|square feet|"
     r"warehous(?:e|ing)|industrial parks?|retail spaces?|"
-    r"retail (?:rents?|rankings?|property|real estate|space|leasing|streets?|corridors?|market)|"
+    r"retail (?:rents?|rentals?|rankings?|property|real estate|space|leasing|streets?|corridors?|market)|"
     r"high[ -]?street(?:s)?|shopping streets?|shopping corridors?|shop rents?|"
     r"storefront|mall (?:rent|lease|occupancy|space)|commercial rents?|"
     r"real estate developer|property developers?|home builders?|housing construction|residential projects? launch|"
