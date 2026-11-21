@@ -18,6 +18,7 @@ from all_general_news import collect_general_news
 from reuters_google_news import collect_reuters
 from regional_google_news import collect_regional
 from hyderabad_business_news import collect_hyderabad_business
+from hyderabad_real_estate import collect_hyderabad_real_estate
 from pf_google_news import collect_personal_finance
 from publications import collect_publications, telugu_region
 from desk_coverage import from_telugu_publisher, pf_match
@@ -64,6 +65,7 @@ def main():
         "reuters_discovery":collect_reuters,
         "regional_discovery":collect_regional,
         "hyderabad_business_discovery":collect_hyderabad_business,
+        "hyderabad_real_estate_discovery":collect_hyderabad_real_estate,
         "personal_finance_discovery":collect_personal_finance,
         "publications":collect_publications,
     }
@@ -95,6 +97,11 @@ def main():
             if name=="official" and pf_match(entry["title"]):
                 entry["reader_finance"]=True
             prior=by_url.get(url)
+            # Retain a verified local real-estate classification when the same
+            # Google News URL is rediscovered by another general/business desk.
+            if prior and prior.get("real_estate_kind") and not entry.get("real_estate_kind"):
+                for key in ("sector","desk","region","real_estate_kind","regional_business"):
+                    if key in prior:entry[key]=prior[key]
             if prior:
                 # Never let an all-topic general index steal an item from an
                 # existing specialist desk (PF, AP/TG, Avii Ivii, business).
@@ -109,7 +116,7 @@ def main():
                 if entry.get("time_basis")!="feed" and prior.get("time_basis")=="feed":
                     entry["seen"]=prior.get("seen") or entry.get("seen")
                     entry["time_basis"]="feed"
-                for key in ("title_te","snippet_te","snippet_en","snippet_basis","summary","regional_business","reader_finance","listed_company"):
+                for key in ("title_te","snippet_te","snippet_en","snippet_basis","summary","regional_business","reader_finance","listed_company","real_estate_kind"):
                     if not entry.get(key) and prior.get(key):entry[key]=prior[key]
             if not prior or stamp(entry.get("seen"))>=stamp(prior.get("seen")):
                 if not prior:new_count+=1
