@@ -19,6 +19,7 @@ from reuters_google_news import collect_reuters
 from regional_google_news import collect_regional
 from hyderabad_business_news import collect_hyderabad_business
 from hyderabad_real_estate import collect_hyderabad_real_estate
+from hyderabad_mail import collect_hyderabad_mail
 from pf_google_news import collect_personal_finance
 from publications import collect_publications, telugu_region
 from desk_coverage import from_telugu_publisher, pf_match
@@ -66,6 +67,7 @@ def main():
         "regional_discovery":collect_regional,
         "hyderabad_business_discovery":collect_hyderabad_business,
         "hyderabad_real_estate_discovery":collect_hyderabad_real_estate,
+        "hyderabad_mail_rss":collect_hyderabad_mail,
         "personal_finance_discovery":collect_personal_finance,
         "publications":collect_publications,
     }
