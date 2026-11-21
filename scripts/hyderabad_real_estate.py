@@ -23,6 +23,8 @@ HYD = re.compile(
     r"gachibowli|nanakramguda|financial district|kokapet|narsingi|tellapur|"
     r"kondapur|raidurg|shamshabad|nallagandla|bachupally|patancheru|"
     r"uppal|medchal|pocharam|mokila|kollur|kompally|shankarpally|"
+    r"banjara hills|jubilee hills|begumpet|abids|himayatnagar|somajiguda|"
+    r"ameerpet|koti|dilsukhnagar|sultan bazaar|charminar|"
     r"rangareddy|ranga reddy|neopolis|"
     r"హైదరాబాద్|సికింద్రాబాద్|గచ్చిబౌలి|మాదాపూర్|కోకాపేట|నార్సింగి|"
     r"కొండాపూర్|తెల్లాపూర్|శంషాబాద్|రంగారెడ్డి|నానక్‌రామ్‌గూడ|"
