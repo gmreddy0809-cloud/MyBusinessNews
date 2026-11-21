@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: India and world general news, business news, Hyderabad, Andhra Pradesh, Telangana, listed companies and personal finance. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-21-hyderabad-realty-r30">
+<meta name="mbn-site-version" content="2026-11-21-hyderabad-retail-realty-r31">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -725,6 +725,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
               <button type="button" class="realty-kind" data-realty-type="Reports">Consultancy reports</button>
               <button type="button" class="realty-kind" data-realty-type="Deals">Office & land deals</button>
               <button type="button" class="realty-kind" data-realty-type="Residential">Residential</button>
+              <button type="button" class="realty-kind" data-realty-type="Retail">Retail streets & rentals</button>
               <button type="button" class="realty-kind" data-realty-type="Regulation">RERA & policy</button>
             </div>
             <details class="realty-sources">
@@ -1359,7 +1360,7 @@ function restoreView(){
  state.miscArea=MISC_AREAS.some(([id])=>id===q.get('area'))?q.get('area'):'all';
  state.publicationTopic=PUBLISHER_TOPIC_OPTIONS.some(([id])=>id===q.get('pubtopic'))?q.get('pubtopic'):'all';
  state.regionalState=['andhra-pradesh','telangana'].includes(q.get('state'))?q.get('state'):'all';
- state.realtyType=['all','Reports','Deals','Residential','Regulation'].includes(q.get('realty'))?q.get('realty'):'all';
+ state.realtyType=['all','Reports','Deals','Residential','Retail','Regulation'].includes(q.get('realty'))?q.get('realty'):'all';
  state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general','hyderabad-realty'].includes(state.region)?100:25;
  $('sectorSelect').value=state.sector;
  $('searchInput').value=state.search;
@@ -1440,7 +1441,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  state.region==='avi-ivi'?
  `${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:
  state.region==='hyderabad-realty'?
- `${visible.length.toLocaleString('en-IN')} Hyderabad real-estate stories · research, deals, residential, RERA`:
+ `${visible.length.toLocaleString('en-IN')} Hyderabad real-estate stories · research, deals, retail, residential, RERA`:
  state.region==='personal-finance'?
  `${visible.length.toLocaleString('en-IN')} personal-finance links · 14 Nov 2026 onward where indexed`:
  state.region==='telugu-companies'?
@@ -1469,7 +1470,7 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  state.region==='telugu-states'?
  'Every available AP/TG headline, without topic restrictions: politics, health, crime, sports, districts, jobs, business and more. All source links are credited.':
  state.region==='hyderabad-realty'?
- 'Hyderabad real-estate reports, registered office and land deals, housing-market trends and regulatory news. Source links and Google News RSS times; X posts are for discovery only.':
+ 'Hyderabad real-estate reports, office and land deals, high-street retail rentals, shopping street rankings, residential trends and regulatory news. Source links and Google News RSS times; X posts are for discovery only.':
  state.region==='personal-finance'?
  'Personal finance headlines discovered via Google News RSS and official sources, with publisher credit. Google News click-throughs may redirect to publishers; coverage is not guaranteed complete.':
  state.region==='telugu-companies'?
