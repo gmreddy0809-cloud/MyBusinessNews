@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: India and world general news, business news, Hyderabad, Andhra Pradesh, Telangana, listed companies and personal finance. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-20-full-site-refresh-r28">
+<meta name="mbn-site-version" content="2026-11-21-hyderabad-realty-r29">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -600,6 +600,16 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
   color:#c5e0ff!important;background:#183956;
   border-color:#41658a;
 }
+.realty-controls{padding:11px 22px;border-top:1px solid var(--line);background:var(--panel)}
+.realty-controls[hidden]{display:none!important}
+.realty-filterbar{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 10px}
+.realty-kind{background:transparent;border:1px solid var(--line);border-radius:30px;color:var(--muted);padding:7px 11px;font-size:11px;font-weight:700}
+.realty-kind.active{background:var(--navy2);color:#fff;border-color:var(--navy2)}
+.realty-sources{border:1px solid var(--line);border-radius:9px;padding:8px 12px}
+.realty-sources>summary{cursor:pointer;font-size:11px;font-weight:750;color:var(--blue)}
+.realty-source-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+.realty-source-links>a{font-size:10px;background:var(--background);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+.realty-source-note{font-size:10px;color:var(--muted);margin:10px 0 0}
 </style>
 </head>
 <body>
@@ -618,6 +628,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
         <button class="nav-item" data-region="india-general"><span class="nav-emoji">📰</span> India General News</button>
         <button class="nav-item" data-region="world-general"><span class="nav-emoji">🌐</span> World General News</button>
         <button class="nav-item" data-region="hyderabad"><span class="nav-emoji">◉</span> Hyderabad</button>
+        <button class="nav-item" data-region="hyderabad-realty"><span class="nav-emoji">🏙</span> Hyderabad Realty</button>
         <button class="nav-item" data-region="andhra-pradesh"><span class="nav-emoji">📍</span> AP</button>
         <button class="nav-item" data-region="telangana"><span class="nav-emoji">📍</span> TG</button>
         <button class="nav-item" data-region="telugu-states"><span class="nav-emoji">▣</span> AP + TG News</button>
@@ -681,6 +692,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             <button class="region-tab" data-region="india-general" title="India General News">India News</button>
             <button class="region-tab" data-region="world-general" title="World General News">World News</button>
             <button class="region-tab" data-region="hyderabad">Hyderabad</button>
+            <button class="region-tab" data-region="hyderabad-realty" title="Hyderabad Real Estate Reports and Deals">🏙 Hyderabad Realty</button>
             <button class="region-tab" data-region="andhra-pradesh" title="Andhra Pradesh" aria-label="Andhra Pradesh">AP</button>
             <button class="region-tab" data-region="telangana" title="Telangana" aria-label="Telangana">TG</button>
             <button class="region-tab" data-region="personal-finance" title="Personal Finance" aria-label="Personal Finance">PF</button>
@@ -696,6 +708,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
                 <button type="button" data-region="india-general">📰 India General News</button>
                 <button type="button" data-region="world-general">🌐 World General News</button>
                 <a href="https://www.google.com/finance/beta" target="_blank" rel="noopener noreferrer">📈 Google Finance ↗</a>
+                <button type="button" data-region="hyderabad-realty">🏙 Hyderabad Realty</button>
                 <button type="button" data-region="telugu-states">AP + TG General News</button>
                 <button type="button" data-region="telugu-companies">🏢 Listed Companies</button>
                 <button type="button" data-region="x-watch">𝕏 Business Watch</button>
@@ -706,6 +719,30 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
             </details>
           </div>
           <div class="sector-quickbar" id="sectorQuickbar" aria-label="Popular business sectors"></div>
+          <section class="realty-controls" id="realtyTools" hidden aria-label="Hyderabad real estate desk">
+            <div class="realty-filterbar" id="realtyFilterbar" aria-label="Real-estate coverage types">
+              <button type="button" class="realty-kind active" data-realty-type="all">All property news</button>
+              <button type="button" class="realty-kind" data-realty-type="Reports">Consultancy reports</button>
+              <button type="button" class="realty-kind" data-realty-type="Deals">Office & land deals</button>
+              <button type="button" class="realty-kind" data-realty-type="Residential">Residential</button>
+              <button type="button" class="realty-kind" data-realty-type="Regulation">RERA & policy</button>
+            </div>
+            <details class="realty-sources">
+              <summary>Research sources · Official notices · X live searches</summary>
+              <div class="realty-source-links">
+                <a href="https://www.jll.com/en-in/insights/market-dynamics/hyderabad-office" target="_blank" rel="noopener noreferrer">JLL Hyderabad office reports ↗</a>
+                <a href="https://www.cushmanwakefield.com/en/india/insights/marketbeat-india/hyderabad-marketbeat" target="_blank" rel="noopener noreferrer">Cushman & Wakefield ↗</a>
+                <a href="https://www.cbre.co.in/insights" target="_blank" rel="noopener noreferrer">CBRE Research ↗</a>
+                <a href="https://www.knightfrank.co.in/research" target="_blank" rel="noopener noreferrer">Knight Frank Research ↗</a>
+                <a href="https://www.colliers.com/en-in/research/req-real-estate-quarterly-q3-2026" target="_blank" rel="noopener noreferrer">Colliers Research ↗</a>
+                <a href="https://www.savills.com/research_articles/255800/239496-1" target="_blank" rel="noopener noreferrer">Savills Hyderabad ↗</a>
+                <a href="https://rera.telangana.gov.in/" target="_blank" rel="noopener noreferrer">Telangana RERA ↗</a>
+                <a id="realtyLiveGoogle" href="https://news.google.com/search?q=Hyderabad%20real%20estate%20when%3A7d&hl=en-IN&gl=IN&ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">All-source Google News search ↗</a>
+                <a id="realtyLiveX" href="https://x.com/search?q=Hyderabad%20real%20estate&f=live" target="_blank" rel="noopener noreferrer">X: Hyderabad realty posts ↗</a>
+              </div>
+              <p class="realty-source-note">Consultancy sites and X searches are external links, not licensed feeds. X posts require verification before reporting. Listed article times are Google News RSS times unless explicitly marked otherwise.</p>
+            </details>
+          </section>
           <details class="source-disclosure"><summary><span>🏦 NSE · BSE · RBI · Financial Dailies</span><span class="source-summary-action">Official sources and publisher links <span aria-hidden="true">⌄</span></span></summary>
           <section class="source-hub" aria-label="Official sources and India financial dailies">
             <div class="source-hub-heading"><span class="source-hub-icon">🌐</span><div><strong>India's Business Newsroom</strong><small>Official market disclosures &amp; live searches across major financial dailies</small></div></div>
@@ -832,12 +869,12 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
 (() => {
 'use strict';
 const SECTORS = ['All Sectors','Aviation & Airports','Automobiles & EV','Banking & Finance','Corporate & Results','Economy & Policy','Energy & Renewables','FMCG & Retail','Funding & Investments','GCCs','Healthcare & Hospitals','Infrastructure','IT & AI','Logistics & Shipping','Manufacturing','Markets & IPOs','Personal Finance','Pharma & Life Sciences','Real Estate','Startups','Telecom','Tourism & Hospitality','Other Business'];
-const REGION_NAMES = {'all':'All News','all-business':'All Business News','india':'India Business News','world':'World Business News','india-general':'India General News','world-general':'World General News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh General News','telangana':'Telangana General News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
+const REGION_NAMES = {'hyderabad-realty':'Hyderabad Real Estate','all':'All News','all-business':'All Business News','india':'India Business News','world':'World Business News','india-general':'India General News','world-general':'World General News','hyderabad':'Hyderabad Business News','andhra-pradesh':'Andhra Pradesh General News','telangana':'Telangana General News','telugu-states':'AP + TG General News','telugu-companies':'Listed Companies','personal-finance':'Personal Finance','x-watch':'X Business Watch','avi-ivi':'అవీ ఇవీ · Beyond Business','telugu-patrikalu':'తెలుగు పత్రికలు','english-magazines':'English Magazines','saved':'Saved Stories'};
 const ICONS = {'Aviation & Airports':'✈','Automobiles & EV':'⚙','Banking & Finance':'₹','Corporate & Results':'▤','Economy & Policy':'◈','Energy & Renewables':'⚡','FMCG & Retail':'▦','Funding & Investments':'↗','GCCs':'◎','Healthcare & Hospitals':'✚','Infrastructure':'▥','IT & AI':'⌘','Logistics & Shipping':'⇄','Manufacturing':'⚒','Markets & IPOs':'↗','Personal Finance':'₹','Pharma & Life Sciences':'✚','Real Estate':'⌂','Startups':'✦','Telecom':'◉','Tourism & Hospitality':'✈','Other Business':'◈'};
 const KNOWN_PAYWALLS=['wsj.com','ft.com','bloomberg.com','nytimes.com','economist.com','livemint.com','thehindu.com','thehindubusinessline.com','economictimes.indiatimes.com','business-standard.com','theinformation.com','barrons.com'];
 const isKnownPaywall=domain=>KNOWN_PAYWALLS.some(d=>domain===d||domain.endsWith('.'+d));
 const GDELT_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
-const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',publicationTopic:'all',regionalState:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
+const state = {stories:[],region:'all',sector:'all',search:'',hours:'all',sort:'newest',origin:'all',miscTopic:'all',miscArea:'all',publicationTopic:'all',regionalState:'all',realtyType:'all',display:25,saved:{},isFetching:false,checked:null,lastError:null,sourceStatus:null};
 const $ = id => document.getElementById(id);
 const escapeHTML = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isHttp = s => {try {const u=new URL(s);return u.protocol==='https:'||u.protocol==='http:'}catch{return false}};
@@ -870,7 +907,7 @@ function sectorOf(title){const x=title.toLowerCase(); const patterns=[
  ['Economy & Policy',/economy|inflation|gdp\b|budget|government policy|export|import|tariff|trade agreement|fiscal|economic growth|central bank/]
  ];return patterns.find(([,re])=>re.test(x))?.[0]||'Other Business';}
 function geoOf(title,sourcecountry,queryRegion=''){const x=title.toLowerCase();if(/hyderabad|cyberabad|hitec city|gachibowli|shamshabad|medchal|patancheru|secunderabad/.test(x))return 'hyderabad';if(/andhra pradesh|visakhapatnam|vizag|amaravati|vijayawada|tirupati|kakinada|nellore|guntur|srikakulam|ananthapur|anantapur/.test(x))return 'andhra-pradesh';if(/telangana|warangal|karimnagar|nizamabad|sangareddy|khammam|ramagundam/.test(x))return 'telangana';if(/\bindia\b|\bindian\b|\brbi\b|\bsebi\b|\bnse\b|\bbse\b|\bsensex\b|\bnifty\b|\bnew delhi\b|\bmumbai\b|\bbengaluru\b/.test(x))return 'india';if(['india','in'].includes(String(sourcecountry||'').toLowerCase()))return 'india';return queryRegion==='india'?'india':'world';}
-function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return (data.origin==='google-news-rss'&&data.domain?String(data.domain):new URL(data.url).hostname).replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||(isKnownPaywall(domain)&&!(['india-general','world-general'].includes(data.desk)||(['andhra-pradesh','telangana','hyderabad','ap-tg'].includes(data.region)&&['regional-general','telugu-patrikalu','regional-business','business'].includes(data.desk||'business')))))return null;return {id:data.id||data.url,url:data.url,title,title_te:String(data.title_te||'').trim().slice(0,220),source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business',reader_finance:Boolean(data.reader_finance),regional_business:Boolean(data.regional_business),listed_company:Boolean(data.listed_company),snippet_te:String(data.snippet_te||data.summary_te||'').trim().slice(0,500),summary:String(data.summary||'').trim().slice(0,500)};}
+function normalise(data,group=''){if(!data||!data.url||!data.title||!isHttp(data.url))return null;const domain=(()=>{try{return (data.origin==='google-news-rss'&&data.domain?String(data.domain):new URL(data.url).hostname).replace(/^www\./,'')}catch{return 'Original source'}})();const title=String(data.title).trim();if(title.length<10||(isKnownPaywall(domain)&&!(['india-general','world-general'].includes(data.desk)||(['andhra-pradesh','telangana','hyderabad','ap-tg'].includes(data.region)&&['regional-general','telugu-patrikalu','regional-business','business'].includes(data.desk||'business')))))return null;return {id:data.id||data.url,url:data.url,title,title_te:String(data.title_te||'').trim().slice(0,220),source:data.source||data.domain||domain,domain,region:data.region||geoOf(title,data.sourcecountry,group),sector:data.sector||sectorOf(title),seen:data.seen||data.seendate||data.published||'',language:data.language||'',sourcecountry:data.sourcecountry||'',time_basis:data.time_basis||'indexed',origin:data.origin||'',desk:data.desk||'business',reader_finance:Boolean(data.reader_finance),regional_business:Boolean(data.regional_business),listed_company:Boolean(data.listed_company),real_estate_kind:String(data.real_estate_kind||''),snippet_te:String(data.snippet_te||data.summary_te||'').trim().slice(0,500),summary:String(data.summary||'').trim().slice(0,500)};}
 
 const FINANCIAL_DAILIES=[
  ['BusinessLine','thehindubusinessline.com'],['Economic Times','economictimes.indiatimes.com'],['Business Standard','business-standard.com'],['Financial Express','financialexpress.com'],['Mint','livemint.com'],['Moneycontrol','moneycontrol.com'],['NDTV Profit','ndtvprofit.com'],['Reuters India','reuters.com']
@@ -1040,6 +1077,14 @@ function isHyderabadBusinessStory(item){
  return item.desk==='telugu-patrikalu'&&Boolean(item.regional_business);
 }
 
+function isHyderabadRealEstateStory(item){
+ const title=item.title||'';
+ if(!['hyderabad','telangana','ap-tg'].includes(item.region))return false;
+ const realty=Boolean(item.real_estate_kind)||item.sector==='Real Estate'
+   ||/real estate|realty|residential|housing|property|office (?:space|lease|leasing)|land (?:auction|deal|sale)|\bRERA\b|\bHMDA\b|రియల్ ఎస్టేట్|భూమి|ఫ్లాట్లు/i.test(title);
+ if(!realty)return false;
+ return item.region==='hyderabad'||/Hyderabad|Cyberabad|Gachibowli|Madhapur|Kokapet|Narsingi|Financial District|Secunderabad|హైదరాబాద్/i.test(title);
+}
 function matchSearch(item,query){
  const q=query.trim().toLowerCase();
  if(!q)return true;
@@ -1062,6 +1107,7 @@ const X_WATCH_REGIONS=[
 ];
 const X_BUSINESS_TOPICS=[
  ['Latest business','(investment OR business OR startup OR funding OR GCC OR pharma OR expansion)'],
+ ['Real estate & deals','("real estate" OR property OR "office lease" OR RERA OR land OR developer)'],
  ['Investments & projects','(investment OR factory OR manufacturing OR "new plant" OR MoU OR expansion)'],
  ['Startups & GCCs','(startup OR funding OR GCC OR software OR technology OR hiring)'],
  ['Pharma & industry','(pharma OR biotechnology OR industry OR hospital OR aerospace OR aviation)']
@@ -1279,10 +1325,10 @@ function renderPublisherHub(){
  }
 }
 
-function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.miscTopic='all';state.miscArea='all';state.publicationTopic='all';state.regionalState='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
+function resetFilters(){state.sector='all';state.search='';state.hours='all';state.sort='newest';state.origin='all';state.miscTopic='all';state.miscArea='all';state.publicationTopic='all';state.regionalState='all';state.realtyType='all';state.display=25;$('sectorSelect').value='all';$('searchInput').value='';$('timeSelect').value='all';$('sortSelect').value='newest';$('originSelect').value='all'}
 function addressForView(){
  const url=new URL(location.href);
- for(const param of ['sector','q','hours','sort','origin','topic','area','pubtopic','state'])url.searchParams.delete(param);
+ for(const param of ['sector','q','hours','sort','origin','topic','area','pubtopic','state','realty'])url.searchParams.delete(param);
  if(state.sector!=='all')url.searchParams.set('sector',state.sector);
  if(state.search)url.searchParams.set('q',state.search);
  if(state.hours!=='all')url.searchParams.set('hours',state.hours);
@@ -1292,6 +1338,7 @@ function addressForView(){
  if(state.region==='avi-ivi'&&state.miscArea!=='all')url.searchParams.set('area',state.miscArea);
  if(state.region==='english-magazines'&&state.publicationTopic!=='all')url.searchParams.set('pubtopic',state.publicationTopic);
  if(state.region==='telugu-states'&&state.regionalState!=='all')url.searchParams.set('state',state.regionalState);
+ if(state.region==='hyderabad-realty'&&state.realtyType!=='all')url.searchParams.set('realty',state.realtyType);
  url.hash=state.region==='all'?'all':state.region;
  return url.pathname+url.search+url.hash;
 }
@@ -1309,14 +1356,15 @@ function restoreView(){
  state.miscArea=MISC_AREAS.some(([id])=>id===q.get('area'))?q.get('area'):'all';
  state.publicationTopic=PUBLISHER_TOPIC_OPTIONS.some(([id])=>id===q.get('pubtopic'))?q.get('pubtopic'):'all';
  state.regionalState=['andhra-pradesh','telangana'].includes(q.get('state'))?q.get('state'):'all';
- state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(state.region)?100:25;
+ state.realtyType=['all','Reports','Deals','Residential','Regulation'].includes(q.get('realty'))?q.get('realty'):'all';
+ state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general','hyderabad-realty'].includes(state.region)?100:25;
  $('sectorSelect').value=state.sector;
  $('searchInput').value=state.search;
  $('timeSelect').value=state.hours;
  $('sortSelect').value=state.sort;
  $('originSelect').value=state.origin;
 }
-function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general'].includes(next)?100:25;saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
+function setRegion(next){if(!Object.hasOwn(REGION_NAMES,next))next='all';resetFilters();state.region=next;state.display=['all','all-business','telugu-states','andhra-pradesh','telangana','india-general','world-general','hyderabad-realty'].includes(next)?100:25;saveView(true);render();$('feedHeading').scrollIntoView({behavior:'smooth',block:'start'});if(next==='all')refresh()}
 function setSector(next){if(next!=='all'&&!SECTORS.includes(next))next='all';state.sector=next;state.display=25;$('sectorSelect').value=next;saveView(true);render()}
 function toggleSaved(id){const item=state.stories.find(x=>x.id===id)||state.saved[id];if(!item)return;if(state.saved[id]){delete state.saved[id];showToast('Removed from saved stories')}else{state.saved[id]=item;showToast('Story saved in this browser')}saveStored();render()}
 function isOfficialStory(item){return item.origin==='official-rss'||/^(NSE|BSE|RBI|SEBI|PIB)\s*•\s*Official/.test(item.source)}
@@ -1368,10 +1416,14 @@ function getVisible(){let list=state.region==='saved'?Object.values(state.saved)
  else if(selectedDesk==='hyderabad'){
    if(!isHyderabadBusinessStory(item))return false;
  }
+ else if(selectedDesk==='hyderabad-realty'){
+   if(!isHyderabadRealEstateStory(item))return false;
+   if(state.realtyType!=='all'&&item.real_estate_kind!==state.realtyType)return false;
+ }
  else if(isPublisherDesk(selectedDesk)){
    if(item.desk!==selectedDesk)return false;
    if(selectedDesk==='english-magazines'&&state.publicationTopic!=='all'&&item.sector!==state.publicationTopic)return false;
- }else if(selectedDesk!=='saved'&&!['business','regional-business'].includes(item.desk))return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='all-business'){/* Business desk is multi-region. */}else if(state.region==='india-general'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg','india'].includes(item.region))return false;}else if(state.region==='world-general'){if(item.region!=='world')return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='andhra-pradesh'){if(!['andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad','ap-tg'].includes(item.region))return false;}else if(item.region!==state.region)return false}
+ }else if(selectedDesk!=='saved'&&!['business','regional-business'].includes(item.desk))return false;if(state.region!=='all'&&state.region!=='saved'&&state.region!=='avi-ivi'&&!isPublisherDesk(state.region)){if(state.region==='hyderabad-realty'){if(!isHyderabadRealEstateStory(item))return false;}else if(state.region==='telugu-states'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telugu-companies'){if(!isListedCompanyStory(item))return false;}else if(state.region==='hyderabad'){if(!isHyderabadBusinessStory(item))return false;}else if(state.region==='personal-finance'){if(!isPersonalFinanceStory(item))return false;}else if(state.region==='all-business'){/* Business desk is multi-region. */}else if(state.region==='india-general'){if(!['hyderabad','telangana','andhra-pradesh','ap-tg','india'].includes(item.region))return false;}else if(state.region==='world-general'){if(item.region!=='world')return false;}else if(state.region==='india'){if(!['hyderabad','telangana','andhra-pradesh','india'].includes(item.region))return false;}else if(state.region==='andhra-pradesh'){if(!['andhra-pradesh','ap-tg'].includes(item.region))return false;}else if(state.region==='telangana'){if(!['telangana','hyderabad','ap-tg'].includes(item.region))return false;}else if(item.region!==state.region)return false}
  if(state.sector!=='all'&&item.sector!==state.sector)return false;
  if(state.hours!=='all'&&(!dateKey(item.seen)||Date.now()-dateKey(item.seen)>Number(state.hours)*3600000))return false;
  if(!sourceMatches(item))return false;
@@ -1384,6 +1436,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  `${visible.length.toLocaleString('en-IN')} AP + TG general news links · English & Telugu · politics, public affairs and daily life`:
  state.region==='avi-ivi'?
  `${visible.length.toLocaleString('en-IN')} interesting ${visible.length===1?'story':'stories'} · ${state.stories.filter(x=>x.desk==='avi-ivi').length} beyond-business links`:
+ state.region==='hyderabad-realty'?
+ `${visible.length.toLocaleString('en-IN')} Hyderabad real-estate stories · research, deals, residential, RERA`:
  state.region==='personal-finance'?
  `${visible.length.toLocaleString('en-IN')} personal-finance links · 14 Nov 2026 onward where indexed`:
  state.region==='telugu-companies'?
@@ -1396,6 +1450,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  document.querySelectorAll('[data-misc-topic]').forEach(el=>{const active=el.dataset.miscTopic===state.miscTopic;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  document.querySelectorAll('[data-misc-area]').forEach(el=>{const active=el.dataset.miscArea===state.miscArea;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active))});
  $('regionalGeneralBar').hidden=state.region!=='telugu-states';
+ $('realtyTools').hidden=state.region!=='hyderabad-realty';
+ document.querySelectorAll('[data-realty-type]').forEach(b=>{const selected=b.dataset.realtyType===state.realtyType;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});
  $('pfSourceDiscovery').hidden=state.region!=='personal-finance';
  $('regionBusinessDiscovery').hidden=state.region!=='telugu-companies';
  const regionalStories=state.stories.filter(item=>['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(item.region));
@@ -1409,6 +1465,8 @@ function render(){document.body.classList.toggle('x-watch-open',state.region==='
  'All available India or worldwide headlines: every topic, with original publisher credit and Google News click-throughs. Feed coverage depends on sources and is not exhaustive.':
  state.region==='telugu-states'?
  'Every available AP/TG headline, without topic restrictions: politics, health, crime, sports, districts, jobs, business and more. All source links are credited.':
+ state.region==='hyderabad-realty'?
+ 'Hyderabad real-estate reports, registered office and land deals, housing-market trends and regulatory news. Source links and Google News RSS times; X posts are for discovery only.':
  state.region==='personal-finance'?
  'Personal finance headlines discovered via Google News RSS and official sources, with publisher credit. Google News click-throughs may redirect to publishers; coverage is not guaranteed complete.':
  state.region==='telugu-companies'?
@@ -1496,6 +1554,14 @@ try{if(localStorage.getItem('mbn-theme')==='dark')document.body.classList.add('d
  $('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();webSearch(e.target.value)}});
 
  document.querySelectorAll('[data-region]').forEach(el=>el.addEventListener('click',()=>{setRegion(el.dataset.region);$('sidebar').classList.remove('open');const more=$('moreRegionTabs');if(more)more.open=false}));
+ $('realtyFilterbar').addEventListener('click',event=>{
+   const b=event.target.closest('[data-realty-type]');
+   if(!b)return;
+   state.realtyType=b.dataset.realtyType;
+   state.display=100;saveView(true);render();
+ });
+ $('realtyLiveX').href=xSearchUrl('("Hyderabad" OR "Gachibowli" OR "Kokapet") ("real estate" OR "property" OR "office leasing" OR "RERA") -filter:replies');
+ $('realtyLiveGoogle').href=googleNewsUrl('(Hyderabad OR Gachibowli OR Kokapet) ("real estate" OR property OR "office leasing") when:7d');
  $('regionalGeneralBar').addEventListener('click',event=>{const chip=event.target.closest('[data-regional-state]');if(!chip)return;state.regionalState=chip.dataset.regionalState;state.display=100;saveView(true);render()});
  $('searchInput').addEventListener('input',e=>{if(state.region!=='avi-ivi'&&!isPublisherDesk(state.region)&&(state.region!=='all'||state.sector!=='all'||state.hours!=='all'||state.origin!=='all')){state.region='all';state.sector='all';state.hours='all';state.origin='all';$('sectorSelect').value='all';$('timeSelect').value='all';$('originSelect').value='all'}state.search=e.target.value;state.display=25;saveView(false);render()});
  $('sectorSelect').addEventListener('change',e=>setSector(e.target.value));
