@@ -62,6 +62,32 @@ TOPICS=(
  ("Funding & Investments",r'investment|funding|raises? (?:rs|\\$)|పెట్టుబడి|నిధులు'),
  ("Corporate & Results",r'quarter|profit|revenue|result|earnings|లాభాలు|ఫలితాలు'),
 )
+# Strong business-only signals for extracting Hyderabad / Telangana corporate
+# stories from broader regional feeds. Politics at an office, school reports,
+# traffic or airport incidents must not be promoted into a business desk.
+REGIONAL_CORPORATE_SIGNAL=re.compile(
+ r'\\b(?:\\bgcc\\b|global capability|fund(?:ed|ing)|start[ -]?ups?|'
+ r'invest(?:ment|s|ed|ing)?|acqui(?:res?|red|sition)|merger|'
+ r'quarterly|earnings|revenues?|profits?|ipo|shareholders?|'
+ r'pharma|biotech|usfda|us fda|fda observation|'
+ r'manufactur(?:ing|er)|factories|factory|industrial park|'
+ r'expands?|expansion|new plant|plant capacity|'
+ r'contract(?:s)?|order win|deal worth|software (?:company|firm|services)|'
+ r'data cent(?:re|er)|office leas(?:e|ing)|real estate|'
+ r'commercial (?:space|property)|new facility|'
+ r'global tech cent(?:re|er))\\b|'
+ r'పెట్టుబడ|ఒప్పంద|విస్తరణ|ఫార్మా|పరిశ్రమ|కంపెనీ|జీసీసీ|స్టార్టప్|'
+ r'ఆర్థిక ఫలితాలు|లాభాలు|నిధులు',re.I
+)
+
+def eligible_regional_business(row):
+    """Only promote strongly commercial, explicitly regional general news."""
+    if not isinstance(row,dict) or row.get("desk")!="regional-general":return False
+    if row.get("region") not in ("hyderabad","telangana","andhra-pradesh","ap-tg"):return False
+    title=str(row.get("title") or "")
+    if not REGIONAL_CORPORATE_SIGNAL.search(title):return False
+    return bool(local_business_match(title,row.get("region")))
+
 def sector(title):
     for label,pattern in TOPICS:
         if re.search(pattern,title,re.I):return label
@@ -114,7 +140,7 @@ def collect_hyderabad_business(cycle=None):
     out={}
     from concurrent.futures import ThreadPoolExecutor
     def fetch_topic(term):
-        url=BASE+"?"+urlencode({"q":"("+term+") when:7d","hl":"en-IN","gl":"IN","ceid":"IN:en"})
+        url=BASE+"?"+urlencode({"q":term+" when:7d","hl":"en-IN","gl":"IN","ceid":"IN:en"})
         try:
             req=Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; MyBusinessNews/1.0; attributed local business headline discovery)","Accept":"application/rss+xml,application/xml,text/xml;q=0.9"})
             with urlopen(req,timeout=12) as resp:xml=resp.read(1_600_000)
