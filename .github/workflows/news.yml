@@ -24,7 +24,7 @@ jobs:
     timeout-minutes: 28
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - name: Checkout site
         uses: actions/checkout@v4
@@ -131,6 +131,15 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: public
+      - name: Wait for GitHub Pages artifact indexing
+        # GitHub's deploy API can briefly report zero artifacts immediately
+        # after a successful upload. Avoid intermittent production failures.
+        run: sleep 18
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Retry deployment after artifact propagation
+        if: steps.deployment.outcome == 'failure'
+        id: deployment_retry
         uses: actions/deploy-pages@v4
