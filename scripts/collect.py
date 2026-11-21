@@ -259,21 +259,13 @@ def main():
             for key in ("title_te","snippet_te","snippet_basis","summary"):
                 if not entry.get(key) and previous.get(key):
                     entry[key]=previous[key]
-    # Preserve the 14-Nov-2026 archive instead of dropping older business articles weekly.
-    cutoff=datetime(2026,11,13,18,30,tzinfo=timezone.utc)
-    pf_from=pf_cutoff()
-    # Avii Ivii relaunch: start its archive from 19 Nov 2026, 00:00 IST.
+    # Retain only the most recent seven days across every desk.
+    cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+    pf_from=cutoff
     avi_start=datetime(2026,11,18,18,30,tzinfo=timezone.utc)
     rows=[x for x in news.values()
-          if (x.get("desk")!="avi-ivi" or dt(x.get("seen"))>=avi_start)
-          and (dt(x.get("seen"))>cutoff or (
-              (x.get("desk")=="personal-finance" or x.get("reader_finance")) and
-              dt(x.get("seen"))>=pf_from
-          ) or (
-              x.get("desk")=="telugu-patrikalu" and
-              x.get("source","").startswith("Dharani News") and
-              dt(x.get("seen"))>datetime.now(timezone.utc)-timedelta(days=30)
-          ))]
+          if dt(x.get("seen"))>=cutoff
+          and (x.get("desk")!="avi-ivi" or dt(x.get("seen"))>=avi_start)]
     rows.sort(key=lambda x:dt(x.get("seen")),reverse=True)
     # Keep regional exchange announcements and official updates visible even with a crowded global index.
     # Keep the business newsroom and Avii Ivii independent despite one shared JSON index.
@@ -288,7 +280,7 @@ def main():
     telugu_rows=[x for x in rows if x.get("desk")=="telugu-patrikalu"][:180]
     rows=sorted(business_rows+pf_rows+regional_business_rows+misc_rows+english_rows+telugu_rows+regional_rows,key=lambda x:dt(x.get("seen")),reverse=True)
     snippet_status=enrich(rows)
-    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"regional_discovery":regional_discovery_status,"hyderabad_business_discovery":hyd_business_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"world_discovery":world_discovery_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_from_14_nov_2026":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
+    payload={"generated_at":datetime.now(timezone.utc).isoformat() if good else old.get("generated_at"),"articles":rows,"sources":["NSE","BSE","RBI","SEBI","PIB","NASA","WHO","UN News","The Conversation","Oneindia Telugu","Dharani News","AMFI","Google News RSS (discovery)","The GDELT Project"],"source_status":{"personal_finance_discovery":pf_discovery_status,"regional_discovery":regional_discovery_status,"hyderabad_business_discovery":hyd_business_status,"telugu_snippets":snippet_status,"gdelt":gdelt_state,"official_rss_matches":len(official),"avi_ivi":misc_status,"world_discovery":world_discovery_status,"publications":publication_status,"amfi_rss":amfi_status,"dedicated_desks":{"personal_finance_links":len(pf_rows),"regional_business_links":len(regional_business_rows),"personal_finance_archive_cutoff":pf_from.isoformat()}},"note":"Official RSS feed dates, first-observed times and GDELT indexed times are not interchangeable with independently verified publication times. Source links remain with publishers."}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     print("news:",len(payload["articles"]),"successful queries:",good,flush=True)
