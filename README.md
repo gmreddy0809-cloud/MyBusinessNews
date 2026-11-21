@@ -40,7 +40,7 @@ Searches rotate additional property micro-markets, associations and research
 firms. The collector enforces an explicit Hyderabad or metropolitan-place cue
 **in the headline** so that general national property reports are not mislabeled
 as city developments. It tags accepted items as `Real Estate` and as
-`Reports`, `Deals`, `Residential`, `Regulation`, or `Market News`.
+`Reports`, `Deals`, `Residential`, `Retail`, `Regulation`, or `Market News`. Retail coverage includes Hyderabad shopping streets, high-street rent rankings and mall/retail-space leasing.
 
 The publisher is credited and the link opens a Google News click-through, not
 a licensed syndication feed. Google RSS time is not verified original publication
