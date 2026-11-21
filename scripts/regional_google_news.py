@@ -174,7 +174,7 @@ def extract_complete_rss_items(xml):
     except ET.ParseError as exc:
         recovered=[]
         wrapper=b'<root xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">'
-        for raw in re.findall(rb"<item(?:\\s[^>]*)?>[\\s\\S]*?</item>",xml,re.I):
+        for raw in re.findall(rb"<item(?:\s[^>]*)?>[\s\S]*?</item>",xml,re.I):
             try:recovered.append(ET.fromstring(wrapper+raw+b"</root>")[0])
             except ET.ParseError:continue
         print("Telangana Today RSS partial/malformed XML: recovered",
