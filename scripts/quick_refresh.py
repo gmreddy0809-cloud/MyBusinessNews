@@ -48,6 +48,25 @@ def collect_desk(name,fn):
     except Exception as exc:
         return name,[],{},type(exc).__name__+": "+str(exc)[:180]
 
+def route_general_business_topic(entry):
+    """Make Google News business-topic headlines visible in specialist desks.
+
+    Google News Business & Economy topic stories were once stored as general
+    news, then hidden from India News without appearing in India Business.
+    These are already publisher-attributed business-topic titles, not guesses.
+    """
+    if not isinstance(entry,dict):return None
+    if entry.get("sector")!="Business & Economy":return None
+    if entry.get("desk") not in ("india-general","world-general"):return None
+    title=entry.get("title") or ""
+    if pf_match(title):
+        entry["desk"]="personal-finance"
+        entry["sector"]="Personal Finance"
+        entry["reader_finance"]=True
+        return "personal_finance"
+    entry["desk"]="business"
+    return "business"
+
 def main():
     old=json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"articles":[]}
     previous=old.get("articles") if isinstance(old.get("articles"),list) else []
@@ -89,6 +108,18 @@ def main():
             updates[name]=rows
             stats[name]=report
             print("Refreshed:",name,"rows:",len(rows),flush=True)
+    # Rescue Google News Business & Economy headlines from the general topic
+    # feed: India News hides these as business, so they must also be routed
+    # into business / reader finance instead of becoming invisible.
+    routed={"business_new":0,"pf_new":0,"business_archive":0,"pf_archive":0}
+    for current in updates.values():
+        for row in current:
+            decision=route_general_business_topic(row)
+            if decision:routed["business_new" if decision=="business" else "pf_new"]+=1
+    for row in by_url.values():
+        decision=route_general_business_topic(row)
+        if decision:routed["business_archive" if decision=="business" else "pf_archive"]+=1
+    stats["general_business_routing"]=routed
     # When Google News's narrowly scoped Hyderabad corporate search returns
     # few matches, recover strictly verified business headlines from the wider
     # AP/TG general feed collected in the SAME run. Keep public affairs,
@@ -136,6 +167,9 @@ def main():
                 general_desks=("india-general","world-general")
                 prior_desk=prior.get("desk") or "business"
                 incoming_desk=entry.get("desk") or "business"
+                if incoming_desk=="business" and prior_desk=="regional-business":
+                    for field in ("desk","region","sector","regional_business","real_estate_kind"):
+                        if field in prior:entry[field]=prior[field]
                 if incoming_desk in general_desks and prior_desk not in general_desks:
                     for field in ("desk","region","sector","source","origin","regional_business","reader_finance","listed_company"):
                         if field in prior:entry[field]=prior[field]
