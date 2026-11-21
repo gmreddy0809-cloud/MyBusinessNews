@@ -76,6 +76,9 @@ jobs:
               '- Personal Finance desk links: '+str(desks['personal-finance']),
               '- Reuters credited links: '+str(sum('Reuters' in (r.get('source') or '') for r in rows)),
               '- Hyderabad real-estate sector links: '+str(sum((r.get('sector')=='Real Estate' and r.get('region') in ('hyderabad','telangana','ap-tg')) for r in rows)),
+              '- Telugu translated headlines: '+str(sum(bool(r.get('title_te')) for r in rows))+' / '+str(len(rows)),
+              '- Telugu summary snippets: '+str(sum(bool(r.get('snippet_te')) for r in rows))+' / '+str(len(rows)),
+              '- Successful desks in latest run: '+str(len((status.get('quick_refresh') or {}).get('successful_desks') or [])),
               '### Collector results',
           ]
           for key in ('regional_discovery','hyderabad_business_discovery','regional_business_recovery',
@@ -84,6 +87,12 @@ jobs:
               digest.append('- '+key+': '+str(v.get('accepted',v.get('newly_collected','not reported')))
                             +' matches, '+str(len(v.get('warnings') or []))+' warnings')
           print('\\n'.join(digest),flush=True)
+          if not any(r.get('snippet_te') for r in rows):
+              print('::warning::Telugu snippet generation is disabled in this workflow; all snippets remain blank.',flush=True)
+          if not any(r.get('title_te') for r in rows):
+              print('::warning::No translated Telugu headlines are published; original publisher headlines are used.',flush=True)
+          if not (status.get('quick_refresh') or {}).get('successful_desks'):
+              print('::warning::No confirmed desk success in saved news index; inspect feed logs.',flush=True)
           path=os.environ.get('GITHUB_STEP_SUMMARY')
           if path:
               with open(path,'a',encoding='utf-8') as out:
