@@ -85,6 +85,7 @@ def eligible_regional_business(row):
     if not isinstance(row,dict) or row.get("desk")!="regional-general":return False
     if row.get("region") not in ("hyderabad","telangana","andhra-pradesh","ap-tg"):return False
     title=str(row.get("title") or "")
+    if re.search(r"\b(?:protest|vandal|rainstorm|flood|cyclone|traffic|robbery|homicide|murder|arrest|detained|bomb threat|accident|road crash|police action)\b",title,re.I):return False
     if not REGIONAL_CORPORATE_SIGNAL.search(title):return False
     return bool(local_business_match(title,row.get("region")))
 
