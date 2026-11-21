@@ -57,6 +57,8 @@ def _place(title,categories):
     title_region=tagged_region(title)
     if title_region:return title_region
     if HYD.search(title):return "hyderabad"
+    if re.search(r"\\bHMDA\\b|\\bHYDRAA\\b",title,re.I):return "hyderabad"
+    if re.search(r"\\bTG[ -]?RERA\\b|\\bTGRERA\\b",title,re.I):return "telangana"
     cat=" ".join(categories)
     if AP_TAG.search(cat):return "andhra-pradesh"
     if CITY_CATEGORIES.search(cat):return "hyderabad"
