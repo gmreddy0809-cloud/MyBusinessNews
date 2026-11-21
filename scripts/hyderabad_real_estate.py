@@ -36,6 +36,9 @@ PROPERTY = re.compile(
     r"land (?:deal|parcel|sale|auction|purchase|allotment|bank)|"
     r"plots?\b|floor space|built.up area|sq\.?\s?ft|square feet|"
     r"warehous(?:e|ing)|industrial parks?|retail spaces?|"
+    r"retail (?:rents?|rankings?|property|real estate|space|leasing|streets?|corridors?|market)|"
+    r"high[ -]?street(?:s)?|shopping streets?|shopping corridors?|shop rents?|"
+    r"storefront|mall (?:rent|lease|occupancy|space)|commercial rents?|"
     r"real estate developer|property developers?|home builders?|housing construction|residential projects? launch|"
     r"rera\b|hmda\b|property registration(?:s)?\b|stamp duty|"
     r"ప్రాపర్టీ|రియల్ ఎస్టేట్|రియాల్టీ|ఇళ్ల|ఇళ్లు|గృహ|ఫ్లాట్లు|"
@@ -66,6 +69,12 @@ RESIDENTIAL = re.compile(
     r"homebuyers?|house prices?|home sales|new launches|"
     r"unsold inventory|గృహ|ఫ్లాట్లు|ఇళ్లు|ఇళ్ల|ఇంటి ధర", re.I
 )
+RETAIL = re.compile(
+    r"high[ -]?street(?:s)?|shopping streets?|shopping corridors?|"
+    r"retail (?:rents?|rankings?|property|real estate|space|leasing|streets?|market)|"
+    r"shop rents?|storefront|mall (?:rent|lease|occupancy|space)|"
+    r"ఖరీదైన షాపింగ్|షాపింగ్ వీధులు|రిటైల్ అద్దె|దుకాణాల అద్దె", re.I
+)
 
 # Core Hyderabad coverage is checked every run. Rotating targeted searches
 # expand research/deals coverage without relying on a single 100-result feed.
@@ -76,6 +85,7 @@ CORE = (
   '("హైదరాబాద్" OR "గచ్చిబౌలి" OR "కోకాపేట") ("రియల్ ఎస్టేట్" OR "ప్రాపర్టీ" OR "ఫ్లాట్లు" OR "భూమి") when:7d',
   '(Hyderabad OR Telangana) (RERA OR HMDA OR residential registrations OR property prices) when:7d',
   '(Hyderabad OR Cyberabad) (JLL OR CBRE OR "Cushman" OR "Knight Frank" OR Colliers OR Savills) when:7d',
+  '(Hyderabad OR Banjara Hills OR Jubilee Hills) ("high street" OR "shopping street" OR "retail rents" OR "retail ranking") when:7d',
 )
 ROTATE = (
   '(Hyderabad OR Telangana) (ANAROCK OR "PropTiger" OR PropEquity OR "CRE Matrix" OR Propstack) when:7d',
@@ -86,6 +96,8 @@ ROTATE = (
   '(Hyderabad OR Telangana) (property registrations OR stamp duty OR land records OR TGRERA) when:7d',
   '(Hyderabad OR Madhapur OR Nanakramguda) (office supply OR vacancy OR absorption OR rentals) when:7d',
   '(Hyderabad OR Gachibowli OR Kollur) (developer OR builder OR construction project) when:7d',
+  '(Hyderabad OR Telangana) (mall leasing OR shopping corridors OR retail property OR high street retail) when:7d',
+  '(Hyderabad OR Banjara Hills OR Jubilee Hills) ("retail rental" OR "shopping streets" OR "retail real estate") when:7d',
 )
 CONSULTANT_DOMAINS=(
     "jll.com","cbre.co.in","cushmanwakefield.com","knightfrank.co.in",
@@ -95,7 +107,9 @@ CONSULTANT_DOMAINS=(
 def classify(title):
     if not HYD.search(title) or not PROPERTY.search(title):
         return None
-    if RULES.search(title):
+    if RETAIL.search(title):
+        kind="Retail"
+    elif RULES.search(title):
         kind="Regulation"
     elif DEAL.search(title):
         kind="Deals"
