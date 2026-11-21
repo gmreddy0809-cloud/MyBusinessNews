@@ -6,7 +6,7 @@ replace a newer news.json snapshot or silently remove saved headlines.
 """
 import json
 import sys
-from datetime import datetime,timezone
+from datetime import datetime,timezone,timedelta
 from pathlib import Path
 
 def dt(value):
@@ -51,7 +51,8 @@ def merge(current,candidate):
         by_url[item["url"]]=winner
     latest=candidate if dt(candidate.get("generated_at"))>=dt(current.get("generated_at")) else current
     result=dict(latest)
-    result["articles"]=sorted(by_url.values(),key=lambda item:dt(item.get("seen")),reverse=True)[:16000]
+    cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+    result["articles"]=sorted((item for item in by_url.values() if dt(item.get("seen"))>=cutoff),key=lambda item:dt(item.get("seen")),reverse=True)[:16000]
     result["generated_at"]=max(
         (current.get("generated_at"),candidate.get("generated_at")),
         key=dt
