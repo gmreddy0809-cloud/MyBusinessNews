@@ -29,6 +29,30 @@ coverage is best effort and may miss individual articles. Reuters stories are
 shown in their corresponding news tabs; search for `Reuters` to filter them.
 Check `data/news.json -> source_status.reuters_discovery` for per-run results.
 
+## Hyderabad Realty desk
+
+The `#hyderabad-realty` tab is a dedicated **Hyderabad real-estate** index, separate
+from the general Hyderabad business feed. Every half-hour refresh attempts 11
+Google News RSS searches: real estate reports (JLL, CBRE, Cushman & Wakefield,
+Knight Frank, Colliers, Savills, ANAROCK and others), office leases and property
+transactions, residential sales and launches, land deals, and TG-RERA/HMDA news.
+Searches rotate additional property micro-markets, associations and research
+firms. The collector enforces an explicit Hyderabad or metropolitan-place cue
+**in the headline** so that general national property reports are not mislabeled
+as city developments. It tags accepted items as `Real Estate` and as
+`Reports`, `Deals`, `Residential`, `Regulation`, or `Market News`.
+
+The publisher is credited and the link opens a Google News click-through, not
+a licensed syndication feed. Google RSS time is not verified original publication
+time. Results are not exhaustive: a press release or report might not be indexed.
+Official research pages and the TG-RERA portal are linked in the tab for manual
+checks. The X link is an external live keyword search, **not an automatically
+ingested X feed or an independent verification**. No unverified social claim is
+promoted to a news story. Check
+`data/news.json -> source_status.hyderabad_real_estate_discovery` for query
+success, warnings, by-source counts and by-kind counts. Refresh failures do not
+erase the previously indexed data.
+
 ## Automatic deployment
 `.github/workflows/news.yml` runs twice an hour and on changes to scripts, tests and workflow configuration, then publishes `index.html` and `data/news.json` to GitHub Pages. Check **Actions** for build or publishing failures.
 
