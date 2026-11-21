@@ -55,7 +55,7 @@ class AllRegionalNewsTests(unittest.TestCase):
         self.assertIn("regardless of topic or original desk",HTML)
         self.assertIn("['andhra-pradesh','ap-tg'].includes(area)",HTML)
         self.assertIn("['telangana','hyderabad','ap-tg'].includes(area)",HTML)
-        self.assertIn("['hyderabad','telangana','andhra-pradesh','ap-tg'].includes(area)",HTML)
+        self.assertIn("['andhra-pradesh','telangana','hyderabad','ap-tg'].includes(area)",HTML)
     def test_other_desks_keep_specialist_filters(self):
         self.assertIn("else if(selectedDesk==='telugu-companies')",HTML)
         self.assertIn("else if(selectedDesk==='hyderabad')",HTML)
