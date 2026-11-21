@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1d32">
   <meta name="description" content="MyBusinessNews: India and world general news, business news, Hyderabad, Andhra Pradesh, Telangana, listed companies and personal finance. Read the original source.">
   <title>MyBusinessNews — Latest Business News, India and World</title>
-<meta name="mbn-site-version" content="2026-11-21-hyderabad-retail-realty-r31">
+<meta name="mbn-site-version" content="2026-11-21-hyderabad-mail-source-r32">
   
   <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--navy:#0e2238;--navy2:#132c47;--text:#15253b;--muted:#778496;--line:#e9eef4;--background:#f5f8fc;--panel:#fff;--blue:#1a67d2;--teal:#19bdad;--hover:#f5f8fe;--shadow:0 8px 30px rgba(25,43,67,.035)}
@@ -741,6 +741,7 @@ body.x-watch-open .source-disclosure,body.avi-ivi-open .source-disclosure,body.p
                 <a href="https://www.knightfrank.co.in/research/reports/india-real-estate---office-and-residential-market--jul-sep" target="_blank" rel="noopener noreferrer">Knight Frank Q3 2026 ↗</a>
                 <a href="https://www.hindustantimes.com/real-estate" target="_blank" rel="noopener noreferrer">Property deal reporting ↗</a>
                 <a href="https://rera.telangana.gov.in/" target="_blank" rel="noopener noreferrer">Telangana RERA ↗</a>
+                <a href="https://hyderabadmail.com/category/real-estate/" target="_blank" rel="noopener noreferrer">Hyderabad Mail · Real Estate ↗</a>
                 <a id="realtyLiveGoogle" href="https://news.google.com/search?q=Hyderabad%20real%20estate%20when%3A7d&hl=en-IN&gl=IN&ceid=IN%3Aen" target="_blank" rel="noopener noreferrer">All-source Google News search ↗</a>
                 <a id="realtyLiveX" href="https://x.com/search?q=Hyderabad%20real%20estate&f=live" target="_blank" rel="noopener noreferrer">X: Hyderabad realty posts ↗</a>
               </div>
@@ -1020,6 +1021,7 @@ const DESK_SOURCE_DIRECTORY={
   ['Telugu States Reporting','Times of India','timesofindia.indiatimes.com'],
   ['Telugu States Reporting','New Indian Express','newindianexpress.com'],
   ['Telugu States Reporting','Siasat','siasat.com'],
+  ['Hyderabad Local Reporting','Hyderabad Mail','hyderabadmail.com'],
   ['Startups & IT','YourStory','yourstory.com'],
   ['Startups & IT','Inc42','inc42.com'],
   ['Startups & IT','Entrackr','entrackr.com'],
@@ -1087,7 +1089,8 @@ function isHyderabadRealEstateStory(item){
  const realty=Boolean(item.real_estate_kind)||item.sector==='Real Estate'
    ||/real estate|realty|residential|housing|property|office (?:space|lease|leasing)|land (?:auction|deal|sale)|\bRERA\b|\bHMDA\b|రియల్ ఎస్టేట్|భూమి|ఫ్లాట్లు/i.test(title);
  if(!realty)return false;
- return item.region==='hyderabad'||/Hyderabad|Cyberabad|Gachibowli|Madhapur|Kokapet|Narsingi|Financial District|Secunderabad|హైదరాబాద్/i.test(title);
+ return item.region==='hyderabad'||/Hyderabad|Cyberabad|Gachibowli|Madhapur|Kokapet|Narsingi|Financial District|Secunderabad|హైదరాబాద్/i.test(title)
+   ||(item.region==='telangana'&&/\bTG[ -]?RERA\b|\bTGRERA\b|\bHMDA\b/i.test(title));
 }
 function matchSearch(item,query){
  const q=query.trim().toLowerCase();
