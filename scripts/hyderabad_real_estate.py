@@ -29,15 +29,15 @@ HYD = re.compile(
     r"రాయదుర్గం|పటాన్‌చెరు", re.I
 )
 PROPERTY = re.compile(
-    r"real estate|realty|property|properties|housing|homes?\b|apartments?|"
+    r"real estate|realty|property|properties|housing|apartments?|"
     r"residential|office (?:space|leasing|market|rent|rentals?|building|transactions?)|"
     r"commercial (?:realty|real estate|property|office|space|leasing)|"
-    r"office space|office leasing|lease(?:s|d)?\b|rent(?:al|s)?\b|"
+    r"office space|office leasing|commercial rent|rental yield|"
     r"land (?:deal|parcel|sale|auction|purchase|allotment|bank)|"
     r"plots?\b|floor space|built.up area|sq\.?\s?ft|square feet|"
     r"warehous(?:e|ing)|industrial parks?|retail spaces?|"
-    r"developer|builders?|construction|projects? launch|"
-    r"rera\b|hmda\b|registration(?:s)?\b|stamp duty|"
+    r"real estate developer|property developers?|home builders?|housing construction|residential projects? launch|"
+    r"rera\b|hmda\b|property registration(?:s)?\b|stamp duty|"
     r"ప్రాపర్టీ|రియల్ ఎస్టేట్|రియాల్టీ|ఇళ్ల|ఇళ్లు|గృహ|ఫ్లాట్లు|"
     r"భూమి|స్థలం|నిర్మాణ|లీజు|రిజిస్ట్రేషన్|ఇంటి ధర", re.I
 )
