@@ -73,6 +73,26 @@ news views. A Hyderabad general story is not automatically classified as a
 business article. The Hyderabad Realty source list links to the publisher's
 Real Estate category as a manual fallback.
 
+## Feedspot Telugu newsroom source expansion
+
+Reference: https://rss.feedspot.com/telugu_news_rss_feeds/ (curated list
+updated Aug 20, 2026). The regional Google News discovery pool includes 23
+additional publisher-domain candidates from that list, making 73 configured
+AP/TG publisher searches in total (priorities each run, others rotating).
+Names in this discovery list are **not** the same as licensed publisher RSS
+connections. Google News may index few or no headlines from some sources.
+General AP/TG news is retained without business-only topic restrictions.
+
+The AP, TG, AP+TG, Hyderabad and Telugu Publications views show a "తెలుగు
+RSS సోర్సులు" source-directory panel with 10 publisher-supplied links as
+reported by Feedspot; publishers can change or close these endpoints, and
+their current response and reuse permissions have not all been verified.
+Listings marked "Generate RSS" by Feedspot are not evidence that a publisher
+offers a native RSS feed. These extra feeds are **navigation links**, not
+ingested by the `publications.py` permission-restricted collector.
+Use `data/news.json -> source_status.regional_discovery` to inspect actual
+source-by-source Google News coverage rather than assuming all work.
+
 ## Automatic deployment
 `.github/workflows/news.yml` runs twice an hour and on changes to scripts, tests and workflow configuration, then publishes `index.html` and `data/news.json` to GitHub Pages. Check **Actions** for build or publishing failures.
 
