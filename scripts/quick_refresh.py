@@ -12,6 +12,7 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 
 from rss_sources import collect_official
+from zerodha_pulse import collect_pulse
 from avi_ivi import collect_avi_ivi
 from world_google_news import collect_world
 from all_general_news import collect_general_news
@@ -79,6 +80,7 @@ def main():
             if tagged!="india":row["region"]=tagged
     runners={
         "official":collect_official,
+        "zerodha_pulse":collect_pulse,
         "avi_ivi":collect_avi_ivi,
         "world_discovery":collect_world,
         "india_world_general":collect_general_news,
