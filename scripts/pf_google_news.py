@@ -33,6 +33,7 @@ PF_SOURCES=(
  ("NDTV Profit","ndtvprofit.com"),
  ("BusinessLine","thehindubusinessline.com"),
  ("Business Today","businesstoday.in"),
+ ("Fortune India","fortuneindia.com"),
  ("Outlook Money","outlookmoney.com"),
  ("Goodreturns","goodreturns.in"),
  ("Money9","money9live.com"),
